@@ -15,4 +15,5 @@ It is suggested that you scroll down the source code and make changes suitable f
 To be honest, it might not work at all, I don't know.
 
 **You will need to use SAMP 0.3.DL.
+
 **Aaand you will need to translate this gamemode from Slovak language to your own**
