@@ -18,7 +18,7 @@ enum {
 
 new Trucking::StationNames[][] = {
 	"null",
-	"HlavnÈ prekladisko Blueberry"
+	"Main station Blueberry"
 };
 
 new Trucking::TrailerParkingSpots[][] = {
@@ -68,7 +68,7 @@ enum depotEnum()
 {
 	depot_Type,
 	Float:depot_X, Float:depot_Y, Float:depot_Z,
-	depot_Loaded,    // kolko jednotiek je na sklade
+	depot_Loaded,    //units
 	depot_UnloadingOnly,
 	
 	Text3D:depot_Label
@@ -102,7 +102,7 @@ new Trucking::vWorkEnum[MAX_VEHICLES][truckWorkVehicleEnum];
 new bool:gPlayerEnded[MAX_PLAYERS];
 
 new Trucking::TransportTypeData[][] = {
-	// n·zov, level, min payday, max payday
+	// name, level, min payday, max payday
 	{0, 0, 0},
 	{1, 	645, 		1790},
 	{1,    	670,        1820},
@@ -114,7 +114,7 @@ new Trucking::TransportTypeData[][] = {
 	{15,   	850,        2150},
 	{5,     750,        1995},
 	{15,   	890,        2150},
-	{1,    	0,          0},         // nem· odmeny pretoûe sa platÌ na benzÌnke za to koæko paliva doruËÌ
+	{1,    	0,          0},         // no reward
 
 	// special deliveries
 
@@ -222,24 +222,24 @@ new Trucking::TransportDepots[][] = {
 new Trucking::TransportTypeDataN[][] = {
 	// n·zov, level, min payday, max payday
 	{""},
-	{"Potraviny"},
-	{"M‰so"},
-	{"ObleËenie"},
-	{"Zbrane, strelivo"},
-	{"Auto-s˙Ëiastky"},
-	{"Elektronika"},
-	{"N·bytok"},
-	{"Alkohol"},
-	{"SladenÈ n·poje"},
-	{"Tabak"},
-	{"Palivo"},         // nem· odmeny pretoûe sa platÌ na benzÌnke za to koæko paliva doruËÌ
+	{"Food"},
+	{"Meat"},
+	{"Clothing"},
+	{"Weapons and ammo"},
+	{"Vehicle-parts"},
+	{"Electronics"},
+	{"Furniture"},
+	{"Alcohol"},
+	{"Sweet drinks"},
+	{"Tobacco"},
+	{"Fuel"},         // nem· odmeny pretoûe sa platÌ na benzÌnke za to koæko paliva doruËÌ
 
 	// special deliveries
 
-	{"Vozidl·"},
-	{"Drevo"},
-	{"Peniaze"},
-	{"Kamene, suroviny"},
+	{"Vehicles"},
+	{"Trees"},
+	{"Money"},
+	{"Raw ores"},
 	{"Cement"}
 };
 
@@ -260,7 +260,7 @@ function trucker_OnPlayerStateChange(playerid, newstate, oldstate)
 		if(Trucking::vWorkEnum[Trucking::glastveh[playerid]][tworkv_State] == 1)
 		{
 		    if(Trucking::gWorkEnum[playerid][tworkp_VehicleId] != Trucking::glastveh[playerid])
-		        return SendError(playerid, "Toto nie je tvoj ùahaË!!!");
+		        return SendError(playerid, "This truck is not yours");
 		
 		    new
 		        Float:lX, Float:lY, Float:lZ
@@ -274,14 +274,14 @@ function trucker_OnPlayerStateChange(playerid, newstate, oldstate)
 			
 			g_I_playerCheckpoint[playerid] = checkp_prepravka;
 			
-			SCFM(playerid, COLOR_GREEN, "[ROUTE ADVISOR v11.5.4.132]; {FFFFFF}Navigujem ùa do prvÈho skladu! Nezabudni zah·knuù n·ves!");
+			SCFM(playerid, COLOR_GREEN, "[ROUTE ADVISOR v11.5.4.132]; {FFFFFF}Routing to first depot, attach your trailer!");
 			
 			PlayerTextDrawShow(playerid, PTD_timeleft[playerid]);
 		}
 		else if(Trucking::vWorkEnum[Trucking::glastveh[playerid]][tworkv_State] == 3)
 		{
 		    if(Trucking::gWorkEnum[playerid][tworkp_VehicleId] != Trucking::glastveh[playerid])
-		        return SendError(playerid, "Toto nie je tvoj ùahaË!!!");
+		        return SendError(playerid, "This truck is not yours!");
 		
 		    new
 		        Float:lX, Float:lY, Float:lZ
@@ -327,7 +327,7 @@ function trucker_OnPlayerStateChange(playerid, newstate, oldstate)
 		
 		SetPlayerFactionRank(playerid, GetPlayerFactionRank(playerid)+1);
 		
-		SCFM(playerid, COLOR_GREEN, "[ ! ] {FFFFFF}DokonËil si pr·cu, za odmenu si dostal %d$. Post˙pil si o jeden level!", odmena);
+		SCFM(playerid, COLOR_GREEN, "[ ! ] {FFFFFF}You finished your job and got rewarded %d$ and one level up!", odmena);
 		
 		Trucking::gWorkEnum[playerid][tworkp_Type] = 0;
 	}
@@ -354,7 +354,7 @@ Trucking::LoadDepots()
 	    
 	    Trucking::Depot[x][depot_Loaded]  			= MAX_DEPOT_CAPACITY / 2;
 	    
-	    format(lLabelString, sizeof lLabelString, "{d6d6d6}[ %s ]\nna sklade: %d jednotiek\n", Trucking::TransportTypeDataN[Trucking::Depot[x][depot_Type]], Trucking::Depot[x][depot_Loaded]);
+	    format(lLabelString, sizeof lLabelString, "{d6d6d6}[ %s ]\nin storage: %d units\n", Trucking::TransportTypeDataN[Trucking::Depot[x][depot_Type]], Trucking::Depot[x][depot_Loaded]);
 	    
 	    Trucking::Depot[x][depot_Label]             = CreateDynamic3DTextLabel(lLabelString, 0xFFFFFFFF, Trucking::Depot[x][depot_X], Trucking::Depot[x][depot_Y], Trucking::Depot[x][depot_Z], 20.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, -1, -1, -1);
 	    
@@ -368,7 +368,7 @@ Trucking::LoadDepots()
 Trucking::StartWork(playerid)
 {
 	if(Trucking::gWorkType[playerid] < 1)
-	    return SendError(playerid, "Vyskytla sa chyba, t·to zak·zka nebola moûn·!");
+	    return SendError(playerid, "An error occured, please, report to an admin ASAP!");
 	    
 	Trucking::gWorkEnum[playerid][tworkp_Type]            = Trucking::gWorkType[playerid];
 	Trucking::gWorkEnum[playerid][tworkp_StartUnix]       = 0;
@@ -545,9 +545,9 @@ Trucking::SpawnVehicle(playerid, modelid, maxcapacity = 1500, bool:trailer = fal
     
     ////////////////////////////////////////////////////////////////////////////
     
-    SCFM(playerid, COLOR_DARKRED, "[ ! ] {FFFFFF}Zobral si z·sielku! Budeö viezù %s. Vozidlo m·ö zaparkovanÈ na parkovisku, jeho SPZ je %s.", Trucking::TransportTypeDataN[Trucking::gWorkEnum[playerid][tworkp_Type]], licplate);
-    SCFM(playerid, COLOR_DARKRED, "[ ! ] {FFFFFF}Nasadni do vozidla a nezabudni zah·knuù prÌves id %d ktor˝ je tu pri gar·ûi, alebo dole, ak m·ö kamiÛn!", Trucking::vWorkEnum[vehicleid][tworkv_TrailerId]);
-    SCFM(playerid, COLOR_DARKRED, "[ ! ] {FFFFFF}Na vyzdvihnutie n·kladu m·ö 15 min˙t!");
+    SCFM(playerid, COLOR_DARKRED, "[ ! ] {FFFFFF}You will carry %s. Your truck is parked in a parking lot, it's plate is %s.", Trucking::TransportTypeDataN[Trucking::gWorkEnum[playerid][tworkp_Type]], licplate);
+    SCFM(playerid, COLOR_DARKRED, "[ ! ] {FFFFFF}Get in your truck and do not forget to attach your trailer (id %d)!", Trucking::vWorkEnum[vehicleid][tworkv_TrailerId]);
+    SCFM(playerid, COLOR_DARKRED, "[ ! ] {FFFFFF}You have 15 minutes to go to the first depot!");
     
     ////////////////////////////////////////////////////////////////////////////
     
@@ -561,7 +561,7 @@ Trucking::SpawnVehicle(playerid, modelid, maxcapacity = 1500, bool:trailer = fal
 Trucking::ShowWorkOffering(playerid, rank = 1)
 {
 	new
-	    tStr[912] = "Tovar, potrebn˝ level\tOdmena v rozmedzÌ od-do\nInform·cie o preprav·ch\n",
+	    tStr[912] = "Cargo type, required level\tReward from-to\nAdd. informations\n",
 		tStr_2[52];
 	    
 	for( new x = 1; x < sizeof Trucking::TransportTypeData; x++ )
@@ -571,14 +571,14 @@ Trucking::ShowWorkOffering(playerid, rank = 1)
 			continue;
 	
 	    if(rank >= Trucking::TransportTypeData[x][0]) //ma dostatocny rank
-	    	format(tStr_2, sizeof tStr_2, "{8cce6f}%s (%d)\t%d$ aû %d$\n", Trucking::TransportTypeDataN[x], Trucking::TransportTypeData[x][0], Trucking::TransportTypeData[x][1], Trucking::TransportTypeData[x][2]);
+	    	format(tStr_2, sizeof tStr_2, "{8cce6f}%s (%d)\t%d$ to %d$\n", Trucking::TransportTypeDataN[x], Trucking::TransportTypeData[x][0], Trucking::TransportTypeData[x][1], Trucking::TransportTypeData[x][2]);
 		else //nema
-		    format(tStr_2, sizeof tStr_2, "{ce5656}%s (%d)\t%d$ aû %d$\n", Trucking::TransportTypeDataN[x], Trucking::TransportTypeData[x][0], Trucking::TransportTypeData[x][1], Trucking::TransportTypeData[x][2]);
+		    format(tStr_2, sizeof tStr_2, "{ce5656}%s (%d)\t%d$ to %d$\n", Trucking::TransportTypeDataN[x], Trucking::TransportTypeData[x][0], Trucking::TransportTypeData[x][1], Trucking::TransportTypeData[x][2]);
 		    
 		strcat(tStr, tStr_2);
 	}
 	
-	ShowPlayerDialog(playerid, did_prepravca_offer, DIALOG_STYLE_TABLIST_HEADERS, "PONUKA PR¡CE", tStr, "DETAIL", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_prepravca_offer, DIALOG_STYLE_TABLIST_HEADERS, "JOB OFFERS", tStr, "DETAIL", "EXIT");
 
 	return 1;
 }
@@ -594,61 +594,61 @@ Trucking::ShowWorkOfferDetail(playerid, transport_type)
 	switch(transport_type)
 	{
 	    case TRANSPORT_TYPE_FOOD:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù dod·vku s potravinami.");
+	        format(jobDesc, sizeof jobDesc, "You will carry food.");
 	        
-        case TRANSPORT_TYPE_MEAT:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù dod·vku s m‰som.");
+
+	        format(jobDesc, sizeof jobDesc, "You will carry meat.");
 	        
         case TRANSPORT_TYPE_CLOTHING:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù dod·vku s obleËenÌm.");
+	        format(jobDesc, sizeof jobDesc, "You will carry clothing.");
 	        
         case TRANSPORT_TYPE_WEAPONS:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù obrnenÈ vozidlo so zbraÚami a strelivom.");
+	        format(jobDesc, sizeof jobDesc, "You will carry weapons and ammo.");
 	        
         case TRANSPORT_TYPE_VEHICLE_PARTS:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù n·ves s auto-s˙Ëiastkami.");
+	        format(jobDesc, sizeof jobDesc, "You will carry vehicle-parts");
 	        
         case TRANSPORT_TYPE_ELECTRONICS:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù n·ves s elektronikou.");
+	        format(jobDesc, sizeof jobDesc, "You will carry electronics.");
 	        
         case TRANSPORT_TYPE_FURNITURE:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù n·ves s elektronikou.");
+	        format(jobDesc, sizeof jobDesc, "You will carry furniture.");
 	        
         case TRANSPORT_TYPE_ALCOHOL:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù dod·vku s alkoholom.");
+	        format(jobDesc, sizeof jobDesc, "You will carry alcohol.");
 	        
         case TRANSPORT_TYPE_SUGAR_DRINK:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù dod·vku so sladen˝mi n·pojmi.");
+	        format(jobDesc, sizeof jobDesc, "You will carry sweet drinks.");
 	        
         case TRANSPORT_TYPE_TOBACCO:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù dod·vku s tabakov˝mi v˝robkami.");
+	        format(jobDesc, sizeof jobDesc, "You will carry tobacco.");
 	        
         case TRANSPORT_TYPE_FUEL:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù cisternu s pohonn˝mi hmotami.");
+	        format(jobDesc, sizeof jobDesc, "You will carry fuel.");
 	        
         case TRANSPORT_TYPE_VEHICLES:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù n·ves s vozidlami.");
+	        format(jobDesc, sizeof jobDesc, "You will carry vehicles.");
 	        
         case TRANSPORT_TYPE_WOOD:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù n·ves s drevom.");
+	        format(jobDesc, sizeof jobDesc, "You will carry trees.");
 	        
         case TRANSPORT_TYPE_MONEY:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù obrnenÈ vozidlo s peniazmi.");
+	        format(jobDesc, sizeof jobDesc, "You will carry money.");
 	        
         case TRANSPORT_TYPE_ROCKS:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù n·kladiak so surovinami.");
+	        format(jobDesc, sizeof jobDesc, "You will carry raw ores.");
 	        
         case TRANSPORT_TYPE_CONCRETE:
-	        format(jobDesc, sizeof jobDesc, "Budeö viezù mieöaËku.");
+	        format(jobDesc, sizeof jobDesc, "You will carry cement.");
 	        
 		default:
 		    return Trucking::ShowWorkOffering(playerid, GetPlayerFactionRank(playerid));
 	}
 	
-	format(finStr, sizeof finStr, "{FFFFFF}MÙûeö si vybraù zak·zku typu {7de876}%s{ffffff}, za ktor˙ je odmena v rozmedzÌ {7de876}%d$ {FFFFFF}aû {7de876}%d${FFFFFF}.\nPotrebn˝ level na zak·zku je {7de876}%d{ffffff}, takûe ju mÙûeö vziaù.\n%s",
+	format(finStr, sizeof finStr, "{FFFFFF}You can choose cargo type {7de876}%s{ffffff}, which is rewarded from {7de876}%d$ {FFFFFF}to {7de876}%d${FFFFFF}.\nRequired level for this job is {7de876}%d{ffffff}, that means that you can take it.\n%s",
 		Trucking::TransportTypeDataN[transport_type][0], Trucking::TransportTypeData[transport_type][1], Trucking::TransportTypeData[transport_type][2], Trucking::TransportTypeData[transport_type][0], jobDesc);
 	
-	ShowPlayerDialog(playerid, did_preprevca_offer_detail, DIALOG_STYLE_MSGBOX, "PONUKA PR¡CE - DETAIL", finStr, "VZIAç", "SPAç");
+	ShowPlayerDialog(playerid, did_preprevca_offer_detail, DIALOG_STYLE_MSGBOX, "JOB OFFERING - DETAIL", finStr, "ACCEPT", "BACK");
 	
 	Trucking::gWorkType[playerid] = transport_type;
 
@@ -664,13 +664,13 @@ Trucking::EnteredCheckpoint(playerid)
 
 	if(vehicleid != Trucking::gWorkEnum[playerid][tworkp_VehicleId])
 	{
-	    SendError(playerid, "MusÌö byù v kamiÛne, ktor˝ si dostal!");
+	    SendError(playerid, "You have to be in your truck!");
 	    return 0;
 	}
 	
 	if(GetVehicleTrailer(vehicleid) != Trucking::vWorkEnum[vehicleid][tworkv_TrailerId])
 	{
-	    SendError(playerid, "MusÌö maù pripojen˝ prÌves ktor˝ si dostal!");
+	    SendError(playerid, "Your trailer has to be attached!");
 	    return 0;
 	}
 	
@@ -712,7 +712,7 @@ Trucking::EnteredCheckpoint(playerid)
 			    lLabelString[512]
 			;
 			
-			format(lLabelString, sizeof lLabelString, "{d6d6d6}[ %s ]\nna sklade: %d jednotiek\n", Trucking::TransportTypeDataN[Trucking::Depot[depotid][depot_Type]], Trucking::Depot[depotid][depot_Loaded]);
+			format(lLabelString, sizeof lLabelString, "{d6d6d6}[ %s ]\nin storage: %d units\n", Trucking::TransportTypeDataN[Trucking::Depot[depotid][depot_Type]], Trucking::Depot[depotid][depot_Loaded]);
 			
 			UpdateDynamic3DTextLabelText(Trucking::Depot[depotid][depot_Label], 0xFFFFFFFF, lLabelString);
 	        
@@ -742,7 +742,7 @@ Trucking::EnteredCheckpoint(playerid)
 			    lLabelString[512]
 			;
 
-			format(lLabelString, sizeof lLabelString, "{d6d6d6}[ %s ]\nna sklade: %d jednotiek\n", Trucking::TransportTypeDataN[Trucking::Depot[depotid][depot_Type]], Trucking::Depot[depotid][depot_Loaded]);
+			format(lLabelString, sizeof lLabelString, "{d6d6d6}[ %s ]\nin storage: %d units\n", Trucking::TransportTypeDataN[Trucking::Depot[depotid][depot_Type]], Trucking::Depot[depotid][depot_Loaded]);
 
 			UpdateDynamic3DTextLabelText(Trucking::Depot[depotid][depot_Label], 0xFFFFFFFF, lLabelString);
 	    }
@@ -761,7 +761,7 @@ Trucking::EnteredCheckpoint(playerid)
 	        
 	        gPlayerEnded[playerid] = true;
 	        
-	        SCFM(playerid, COLOR_DARKRED, "[ ! ] {FFFFFF}DokonËil si prevoz z·sielky! Vyst˙p prosÌm.");
+	        SCFM(playerid, COLOR_DARKRED, "[ ! ] {FFFFFF}You delivered cargo! Step out of the truck, please.");
 	    }
 	}
 	

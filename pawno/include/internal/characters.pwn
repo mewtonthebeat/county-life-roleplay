@@ -311,7 +311,7 @@ Character::CreateTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, character_SelectionTD[playerid][1], 1);
 	PlayerTextDrawSetShadow(playerid, character_SelectionTD[playerid][1], 0);
 
-	character_SelectionTD[playerid][2] = CreatePlayerTextDraw(playerid, 326.190521, 146.053375, "VYBER SI POSTAVU");
+	character_SelectionTD[playerid][2] = CreatePlayerTextDraw(playerid, 326.190521, 146.053375, "CHOOSE YOUR CHARACTER");
 	PlayerTextDrawLetterSize(playerid, character_SelectionTD[playerid][2], 0.197142, 0.833866);
 	PlayerTextDrawAlignment(playerid, character_SelectionTD[playerid][2], 2);
 	PlayerTextDrawColor(playerid, character_SelectionTD[playerid][2], -1);
@@ -393,7 +393,7 @@ Character::CreateTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, character_SelectionTD[playerid][7], 1);
 	PlayerTextDrawSetShadow(playerid, character_SelectionTD[playerid][7], 0);
 
-	character_SelectionTD[playerid][8] = CreatePlayerTextDraw(playerid, 168.857208, 224.560058, "VYTVORIT POSTAVU");
+	character_SelectionTD[playerid][8] = CreatePlayerTextDraw(playerid, 168.857208, 224.560058, "CREATE NEW");
 	PlayerTextDrawLetterSize(playerid, character_SelectionTD[playerid][8], 0.165904, 0.671733);
 	PlayerTextDrawAlignment(playerid, character_SelectionTD[playerid][8], 2);
 	PlayerTextDrawColor(playerid, character_SelectionTD[playerid][8], -1061109505);
@@ -437,7 +437,7 @@ Character::CreateTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, character_SelectionTD[playerid][11], 1);
 	PlayerTextDrawSetShadow(playerid, character_SelectionTD[playerid][11], 0);
 
-	character_SelectionTD[playerid][12] = CreatePlayerTextDraw(playerid, 240.857131, 282.159973, "VSTUPIT DO HRY");
+	character_SelectionTD[playerid][12] = CreatePlayerTextDraw(playerid, 240.857131, 282.159973, "ENTER GAME");
 	PlayerTextDrawLetterSize(playerid, character_SelectionTD[playerid][12], 0.147428, 0.870400);
 	PlayerTextDrawTextSize(playerid, character_SelectionTD[playerid][12], 8.000000, 65.000000);
 	PlayerTextDrawAlignment(playerid, character_SelectionTD[playerid][12], 2);
@@ -452,7 +452,7 @@ Character::CreateTextdraws(playerid)
 	PlayerTextDrawSetShadow(playerid, character_SelectionTD[playerid][12], 0);
 	PlayerTextDrawSetSelectable(playerid, character_SelectionTD[playerid][12], true);
 
-	character_SelectionTD[playerid][13] = CreatePlayerTextDraw(playerid, 322.761810, 282.159973, "PREMENOVAT POSTAVU");
+	character_SelectionTD[playerid][13] = CreatePlayerTextDraw(playerid, 322.761810, 282.159973, "RENAME CHARACTER");
 	PlayerTextDrawLetterSize(playerid, character_SelectionTD[playerid][13], 0.147428, 0.870400);
 	PlayerTextDrawTextSize(playerid, character_SelectionTD[playerid][13], 8.000000, 90.000000);
 	PlayerTextDrawAlignment(playerid, character_SelectionTD[playerid][13], 2);
@@ -467,7 +467,7 @@ Character::CreateTextdraws(playerid)
 	PlayerTextDrawSetShadow(playerid, character_SelectionTD[playerid][13], 0);
 	PlayerTextDrawSetSelectable(playerid, character_SelectionTD[playerid][13], true);
 
-	character_SelectionTD[playerid][14] = CreatePlayerTextDraw(playerid, 405.047668, 282.159973, "ZMAZAT POSTAVU");
+	character_SelectionTD[playerid][14] = CreatePlayerTextDraw(playerid, 405.047668, 282.159973, "DELETE CHARACTER");
 	PlayerTextDrawLetterSize(playerid, character_SelectionTD[playerid][14], 0.147428, 0.870400);
 	PlayerTextDrawTextSize(playerid, character_SelectionTD[playerid][14], 8.000000, 65.000000);
 	PlayerTextDrawAlignment(playerid, character_SelectionTD[playerid][14], 2);
@@ -519,7 +519,7 @@ Character::CreateTextdraws(playerid)
 	PlayerTextDrawSetShadow(playerid, character_SelectionTD[playerid][17], 0);
 	PlayerTextDrawSetSelectable(playerid, character_SelectionTD[playerid][17], true);
 
-	character_SelectionTD[playerid][18] = CreatePlayerTextDraw(playerid, 321.238098, 283.013336, "Zatial nemas ziadnu vytvorenu postavu, pre vstup do hry si prosim vytvor postavu! Klikni na box s pluskom.");
+	character_SelectionTD[playerid][18] = CreatePlayerTextDraw(playerid, 321.238098, 283.013336, "You do not have any available character. To enter game, press the plus icon to create one!");
 	PlayerTextDrawLetterSize(playerid, character_SelectionTD[playerid][18], 0.209142, 0.827733);
 	PlayerTextDrawAlignment(playerid, character_SelectionTD[playerid][18], 2);
 	PlayerTextDrawColor(playerid, character_SelectionTD[playerid][18], 673720575);
@@ -558,7 +558,7 @@ Character::CreateNew(playerid)
 	{
 	    if(g_I_mince[playerid] < 300)
 	    {
-	        SendError(playerid, "Pokia¾ si chceš založi ïalší charakter, musíš ma aspoò 300 mincí.");
+	        SendError(playerid, "You need to have at least 300 coins to create new character!");
 	        return 1;
 		}
 	
@@ -566,8 +566,8 @@ Character::CreateNew(playerid)
 	        string[144];
 
         Character::noresponse[playerid] = true;
-		format(string, 144, "{ffffff}> Pokia¾ si chceš založi ïalšiu postavu, musíš zaplati poplatok %d mincí.\n> Skutoène chceš vytvori túto postavu a zaplati poplatok?", MULTIPLE_CHARACTER_FEE);
-		return ShowPlayerDialog(playerid, did_char_multiple, DIALOG_STYLE_MSGBOX, "POPLATOK", string, "ANO", "NIE");
+		format(string, 144, "{ffffff}> If you want to create new character, you have to pay %d coins.\n> Are you sure about that?", MULTIPLE_CHARACTER_FEE);
+		return ShowPlayerDialog(playerid, did_char_multiple, DIALOG_STYLE_MSGBOX, "CHARACTER FEE", string, "YES", "NO");
 	}
 	
 	Character::ischarpaid[playerid] = false;
@@ -622,7 +622,7 @@ CharacterCreate::Create(playerid)
     CharacterCreate::DestroyTextdraws(playerid);
     Character::isincreation[playerid] = false;
     
-    SendSuccess(playerid, "Postava bola vytvorená, môžeš si ju vybra!");
+    SendSuccess(playerid, "Character created succesfully, you can use it now!");
 
 	return 1;
 }
@@ -703,13 +703,13 @@ CharacterCreate::UpdateSkin(playerid, bool:next = false, skinid = -1)
 		
 		if(forgender == -1)
 		{
-		    SendError(playerid, "Skin s týmto ID neexistuje, alebo ho nemôžeš používa!");
+		    SendError(playerid, "This skin isnt available!");
 		    return 1;
 		}
 		
 		if(forgender != CharacterCreate::gender[playerid])
 		{
-		    SendError(playerid, "Skin s týmto ID nie je pre nastavené pohlavie!");
+		    SendError(playerid, "This skin isnt available for your gender!");
 		    return 1;
 		}
 		
@@ -812,7 +812,7 @@ CharacterCreate::Refresh(playerid)
 
 CharacterCreate::ChooseName(playerid)
 {
-    ShowPlayerDialog(playerid, did_char_cre_name, DIALOG_STYLE_INPUT, "MENO POSTAVY", "{FFFFFF}> Zadaj prosím meno postavy v tvare {e34f4f}Meno_Priezvisko{FFFFFF}.", "OK", "SPAT");
+    ShowPlayerDialog(playerid, did_char_cre_name, DIALOG_STYLE_INPUT, "CHARACTER NAME", "{FFFFFF}> Please specify your character's name in format {e34f4f}Firstname_Surname{FFFFFF}.", "OK", "BACK");
     Character::noresponse[playerid] = true;
 	return 1;
 }
@@ -848,7 +848,7 @@ CharacterCreate::CreateTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, character_CreateTD[playerid][1], 1);
 	PlayerTextDrawSetShadow(playerid, character_CreateTD[playerid][1], 0);
 
-	character_CreateTD[playerid][2] = CreatePlayerTextDraw(playerid, 128.095245, 159.706665, "TVORBA POSTAVY");
+	character_CreateTD[playerid][2] = CreatePlayerTextDraw(playerid, 128.095245, 159.706665, "CHARACTER CREATION");
 	PlayerTextDrawLetterSize(playerid, character_CreateTD[playerid][2], 0.256379, 0.955733);
 	PlayerTextDrawAlignment(playerid, character_CreateTD[playerid][2], 2);
 	PlayerTextDrawColor(playerid, character_CreateTD[playerid][2], -1);
@@ -859,7 +859,7 @@ CharacterCreate::CreateTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, character_CreateTD[playerid][2], 1);
 	PlayerTextDrawSetShadow(playerid, character_CreateTD[playerid][2], 0);
 
-	character_CreateTD[playerid][3] = CreatePlayerTextDraw(playerid, 104.095260, 178.053314, "MENO POSTAVY");
+	character_CreateTD[playerid][3] = CreatePlayerTextDraw(playerid, 104.095260, 178.053314, "CHARACTER NAME");
 	PlayerTextDrawLetterSize(playerid, character_CreateTD[playerid][3], 0.159619, 0.797867);
 	PlayerTextDrawAlignment(playerid, character_CreateTD[playerid][3], 1);
 	PlayerTextDrawColor(playerid, character_CreateTD[playerid][3], 673720575);
@@ -870,7 +870,7 @@ CharacterCreate::CreateTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, character_CreateTD[playerid][3], 1);
 	PlayerTextDrawSetShadow(playerid, character_CreateTD[playerid][3], 0);
 
-	character_CreateTD[playerid][4] = CreatePlayerTextDraw(playerid, 69.047622, 187.013305, "klikni pre zmenu ...");
+	character_CreateTD[playerid][4] = CreatePlayerTextDraw(playerid, 69.047622, 187.013305, "click here to edit ...");
 	PlayerTextDrawLetterSize(playerid, character_CreateTD[playerid][4], 0.198856, 0.806400);
 	PlayerTextDrawTextSize(playerid, character_CreateTD[playerid][4], 186.000000, 10.000000);
 	PlayerTextDrawAlignment(playerid, character_CreateTD[playerid][4], 1);
@@ -885,7 +885,7 @@ CharacterCreate::CreateTextdraws(playerid)
 	PlayerTextDrawSetShadow(playerid, character_CreateTD[playerid][4], 0);
 	PlayerTextDrawSetSelectable(playerid, character_CreateTD[playerid][4], true);
 
-	character_CreateTD[playerid][5] = CreatePlayerTextDraw(playerid, 97.619056, 197.679962, "POHLAVIE POSTAVY");
+	character_CreateTD[playerid][5] = CreatePlayerTextDraw(playerid, 97.619056, 197.679962, "CHARACTER GENDER");
 	PlayerTextDrawLetterSize(playerid, character_CreateTD[playerid][5], 0.159619, 0.797867);
 	PlayerTextDrawAlignment(playerid, character_CreateTD[playerid][5], 1);
 	PlayerTextDrawColor(playerid, character_CreateTD[playerid][5], 673720575);
@@ -896,7 +896,7 @@ CharacterCreate::CreateTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, character_CreateTD[playerid][5], 1);
 	PlayerTextDrawSetShadow(playerid, character_CreateTD[playerid][5], 0);
 
-	character_CreateTD[playerid][6] = CreatePlayerTextDraw(playerid, 95.714286, 206.213287, "MUZ");
+	character_CreateTD[playerid][6] = CreatePlayerTextDraw(playerid, 95.714286, 206.213287, "MAN");
 	PlayerTextDrawLetterSize(playerid, character_CreateTD[playerid][6], 0.198856, 0.806400);
 	PlayerTextDrawTextSize(playerid, character_CreateTD[playerid][6], 10.000000, 53.000000);
 	PlayerTextDrawAlignment(playerid, character_CreateTD[playerid][6], 2);
@@ -911,7 +911,7 @@ CharacterCreate::CreateTextdraws(playerid)
 	PlayerTextDrawSetShadow(playerid, character_CreateTD[playerid][6], 0);
 	PlayerTextDrawSetSelectable(playerid, character_CreateTD[playerid][6], true);
 
-	character_CreateTD[playerid][7] = CreatePlayerTextDraw(playerid, 159.333374, 206.213287, "ZENA");
+	character_CreateTD[playerid][7] = CreatePlayerTextDraw(playerid, 159.333374, 206.213287, "WOMAN");
 	PlayerTextDrawLetterSize(playerid, character_CreateTD[playerid][7], 0.198856, 0.806400);
 	PlayerTextDrawTextSize(playerid, character_CreateTD[playerid][7], 10.000000, 53.000000);
 	PlayerTextDrawAlignment(playerid, character_CreateTD[playerid][7], 2);
@@ -926,7 +926,7 @@ CharacterCreate::CreateTextdraws(playerid)
 	PlayerTextDrawSetShadow(playerid, character_CreateTD[playerid][7], 0);
 	PlayerTextDrawSetSelectable(playerid, character_CreateTD[playerid][7], true);
 
-	character_CreateTD[playerid][8] = CreatePlayerTextDraw(playerid, 127.333328, 240.346588, "POKRACOVAT");
+	character_CreateTD[playerid][8] = CreatePlayerTextDraw(playerid, 127.333328, 240.346588, "CONTINUE");
 	PlayerTextDrawLetterSize(playerid, character_CreateTD[playerid][8], 0.166475, 0.785067);
 	PlayerTextDrawTextSize(playerid, character_CreateTD[playerid][8], 10.000000, 116.000000);
 	PlayerTextDrawAlignment(playerid, character_CreateTD[playerid][8], 2);
@@ -941,7 +941,7 @@ CharacterCreate::CreateTextdraws(playerid)
 	PlayerTextDrawSetShadow(playerid, character_CreateTD[playerid][8], 0);
 	PlayerTextDrawSetSelectable(playerid, character_CreateTD[playerid][8], true);
 
-	character_CreateTD[playerid][9] = CreatePlayerTextDraw(playerid, 104.476188, 217.306610, "SKIN POSTAVY");
+	character_CreateTD[playerid][9] = CreatePlayerTextDraw(playerid, 104.476188, 217.306610, "CHARACTER SKIN");
 	PlayerTextDrawLetterSize(playerid, character_CreateTD[playerid][9], 0.159619, 0.797867);
 	PlayerTextDrawAlignment(playerid, character_CreateTD[playerid][9], 1);
 	PlayerTextDrawColor(playerid, character_CreateTD[playerid][9], 673720575);
@@ -1046,7 +1046,7 @@ Character::OnPlayerClickPTD(playerid, PlayerText:playertextid)
 	    else if(playertextid == character_CreateTD[playerid][10])
 	    {
 	        // manualne ID skinu
-	        ShowPlayerDialog(playerid, did_char_create_skin, DIALOG_STYLE_INPUT, "MANUÁLNY VÝBER SKINU", "{FFFFFF}> Pokia¾ vieš ID skinu, ktorý chceš, zadaj ho sem!", "NASTAVI", "ZRUŠI");
+	        ShowPlayerDialog(playerid, did_char_create_skin, DIALOG_STYLE_INPUT, "MANUAL SKIN SELECTION", "{FFFFFF}> Specify skin ID!", "UPDATE", "BACK");
 	        Character::noresponse[playerid] = true;
 	    }
 	    

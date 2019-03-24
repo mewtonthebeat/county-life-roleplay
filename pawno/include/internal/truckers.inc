@@ -50,11 +50,11 @@ enum {
 	
 new A_cargoTypes[][] = {
 	"_",
-	"Všeobecné",
-	"Textil",
-	"Elektronika",
-	"Autodiely",
-	"Zbrane"
+	"Miscallaenous",
+	"Clothing",
+	"Electronics",
+	"Vehicle-parts",
+	"Weapons"
 };
 
 new A_cargoStorage[700][7];

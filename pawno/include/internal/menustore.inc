@@ -99,7 +99,7 @@ stock ms_addItem(playerid, type, data, name[], price, model, quantity = 1, Float
 			errorString[ 128 ]
 		;
 		
-		format(errorString, sizeof errorString, "[error]: {FFFFFF}Nepodarilo sa pridaù item %s (data: %d, model: %d), kontaktuj administr·tora!", name, data, model);
+		format(errorString, sizeof errorString, "[error]: {FFFFFF}Item %s (data: %d, model: %d), couldnt be added, contact an admin ASAP!", name, data, model);
 	
 		SendClientMessage(playerid, MS_COLOR_SYSTEM_ERROR, errorString);
 		
@@ -130,7 +130,7 @@ stock ms_showStore(playerid, name[], storeid)
 	
 	ms_loadStore(playerid, name);
 	
-	PlayerTextDrawSetString(playerid, MS_TEXTDRAW[playerid][7], "Kosik: ~g~$0");
+	PlayerTextDrawSetString(playerid, MS_TEXTDRAW[playerid][7], "Cart: ~g~$0");
 	
 	new
 		row = 0,
@@ -247,19 +247,19 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 				ms_items[playerid][i][ms_p_cart_data] = 0;
 			}
 			
-			SendClientMessage(playerid, MS_COLOR_SYSTEM_ERROR, "[obchod]: {FFFFFF}Vypr·zdnil si koöÌk!");
+			SendClientMessage(playerid, MS_COLOR_SYSTEM_ERROR, "[obchod]: {FFFFFF}Cart trashed!");
 			
-			return PlayerTextDrawSetString(playerid, MS_TEXTDRAW[playerid][7], "Kosik: ~g~$0");
+			return PlayerTextDrawSetString(playerid, MS_TEXTDRAW[playerid][7], "Cart: ~g~$0");
 		}
 		
 		if(playertextid == MS_TEXTDRAW[playerid][6])
 		{
 		
 			if(ms_getPlayerPrice(playerid) == 0)
-				return SendClientMessage(playerid, MS_COLOR_SYSTEM_ERROR, "[obchod]: {FFFFFF}KoöÌk je pr·zdny!");
+				return SendClientMessage(playerid, MS_COLOR_SYSTEM_ERROR, "[obchod]: {FFFFFF}Cart is empty!");
 			
 			if(GetPlayerMoney(playerid) < ms_getPlayerPrice(playerid))
-				return SendClientMessage(playerid, MS_COLOR_SYSTEM_ERROR, "[obchod]: {FFFFFF}Nem·ö dosù peÚazÌ!");
+				return SendClientMessage(playerid, MS_COLOR_SYSTEM_ERROR, "[obchod]: {FFFFFF}You have not enough money!");
 				
 			new ret = 1;
 				
@@ -284,7 +284,7 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			
 			CancelSelectTextDraw(playerid);
 			
-			SendClientMessage(playerid, MS_COLOR_SYSTEM_SUCCESS, "[obchod]: {FFFFFF}Nak˙pil si!");
+			SendClientMessage(playerid, MS_COLOR_SYSTEM_SUCCESS, "[obchod]: {FFFFFF}Order has been completed!");
 			
 			return 1;
 		}
@@ -317,11 +317,11 @@ public OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
 			price =  ms_getPlayerPrice(playerid)
 		;
 		
-		format(okString, sizeof okString, "[obchod]: {FFFFFF}Pridal si do koöÌka %s ($%d)! Nov· cena koöÌka je $%d.", ms_items[playerid][item][ms_p_name], ms_items[playerid][item][ms_p_price], price);
+		format(okString, sizeof okString, "[obchod]: {FFFFFF}You added %s ($%d) to your cart! New price of your cart is $%d.", ms_items[playerid][item][ms_p_name], ms_items[playerid][item][ms_p_price], price);
 	
 		SendClientMessage(playerid, MS_COLOR_SYSTEM_SUCCESS, okString);
 		
-		format(okString, sizeof okString, "Kosik: ~g~$%d",  price);
+		format(okString, sizeof okString, "Cart: ~g~$%d",  price);
 		
 		return PlayerTextDrawSetString(playerid, MS_TEXTDRAW[playerid][7], okString);
 	}
@@ -464,7 +464,7 @@ stock ms_loadStore(playerid, name[])
 	PlayerTextDrawSetShadow(playerid, MS_TEXTDRAW[playerid][2], 0);
 	PlayerTextDrawSetSelectable(playerid, MS_TEXTDRAW[playerid][2], true);
 
-	MS_TEXTDRAW[playerid][3] = CreatePlayerTextDraw(playerid, 323.265045, 117.083335, "Vitaj v obchode!");
+	MS_TEXTDRAW[playerid][3] = CreatePlayerTextDraw(playerid, 323.265045, 117.083335, "Welcome!");
 	PlayerTextDrawLetterSize(playerid, MS_TEXTDRAW[playerid][3], 0.325252, 1.314165);
 	PlayerTextDrawAlignment(playerid, MS_TEXTDRAW[playerid][3], 1);
 	PlayerTextDrawColor(playerid, MS_TEXTDRAW[playerid][3], -1);
@@ -475,7 +475,7 @@ stock ms_loadStore(playerid, name[])
 	PlayerTextDrawSetProportional(playerid, MS_TEXTDRAW[playerid][3], 1);
 	PlayerTextDrawSetShadow(playerid, MS_TEXTDRAW[playerid][3], 0);
 
-	MS_TEXTDRAW[playerid][4] = CreatePlayerTextDraw(playerid, 326.544738, 128.749984, "Klikni na niektory z produktov aby si ich pridal do kosika.~n~~n~Pre odchod stlac ESC.");
+	MS_TEXTDRAW[playerid][4] = CreatePlayerTextDraw(playerid, 326.544738, 128.749984, "Click something available to add it to your cart.~n~~n~Press ESC to leave.");
 	PlayerTextDrawLetterSize(playerid, MS_TEXTDRAW[playerid][4],0.183540, 0.853331);
 	PlayerTextDrawTextSize(playerid, MS_TEXTDRAW[playerid][4], 441.000000, 0.000000);
 	PlayerTextDrawAlignment(playerid, MS_TEXTDRAW[playerid][4], 1);
@@ -489,7 +489,7 @@ stock ms_loadStore(playerid, name[])
 	PlayerTextDrawSetProportional(playerid, MS_TEXTDRAW[playerid][4], 1);
 	PlayerTextDrawSetShadow(playerid, MS_TEXTDRAW[playerid][4], 0);
 
-	MS_TEXTDRAW[playerid][5] = CreatePlayerTextDraw(playerid, 429.150970, 163.750000, "VYPRAZDNIT~n~KOSIK");
+	MS_TEXTDRAW[playerid][5] = CreatePlayerTextDraw(playerid, 429.150970, 163.750000, "EMPTY~n~CART");
 	PlayerTextDrawLetterSize(playerid, MS_TEXTDRAW[playerid][5], 0.161990, 0.748332);
 	PlayerTextDrawTextSize(playerid, MS_TEXTDRAW[playerid][5], 19.000000, 37.000000);
 	PlayerTextDrawAlignment(playerid, MS_TEXTDRAW[playerid][5], 2);
@@ -504,7 +504,7 @@ stock ms_loadStore(playerid, name[])
 	PlayerTextDrawSetShadow(playerid, MS_TEXTDRAW[playerid][5], 0);
 	PlayerTextDrawSetSelectable(playerid, MS_TEXTDRAW[playerid][5], true);
 
-	MS_TEXTDRAW[playerid][6] = CreatePlayerTextDraw(playerid, 398.858154, 163.750000, "KUPIT~n~TOVAR");
+	MS_TEXTDRAW[playerid][6] = CreatePlayerTextDraw(playerid, 398.858154, 163.750000, "BUY~n~ITEMS");
 	PlayerTextDrawLetterSize(playerid, MS_TEXTDRAW[playerid][6],0.161990, 0.748332);
 	PlayerTextDrawTextSize(playerid, MS_TEXTDRAW[playerid][6], 19.000000, 22.000000);
 	PlayerTextDrawAlignment(playerid, MS_TEXTDRAW[playerid][6], 2);
@@ -519,7 +519,7 @@ stock ms_loadStore(playerid, name[])
 	PlayerTextDrawSetShadow(playerid, MS_TEXTDRAW[playerid][6], 0);
 	PlayerTextDrawSetSelectable(playerid, MS_TEXTDRAW[playerid][6], true);
 
-	MS_TEXTDRAW[playerid][7] = CreatePlayerTextDraw(playerid, 326.076202, 170.750000, "Kosik: ~g~1490$");
+	MS_TEXTDRAW[playerid][7] = CreatePlayerTextDraw(playerid, 326.076202, 170.750000, "Cart: ~g~1490$");
 	PlayerTextDrawLetterSize(playerid, MS_TEXTDRAW[playerid][7], 0.161990, 0.748332);
 	PlayerTextDrawAlignment(playerid, MS_TEXTDRAW[playerid][7], 1);
 	PlayerTextDrawColor(playerid, MS_TEXTDRAW[playerid][7], -1);
