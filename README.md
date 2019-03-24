@@ -3,7 +3,7 @@ County Life Roleplay is a gamemode written by me within the period of 3 years (2
 
 This gamemode had a lot of exterior and interior maps, but, because I didn't create them, I decide to not include them in this release - this also applies to custom models, there were about 100 mb of them, but I didn't make them, so, no models.
 
-There is a lot of includes and plugins from SA-MP forum which were not made by me, however, I decided to include them in this package so it will be easier for you to start this gamemode.
+There is a lot of includes and plugins from SA-MP forum which were not made by me, however, I decided to include them in this package so it will be easier for you to start this gamemode. All rights to authors of these includes and plugins.
 
 **You need to download latest YSI package and include it, otherwise, gamemode won't compile.**
 ## Disclaimer
