@@ -12,4 +12,7 @@ Gamemode has been heavily edited and untested before this release, that might re
 
 It is suggested that you scroll down the source code and make changes suitable for you. This gamemode should be working, but it needs some work before you can start your own community on it.
 
+To be honest, it might not work at all, I don't know.
+
 **You will need to use SAMP 0.3.DL.**
+** Aaand you will need to translate this gamemode from Slovak language to your own**
