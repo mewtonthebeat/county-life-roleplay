@@ -10224,7 +10224,7 @@ ShowPlayerGoldMenu_1(playerid)
 	    playerid,
 		did_goldmenu_1, DIALOG_STYLE_INPUT,
 	    S_caption,
-	    "{FFFFFF}> Zadaj prosÌm nov˙ SPZ tohoto auta!\nMusÌ maù 2-9 znakov (obsahovaù mÙûe iba: A-Z;0-9; ;_;$).\nT·to akcia je nevratn·.",
+	    "{FFFFFF}> Specify new plate for this vehicle! You cannot undo this.",
 	    "OK",
 	    "BACK"
 	);
@@ -10241,7 +10241,7 @@ ShowPlayerGoldMenu_2(playerid)
 	format(
 	    S_caption,
 	    sizeof S_caption,
-	    "{eeeeee}KREDIT-MENU [M¡ä {FFCC50}%d KREDITOV{EEEEEE}]",
+	    "{eeeeee}COIN MENU [YOU HAVE {FFCC50}%d COINS{EEEEEE}]",
 	    g_I_mince[playerid]
 	);
 
@@ -10249,7 +10249,7 @@ ShowPlayerGoldMenu_2(playerid)
 	    playerid,
 		did_goldmenu_2, DIALOG_STYLE_INPUT,
 	    S_caption,
-	    "{FFFFFF}> Zadaj prosÌm tvoje novÈ telefÛnne ËÌslo!\nMusÌ maù 5-9 cifier.\nT·to akcia je nevratn·.",
+	    "{FFFFFF}> Specify your new phone number.",
 	    "OK",
 	    "BACK"
 	);
@@ -10267,14 +10267,14 @@ ShowPlayerGoldMenu_4(playerid)
 	format(
 	    S_caption,
 	    sizeof S_caption,
-	    "{eeeeee}KREDIT-MENU [M¡ä {FFCC50}%d KREDITOV{EEEEEE}]",
+	    "{eeeeee}COIN MENU [YOU HAVE {FFCC50}%d COINS{EEEEEE}]",
 	    g_I_mince[playerid]
 	);
 
 	format(
 		S_string,
 		sizeof S_string,
-		"{FFFFFF}> SkutoËne chceö vymeniù {FFCC50}%d kreditov {ffffff}za {52b654}%d${ffffff}?!\nT·to akcia je nevratn·!",
+		"{FFFFFF}> Are you sure you want to exchange %d coins for %d$?!",
 		g_I_mince[playerid], g_I_mince[playerid] * Economy::GetPrice(ECONOMY_LIST_GOLDS)
 	);
 
@@ -10283,8 +10283,8 @@ ShowPlayerGoldMenu_4(playerid)
 		did_goldmenu_4, DIALOG_STYLE_MSGBOX,
 	    S_caption,
 	    S_string,
-	    "¡NO",
-	    "NIE"
+	    "YES",
+	    "NO"
 	);
 
 	return 1;
@@ -10309,9 +10309,9 @@ ShowPlayerGoldMenu_Lease(playerid)
 		    cena = 100;
 	}
 
-	format(finalString, sizeof finalString, "{ffffff}> PredÂûenie {f4d142}Donator Levelu %d {ffffff}stojÌ {f4d142}%d kreditov {ffffff}na jeden deÚ.\nZadaj poËet dnÌ, o koæko chceö level predÂûiù.", GetPlayerDonatorLevel(playerid), cena);
+	format(finalString, sizeof finalString, "{ffffff}> Extending {f4d142}Donator Level %d {ffffff}costs {f4d142}%d coins {ffffff}per day.\nEnter count of days.", GetPlayerDonatorLevel(playerid), cena);
 
-	ShowPlayerDialog(playerid, did_goldmenu_donor, DIALOG_STYLE_INPUT, "PRED≈éIç DONATOR LEVEL", finalString, "PRED≈éIç", "BACK");
+	ShowPlayerDialog(playerid, did_goldmenu_donor, DIALOG_STYLE_INPUT, "EXTEND DONATOR LEVEL", finalString, "EXTEND", "BACK");
 	return 1;
 }
 
@@ -10326,14 +10326,14 @@ ShowPlayerGoldMenu(playerid)
 	format(
 	    S_caption,
 	    sizeof S_caption,
-	    "{eeeeee}KREDIT-MENU [M¡ä {FFCC50}%d KREDITOV{EEEEEE}]",
+	    "{eeeeee}COIN MENU [YOU HAVE {FFCC50}%d COINS{EEEEEE}]",
 	    g_I_mince[playerid]
 	);
 
 	format(
 		S_string,
 		sizeof S_string,
-		"{FFFFFF}PredÂûiù Donator Level ª\nK˙pit 1 Rename Ticket ({ffcc50}150 kreditov{FFFFFF})\nK˙più 1 XP ({ffcc50}50 kreditov{FFFFFF})\nZmena SPZ vozidla ({ffcc50}50 kreditov{FFFFFF})\nZmena telefÛnneho ËÌsla ({ffcc50}200 kreditov{FFFFFF})\nVöetky kredity na peniaze ({ffcc50}%d kreditov{FFFFFF} na {52b654}%d${ffffff})",
+		"{FFFFFF}Extend Donator Level ª\nBuy 1 Rename Ticket ({ffcc50}150 coins{FFFFFF})\nBuy 1 XP ({ffcc50}50 coins{FFFFFF})\nVehicle plate change ({ffcc50}50 coins{FFFFFF})\nPhone number change ({ffcc50}200 coins{FFFFFF})\nAll coins to money ({ffcc50}%d coins{FFFFFF} to {52b654}%d${ffffff})",
 		g_I_mince[playerid], g_I_mince[playerid] * Economy::GetPrice(ECONOMY_LIST_GOLDS)
 	);
 
@@ -10555,7 +10555,7 @@ ShowPlayerWhitelistDetail(playerid, const count)
 
 	cache_delete(cache);
 
-	format(query, sizeof query, "{ffffff}Meno: {e34f4f}%s\t{ffffff}IP: {e34f4f}%s\n{ffffff}Lok·cia: {e34f4f}%s\n{FFFFFF}Zhoda: {e34f4f}%s\n{7ddb74}Schv·liù\n{e34f4f}Zamietnuù", username, regip, act_ipfrom, zhoda);
+	format(query, sizeof query, "{ffffff}Name: {e34f4f}%s\t{ffffff}IP: {e34f4f}%s\n{ffffff}Location: {e34f4f}%s\n{FFFFFF}Matches: {e34f4f}%s\n{7ddb74}Approve\n{e34f4f}Deny", username, regip, act_ipfrom, zhoda);
 
 	format(wl_editname[playerid], 25, username);
 	wl_verdikt[playerid] = false;
@@ -10572,7 +10572,7 @@ ShowPlayerWhitelist(playerid)
 	new
 	    query[144],
 	    Cache:cache,
-	    finalString[ 2048 ] = "Meno\tIP\tLok·cia{FFFFFF}",
+	    finalString[ 2048 ] = "Name\tIP\tLocation{FFFFFF}",
 
 		username[25],
 		act_ipfrom[148],
@@ -10596,7 +10596,7 @@ ShowPlayerWhitelist(playerid)
 
 	cache_delete(cache);
 
-	ShowPlayerDialog(playerid, did_whitelist, DIALOG_STYLE_TABLIST_HEADERS, "WHITELIST (POSLEDN›CH 20)", finalString, "DETAIL", "ZAVRIEç");
+	ShowPlayerDialog(playerid, did_whitelist, DIALOG_STYLE_TABLIST_HEADERS, "WHITELIST (LAST 20)", finalString, "DETAIL", "CLOSE");
 
 	return 1;
 
@@ -10663,10 +10663,10 @@ retBoolStringFromInt(const integer)
 	{
 
         case 1:
-	        format(_tmp, sizeof _tmp, "¡no");
+	        format(_tmp, sizeof _tmp, "Yes");
 
         default:
-	        format(_tmp, sizeof _tmp, "Nie");
+	        format(_tmp, sizeof _tmp, "No");
 
 	}
 
@@ -10733,14 +10733,14 @@ ShowPlayerGraffitiMenu(playerid, const id)
 	    finalString[ 2048 ];
 
 	format(finalString, sizeof finalString,
-	    "{FFFFFF}Upraviù text\nPÌsmo ( {dfae51}%s {FFFFFF})\nVeækosù pÌsma ( {dfae51}%dpx {FFFFFF})\nHrubÈ pÌsmo ( {dfae51}%s {FFFFFF})\nRozlÌöenie ( {dfae51}%spx {FFFFFF})\nUk·ûka spray tagu\nUloûiù spray tag\nZmazaù spray tag",
+	    "{FFFFFF}Edit text\nFont ( {dfae51}%s {FFFFFF})\nFont size ( {dfae51}%dpx {FFFFFF})\nBold ( {dfae51}%s {FFFFFF})\nResolution ( {dfae51}%spx {FFFFFF})\nPreview\nSpray\nRemove",
 	    graffitiEnum[id][graffiti_Font],
 	    graffitiEnum[id][graffiti_FontSize],
 	    retBoolStringFromInt(graffitiEnum[id][graffiti_Bold]),
 	    retResolStringFromInt(graffitiEnum[id][graffiti_MatSize])
 	);
 
-	ShowPlayerDialog(playerid, did_graffiti_menu, DIALOG_STYLE_LIST, "TVORBA SPRAY TAGU", finalString, "ZVOLIç", "CLOSE");
+	ShowPlayerDialog(playerid, did_graffiti_menu, DIALOG_STYLE_LIST, "SPRAY TAG", finalString, "CHOOSE", "CLOSE");
 
 	return (true);
 
@@ -11158,7 +11158,7 @@ SendRadioMessageFromPlayer(const playerid, const Float:freq, const message[], na
 		    format(finName, sizeof finName, GetPlayerNameEx(playerid, USE_MASK));
 
 		case 2:
-		    format(finName, sizeof finName, "Nezn·my");
+		    format(finName, sizeof finName, "Unknown");
 
 	}
 
@@ -11291,7 +11291,7 @@ ShowPlayerFOS(playerid)
 {
 
 	ShowPlayerDialog(playerid, did_fos, DIALOG_STYLE_LIST, "MOBILE DATABASE COMPUTER",
-		"PoslednÈ hovory\nZamestnanci v sluûbe\nMestskÈ kamery",
+		"Last Calls\nEmployees on duty\nCCTV cameras",
 	    "SELECT", "LOGOUT");
 
 	return 1;
@@ -11312,7 +11312,7 @@ ShowBoomboxDetail(playerid, count)
 
 	cache_delete(cache);
 
-	return ShowPlayerDialog(playerid, did_boombox_menu, DIALOG_STYLE_LIST, "STANICA", "Spustiù r·dio\nVymazaù stanicu", "CHOOSE", "BACK");
+	return ShowPlayerDialog(playerid, did_boombox_menu, DIALOG_STYLE_LIST, "STATION", "Start radio\nDelete station", "CHOOSE", "BACK");
 
 }
 
@@ -11331,7 +11331,7 @@ ShowCarRadioDetail(playerid, count)
 
 	cache_delete(cache);
 
-	return ShowPlayerDialog(playerid, did_carradio_menu, DIALOG_STYLE_LIST, "STANICA", "Spustiù r·dio\nVymazaù stanicu", "CHOOSE", "BACK");
+	return ShowPlayerDialog(playerid, did_carradio_menu, DIALOG_STYLE_LIST, "STATION", "Start radio\nDelete station", "CHOOSE", "BACK");
 
 }
 
@@ -11849,14 +11849,14 @@ ShowPlayerAmmoShop(playerid)
 	new
 	    string[ 1024 ];
 
-	format(string, sizeof(string), "{ffffff}KrabiËka 10 n·bojov\t{2fb838}25$\n");
-	format(string, sizeof(string), "%s{ffffff}KrabiËka 30 n·bojov\t{2fb838}72$\n", string);
-	format(string, sizeof(string), "%s{ffffff}KrabiËka 50 n·bojov\t{2fb838}115$\n", string);
-	format(string, sizeof(string), "%s{ffffff}KrabiËka 100 n·bojov\t{2fb838}220$\n", string);
-	format(string, sizeof(string), "%s{ffffff}KrabiËka 150 n·bojov\t{2fb838}315$\n", string);
-	format(string, sizeof(string), "%s{ffffff}KrabiËka 500 n·bojov\t{2fb838}1000$\n", string);
+	format(string, sizeof(string), "{ffffff}10 ammo\t{2fb838}25$\n");
+	format(string, sizeof(string), "%s{ffffff}30 ammo\t{2fb838}72$\n", string);
+	format(string, sizeof(string), "%s{ffffff}50 ammo\t{2fb838}115$\n", string);
+	format(string, sizeof(string), "%s{ffffff}100 ammo\t{2fb838}220$\n", string);
+	format(string, sizeof(string), "%s{ffffff}150 ammo\t{2fb838}315$\n", string);
+	format(string, sizeof(string), "%s{ffffff}500 ammo\t{2fb838}1000$\n", string);
 
-	ShowPlayerDialog(playerid, did_buy_ammo, DIALOG_STYLE_TABLIST, "N¡KUP N¡BOJOV", string, "K⁄PIç", "CLOSE");
+	ShowPlayerDialog(playerid, did_buy_ammo, DIALOG_STYLE_TABLIST, "AMMO CRATE", string, "BUY", "CLOSE");
 
 	return 1;
 
@@ -11866,7 +11866,7 @@ Attachment_Show(playerid)
 {
 
 	new
-	    content[ 524 ] = "{6cbd59}Pridaù nov˝{FFFFFF}",
+	    content[ 524 ] = "{6cbd59}Add new{FFFFFF}",
 
 		tempstring[ 48 ],
 		bool:hasFoundInArray = false;
@@ -11915,23 +11915,23 @@ Attachment_Show(playerid)
 		    if(GetPlayerAdminLevel(playerid) < 5)
 			{
 			    if(playerAttachments[playerid][i][ACTIVE] == true)
-			    	format(tempstring, sizeof tempstring, "\n{3f86e7}Nezn·my item{FFFFFF}");
+			    	format(tempstring, sizeof tempstring, "\n{3f86e7}Unknown item{FFFFFF}");
 				else
-				    format(tempstring, sizeof tempstring, "\nNezn·my item");
+				    format(tempstring, sizeof tempstring, "\nUnknown item");
 			}
 			else
 			{
 			    if(playerAttachments[playerid][i][ACTIVE] == true)
-			    	format(tempstring, sizeof tempstring, "\n{3f86e7}(#%d) Nezn·my item{FFFFFF}", i+1);
+			    	format(tempstring, sizeof tempstring, "\n{3f86e7}(#%d) Unknown item{FFFFFF}", i+1);
 				else
-				    format(tempstring, sizeof tempstring, "\n(#%d) Nezn·my item", i+1);
+				    format(tempstring, sizeof tempstring, "\n(#%d) Unknown item", i+1);
 			}
 		}
 
 		strcat(content, tempstring);
 	}
 
-	ShowPlayerDialog(playerid, did_clothing, DIALOG_STYLE_LIST, "TVOJE DOPLNKY", content, "CHOOSE", "CLOSE");
+	ShowPlayerDialog(playerid, did_clothing, DIALOG_STYLE_LIST, "YOUR CLOTHING", content, "CHOOSE", "CLOSE");
 
 	return 1;
 
@@ -12027,7 +12027,7 @@ Attachment_AddNew(playerid)
 
 	if(Attachment_GetUsedSlots(playerid) >= ATTACH_MAX_CLOTHING.[playerid])
 	    return
-			SendError(playerid, "NemÙûeö maù viac ako 20 doplnkov!"),
+			SendError(playerid, "You cannot have more than 20 clothing items!"),
 			Attachment_Show(playerid);
 
 	new
@@ -12045,7 +12045,7 @@ Attachment_AddNew(playerid)
 
 	}
 
-	ShowPreviewModelDialog(playerid, did_clothing_new_model, "PRIDAT DOPLNOK", models, names, "VYBRAT", "SPAT");
+	ShowPreviewModelDialog(playerid, did_clothing_new_model, "ADD CLOTHING", models, names, "CHOOSE", "BACK");
 	return 1;
 
 }
@@ -12065,7 +12065,7 @@ Attachment_AddNew_Bone(playerid)
 
 	content[strlen(content) - 1] = 0;
 
-	ShowPlayerDialog(playerid, did_clothing_new_bone, DIALOG_STYLE_LIST, "PRIDAç DOPLNOK", content, "CHOOSE", "BACK");
+	ShowPlayerDialog(playerid, did_clothing_new_bone, DIALOG_STYLE_LIST, "ADD CLOTHING", content, "CHOOSE", "BACK");
 
 	return 1;
 
@@ -12121,16 +12121,16 @@ Attachment_ShowItem(playerid, requested, edititem = -1)
 	    tempstring [ 128 ];
 
     if(playerAttachments[playerid][item][ACTIVE] == true)
-        format(tempstring, sizeof tempstring, "{f45555}Skryù doplnok\n \n");
+        format(tempstring, sizeof tempstring, "{f45555}Hide clothing\n \n");
 	else
-	    format(tempstring, sizeof tempstring, "{6cbd59}Nasadiù doplnok\n \n");
+	    format(tempstring, sizeof tempstring, "{6cbd59}Show clothing\n \n");
 
 	strcat(finalstring, tempstring);
 
-	format(tempstring, sizeof tempstring, "{ffffff}Upraviù pozÌciu\n");
+	format(tempstring, sizeof tempstring, "{ffffff}Edit position\n");
     strcat(finalstring, tempstring);
 
-    format(tempstring, sizeof tempstring, "Upraviù kosù\n \n");
+    format(tempstring, sizeof tempstring, "Change bone\n \n");
     strcat(finalstring, tempstring);
 
     new
@@ -12161,20 +12161,20 @@ Attachment_ShowItem(playerid, requested, edititem = -1)
 	}
 
     if(playerAttachments[playerid][item][COLOR1] != 0 && playerAttachments[playerid][item][COLOR2] == 0)
-    	format(tempstring, sizeof tempstring, "Prefarbiù doplnok (%s)\n \n", color[0]);
+    	format(tempstring, sizeof tempstring, "Recolor attachment (%s)\n \n", color[0]);
 	else if(playerAttachments[playerid][item][COLOR1] == 0 && playerAttachments[playerid][item][COLOR2] != 0)
-    	format(tempstring, sizeof tempstring, "Prefarbiù doplnok (%s)\n \n", color[1]);
+    	format(tempstring, sizeof tempstring, "Recolor attachment (%s)\n \n", color[1]);
 	else if(playerAttachments[playerid][item][COLOR1] != 0 && playerAttachments[playerid][item][COLOR2] != 0)
-    	format(tempstring, sizeof tempstring, "Prefarbiù doplnok (%s, %s)\n \n", color[0], color[1]);
+    	format(tempstring, sizeof tempstring, "Recolor attachment (%s, %s)\n \n", color[0], color[1]);
 	else
-	    format(tempstring, sizeof tempstring, "Prefarbiù doplnok\n \n");
+	    format(tempstring, sizeof tempstring, "Recolor attachment\n \n");
 
     strcat(finalstring, tempstring);
 
-    format(tempstring, sizeof tempstring, "{f45555}Zmazaù doplnok");
+    format(tempstring, sizeof tempstring, "{f45555}Remove attachment");
     strcat(finalstring, tempstring);
 
-    ShowPlayerDialog(playerid, did_clothing_menu, DIALOG_STYLE_LIST, "DOPLNOK", finalstring, "CHOOSE", "CLOSE");
+    ShowPlayerDialog(playerid, did_clothing_menu, DIALOG_STYLE_LIST, "CLOTHING", finalstring, "CHOOSE", "CLOSE");
 
 	return 1;
 
@@ -12195,7 +12195,7 @@ Attachment_EditBone(playerid)
 
 	content[strlen(content) - 1] = 0;
 
-	ShowPlayerDialog(playerid, did_clothing_menu_bone, DIALOG_STYLE_LIST, "UPRAVIç KOSç", content, "CHOOSE", "BACK");
+	ShowPlayerDialog(playerid, did_clothing_menu_bone, DIALOG_STYLE_LIST, "CHANGE BONE", content, "CHOOSE", "BACK");
 
 	return 1;
 
@@ -12216,7 +12216,7 @@ Attachment_ShowColorPalette(playerid)
 
 	content[strlen(content) - 1] = 0;
 
-	ShowPlayerDialog(playerid, did_clothing_menu_color, DIALOG_STYLE_LIST, "UPRAVIç KOSç", content, "CHOOSE", "BACK");
+	ShowPlayerDialog(playerid, did_clothing_menu_color, DIALOG_STYLE_LIST, "CHANGE COLOR", content, "CHOOSE", "BACK");
 
 	return 1;
 
@@ -12494,7 +12494,7 @@ ShowPDCallDetails(playerid, listitem)
 	new
 	    finalString[2048];
 
-	format(finalString, sizeof finalString, "{ffffff}|\n|\tVolaj˙ci: %s\n|\t»as hovoru: %s\n|\tLok·cia: %s\n|\tTelefÛnne ËÌslo: %d\n|\tReaguj˙ci: %s\n|\n|\tInform·cie:\n|\t> %s",
+	format(finalString, sizeof finalString, "{ffffff}|\n|\tCaller: %s\n|\tTime of call: %s\n|\tLocation: %s\n|\tPhone Number: %d\n|\tResponding: %s\n|\n|\tDetail:\n|\t> %s",
 		Caller, getdateunix(Date), Location, FromNumber, handlers, Situation);
 
 	return ShowPlayerDialog(playerid, did_mdc_call, DIALOG_STYLE_MSGBOX, "MOBILE DATABASE COMPUTER",
@@ -12536,7 +12536,7 @@ ShowFDCallDetails(playerid, listitem)
 	new
 	    finalString[2048];
 
-	format(finalString, sizeof finalString, "{ffffff}|\n|\tVolaj˙ci: %s\n|\t»as hovoru: %s\n|\tLok·cia: %s\n|\tTelefÛnne ËÌslo: %d\n|\n|\tInform·cie:\n|\t> %s",
+	format(finalString, sizeof finalString, "{ffffff}|\n|\tCaller: %s\n|\tTime of call: %s\n|\tLocation: %s\n|\tPhone number: %d\n|\n|\tAdd. info:\n|\t> %s",
 		Caller, getdateunix(Date), Location, FromNumber, Situation);
 
 	return ShowPlayerDialog(playerid, did_fos_call, DIALOG_STYLE_MSGBOX, "FIRE OPERATING SYSTEM",
@@ -12548,7 +12548,7 @@ ShowPlayerLastCallsFD(playerid)
 
     new
 		mql_query[128],
-		finalString[2048] = "»Ìslo hovoru\tD·tum a Ëas\n",
+		finalString[2048] = "Call ID\tDate and time\n",
 		tString[256];
 
 	mysql_format(MYSQL, mql_query, sizeof(mql_query), "SELECT * FROM gm_calls WHERE FactionType = '%d' AND Handled = '0' ORDER BY id DESC", FACTION_TYPE_FIRE);
@@ -12584,7 +12584,7 @@ ShowPlayerLastCallsPD(playerid)
 
     new
 		mql_query[128],
-		finalString[2048] = "»Ìslo hovoru\tD·tum a Ëas\n",
+		finalString[2048] = "Call ID\tDate and time\n",
 		tString[256];
 
 	mysql_format(MYSQL, mql_query, sizeof(mql_query), "SELECT * FROM gm_calls WHERE FactionType = '%d' AND Handled != '3' ORDER BY id DESC LIMIT 25", FACTION_TYPE_LAW);
@@ -12644,7 +12644,7 @@ ShowPlayerMDC_DetailVeh_Want(playerid)
 	else
 	{
 	    return ShowPlayerDialog(playerid, did_mdc_vehicle_detail_want, DIALOG_STYLE_INPUT, "MOBILE DATABASE COMPUTER",
-	    	"{ffffff}> Zadajte prosÌm, zaËo je toto vozidlo hladanÈ!", "OK", "BACK");
+	    	"{ffffff}> Specify what is this vehicle wanted for!", "OK", "BACK");
 	}
 
 	return ShowPlayerMDC_DetailVehicle(playerid, mdc_SPZ[playerid]);
@@ -12674,19 +12674,19 @@ ShowPlayerMDC_DetailVeh_Info(playerid)
 	cache_get_value_name_int(0, "IsWanted", dt_IsWanted);
 	cache_get_value_name(0, "IsWantedFor", dt_IsWantedFor);
 
-	format(tempstring, sizeof tempstring, "{ffffff}Vozidlo: {60a5f2}%s\n", VehicleNames[dt_Model-400]);
+	format(tempstring, sizeof tempstring, "{ffffff}Vehicle: {60a5f2}%s\n", VehicleNames[dt_Model-400]);
 	strcat(finalString, tempstring);
 
-	format(tempstring, sizeof tempstring, "{ffffff}Pozn·vacia znaËka: {60a5f2}%s\n", dt_SPZ);
+	format(tempstring, sizeof tempstring, "{ffffff}Plate: {60a5f2}%s\n", dt_SPZ);
 	strcat(finalString, tempstring);
 
-	format(tempstring, sizeof tempstring, "{ffffff}Majiteæ: {60a5f2}%s\n\n", str_replace("_", " ", dt_Owner));
+	format(tempstring, sizeof tempstring, "{ffffff}Owner: {60a5f2}%s\n\n", str_replace("_", " ", dt_Owner));
 	strcat(finalString, tempstring);
 
 	if(dt_IsWanted == 1)
 	{
-	    strcat(finalString, "{ee4141}[ !!! TOTO VOZIDLO JE HºADAN… !!! ]\n");
-	    format(tempstring, sizeof tempstring, "{ffffff}HæadanÈ za: {60a5f2}%s\n", dt_IsWantedFor);
+	    strcat(finalString, "{ee4141}[ !!! THIS VEHICLE IS WANTED !!! ]\n");
+	    format(tempstring, sizeof tempstring, "{ffffff}Wanted for: {60a5f2}%s\n", dt_IsWantedFor);
 		strcat(finalString, tempstring);
 	}
 
@@ -12725,15 +12725,15 @@ ShowPlayerMDC_DetailVehicle(playerid, spz[])
 	if(dt_IsWanted == 0)
 	    format(caption, sizeof caption, "{ffffff}%s", VehicleNames[dt_Model-400]);
 	else
-	    format(caption, sizeof caption, "{f94c4c}[HºADAN…] {ffffff}%s", VehicleNames[dt_Model-400]);
+	    format(caption, sizeof caption, "{f94c4c}[WANTED] {ffffff}%s", VehicleNames[dt_Model-400]);
 
-	format(tempstring, sizeof tempstring, "{ffffff}Zobraziù inform·cie\n \n");
+	format(tempstring, sizeof tempstring, "{ffffff}Show info\n \n");
 	strcat(finalString, tempstring);
 
 	if(dt_IsWanted == 0)
-		format(tempstring, sizeof tempstring, "{ffffff}Nastaviù ako hladanÈ\n");
+		format(tempstring, sizeof tempstring, "{ffffff}Set as wanted\n");
 	else
-	    format(tempstring, sizeof tempstring, "{ffffff}Zruöiù hladanosù\n");
+	    format(tempstring, sizeof tempstring, "{ffffff}Remove wanted\n");
 
 	strcat(finalString, tempstring);
 
@@ -12751,9 +12751,9 @@ ShowPlayerMDC_DetailPerson_AFin(playerid)
 	ShowPlayerDialog(
 		playerid,
 		did_mdc_pokuta_add, DIALOG_STYLE_INPUT,
-		"PRIDAç POKUTU",
-		"{FFFFFF}> Zadaj prosÌm sumu pokuty v rozmedzÌ 1-20000$!",
-		"œALEJ", "BACK"
+		"NEW FINE",
+		"{FFFFFF}> Add fine price ranging from 1-20000$!",
+		"NEXT", "BACK"
 	);
 	return 1; //ShowPlayerMDC_DetailPerson(playerid, mdc_Username[playerid]);
 
@@ -12762,8 +12762,8 @@ ShowPlayerMDC_DetailPerson_AFin(playerid)
 ShowPlayerMDC_DetailPerson_ACin(playerid)
 {
 
-	ShowPlayerDialog(playerid, did_mdc_add_cin, DIALOG_STYLE_INPUT, "MOBILE DATABASE COMPUTER", "{ffffff}> Zadajte prosÌm, Ëoho sa t·to osoba dopustila.",
-	    "PRIDAç", "BACK");
+	ShowPlayerDialog(playerid, did_mdc_add_cin, DIALOG_STYLE_INPUT, "MOBILE DATABASE COMPUTER", "{ffffff}> Specify new charge.",
+	    "ADD", "BACK");
 
 	return 1;
 
@@ -12813,35 +12813,35 @@ ShowPlayerMDC_DetailPerson_Info(playerid)
 	    finalString[2048],
 	    tString[128];
 
-	format(tString, sizeof tString, "{ffffff}Meno osoby: {60a5f2}%s\n\n", str_replace("_", " ", Username));
+	format(tString, sizeof tString, "{ffffff}Person's name: {60a5f2}%s\n\n", str_replace("_", " ", Username));
 	strcat(finalString, tString);
 
 	if(Faction != 0)
 	{
-	    format(tString, sizeof tString, "{ffffff}Zamestnanie: {60a5f2}%s\n", factEnum[Faction][fact_Name]);
+	    format(tString, sizeof tString, "{ffffff}Occupation: {60a5f2}%s\n", factEnum[Faction][fact_Name]);
 		strcat(finalString, tString);
-		format(tString, sizeof tString, "{ffffff}PozÌcia v zamestnanÌ: {60a5f2}%s\n\n", FactionTitle);
+		format(tString, sizeof tString, "{ffffff}Rank: {60a5f2}%s\n\n", FactionTitle);
 		strcat(finalString, tString);
 	}
 	else
 	{
-	    format(tString, sizeof tString, "{ffffff}Zamestnanie: {60a5f2}éiadne\n\n");
+	    format(tString, sizeof tString, "{ffffff}Occupation: {60a5f2}None\n\n");
 		strcat(finalString, tString);
 	}
 
 	if(ObcianskyPreukaz == 1)
 	{
-	    format(tString, sizeof tString, "{ffffff}D·tum narodenia: {60a5f2}%s\n", ID_DateOfBirthe);
+	    format(tString, sizeof tString, "{ffffff}Date of birth: {60a5f2}%s\n", ID_DateOfBirthe);
 		strcat(finalString, tString);
-		format(tString, sizeof tString, "{ffffff}Miesto narodenia: {60a5f2}%s\n", ID_PlaceOfBirthe);
+		format(tString, sizeof tString, "{ffffff}Place of birth: {60a5f2}%s\n", ID_PlaceOfBirthe);
 		strcat(finalString, tString);
-		format(tString, sizeof tString, "{ffffff}TrvalÈ bydlisko: {60a5f2}%s\n\n", ID_Settlemente);
+		format(tString, sizeof tString, "{ffffff}Residence: {60a5f2}%s\n\n", ID_Settlemente);
 		strcat(finalString, tString);
 	}
 
 	if(Telefon == 1)
 	{
-	    format(tString, sizeof tString, "{ffffff}TelefÛnne ËÌslo: {60a5f2}%d\n\n", SimKarta);
+	    format(tString, sizeof tString, "{ffffff}Phone number: {60a5f2}%d\n\n", SimKarta);
 		strcat(finalString, tString);
 	}
 
@@ -12856,7 +12856,7 @@ ShowPlayerMDC_DetailPerson_Info(playerid)
 ShowPlayerMDC_DetailPerson_Maje(playerid)
 {
 	new
-	    finalString[2048] = "{60a5f2}Vozidl·:\n",
+	    finalString[2048] = "{60a5f2}Vehicles:\n",
 	    tString[128];
 
     new
@@ -12909,21 +12909,21 @@ ShowPlayerMDC_DetailPerson_Maje(playerid)
 	cache_delete(query);
 
 	if(zr > gettime())
-	    format(tString, sizeof tString, "\n\n\r{60a5f2}Preukazy (%d/12 t.b.):\nTato osoba m· z·kaz riadenia do %s!", tb, getdateunix(zr));
+	    format(tString, sizeof tString, "\n\n\r{60a5f2}License (%d/12 points):\nThis person has suspended license to %s!", tb, getdateunix(zr));
 	else
-		format(tString, sizeof tString, "\n\n\r{60a5f2}Preukazy (%d/12 t.b.):\n", tb);
+		format(tString, sizeof tString, "\n\n\r{60a5f2}License (%d/12 points):\n", tb);
 		
 	strcat(finalString, tString);
-	if(va > 0) strcat(finalString, "{ffffff}\n\r\tVodiËsk˝ preukaz skupiny A");
-	if(vb > 0) strcat(finalString, "{ffffff}\n\r\tVodiËsk˝ preukaz skupiny B,BE");
-	if(vc > 0) strcat(finalString, "{ffffff}\n\r\tVodiËsk˝ preukaz skupiny C,CE");
-	if(vt > 0) strcat(finalString, "{ffffff}\n\r\tVodiËsk˝ preukaz skupiny T");
-	if(vlod > 0) strcat(finalString, "{ffffff}\n\r\tLodn˝ preukaz");
-	if(vlet > 0) strcat(finalString, "{ffffff}\n\r\tLeteck˝ preukaz");
-    if(vf > 0) strcat(finalString, "{ffffff}\n\r\tRyb·rske opr·vnenie");
-    if(vz > 0) strcat(finalString, "{ffffff}\n\r\tZbrojn˝ preukaz");
+	if(va > 0) strcat(finalString, "{ffffff}\n\r\tDrivers License Group A");
+	if(vb > 0) strcat(finalString, "{ffffff}\n\r\tDrivers License Group B,BE");
+	if(vc > 0) strcat(finalString, "{ffffff}\n\r\tDrivers License Group C,CE");
+	if(vt > 0) strcat(finalString, "{ffffff}\n\r\tDrivers License Group T");
+	if(vlod > 0) strcat(finalString, "{ffffff}\n\r\tBoat Permit");
+	if(vlet > 0) strcat(finalString, "{ffffff}\n\r\tFlying Permit");
+    if(vf > 0) strcat(finalString, "{ffffff}\n\r\tFishing Permit");
+    if(vz > 0) strcat(finalString, "{ffffff}\n\r\tFirearm Permit");
 
-	strcat(finalString, "\n\n\r{60a5f2}Domy:\n");
+	strcat(finalString, "\n\n\r{60a5f2}Houses:\n");
 
 	foreach( new i : Houses )
 	{
@@ -12937,7 +12937,7 @@ ShowPlayerMDC_DetailPerson_Maje(playerid)
      	strcat(finalString, tString);
 	}
 
-	strcat(finalString, "\n\n\r{60a5f2}Gar·ûe:\n");
+	strcat(finalString, "\n\n\r{60a5f2}Garages:\n");
 
 	foreach( new i : Garages )
 	{
@@ -12951,7 +12951,7 @@ ShowPlayerMDC_DetailPerson_Maje(playerid)
      	strcat(finalString, tString);
 	}
 
-	strcat(finalString, "\n\n\r{60a5f2}Biznisy:\n");
+	strcat(finalString, "\n\n\r{60a5f2}Businesses:\n");
 
 	foreach( new i : Businesses )
 	{
@@ -12997,7 +12997,7 @@ ShowPlayerMDC_DetailPerson_Cont(playerid)
 	{
 	    //fail
 
-	    SendError(playerid, "Osobu sa nepodarilo kontaktovaù!");
+	    SendError(playerid, "This person couldn't be contacted!");
 	    return ShowPlayerMDC_DetailPerson(playerid, mdc_Username[playerid]);
 	}
 
@@ -13038,7 +13038,7 @@ ShowPlayerMDC_DetailPerson_Trac(playerid)
 	{
 	    //fail
 
-	    SendError(playerid, "Osobu sa nepodarilo vystopovaù!");
+	    SendError(playerid, "This person couldn't be located!");
 	    return ShowPlayerMDC_DetailPerson(playerid, mdc_Username[playerid]);
 	}
 	
@@ -13107,7 +13107,7 @@ ShowPlayerMDC_DetailPerson_Trac(playerid)
 	
 	if(X == -8000.0)
 	{
-	    SendError(playerid, "Osobu sa nepodarilo vystopovaù, nie je k nej dostupn˝ sign·l!");
+	    SendError(playerid, "This person couldn't be located!");
 	    return ShowPlayerMDC_DetailPerson(playerid, mdc_Username[playerid]);
 	}
 
@@ -13127,10 +13127,10 @@ ShowPlayerMDC_DetailPerson_Trac(playerid)
 		if(GetPlayerFactionType(x) == FACTION_TYPE_LAW && !IsPlayerWorking(x))
   			continue;
 
-		SCFM(x, COLOR_LIGHTBLUE2, "[ WARN ] %s vystopoval hr·Ëa %s pomocou MDC!", GetPlayerNameEx(playerid, NO_MASK), GetPlayerNameEx(calltoid, NO_MASK));
+		SCFM(x, COLOR_LIGHTBLUE2, "[ WARN ] %s traced %s using MDC!", GetPlayerNameEx(playerid, NO_MASK), GetPlayerNameEx(calltoid, NO_MASK));
 	}
 
-	FormatWarnEx(playerid, 2, "AdmCmd:", COLOR_ADMINCMD, "%s vystopoval hr·Ëa %s pomocou MDC!", GetPlayerNameEx(playerid, NO_MASK), GetPlayerNameEx(calltoid, NO_MASK));
+	FormatWarnEx(playerid, 2, "AdmCmd:", COLOR_ADMINCMD, "%s traced %s using MDC!", GetPlayerNameEx(playerid, NO_MASK), GetPlayerNameEx(calltoid, NO_MASK));
 
 	return 1;
 
@@ -13143,7 +13143,7 @@ ShowPlayerMDC_DetailPerson_LFin(playerid)
 		query[256],
 		Cache:cache,
 
-		finalString[2048] = "Suma\tDÙvod\tD·tum udelenia\tZaplaten·\n",
+		finalString[2048] = "Price\tOffense\tDate\tPaid\n",
 		tempString[128];
 
 	mysql_format(MYSQL, query, 256, "SELECT * FROM char_pokuty WHERE Username = '%e' ORDER BY Paid, Date DESC", mdc_Username[playerid]);
@@ -13174,10 +13174,10 @@ ShowPlayerMDC_DetailPerson_LFin(playerid)
 		switch(Paid)
 		{
 		    case 0:
-		        format(paidstr, 15, "{e17070}Nie");
+		        format(paidstr, 15, "{e17070}No");
 
 			default:
-			    format(paidstr, 15, "{8be183}¡no");
+			    format(paidstr, 15, "{8be183}Yes");
 
 		}
 
@@ -13187,7 +13187,7 @@ ShowPlayerMDC_DetailPerson_LFin(playerid)
 
 	cache_delete(cache);
 
-	ShowPlayerDialog(playerid, did_mdc_fines, DIALOG_STYLE_TABLIST_HEADERS, "POKUTY", finalString, "VYMAZAç", "CLOSE");
+	ShowPlayerDialog(playerid, did_mdc_fines, DIALOG_STYLE_TABLIST_HEADERS, "FINES", finalString, "REMOVE", "CLOSE");
 
 	return 1;
 }
@@ -13199,7 +13199,7 @@ ShowPlayerMDC_DetailPerson_LCin(playerid)
 		query[256],
 		Cache:cache,
 
-		finalString[2048] = "Trestn˝ Ëin\tD·tum\tUdelil\n",
+		finalString[2048] = "Offense\tDate\tAdded by\n",
 		tempString[128];
 
 	mysql_format(MYSQL, query, 256, "SELECT * FROM char_trestneciny WHERE Username = '%e' ORDER BY Datum", mdc_Username[playerid]);
@@ -13226,7 +13226,7 @@ ShowPlayerMDC_DetailPerson_LCin(playerid)
 
 	cache_delete(cache);
 
-	ShowPlayerDialog(playerid, did_mdc_ciny, DIALOG_STYLE_TABLIST_HEADERS, "TRESTN… »INY", finalString, "VYMAZAç", "CLOSE");
+	ShowPlayerDialog(playerid, did_mdc_ciny, DIALOG_STYLE_TABLIST_HEADERS, "CHARGES", finalString, "REMOVE", "CLOSE");
 
 	return 1;
 }
@@ -13237,7 +13237,7 @@ ShowPlayerMDC_DetailPerson(playerid, username[])
 	format(mdc_Username[playerid], 25, "%s", username);
 
 	ShowPlayerDialog(playerid, did_mdc_person, DIALOG_STYLE_LIST, str_replace("_", " ", username),
-	    "Zobraziù inform·cie\nZobraziù majetok\nKontakovaù\nVystopovaù\n \nZobraziù pokuty\nZobraziù trestnÈ Ëiny\n \nPridaù pokutu\nPridaù trestn˝ Ëin",
+	    "Informations\nProperties\nContact\nTrace\n \nFines\nCharges\n \nNew fine\nNew charge",
 	    "CHOOSE", "BACK");
 
 	return 1;
@@ -13248,7 +13248,7 @@ ShowPlayerMDC_SearchPerson(playerid)
 {
 
 	ShowPlayerDialog(playerid, did_mdc_search_person, DIALOG_STYLE_INPUT, "MOBILE DATABASE COMPUTER",
-	 	"{FFFFFF}> Zadajte prosÌm meno osoby, ktor˙ chcete vyhæadaù!\n\n(( !!! Osoba mÙûe byù aj offline, d·ta sa aktualizuj˙ nepravidelne priemerne kaûd˙ hodinu !!! ))",
+	 	"{FFFFFF}> Type in person's name you want to find!",
 	 	"SEARCH", "BACK");
 
 	return 1;
@@ -13259,7 +13259,7 @@ ShowPlayerMDC_SearchVehicle(playerid)
 {
 
     ShowPlayerDialog(playerid, did_mdc_search_vehicle, DIALOG_STYLE_INPUT, "MOBILE DATABASE COMPUTER",
-	 	"{FFFFFF}> Zadajte prosÌm SPZ vozidla, ktore chcete vyhæadaù!\n\n(( !!! Ak je vozidlo frakËnÈ, nen·jde ho !!! ))",
+	 	"{FFFFFF}> Type in vehicle's plate you want to find!",
 	 	"SEARCH", "BACK");
 
 	return 1;
@@ -13269,7 +13269,7 @@ ShowPlayerMDC_TraceNumber(playerid)
 {
 
     ShowPlayerDialog(playerid, did_mdc_trace_number, DIALOG_STYLE_INPUT, "MOBILE DATABASE COMPUTER",
-	 	"{FFFFFF}> Zadajte prosÌm telefÛnne ËÌslo, ktorÈ chcete vystopovaù!\n(( Ak je hr·Ë ktorÈmu patrÌ offline, nefunguje! ))",
+	 	"{FFFFFF}> Type in phone number you want to trace owner of!",
 	 	"SEARCH", "BACK");
 
 	return 1;
@@ -13279,7 +13279,7 @@ ShowPlayerMDC(playerid)
 {
 
 	new
-	    string[256] = "{FFFFFF}Vyhæadaù obËana\nVyhæadaù vozidlo\nVyhæadaù ËÌslo\nStr·ûnici v sluûbe\nPoslednÈ hovory\n",
+	    string[256] = "{FFFFFF}Search person\nSearch vehicle\nTrace number\nDeputies on duty\nLast calls\n",
 	    tempString[45],
 
 	    query[128],
@@ -13303,18 +13303,18 @@ ShowPlayerMDC(playerid)
 	cache_delete(cache);
 
 	if(wantedPeople > 0)
-		format(tempString, sizeof tempString, "DaÚovÈ ˙niky ( {db5959}NEW {ffffff})\n");
+		format(tempString, sizeof tempString, "Tax evasion ( {db5959}NEW {ffffff})\n");
 	else
-	    format(tempString, sizeof tempString, "DaÚovÈ ˙niky\n");
+	    format(tempString, sizeof tempString, "Tax evasion\n");
 	strcat(string, tempString);
 
 	if(wantedVehicles > 0)
-		format(tempString, sizeof tempString, "HæadanÈ vozidl· ( {db5959}%d! {ffffff})\n", wantedVehicles);
+		format(tempString, sizeof tempString, "Wanted vehicles ( {db5959}%d! {ffffff})\n", wantedVehicles);
 	else
-	    format(tempString, sizeof tempString, "HæadanÈ vozidl·\n");
+	    format(tempString, sizeof tempString, "Wanted vehicles\n");
 	strcat(string, tempString);
 
-	strcat(string, "MestskÈ kamery\nDatab·za zbranÌ");
+	strcat(string, "CCTV cameras\nWeapon database");
 
 	ShowPlayerDialog(playerid, did_mdc, DIALOG_STYLE_LIST, "MOBILE DATABASE COMPUTER",
  		string,
@@ -13443,10 +13443,10 @@ ShowPlayerPhoneMenu(playerid)
 
 	// Ak nem· telefÛn, zatvorÌme
 	if(phone_playerHasPhone(playerid) == 0)
-		return SendError(playerid, "Nem·ö mobiln˝ telefÛn!");
+		return SendError(playerid, "You have got no cellphone!");
 
 	if(ph_IsDialing[playerid] == true)
-		return SendError(playerid, "Vyt·Ëaö nejakÈ ËÌslo ...");
+		return SendError(playerid, "You are already dialing ...");
 
 
 	new
@@ -13464,31 +13464,31 @@ ShowPlayerPhoneMenu(playerid)
 		strcat(finalString, tempString);
 	}
 
-	format(tempString, 32, "VytoËiù ËÌslo\n");
+	format(tempString, 32, "Call\n");
 	strcat(finalString, tempString);
 
-	format(tempString, 32, "Zaslaù SMS spr·vu\n\n");
+	format(tempString, 32, "Send message\n\n");
 	strcat(finalString, tempString);
 
-	format(tempString, 32, "PoslednÈ SMS spr·vy\n \n");
-	strcat(finalString, tempString);
-
-
-	format(tempString, 32, "Kontakty\n \n");
+	format(tempString, 32, "Last messages\n \n");
 	strcat(finalString, tempString);
 
 
-	format(tempString, 32, "Nastavenia\n \n");
+	format(tempString, 32, "My Contacts\n \n");
+	strcat(finalString, tempString);
+
+
+	format(tempString, 32, "Options\n \n");
 	strcat(finalString, tempString);
 
 	if(phone_isPhoneTurnedOff(playerid) == 1)
-		format(tempString, 32, "{7ae195}Zapn˙ù mobiln˝ telefÛn");
+		format(tempString, 32, "{7ae195}Enable cellphone");
 	else
-		format(tempString, 32, "{fd5e5e}Vypn˙ù mobiln˝ telefÛn");
+		format(tempString, 32, "{fd5e5e}Disable cellphone");
 
 	strcat(finalString, tempString);
 
-	ShowPlayerDialog(playerid, did_phone, DIALOG_STYLE_TABLIST_HEADERS, "TELEF”N", finalString, "ZVOLIç", "CLOSE");
+	ShowPlayerDialog(playerid, did_phone, DIALOG_STYLE_TABLIST_HEADERS, "CELLPHONE", finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 
@@ -13499,13 +13499,13 @@ ShowPlayerPhoneOptions(playerid)
 
 	// Ak nem· telefÛn, zatvorÌme
 	if(phone_playerHasPhone(playerid) == 0)
-		return SendError(playerid, "Nem·ö mobiln˝ telefÛn!");
+		return SendError(playerid, "You aint got no phone!");
 
 	new
 		finalString[256],
 		tempString[64];
 
-	format(tempString, sizeof tempString, "Moje telefÛnne ËÌslo\t%d\n \n", phone_getPlayerNumber(playerid));
+	format(tempString, sizeof tempString, "My phone number\t%d\n \n", phone_getPlayerNumber(playerid));
 	strcat(finalString, tempString);
 
 	format(tempString, sizeof tempString, "Binbows v1.52.5165\n");
@@ -13514,7 +13514,7 @@ ShowPlayerPhoneOptions(playerid)
 	format(tempString, sizeof tempString, "© Michaelsoft 2017");
 	strcat(finalString, tempString);
 
-	ShowPlayerDialog(playerid, did_phone_options, DIALOG_STYLE_TABLIST, "TELEF”N - NASTAVENIA", finalString, "OK", "");
+	ShowPlayerDialog(playerid, did_phone_options, DIALOG_STYLE_TABLIST, "OPTIONS", finalString, "OK", "");
 
 	return 1;
 }
@@ -13523,10 +13523,10 @@ ShowPlayerPhoneDial(playerid)
 {
 	// Ak nem· telefÛn, zatvorÌme
 	if(phone_playerHasPhone(playerid) == 0)
-		return SendError(playerid, "Nem·ö mobiln˝ telefÛn!");
+		return SendError(playerid, "You aint got no phone!");
 
     if(GetPlayerInventoryItem(playerid, inv_simcard) < 10)
-    	return SendError(playerid, "Nem·ö SIM kartu!");
+    	return SendError(playerid, "No SIM card on you!");
 
 	if(phone_IsOut[playerid] == false)
 	{
@@ -13538,7 +13538,7 @@ ShowPlayerPhoneDial(playerid)
 
 	    SelectTextDraw(playerid, -858993409);
 
-	    EnterInfo(playerid, "~w~Telefon mozes zatvorit prikazom ~b~/phone~w~ alebo kliknutim na tlacidlo ~b~BACK~w~!");
+	    EnterInfo(playerid, "~w~You might close your phone using ~b~/phone~w~ or by clicking ~b~BACK~w~!");
 
 	    phone_refreshTextdraw(playerid);
 	}
@@ -13547,10 +13547,10 @@ ShowPlayerPhoneDial(playerid)
 		finalString[256],
 		tempString[256];
 
-	format(tempString, sizeof tempString, "{ffffff}> Zadajte prosÌm telefÛnne ËÌslo, ktorÈ chcete vytoËiù.\n\nUûitoËnÈ ËÌsla:\n\t911 (Emergency Services)\n\r\t222-444-666 (Taxi Service)\n\r\t8778 (Red County News Network)\n\r\t333 (Hayes' Home Service)");
+	format(tempString, sizeof tempString, "{ffffff}> Please type in the number you want to call.\n\nUseful numbers:\n\t911 (Emergency Services)\n\r\t222-444-666 (Taxi Service)\n\r\t8778 (Red County News Network)\n\r\t333 (Hayes' Home Service)");
 	strcat(finalString, tempString);
 
-	ShowPlayerDialog(playerid, did_phone_dial, DIALOG_STYLE_INPUT, "TELEF”N - VYTO»Iç", finalString, "VOLAç", "BACK");
+	ShowPlayerDialog(playerid, did_phone_dial, DIALOG_STYLE_INPUT, "PHONE - CALL", finalString, "CALL", "BACK");
 
 	return 1;
 }
@@ -13564,7 +13564,7 @@ SendMessage(playerid, const number[], const message[])
 	format(cisielko, sizeof cisielko, "%s", str_replace("-", "", number));
 	format(cisielko, sizeof cisielko, "%s", str_replace(" ", "", cisielko));
 
-    SendPlayerAction(playerid, "ùuk· do kl·vesnice text a klikn· na odoslaù ...");
+    SendPlayerAction(playerid, "sends a message on their phone ...");
 
     if(strval(number) == 1444)
     {
@@ -13635,9 +13635,9 @@ function phone_timer_Message_Success(fromid, toid, sid)
 
 	mysql_query(MYSQL, query, false);
 
-	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Spr·va pre ËÌslo %s s textom '%s' bola ˙speöne odoslan·!", phone_getPlayerContact(fromid, phone_getPlayerNumber(toid)), temp_messages[fromid][sid]);
-	SendPlayerDo(toid, "Zvuk pÌpnutia mobilnÈho telefÛnu.");
-	SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] Nov· spr·va od ËÌsla '%s', pre viac info pouûi /lastsms!", phone_getPlayerContact(toid, phone_getPlayerNumber(fromid)));
+	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Message for %s with text '%s' was sent!", phone_getPlayerContact(fromid, phone_getPlayerNumber(toid)), temp_messages[fromid][sid]);
+	SendPlayerDo(toid, "New cellphone message sound.");
+	SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] New message from '%s', use /lastsms!", phone_getPlayerContact(toid, phone_getPlayerNumber(fromid)));
 
     format(temp_messages[fromid][sid], 255, "");
 
@@ -13649,7 +13649,7 @@ function phone_timer_Message_Success(fromid, toid, sid)
 	    phone_Screen[toid]          = 0;
 	    phone_IsOut[toid]           = true;
 
-	    EnterInfo(toid, "~w~Telefon mozes zatvorit prikazom ~b~/phone~w~ alebo kliknutim na tlacidlo ~b~BACK~w~!~n~Kurzor otvoris prikazom ~b~/pc~w~!");
+	    EnterInfo(toid, "~w~You can hide your phone using ~b~/phone~w~ or by clicking ~b~BACK~w~!~n~You can bring up your mouse by ~b~/pc~w~!");
 
 	    phone_refreshTextdraw(toid);
 
@@ -13683,7 +13683,7 @@ function phone_timer_Message_Advert(fromid, sid)
 {
 
 
-	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Spr·va pre ËÌslo %s s textom '%s' bola ˙speöne odoslan·!", phone_getPlayerContact(fromid, 1444), temp_messages[fromid][sid]);
+	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Message for %s with text '%s' was sent!", phone_getPlayerContact(fromid, 1444), temp_messages[fromid][sid]);
 
     ex_GivePlayerMoney(fromid, strlen(temp_messages[fromid][sid]) * -6);
     money_spent[fromid] += floatround(strlen(temp_messages[fromid][sid]) * 6,floatround_round);
@@ -13732,7 +13732,7 @@ function phone_timer_Message_NoCredit(toid)
 	    query[512],
 		string[256];
 
-	format(string, sizeof string, "Dobr˝ deÚ %s, oznamujeme V·m, ûe %s bol V·ö kredit znÌûen˝ na ˙roveÚ 0 USD. MÙûete si ho doplniù vo vöetk˝ch dobr˝ch Elektroobchodoch a General Storoch.", GetPlayerNameEx(toid, NO_MASK), getdateunix(gettime()));
+	format(string, sizeof string, "Hello %s, your credit is now 0 USD. You can buy credit in every General Store and electro shop.", GetPlayerNameEx(toid, NO_MASK), getdateunix(gettime()));
 
 	mysql_query(MYSQL, query, false);
 
@@ -13741,8 +13741,8 @@ function phone_timer_Message_NoCredit(toid)
 
 	mysql_query(MYSQL, query, false);
 
-	if(phone_SleepMode[toid] == 0) SendPlayerDo(toid, "Zvuk pÌpnutia mobilnÈho telefÛnu.");
-	SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] Nov· spr·va od ËÌsla '%s', pre viac info pouûi /lastsms!", phone_getPlayerContact(toid, 1551));
+	if(phone_SleepMode[toid] == 0) SendPlayerDo(toid, "New phone message sound.");
+	SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] New message from '%s', use /lastsms!", phone_getPlayerContact(toid, 1551));
 
 	return 1;
 }
@@ -13750,7 +13750,7 @@ function phone_timer_Message_NoCredit(toid)
 function phone_timer_Message_Failed(playerid)
 {
 
-	SendClientMessage(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] éensk˝ hlas hovorÌ: Spr·vu sa nepodarilo odoslaù!");
+	SendClientMessage(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] Woman voice says: Message was not sent!");
 
 	return 1;
 }
@@ -13759,7 +13759,7 @@ function phone_timer_Message_Failed(playerid)
 ProceedDial(const playerid, number[])
 {
 
-	SendPlayerAction(playerid, "ùuk· Ëislo do kl·vesnice a vyt·Ëa ho ...");
+	SendPlayerAction(playerid, "calls somebody on their phone ...");
 
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USECELLPHONE);
 	SetPlayerAttachedObject(playerid, 8, -1027, 6, 0.083, 0.024, 0.013, 0.0, -3.2);
@@ -13839,16 +13839,16 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	{
 
 	    new
-			prefix[ 12 ] = "hovorÌ",
+			prefix[ 12 ] = "says",
 			bool:beenSent = false;
 
 	    switch(extraid)
 		{
 			case 1:
-				format(prefix, sizeof prefix, "kriËÌ");
+				format(prefix, sizeof prefix, "shouts");
 
 			case 2:
-				format(prefix, sizeof prefix, "öepk·");
+				format(prefix, sizeof prefix, "whispers");
 		}
 
 	    new o[4];
@@ -13858,7 +13858,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	        new
 				S_string[144];
 
-			format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+			format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 			switch(GetVehicleModel(GetPlayerVehicleID(fromid))) {
 			    case 424,439,446,448,449,452,453,454,457,461,462,463,468,471,472,473,480,481,484,485,486,493,500,504,509,510,521,522,523,530,531,533,536,539,567,568,571,572,586,595: {}
@@ -13878,7 +13878,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 		{
 			new S_string[144];
 
-			format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+			format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 			ProxDetector(fromid, LOCAL_CHAT_RANGE, COLOR_LOCAL_CHAT_TEXT, S_string, 1.6, true);
 
@@ -13894,23 +13894,23 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	    {
 	        ph_CallWith[fromid] = EMERGENCY_POLICE;
 
-	        SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] *PÕP*");
-	        SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Dobr˝ deÚ, opÌöte mi vaöu situ·ciu, prosÌm.");
+	        SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] *PEEP*");
+	        SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Hello, describe your situation.");
 
 	        ph_Emergency[fromid] = 0;
 	    }
-	    else if(strfind(text, "has", true) != -1 || strfind(text, "zac", true) != -1 || strfind(text, "z·c", true) != -1)
+	    else if(strfind(text, "fd", true) != -1 || strfind(text, "fire", true) != -1 || strfind(text, "em", true) != -1)
 	    {
 	        ph_CallWith[fromid] = EMERGENCY_FIRE;
 
 	        SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] *PÕP*");
-	        SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: Dobr˝ deÚ, opÌöte mi prosÌm pekne vaöu situ·ciu.");
+	        SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Hello, describe emergency you're in.");
 
 	        ph_Emergency[fromid] = 0;
 	    }
 	    else
 	    {
-	        SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Prep·Ëte, ale nerozumiem v·m.");
+	        SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Sorry, I dont understand ((EMS, FD, SHERIFF))");
 	    }
 
 	    return 0;
@@ -13920,15 +13920,15 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	{
 
 	    new
-			prefix[ 12 ] = "hovorÌ";
+			prefix[ 12 ] = "says";
 
 	    switch(extraid)
 		{
 			case 1:
-				format(prefix, sizeof prefix, "kriËÌ");
+				format(prefix, sizeof prefix, "shouts");
 
 			case 2:
-				format(prefix, sizeof prefix, "öepk·");
+				format(prefix, sizeof prefix, "whispers");
 		}
 
 
@@ -13937,7 +13937,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	    if(IsPlayerInAnyVehicle(fromid) && o[0] != 0 && o[1] != 0 && o[2] != 0 && o[3] != 0) {
 
 	        new S_string[144];
-			format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+			format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 			switch(GetVehicleModel(GetPlayerVehicleID(fromid))) {
 			    case 424,439,446,448,449,452,453,454,457,461,462,463,468,471,472,473,480,481,484,485,486,493,500,504,509,510,521,522,523,530,531,533,536,539,567,568,571,572,586,595: {}
@@ -13954,13 +13954,13 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 					ph_Emergency[fromid] ++;
 
 					if(ph_Emergency[fromid] == 1)
-					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Rozumiem, kde sa nach·dzate?");
+					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Alrighty, where are you?");
 					else if(ph_Emergency[fromid] == 2)
-					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: PoprosÌm Vaöe meno.");
+					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Please, what is your name?");
 
 			        if(ph_Emergency[fromid] == 3)
 			        {
-			            SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Dobre, vydrûte, ozn·mim to kolegom.");
+			            SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Alright, I will try to send somebody.");
 			            SetPlayerSpecialAction(fromid, SPECIAL_ACTION_STOPUSECELLPHONE);
 						RemovePlayerAttachedObject(fromid, 8);
 
@@ -13972,7 +13972,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 						ph_IsCaller[fromid] = false;
 						ph_CallWith[fromid] = -1;
 
-						SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
+						SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
 
 						new
 							query[512];
@@ -13992,7 +13992,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 							if(!IsPlayerWorking(i))
 							    continue;
 
-							SCFM(i, COLOR_RADIO, "[ Radio - 9112 MHz ] DispeËer: NejakÈ jednotky k dispozÌcii na telefon·t v lok·cii '%s'?", ph_EmergencyCall[fromid][1]);
+							SCFM(i, COLOR_RADIO, "[ Radio - 9112 MHz ] Dispatcher: Any units responding to call in location '%s'?", ph_EmergencyCall[fromid][1]);
 						}
 			        }
 
@@ -14003,7 +14003,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 	    new S_string[144];
 
-		format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+		format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 		ProxDetector(fromid, LOCAL_CHAT_RANGE, COLOR_LOCAL_CHAT_TEXT, S_string, 1.6, true);
 
@@ -14033,20 +14033,20 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 				if(!IsPlayerWorking(i))
 				    continue;
 
-				SCFM(i, COLOR_RADIO, "[ Radio - 9112 MHz ] DispeËer: NejakÈ jednotky k dispozÌcii na telefon·t v lok·cii '%s'?", ph_EmergencyCall[fromid][1]);
+				SCFM(i, COLOR_RADIO, "[ Radio - 9112 MHz ] Dispatcher: Any units responding to call in location '%s'?", ph_EmergencyCall[fromid][1]);
 			}
 		}
 
 		ph_Emergency[fromid] ++;
 
 		if(ph_Emergency[fromid] == 1)
-		    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Rozumiem, kde sa nach·dzate?");
+		    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Sure, where are you at?");
 		else if(ph_Emergency[fromid] == 2)
-		    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: PoprosÌm Vaöe meno.");
+		    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: What is your name, please?");
 
         if(ph_Emergency[fromid] == 3)
 		{
-  			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Dobre, vydrûte, ozn·mim to kolegom.");
+  			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: I will send somebody.");
      		SetPlayerSpecialAction(fromid, SPECIAL_ACTION_STOPUSECELLPHONE);
 			RemovePlayerAttachedObject(fromid, 8);
 
@@ -14058,7 +14058,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 			ph_IsCaller[fromid] = false;
 			ph_CallWith[fromid] = -1;
 
-			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
+			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
    		}
 
 	    return 0;
@@ -14073,10 +14073,10 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	    switch(extraid)
 		{
 			case 1:
-				format(prefix, sizeof prefix, "kriËÌ");
+				format(prefix, sizeof prefix, "shouts");
 
 			case 2:
-				format(prefix, sizeof prefix, "öepk·");
+				format(prefix, sizeof prefix, "whispers");
 		}
 
 
@@ -14085,7 +14085,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	    if(IsPlayerInAnyVehicle(fromid) && o[0] != 0 && o[1] != 0 && o[2] != 0 && o[3] != 0) {
 
 	        new S_string[144];
-			format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+			format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 			switch(GetVehicleModel(GetPlayerVehicleID(fromid))) {
 			    case 424,439,446,448,449,452,453,454,457,461,462,463,468,471,472,473,480,481,484,485,486,493,500,504,509,510,521,522,523,530,531,533,536,539,567,568,571,572,586,595: {}
@@ -14124,20 +14124,20 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 					  		SCFM(i, COLOR_ADMINCMD, "| Situ·cia: {ffffff}%s", ph_EmergencyCall[fromid][0]);
 					  		SCFM(i, COLOR_ADMINCMD, "|____________________________________________________________________________________________________|");*/
 
-					  		SCFM(i, COLOR_RADIO, "[ Radio - 9112 MHz ] DispeËer: NejakÈ jednotky k dispozÌcii na telefon·t v lok·cii '%s'?", ph_EmergencyCall[fromid][1]);
+					  		SCFM(i, COLOR_RADIO, "[ Radio - 9112 MHz ] Dispatcher: Any units responding to location '%s'?", ph_EmergencyCall[fromid][1]);
 						}
 					}
 
 					ph_Emergency[fromid] ++;
 
 					if(ph_Emergency[fromid] == 1)
-					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: Rozumiem, kde sa nach·dzate?");
+					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Where are you at?");
 					else if(ph_Emergency[fromid] == 2)
-					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: PoprosÌm Vaöe meno.");
+					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: What is your name please?");
 
 			        if(ph_Emergency[fromid] == 3)
 			        {
-			            SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: Dobre, vydrûte, ozn·mim to kolegom.");
+			            SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Alright, hold on.");
 			            SetPlayerSpecialAction(fromid, SPECIAL_ACTION_STOPUSECELLPHONE);
 						RemovePlayerAttachedObject(fromid, 8);
 
@@ -14149,7 +14149,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 						ph_IsCaller[fromid] = false;
 						ph_CallWith[fromid] = -1;
 
-						SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
+						SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
 			        }
 
 			        return 0;
@@ -14159,7 +14159,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 		new S_string[144];
 
-		format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+		format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 		ProxDetector(fromid, LOCAL_CHAT_RANGE, COLOR_LOCAL_CHAT_TEXT, S_string, 1.6, true);
 
@@ -14197,20 +14197,20 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 		  		SCFM(i, COLOR_ADMINCMD, "| Situ·cia: {ffffff}%s", ph_EmergencyCall[fromid][0]);
 		  		SCFM(i, COLOR_ADMINCMD, "|____________________________________________________________________________________________________|");*/
 
-		  		SCFM(i, COLOR_RADIO, "[ Radio - 9112 MHz ] DispeËer: NejakÈ jednotky k dispozÌcii na telefon·t v lok·cii '%s'?", ph_EmergencyCall[fromid][1]);
+		  		SCFM(i, COLOR_RADIO, "[ Radio - 9112 MHz ] Dispatpcher: Any units respond to location '%s'?", ph_EmergencyCall[fromid][1]);
 			}
 		}
 
 		ph_Emergency[fromid] ++;
 
 		if(ph_Emergency[fromid] == 1)
-		    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Rozumiem, kde sa nach·dzate?");
+		    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Alright, where are you at?");
 		else if(ph_Emergency[fromid] == 2)
-		    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: PoprosÌm Vaöe meno.");
+		    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: What is your name please?");
 
         if(ph_Emergency[fromid] == 3)
         {
-        	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Dobre, vyËkajte prosÌm.");
+        	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Alright, wait please.");
 	        SetPlayerSpecialAction(fromid, SPECIAL_ACTION_STOPUSECELLPHONE);
 			RemovePlayerAttachedObject(fromid, 8);
 
@@ -14222,7 +14222,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 			ph_IsCaller[fromid] = false;
 			ph_CallWith[fromid] = -1;
 
-			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
+			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
    		}
 
 	    return 0;
@@ -14232,15 +14232,15 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	{
 
 	    new
-			prefix[ 12 ] = "hovorÌ";
+			prefix[ 12 ] = "says";
 
 	    switch(extraid)
 		{
 			case 1:
-				format(prefix, sizeof prefix, "kriËÌ");
+				format(prefix, sizeof prefix, "shouts");
 
 			case 2:
-				format(prefix, sizeof prefix, "öepk·");
+				format(prefix, sizeof prefix, "whispers");
 		}
 
 
@@ -14249,7 +14249,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	    if(IsPlayerInAnyVehicle(fromid) && o[0] != 0 && o[1] != 0 && o[2] != 0 && o[3] != 0) {
 
 	        new S_string[144];
-			format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+			format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 			switch(GetVehicleModel(GetPlayerVehicleID(fromid))) {
 			    case 424,439,446,448,449,452,453,454,457,461,462,463,468,471,472,473,480,481,484,485,486,493,500,504,509,510,521,522,523,530,531,533,536,539,567,568,571,572,586,595: {}
@@ -14276,31 +14276,31 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 							isOnline = true;
 
-							SCFM(i, 0x73d6dfff, "|_________________________________________| NOV› TELEFON¡T |_________________________________________|");
+							SCFM(i, 0x73d6dfff, "|_________________________________________| NEW CALL |_________________________________________|");
 			  				SCFM(i, 0x73d6dfff, "|");
-					  		SCFM(i, 0x73d6dfff, "| Telefon·t od: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
-					  		SCFM(i, 0x73d6dfff, "| Aktu·lna lok·cia: {ffffff}%s", ph_EmergencyCall[fromid][0]);
-					  		SCFM(i, 0x73d6dfff, "| Dovoz do(na): {ffffff}%s", ph_EmergencyCall[fromid][1]);
+					  		SCFM(i, 0x73d6dfff, "| Caller: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
+					  		SCFM(i, 0x73d6dfff, "| Location: {ffffff}%s", ph_EmergencyCall[fromid][0]);
+					  		SCFM(i, 0x73d6dfff, "| Destination: {ffffff}%s", ph_EmergencyCall[fromid][1]);
 					  		SCFM(i, 0x73d6dfff, "|____________________________________________________________________________________________________|");
 						}
 
 						if(!isOnline)
 						{
-						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Rozumiem, bude to ale trvaù o nieËo dlhöie ako zvyËajne.");
-						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: (( éiadny Ëlenovia taxi sluûby nie s˙ online, je mi æ˙to! ))");
+						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: I am sorry.");
+						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: (( There are no taxi drivers online! ))");
 						}
 						else
 						{
-						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Dobre, ozn·mim to kolegom!");
+						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Alright, I will tell my collegues!");
 						}
 					}
 
 					ph_Emergency[fromid] ++;
 
 					if(ph_Emergency[fromid] == 1)
-					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Okej, kam potrebujete Ìsù?");
+					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Where do you need to go?");
 					else if(ph_Emergency[fromid] == 2)
-					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Vaöe meno mÙûem dostaù, prosÌm?");
+					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: What is your name, please?");
 
 			        if(ph_Emergency[fromid] == 3)
 					{
@@ -14315,7 +14315,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 						ph_IsCaller[fromid] = false;
 						ph_CallWith[fromid] = -1;
 
-						SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
+						SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
 			        }
 
 			        return 0;
@@ -14325,7 +14325,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 	    new S_string[144];
 
-		format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+		format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 		ProxDetector(fromid, LOCAL_CHAT_RANGE, COLOR_LOCAL_CHAT_TEXT, S_string, 1.6, true);
 
@@ -14350,31 +14350,31 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 				isOnline = true;
 
-				SCFM(i, 0x73d6dfff, "|_________________________________________| NOV› TELEFON¡T |_________________________________________|");
+				SCFM(i, 0x73d6dfff, "|_________________________________________| NEW CALL |_________________________________________|");
 				SCFM(i, 0x73d6dfff, "|");
-  				SCFM(i, 0x73d6dfff, "| Telefon·t od: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
-		  		SCFM(i, 0x73d6dfff, "| Aktu·lna lok·cia: {ffffff}%s", ph_EmergencyCall[fromid][0]);
-		  		SCFM(i, 0x73d6dfff, "| Dovoz do(na): {ffffff}%s", ph_EmergencyCall[fromid][1]);
+  				SCFM(i, 0x73d6dfff, "| Caller: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
+		  		SCFM(i, 0x73d6dfff, "| Location: {ffffff}%s", ph_EmergencyCall[fromid][0]);
+		  		SCFM(i, 0x73d6dfff, "| Destination: {ffffff}%s", ph_EmergencyCall[fromid][1]);
 		  		SCFM(i, 0x73d6dfff, "|____________________________________________________________________________________________________|");
 			}
 
 			if(!isOnline)
 			{
-   				SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Rozumiem, bude to ale trvaù o nieËo dlhöie ako zvyËajne.");
-			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: (( éiadny Ëlenovia taxi sluûby nie s˙ online, je mi æ˙to! ))");
+			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: I am sorry.");
+			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: (( There are no taxi drivers online! ))");
 			}
 			else
 			{
-   				SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Dobre, ozn·mim to kolegom!");
+			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Alright, I will tell my collegues!");
 			}
 		}
 
 		ph_Emergency[fromid] ++;
 
 		if(ph_Emergency[fromid] == 1)
-  			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Okej, kam potrebujete Ìsù?");
+  			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Where to?");
 		else if(ph_Emergency[fromid] == 2)
-  			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Vaöe meno mÙûem dostaù, prosÌm?");
+  			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: What is your name?");
 
         if(ph_Emergency[fromid] == 3)
 		{
@@ -14389,7 +14389,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 			ph_IsCaller[fromid] = false;
 			ph_CallWith[fromid] = -1;
 
-			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
+			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
    		}
 
 	    return 0;
@@ -14399,15 +14399,15 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	{
 
 	    new
-			prefix[ 12 ] = "hovorÌ";
+			prefix[ 12 ] = "says";
 
 	    switch(extraid)
 		{
 			case 1:
-				format(prefix, sizeof prefix, "kriËÌ");
+				format(prefix, sizeof prefix, "shouts");
 
 			case 2:
-				format(prefix, sizeof prefix, "öepk·");
+				format(prefix, sizeof prefix, "whispers");
 		}
 
 
@@ -14416,7 +14416,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	    if(IsPlayerInAnyVehicle(fromid) && o[0] != 0 && o[1] != 0 && o[2] != 0 && o[3] != 0) {
 
 	        new S_string[144];
-			format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+			format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 			switch(GetVehicleModel(GetPlayerVehicleID(fromid))) {
 			    case 424,439,446,448,449,452,453,454,457,461,462,463,468,471,472,473,480,481,484,485,486,493,500,504,509,510,521,522,523,530,531,533,536,539,567,568,571,572,586,595: {}
@@ -14443,28 +14443,28 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 							isOnline = true;
 
-							SCFM(i, 0x73d6dfff, "|_________________________________________| NOV› TELEFON¡T |_________________________________________|");
+							SCFM(i, 0x73d6dfff, "|_________________________________________| NEW CALL |_________________________________________|");
 			  				SCFM(i, 0x73d6dfff, "|");
-					  		SCFM(i, 0x73d6dfff, "| Telefon·t od: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
-					  		SCFM(i, 0x73d6dfff, "| Inform·cie: {ffffff}%s", ph_EmergencyCall[fromid][0]);
+					  		SCFM(i, 0x73d6dfff, "| Caller: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
+					  		SCFM(i, 0x73d6dfff, "| Info: {ffffff}%s", ph_EmergencyCall[fromid][0]);
 					  		SCFM(i, 0x73d6dfff, "|____________________________________________________________________________________________________|");
 						}
 
 						if(!isOnline)
 						{
-						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: œakujeme za inform·cie!");
-						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: (( éiadny Ëlenovia LANN nie s˙ online, je mi æ˙to! ))");
+						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Thanks!");
+						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: (( No news members are on duty! ))");
 						}
 						else
 						{
-						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: œakujeme za inform·cie!");
+						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Thanks for your information!");
 						}
 					}
 
 					ph_Emergency[fromid] ++;
 
 					if(ph_Emergency[fromid] == 1)
-					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: Vaöe meno mi prosÌm poviete?");
+					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: What is your name, please?");
 
 			        if(ph_Emergency[fromid] == 2)
 					{
@@ -14479,7 +14479,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 						ph_IsCaller[fromid] = false;
 						ph_CallWith[fromid] = -1;
 
-						SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
+						SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
 			        }
 
 			        return 0;
@@ -14489,7 +14489,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 	    new S_string[144];
 
-		format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+		format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 		ProxDetector(fromid, LOCAL_CHAT_RANGE, COLOR_LOCAL_CHAT_TEXT, S_string, 1.6, true);
 
@@ -14514,28 +14514,28 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 				isOnline = true;
 
-				SCFM(i, 0x73d6dfff, "|_________________________________________| NOV› TELEFON¡T |_________________________________________|");
+				SCFM(i, 0x73d6dfff, "|_________________________________________| NEW CALL |_________________________________________|");
 				SCFM(i, 0x73d6dfff, "|");
-  				SCFM(i, 0x73d6dfff, "| Telefon·t od: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
-		  		SCFM(i, 0x73d6dfff, "| Inform·cie: {ffffff}%s", ph_EmergencyCall[fromid][0]);
+  				SCFM(i, 0x73d6dfff, "| Caller: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
+		  		SCFM(i, 0x73d6dfff, "| Info: {ffffff}%s", ph_EmergencyCall[fromid][0]);
 		  		SCFM(i, 0x73d6dfff, "|____________________________________________________________________________________________________|");
 			}
 
 			if(!isOnline)
 			{
-   				SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: œakujeme za inform·cie!");
-			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: (( éiadny Ëlenovia LANN nie s˙ online, je mi æ˙to! ))");
+			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Thanks!");
+			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: (( No news members are on duty! ))");
 			}
 			else
 			{
-   				SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: œakujeme za inform·cie!");
+			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Thanks for your information!");
 			}
 		}
 
 		ph_Emergency[fromid] ++;
 
 		if(ph_Emergency[fromid] == 1)
-  			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: Vaöe meno mi poviete, prosÌm?");
+  			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: What is your name?);
 
         if(ph_Emergency[fromid] == 2)
 		{
@@ -14550,7 +14550,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 			ph_IsCaller[fromid] = false;
 			ph_CallWith[fromid] = -1;
 
-			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
+			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
    		}
 
 	    return 0;
@@ -14560,15 +14560,15 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	{
 
 	    new
-			prefix[ 12 ] = "hovorÌ";
+			prefix[ 12 ] = "says";
 
 	    switch(extraid)
 		{
 			case 1:
-				format(prefix, sizeof prefix, "kricÌ");
+				format(prefix, sizeof prefix, "shouts");
 
 			case 2:
-				format(prefix, sizeof prefix, "öepk·");
+				format(prefix, sizeof prefix, "whispers");
 		}
 
 
@@ -14577,7 +14577,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 	    if(IsPlayerInAnyVehicle(fromid) && o[0] != 0 && o[1] != 0 && o[2] != 0 && o[3] != 0) {
 
 	        new S_string[144];
-			format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+			format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 			switch(GetVehicleModel(GetPlayerVehicleID(fromid))) {
 			    case 424,439,446,448,449,452,453,454,457,461,462,463,468,471,472,473,480,481,484,485,486,493,500,504,509,510,521,522,523,530,531,533,536,539,567,568,571,572,586,595: {}
@@ -14601,28 +14601,28 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 							isOnline = true;
 
-							SCFM(i, 0x73d6dfff, "|_________________________________________| NOV› TELEFON¡T |_________________________________________|");
+							SCFM(i, 0x73d6dfff, "|_________________________________________| NEW CALL |_________________________________________|");
 			  				SCFM(i, 0x73d6dfff, "|");
-					  		SCFM(i, 0x73d6dfff, "| Telefon·t od: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
-					  		SCFM(i, 0x73d6dfff, "| Inform·cie: {ffffff}%s", ph_EmergencyCall[fromid][0]);
+					  		SCFM(i, 0x73d6dfff, "| Caller: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
+					  		SCFM(i, 0x73d6dfff, "| Info: {ffffff}%s", ph_EmergencyCall[fromid][0]);
 					  		SCFM(i, 0x73d6dfff, "|____________________________________________________________________________________________________|");
 						}
 
 						if(!isOnline)
 						{
-						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Okej, poviem to naöim.");
-						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: (( éiadny mechanici nie s˙ online, je mi l˙to! ))");
+						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Alright.");
+						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: (( No mechanics online at the moment. ))");
 						}
 						else
 						{
-						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Okej, poviem to naöim!");
+						    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Alrighty.");
 						}
 					}
 
 					ph_Emergency[fromid] ++;
 
 					if(ph_Emergency[fromid] == 1)
-					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Povedz mi meno eöte prosÌm ta.");
+					    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: What is your name, please?");
 
 			        if(ph_Emergency[fromid] == 2)
 					{
@@ -14637,7 +14637,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 						ph_IsCaller[fromid] = false;
 						ph_CallWith[fromid] = -1;
 
-						SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
+						SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
 			        }
 
 			        return 0;
@@ -14647,7 +14647,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 	    new S_string[144];
 
-		format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+		format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 		ProxDetector(fromid, LOCAL_CHAT_RANGE, COLOR_LOCAL_CHAT_TEXT, S_string, 1.6, true);
 
@@ -14672,28 +14672,28 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 				isOnline = true;
 
-				SCFM(i, 0x73d6dfff, "|_________________________________________| NOV› TELEFON¡T |_________________________________________|");
+				SCFM(i, 0x73d6dfff, "|_________________________________________| NEW CALL |_________________________________________|");
 				SCFM(i, 0x73d6dfff, "|");
-  				SCFM(i, 0x73d6dfff, "| Telefon·t od: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
-		  		SCFM(i, 0x73d6dfff, "| Inform·cie: {ffffff}%s", ph_EmergencyCall[fromid][0]);
+  				SCFM(i, 0x73d6dfff, "| Caller: {ffffff}%s (PH.: %d)", text, phone_getPlayerNumber(fromid));
+		  		SCFM(i, 0x73d6dfff, "| Info: {ffffff}%s", ph_EmergencyCall[fromid][0]);
 		  		SCFM(i, 0x73d6dfff, "|____________________________________________________________________________________________________|");
 			}
 
 			if(!isOnline)
 			{
-   				SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Odk·ûem naöim.");
-			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: (( éiadny mechanici nie s˙ online, je mi l˙to! ))");
+			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Alright.");
+			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: (( No mechanics online at the moment. ))");
 			}
 			else
 			{
-   				SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Odk·ûem naöim!");
+			    SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Alrighty.");
 			}
 		}
 
 		ph_Emergency[fromid] ++;
 
 		if(ph_Emergency[fromid] == 1)
-  			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Eöte mi nadiktuj tvoje meno prosÌm ta.");
+  			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: What's your name?");
 
         if(ph_Emergency[fromid] == 2)
 		{
@@ -14708,7 +14708,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 			ph_IsCaller[fromid] = false;
 			ph_CallWith[fromid] = -1;
 
-			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
+			SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
    		}
 
 	    return 0;
@@ -14716,25 +14716,25 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 	new
 		toid = ph_CallWith[fromid],
-		prefix[8] = "hovorÌ",
+		prefix[8] = "says",
 		voice[16];
 
 	switch(GetPlayerGender(fromid))
 	{
 		case 1:
-			format(voice, sizeof voice, "Muûsk˝");
+			format(voice, sizeof voice, "Male");
 
 		default:
-			format(voice, sizeof voice, "éensk˝");
+			format(voice, sizeof voice, "Female");
 	}
 
 	switch(extraid)
 	{
 		case 1:
-			format(prefix, sizeof prefix, "kriËÌ");
+			format(prefix, sizeof prefix, "shouts");
 
 		case 2:
-			format(prefix, sizeof prefix, "öepk·");
+			format(prefix, sizeof prefix, "whispers");
 	}
 
 
@@ -14742,10 +14742,10 @@ PhoneMessage(const fromid, const text[], extraid = 0)
     GetVehicleParamsCarWindows(GetPlayerVehicleID(fromid), o[0],o[1],o[2],o[3]);
     if(IsPlayerInAnyVehicle(fromid) && o[0] != 0 && o[1] != 0 && o[2] != 0 && o[3] != 0) {
 
-        SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] %s hlas %s: %s", voice, prefix, text);
+        SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] %s voice %s: %s", voice, prefix, text);
 
         new S_string[144];
-		format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+		format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 		switch(GetVehicleModel(GetPlayerVehicleID(fromid))) {
 		    case 424,439,446,448,449,452,453,454,457,461,462,463,468,471,472,473,480,481,484,485,486,493,500,504,509,510,521,522,523,530,531,533,536,539,567,568,571,572,586,595: {}
@@ -14762,7 +14762,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 
 	new S_string[144];
 
-	format(S_string, sizeof(S_string), "%s %s do telefÛnu: %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
+	format(S_string, sizeof(S_string), "%s %s (phone): %s", GetPlayerNameEx(fromid, USE_MASK), prefix, text);
 
 	ProxDetector(fromid, LOCAL_CHAT_RANGE, COLOR_LOCAL_CHAT_TEXT, S_string, 1.6, true);
 
@@ -14772,7 +14772,7 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 		BubbleChat(fromid, COLOR_LOCAL_CHAT_TEXT, S_string);
 	}
 
-	SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] %s hlas %s: %s", voice, prefix, text);
+	SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] %s voice %s: %s", voice, prefix, text);
 
 	return 0;
 }
@@ -14780,16 +14780,16 @@ PhoneMessage(const fromid, const text[], extraid = 0)
 ShowPlayerPhoneSendMsg(playerid)
 {
 
-	ShowPlayerDialog(playerid, did_phone_msg_1, DIALOG_STYLE_INPUT, "TELEF”N - NOV¡ SPR¡VA",
-	    "{ffffff}> Zadajte prosÌm telefÛnne ËÌslo na ktorÈ chcete spr·vu odoslaù!\n\n(1444 - podanie inzer·tu, 6$/znak)", "œALEJ", "CLOSE");
+	ShowPlayerDialog(playerid, did_phone_msg_1, DIALOG_STYLE_INPUT, "NEW MESSAGE",
+	    "{ffffff}> Type in the phone number you want send message to!\n\n(1444 -advert, 6$/char)", "NEXT", "CLOSE");
 
 	return 1;
 }
 
 ShowPlayerPhoneSendMsgText(playerid)
 {
-    ShowPlayerDialog(playerid, did_phone_msg_2, DIALOG_STYLE_INPUT, "TELEF”N - NOV¡ SPR¡VA",
-	    "{ffffff}> Zadajte prosÌm text, ak˝ chcete na ËÌslo odoslaù!", "ODOSLAç", "BACK");
+    ShowPlayerDialog(playerid, did_phone_msg_2, DIALOG_STYLE_INPUT, "NEW MESSAGE",
+	    "{ffffff}> Type text!", "SEND", "BACK");
 
 	return 1;
 }
@@ -14800,7 +14800,7 @@ ShowPlayerPhoneMessages(playerid)
 	    query[256],
 	    Cache:c,
 
-		finalString[ 4096 ] = "Od/Pre\tD·tum\n",
+		finalString[ 4096 ] = "From/To\tDate\n",
 		tString[ 256 ];
 
 	mysql_format(MYSQL, query, 256, "SELECT * FROM phone_list WHERE DisplayFor = '%e' AND (FromNumber = '%d' OR ToNumber = '%d') ORDER BY Date DESC LIMIT 50",
@@ -14823,9 +14823,9 @@ ShowPlayerPhoneMessages(playerid)
         cache_get_value_name_int(i, "Date", date);
 
         if(to == phone_getPlayerNumber(playerid))
-        	format(tString, 256, "Od %s\t%s\n", phone_getPlayerContact(playerid, from), getdateunix(date));
+        	format(tString, 256, "From %s\t%s\n", phone_getPlayerContact(playerid, from), getdateunix(date));
 		else
-			format(tString, 256, "Pre %s\t%s\n", phone_getPlayerContact(playerid, to), getdateunix(date));
+			format(tString, 256, "To %s\t%s\n", phone_getPlayerContact(playerid, to), getdateunix(date));
 
 	    strcat(finalString, tString);
 
@@ -14833,7 +14833,7 @@ ShowPlayerPhoneMessages(playerid)
 
 	cache_delete(c);
 
-	ShowPlayerDialog(playerid, did_phone_last_msg, DIALOG_STYLE_TABLIST_HEADERS, "TELEF”N - SPR¡VY", finalString, "DETAIL", "BACK");
+	ShowPlayerDialog(playerid, did_phone_last_msg, DIALOG_STYLE_TABLIST_HEADERS, "MESSAGES", finalString, "DETAIL", "BACK");
 
 	return 1;
 }
@@ -14844,7 +14844,7 @@ ShowPlayerPhoneContacts(playerid)
 	    query[256],
 	    Cache:c,
 
-		finalString[ 4096 ] = "Kontakt\t»Ìslo\nVytvoriù nov˝ kontakt\n",
+		finalString[ 4096 ] = "Contact\tNumber\nAdd new\n",
 		tString[ 128 ];
 
 	mysql_format(MYSQL, query, 256, "SELECT * FROM phone_contacts WHERE Username = '%e' ORDER BY ContactName LIMIT 30",
@@ -14869,7 +14869,7 @@ ShowPlayerPhoneContacts(playerid)
 
 	cache_delete(c);
 
-	ShowPlayerDialog(playerid, did_phone_contacts, DIALOG_STYLE_TABLIST_HEADERS, "TELEF”N - KONTAKTY", finalString, "MENU", "BACK");
+	ShowPlayerDialog(playerid, did_phone_contacts, DIALOG_STYLE_TABLIST_HEADERS, "MY CONTACTS", finalString, "MENU", "BACK");
 
 	return 1;
 }
@@ -15074,13 +15074,13 @@ ShowPlayerVehicleInventory(playerid, vehicleid)
 	}
 
 	if(vEnum[vehicleid][v_CargoType] == 0)
-		format(tString, 256, "Tovar ( éiadny tovar )\n");
+		format(tString, 256, "Cargo ( EMPTY )\n");
 	else
-	    format(tString, 256, "Tovar ( %s, %d krabÌc/kubÌkov )\n", trucking_retCargoTypeName(_:vEnum[vehicleid][v_CargoType]), vEnum[vehicleid][v_CargoQuantity]);
+	    format(tString, 256, "Cargo ( %s, %d ccm )\n", trucking_retCargoTypeName(_:vEnum[vehicleid][v_CargoType]), vEnum[vehicleid][v_CargoQuantity]);
 	strcat(finalString, tString);
 
 
-	ShowPlayerDialog(playerid, did_trunk, DIALOG_STYLE_LIST, "KUFOR VOZIDLA", finalString, "ZVOLIç", "CLOSE");
+	ShowPlayerDialog(playerid, did_trunk, DIALOG_STYLE_LIST, "TRUNK", finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 }
@@ -15094,25 +15094,25 @@ GetTrunkItemName( const itemid )
 	switch( itemid )
 	{
 	    case 0:
-	        format(tstring, sizeof tstring, "Peniaze");
+	        format(tstring, sizeof tstring, "Money");
 
 		case 1:
-            format(tstring, sizeof tstring, "N·boje");
+            format(tstring, sizeof tstring, "Ammo");
 
 		case 2:
-		    format(tstring, sizeof tstring, "P·Ëidlo");
+		    format(tstring, sizeof tstring, "Crowbar");
 
 		case 3:
-		    format(tstring, sizeof tstring, "Lano");
+		    format(tstring, sizeof tstring, "Rope");
 
 		case 4:
-		    format(tstring, sizeof tstring, "Vrece");
+		    format(tstring, sizeof tstring, "Sack");
 
 		case 5:
-		    format(tstring, sizeof tstring, "Put·");
+		    format(tstring, sizeof tstring, "Cuffs");
 
         case 6:
-		    format(tstring, sizeof tstring, "RezervnÈ koleso");
+		    format(tstring, sizeof tstring, "Spare Tire");
 	}
 
 	return tstring;
@@ -15135,11 +15135,11 @@ ShowPlayerUpgradeShop(playerid)
 	repPrice = floatround((VHP - fullhp) * -1 * 2.2, floatround_round);
 
 	if(GetVehicleFactionType(vid) == FACTION_TYPE_LAW || GetVehicleFactionType(vid) == FACTION_TYPE_FIRE)
-	    format(finalString, 1024, "Produkt\tCena\n{ffffff}Oprava vozidla\t{57985f}ZDARMA\n{ffffff}Autor·dio\t{57985f}320$\n{ffffff}Prefarbenie vozidla\t{57985f}1500$");
+	    format(finalString, 1024, "Product\tPrice\n{ffffff}Repair\t{57985f}FREE\n{ffffff}Car radio\t{57985f}320$\n{ffffff}Change colour\t{57985f}1500$");
 	else
-		format(finalString, 1024, "Produkt\tCena\n{ffffff}Oprava vozidla\t{57985f}%d$\n{ffffff}Autor·dio\t{57985f}320$\n{ffffff}Prefarbenie vozidla\t{57985f}1500$", repPrice);
+		format(finalString, 1024, "Product\tPrice\n{ffffff}Repair\t{57985f}%d$\n{ffffff}Car radio\t{57985f}320$\n{ffffff}Change colour\t{57985f}1500$", repPrice);
 
-	ShowPlayerDialog(playerid, did_upgrade_shop, DIALOG_STYLE_TABLIST_HEADERS, "MECHANICS", finalString, "K⁄PIç", "CLOSE");
+	ShowPlayerDialog(playerid, did_upgrade_shop, DIALOG_STYLE_TABLIST_HEADERS, "MECHANICS", finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 }
@@ -15150,7 +15150,7 @@ ShowPlayerGPS(playerid)
 	{
 
 	    if(gps_TimerOn[playerid] == true)
-	        return SendError(playerid, "GPS sa uû otv·ra!");
+	        return SendError(playerid, "GPS is already loading!");
 
 		gps_TimerOn[playerid] = true;
 
@@ -15193,7 +15193,7 @@ function gps_OpenGPS(playerid)
     new
         tstring[2048];
 
-    strcat(tstring, "Zruöiù destin·ciu\nMoje s˙radnice\nZadaù vlastnÈ s˙radnice\nVyhæadaù najbliûöÌ bankomat\nVyhæadaù nehnuteænosù\n");
+    strcat(tstring, "Disable GPS\nMy coordinates\nCustom coordinates\nNearest ATM\nSearch property\n");
 
 	for(new i; i < MAX_GPS_DESTS; i++)
 	{
@@ -15215,7 +15215,7 @@ function gps_OpenGPSEx(playerid)
     new
         tstring[2048];
 
-    strcat(tstring, "Pridaù nov˙ destin·ciu\n");
+    strcat(tstring, "Add new destination\n");
 
 	for(new i; i < MAX_GPS_DESTS; i++)
 	{
@@ -15224,7 +15224,7 @@ function gps_OpenGPSEx(playerid)
 		strcat(tstring, "\n");
 	}
 
-	ShowPlayerDialog(playerid, did_gpsex, DIALOG_STYLE_LIST, "GPS (PRE ZMAZANIE VYBER)", tstring, "CHOOSE", "CLOSE");
+	ShowPlayerDialog(playerid, did_gpsex, DIALOG_STYLE_LIST, "GPS (CHOOSE TO REMOVE)", tstring, "CHOOSE", "CLOSE");
 
     return 1;
 }
@@ -15233,14 +15233,14 @@ ShowPlayerIllegalStore(playerid)
 {
 
 	new
-	    finalString[1024] = "Item\tCena\n",
+	    finalString[1024] = "Item\tPrice\n",
 	    tString[52];
 
 	for(new i; i < 5; i++)
 	{
 	    if(store_weapons[playerid][i] == 0)
 	    {
-	        format(tString, 128, "Pr·zdny slot\tKlikni pre zmenu\n");
+	        format(tString, 128, "Empty slot\tClick to browse\n");
 	    }
 	    else
 	    {
@@ -15269,7 +15269,7 @@ ShowPlayerIllegalStore(playerid)
 	{
 	    if(store_kevlar[playerid][i] == 0)
 	    {
-	        format(tString, 128, "Pr·zdny slot\tKlikni pre zmenu\n");
+	        format(tString, 128, "Empty slot\tClick to browse\n");
 	    }
 	    else
 	    {
@@ -15293,7 +15293,7 @@ ShowPlayerIllegalStore(playerid)
 	}
 
 	strcat(finalString, " \n");
-	format(tString, 128, "Cena za dovoz\t{549670}%d$\n", ILLEGAL_STORE_SHIPPING);
+	format(tString, 128, "Shipping\t{549670}%d$\n", ILLEGAL_STORE_SHIPPING);
 	strcat(finalString, tString);
 
 	new
@@ -15323,10 +15323,10 @@ ShowPlayerIllegalStore(playerid)
    		}
 	}
 
-	format(tString, 128, "{e57070}Objednaù\t{e57070}%d$", cena+ILLEGAL_STORE_SHIPPING);
+	format(tString, 128, "{e57070}Order\t{e57070}%d$", cena+ILLEGAL_STORE_SHIPPING);
 	strcat(finalString, tString);
 
-	ShowPlayerDialog(playerid, did_illegal_store, DIALOG_STYLE_TABLIST_HEADERS, "»IERNY TRH", finalString, "CHOOSE", "CLOSE");
+	ShowPlayerDialog(playerid, did_illegal_store, DIALOG_STYLE_TABLIST_HEADERS, "BLACK MARKET", finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 
@@ -15336,53 +15336,53 @@ GetCrateItemName(const weaponid)
 {
 	new pName[48];
  	switch(weaponid) {
-		case 0: format(pName,48,"Pr·zdny slot");
+		case 0: format(pName,48,"Empty slot");
 		case 1: format(pName,48,"Boxer");
-		case 2: format(pName,48,"Golfov· palica");
-		case 3: format(pName,48,"Obusok");
-		case 4: format(pName,48,"Noz");
-		case 5: format(pName,48,"Baseballov· palka");
-		case 6: format(pName,48,"Lopata");
-		case 7: format(pName,48,"Biliardov· tyË");
+		case 2: format(pName,48,"Golf Club");
+		case 3: format(pName,48,"Baton");
+		case 4: format(pName,48,"Knife");
+		case 5: format(pName,48,"Bat");
+		case 6: format(pName,48,"Shovel");
+		case 7: format(pName,48,"Billiard Hoe");
 		case 8: format(pName,48,"Katana");
-		case 9: format(pName,48,"Motorova pila");
+		case 9: format(pName,48,"Chainsaw");
 		case 10: format(pName,48,"Dildo");
 		case 11: format(pName,48,"Dildo");
 		case 12: format(pName,48,"Vibrator");
 		case 13: format(pName,48,"Vibrator");
-		case 14: format(pName,48,"Kvetiny");
-		case 15: format(pName,48,"Tyc");
-		case 16: format(pName,48,"Gran·t");
-		case 17: format(pName,48,"Slzn˝ granat");
-		case 18: format(pName,48,"Molotovov koktejl");
+		case 14: format(pName,48,"Flowers");
+		case 15: format(pName,48,"Hoe");
+		case 16: format(pName,48,"Grenade");
+		case 17: format(pName,48,"Teargas");
+		case 18: format(pName,48,"Molotov cocktail");
 		case 22: format(pName,48,"9mm");
-		case 23: format(pName,48,"9mm s tlmicom");
+		case 23: format(pName,48,"9mm silenced");
 		case 24: format(pName,48,"Desert Eagle");
-		case 25: format(pName,48,"Brokovnica");
-		case 26: format(pName,48,"Upilovan· brokovnica");
-		case 27: format(pName,48,"Bojov· brokovnica");
+		case 25: format(pName,48,"Shotgun");
+		case 26: format(pName,48,"Sawed-off shotung");
+		case 27: format(pName,48,"Combat shotung");
 		case 28: format(pName,48,"Uzi");
 		case 29: format(pName,48,"MP5");
 		case 30: format(pName,48,"AK-47");
 		case 31: format(pName,48,"M4");
 		case 32: format(pName,48,"Tec-9");
-		case 33: format(pName,48,"Puöka");
-		case 34: format(pName,48,"Sniper");
+		case 33: format(pName,48,"County Rifle");
+		case 34: format(pName,48,"Sniper Rifle");
 		case 35: format(pName,48,"RPG");
-		case 36: format(pName,48,"Raketomet");
-		case 37: format(pName,48,"PlameÚomet");
+		case 36: format(pName,48,"Rocket Launcher");
+		case 37: format(pName,48,"Flamethrower");
 		case 38: format(pName,48,"Minigun");
-		case 39: format(pName,48,"Vybusnina");
-		case 40: format(pName,48,"Deton·tor");
-		case 41: format(pName,48,"Sprej");
-		case 42: format(pName,48,"Hasiaci pristroj");
-		case 43: format(pName,48,"Kamera");
-		case 44: format(pName,48,"Nic");
-		case 45: format(pName,48,"Nic");
-		case 46: format(pName,48,"Pad·k");
+		case 39: format(pName,48,"Satchel");
+		case 40: format(pName,48,"Detonator");
+		case 41: format(pName,48,"Spray");
+		case 42: format(pName,48,"Fire Extinguisher");
+		case 43: format(pName,48,"Camera");
+		case 44: format(pName,48,"NA");
+		case 45: format(pName,48,"NA");
+		case 46: format(pName,48,"Parachute");
 		case CRATE_KEVLAR_LIGHT_ID: format(pName, 48, "Light Kevlar");
 		case CRATE_KEVLAR_HEAVY_ID: format(pName, 48, "Heavy Kevlar");
-		default: format(pName,48,"Nezname");
+		default: format(pName,48,"Unknown");
 	}
 
   	return pName;
@@ -15426,7 +15426,7 @@ CreateCrate(const owner[],
 	// Creating variables
 	new
 	    const
-			label_Text[ 72 ] = "{73bd8a}[ Dreven· krabica ]\n\n{e7e7e7}Zamknut·\n/vypacit",
+			label_Text[ 72 ] = "{73bd8a}[ Wooden crate ]\n\n{e7e7e7}Locked\n/breakcrate",
 			randomInteger = random(sizeof illegal_CratePos );
 
 	new
@@ -15489,10 +15489,10 @@ CreateCrate(const owner[],
 
 	if(inform_player == 1)
 	{
-	    SCFM(playerid, 0xdf4040FF, "...---------------------------- DOD¡VKA ----------------------------...");
-	    SCFM(playerid, 0xdf4040FF, "...- Dod·vka bola doruËen· na nasleduj˙cich koordin·ci·ch !!! !!! !!!");
+	    SCFM(playerid, 0xdf4040FF, "...---------------------------- ORDER ----------------------------...");
+	    SCFM(playerid, 0xdf4040FF, "...- Order was shipped on listed coordinates !!! !!! !!!");
 	    SCFM(playerid, 0xdf4040FF, "...- X: %.3f - Y: %.3f - Z: %.3f", position[0], position[1], position[2]);
-	    SCFM(playerid, 0xdf4040FF, "...---------------------------- DOD¡VKA ----------------------------...");
+	    SCFM(playerid, 0xdf4040FF, "...---------------------------- ORDER ----------------------------...");
 	}
 
 	return 1;
@@ -15624,7 +15624,7 @@ ShowPlayerCrateInventory(playerid, const crateid)
 	        GetCrateItemName(crateEnum[crateid][crate_Kevlar_Slot_3])
 	 );
 
-	ShowPlayerDialog(playerid, did_crate, DIALOG_STYLE_LIST, "DREVEN¡ KRABICA", finalString, "CHOOSE", "ZAVRIEç");
+	ShowPlayerDialog(playerid, did_crate, DIALOG_STYLE_LIST, "WOODEN CRATE", finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 }
@@ -15767,7 +15767,7 @@ LoadTollBooths()
 		new
 			string[128];
 
-		format(string, 128, "{59d454}[ M›TNA BR¡NA ]\n{FFFFFF}Poplatok %d$\n\n/toll", tollBooths[i][1]);
+		format(string, 128, "{59d454}[ TOLL BOOTH ]\n{FFFFFF}Fee %d$\n\n/toll", tollBooths[i][1]);
 
         CreateDynamic3DTextLabel( string, -1, Float:tollBooths[i][9], Float:tollBooths[i][10], Float:tollBooths[i][11], 15.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, 0, 0, -1, 50.0, -1, 0 );
 
@@ -15890,12 +15890,12 @@ opeda_SpeedCamera(playerid, areaid)
 
 			if(wantedVehicles == 0)
 			{
-				SCFM(playerid, COLOR_ADMINCMD, "> Preletel si okolo r˝chlostnej kamery r˝chlosùou %dMPH, maxim·lna povolen· r˝chlosù je vöak %dMPH!", I_Speed, spdcamEnum[i][scam_SpeedLimit]);
+				SCFM(playerid, COLOR_ADMINCMD, "> You flew around speed camera doing %dMPH, but the limit here is %dMPH!", I_Speed, spdcamEnum[i][scam_SpeedLimit]);
 
 				new
 				    reason[68];
 
-				format(reason, sizeof reason, "PrekroËenie r˝chlosti o %d MI", I_Speed - spdcamEnum[i][scam_SpeedLimit]);
+				format(reason, sizeof reason, "Speeding, %d MPH", I_Speed - spdcamEnum[i][scam_SpeedLimit]);
 
 				if(strcmp(vEnum[GetPlayerVehicleID(playerid)][v_Owner], ReturnName(playerid), false))
 				{
@@ -15904,7 +15904,7 @@ opeda_SpeedCamera(playerid, areaid)
 
 	                GivePlayerFine(vEnum[GetPlayerVehicleID(playerid)][v_Owner], floatround(spdcamEnum[i][scam_BaseFine]+(I_Speed*1.25), floatround_round), reason, "SASD");
 
-	                format(reason, sizeof reason, "~w~Prisla ti nova pokuta za ~b~prekrocenie rychlosti~w~!");
+	                format(reason, sizeof reason, "~w~New fine for speeding has came!");
 
 	                EnterInfo(playerid, reason);
 				}
@@ -15914,7 +15914,7 @@ opeda_SpeedCamera(playerid, areaid)
 				    if(strlen(vEnum[GetPlayerVehicleID(playerid)][v_Owner]) < 5)
 				        break;
 
-				    SCFM(playerid, COLOR_ADMINCMD, "> Tento akt ùa bude st·ù pokutu, presne %d$!", floatround(spdcamEnum[i][scam_BaseFine]+(I_Speed*1.25), floatround_round));
+				    SCFM(playerid, COLOR_ADMINCMD, "> This will cost you %d$!", floatround(spdcamEnum[i][scam_BaseFine]+(I_Speed*1.25), floatround_round));
 
 					GivePlayerFine(vEnum[GetPlayerVehicleID(playerid)][v_Owner], floatround(spdcamEnum[i][scam_BaseFine]+(I_Speed*1.25), floatround_round), reason, "SASD");
 				}
@@ -15929,15 +15929,15 @@ opeda_SpeedCamera(playerid, areaid)
 			    GetPlayer2DZone(playerid, zonen, 32);
 
 			    if(angle < 45 || angle > 315)
-			        format(bound, 18, "severne");
+			        format(bound, 18, "north");
 				else if(angle >= 225 && angle <= 315)
-				    format(bound, 18, "z·padne");
+				    format(bound, 18, "west");
 				else if(angle > 180 && angle < 225)
-				    format(bound, 18, "juûne");
+				    format(bound, 18, "south");
 				else if(angle <= 180 && angle >= 45)
-				    format(bound, 18, "v˝chodne");
+				    format(bound, 18, "east");
 				else
-				    format(bound, 18, "nezn·mo kam");
+				    format(bound, 18, "unknown");
 
 			    foreach( new x : Player )
 				{
@@ -15947,7 +15947,7 @@ opeda_SpeedCamera(playerid, areaid)
 					if(!IsPlayerWorking(x))
 			  			continue;
 
-					SCFM(x, COLOR_LIGHTBLUE2, "[ WARN ] HæadanÈ vozidlo %s (%s) preölo r˝chlosùou %dMPH v lok·cii %s, smeruje %s!", GetVehicleName(GetPlayerVehicleID(playerid)), vEnum[GetPlayerVehicleID(playerid)][v_SPZ], I_Speed, zonen, bound);
+					SCFM(x, COLOR_LIGHTBLUE2, "[ WARN ] Wanted vehicle %s (%s) flew around %dMPH in location %s, heading %s!", GetVehicleName(GetPlayerVehicleID(playerid)), vEnum[GetPlayerVehicleID(playerid)][v_SPZ], I_Speed, zonen, bound);
 
 				}
 			}
@@ -15976,7 +15976,7 @@ ShowPlayerFines(playerid)
 		query[256],
 		Cache:cache,
 
-		finalString[2048] = "Suma\tDÙvod\tD·tum udelenia\tZaplaten·\n",
+		finalString[2048] = "Price\tReason\tDate\tPaid\n",
 		tempString[128];
 
 	mysql_format(MYSQL, query, 256, "SELECT * FROM char_pokuty WHERE Username = '%e' ORDER BY Paid, Date DESC", ReturnName(playerid));
@@ -16007,10 +16007,10 @@ ShowPlayerFines(playerid)
 		switch(Paid)
 		{
 		    case 0:
-		        format(paidstr, 15, "{e17070}Nie");
+		        format(paidstr, 15, "{e17070}No");
 
 			default:
-			    format(paidstr, 15, "{8be183}¡no");
+			    format(paidstr, 15, "{8be183}YES");
 
 		}
 
@@ -16020,7 +16020,7 @@ ShowPlayerFines(playerid)
 
 	cache_delete(cache);
 
-	ShowPlayerDialog(playerid, did_fines, DIALOG_STYLE_TABLIST_HEADERS, "POKUTY", finalString, "ZOBRAZIç", "CLOSE");
+	ShowPlayerDialog(playerid, did_fines, DIALOG_STYLE_TABLIST_HEADERS, "Fine", finalString, "SHOW", "CLOSE");
 
 	return 1;
 }
@@ -16046,14 +16046,14 @@ PayPlayerFine(playerid)
 
 	if(ex_GetPlayerMoney(playerid) < Suma)
 	{
-	    SendError(playerid, "Nem·ö dosù peÚazÌ na zaplatenie pokuty!");
+	    SendError(playerid, "You have not enough money!");
 	    return ShowPlayerFineDetail(playerid, fine_id[playerid]);
 	}
 
 	ex_GivePlayerMoney(playerid, -Suma);
 	money_spent[playerid] += floatround(Suma,floatround_round);
 
-	SendSuccess(playerid, "Pokuta zaplaten·!");
+	SendSuccess(playerid, "Fine paid!");
 
 	mysql_format(MYSQL, query, 256, "UPDATE char_pokuty SET Paid = 1 WHERE Username = '%e' AND Date = '%d'", ReturnName(playerid), Date);
 	mysql_query(MYSQL, query, false);
@@ -16080,10 +16080,10 @@ PayPlayerFine(playerid)
   			continue;
 
 		if(GetPlayerFactionType(x) == FACTION_TYPE_LAW)
-			SCFM(x, COLOR_LIGHTBLUE2, "[ WARN ] %s zaplatil jeho pokutu, do kasy bolo pridan˝ch %d$ (90 percent z pokuty)!", GetPlayerNameEx(playerid, NO_MASK), floatround(Suma / 100 * 90, floatround_round));
+			SCFM(x, COLOR_LIGHTBLUE2, "[ WARN ] %s paid his fine, %d$ has been added to the faction's bank!", GetPlayerNameEx(playerid, NO_MASK), floatround(Suma / 100 * 90, floatround_round));
 
         if(GetPlayerFactionType(x) == FACTION_TYPE_GOV)
-			SCFM(x, COLOR_LIGHTBLUE2, "[ WARN ] %s zaplatil jeho pokutu, do kasy bolo pridan˝ch %d$ (10 percent z pokuty)!", GetPlayerNameEx(playerid, NO_MASK), floatround(Suma / 100 * 10, floatround_round));
+			SCFM(x, COLOR_LIGHTBLUE2, "[ WARN ] %s paid his fine, %d$ has been added to the faction's bank!", GetPlayerNameEx(playerid, NO_MASK), floatround(Suma / 100 * 10, floatround_round));
 	}
 
 	return 1;
@@ -16131,20 +16131,20 @@ ShowPlayerFineDetail(playerid, count, Sumae = 0, Datee = 0)
 	switch(Paid)
 	{
  		case 0:
-   			format(paidstr, 15, "Nie");
+   			format(paidstr, 15, "No");
 
 		default:
-  			format(paidstr, 15, "¡no");
+  			format(paidstr, 15, "Yes");
 
 	}
 
-	format(finalString, 2048, "{ffffff}Udelil: {e34f4f}%s\n{ffffff}DÙvod: {e34f4f}%s\n{ffffff}Suma: {e34f4f}%d$\n{ffffff}D·tum: {e34f4f}%s\n{ffffff}Zaplaten·: {e34f4f}%s\n\n{ffffff}Kaûd· pokuta musÌ byù zaplaten· do {e34f4f}72 hodÌn{ffffff}, inak mÙûete byù trestne stÌhan˝!",
+	format(finalString, 2048, "{ffffff}Added by: {e34f4f}%s\n{ffffff}Offence: {e34f4f}%s\n{ffffff}Price: {e34f4f}%d$\n{ffffff}Date: {e34f4f}%s\n{ffffff}Paid: {e34f4f}%s\n\n{ffffff}Every fine must be paid maximally {e34f4f}72 hours{ffffff} after citing!",
 	    Officer, Dovod, Suma, getdateunix(Date), paidstr);
 
 	if(Paid == 0)
-		ShowPlayerDialog(playerid, did_fine, DIALOG_STYLE_MSGBOX, "POKUTA", finalString, "ZAPLATIç", "CLOSE");
+		ShowPlayerDialog(playerid, did_fine, DIALOG_STYLE_MSGBOX, "FINE", finalString, "PAY", "CLOSE");
 	else
-	    ShowPlayerDialog(playerid, did_fine, DIALOG_STYLE_MSGBOX, "POKUTA", finalString, "OK", "");
+	    ShowPlayerDialog(playerid, did_fine, DIALOG_STYLE_MSGBOX, "FINE", finalString, "OK", "");
 
 	cache_delete(cache);
 
@@ -16191,7 +16191,7 @@ PlaceBoombox(playerid) {
 	        bb_Pos[playerid][1] = 0;
 	        bb_Pos[playerid][2] = 0;
 	        bb_Pos[playerid][3] = 0;
-	        return EnterInfo(playerid, "~r~Uz tu niekde je Boombox!");
+	        return EnterInfo(playerid, "~r~There is boombox already!");
 	    }
 	}
 
@@ -16504,14 +16504,11 @@ CreateDMVVehicle(playerid)
 
 StartLearning(playerid)
 {
-	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Vozidlo mÙûeö naötartovaù prÌkazom /motor alebo drûanÌm kl·vesy N (default).");
-	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Pred jazdou si zapni p·sy (/pasy), alebo si nasaÔ helmu (RP/doplnok).");
-	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Svetl· mÙûeö zapn˙ù drûanÌm + (default) alebo prÌkazom /svetla. Zapni ich podæa znenia z·kona.");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}You can start vehicle's engine by holding key N.");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}You can enable vehicle lights by holding key +");
 	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ]");
-	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Vpravo vidÌö ötatistiky, Ëas a maxim·lnu povolen˙ r˝chlosù. R˝chlosù dodrûuj, jazdi bezpeËne.");
-	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Naötartuj, zabezpeË sa a pokraËuj po Ëerven˝ch checkpointoch.");
-	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Ak by sa nieËo stalo, mÙûeö pouûiù /zrusittest, ale peniaze nebud˙ vr·tenÈ.");
-	SCFM(playerid, COLOR_ADMINCMD, "[ DRIVING SCHOOL ] {ffffff}V meste je povolen· r˝chlosù 40MPH, mimo mesta Ëi na dialnici 60MPH.");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}You can use /stoptest, but money will not be returned.");
+	SCFM(playerid, COLOR_ADMINCMD, "[ DRIVING SCHOOL ] {ffffff}Speed limit in cities is 40MPH, out of city it's 60MPH.");
 
 	DMV_checkpoint[playerid] = 0;
 	DMV_warn[playerid] = 0;
@@ -16573,7 +16570,7 @@ FinishDMV(playerid)
 	if(vhp < 970.0)
 	{
 		DestroyDMV(playerid);
-		FormatLog(log_type_buythings, "%s(%s) zlyhal v teste na opravnenie (poskodenie)!", ReturnName(playerid), ReturnIP(playerid));
+		FormatLog(log_type_buythings, "%s(%s) failed his driving test!", ReturnName(playerid), ReturnIP(playerid));
 		return SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Je n·m æ˙to, ale poökodil si vozidlo a tvoj test bol ne˙speön˝.");
 	}
 	else if((DMV_license[playerid] == LICENSE_A || DMV_license[playerid] == LICENSE_B || DMV_license[playerid] == LICENSE_C) && DMV_time[playerid][0] >= 10)
@@ -20386,7 +20383,7 @@ ShowPlayerInventory(playerid, forplayerid, page = 1)
 		pocet ++;
 	}
 
-	format(S_tempString, sizeof(S_tempString), "%d\tP·Ëidlo\t/vypacit\n", GetPlayerInventoryItem(playerid, inv_pacidlo));
+	format(S_tempString, sizeof(S_tempString), "%d\tP·Ëidlo\t/breakcrate\n", GetPlayerInventoryItem(playerid, inv_pacidlo));
 	if(GetPlayerInventoryItem(playerid, inv_pacidlo) > 0)
 	{
 		strcat(S_string, S_tempString);
@@ -58570,7 +58567,7 @@ ShowHelp_General(playerid)
 	"/admins /help /global(/g) /ooc(/o) /enter /exit /zmazatchat(/zc) /pm /reply(/re) /cas /menu");
 
 	SendClientMessage(playerid, COLOR_WHITE,
-	"/(assist)ance(/dotaz) /(c)onversation /report /toll /atm /vypacit /otvorit /buycrate /zasadit");
+	"/(assist)ance(/dotaz) /(c)onversation /report /toll /atm /breakcrate /otvorit /buycrate /zasadit");
 
 	SendClientMessage(playerid, COLOR_WHITE,
 	"/vytrhnut /death /damages /accept /brigada /afklist /buyammo /buystyle /givewep /givevest");
@@ -58638,7 +58635,7 @@ ShowHelp_Vehicle(playerid)
 	"PrÌkazy k vozidl·m");
 
 	SendClientMessage(playerid, COLOR_WHITE,
-	"/engine /lights /okna(/rw) /eject /kufor /kapota /(veh)icle /zrusittest /zahaknut /odhaknut ");
+	"/engine /lights /okna(/rw) /eject /kufor /kapota /(veh)icle /stoptest /zahaknut /odhaknut ");
 
 	SendClientMessage(playerid, COLOR_WHITE,
 	"/radio /natankovat /taxameter /vperm(kluce vozidla) /vymenitkoleso");
@@ -73776,7 +73773,7 @@ YCMD:atm(playerid, params[], help)
 	return 1;
 }
 
-YCMD:zrusittest(playerid, params[], help)
+YCMD:stoptest(playerid, params[], help)
 {
 
 	if(isDoingDMV[playerid] == false)
@@ -73793,7 +73790,7 @@ YCMD:zrusittest(playerid, params[], help)
 	return 1;
 }
 
-YCMD:vypacit(playerid, params[], help)
+YCMD:breakcrate(playerid, params[], help)
 {
 
 	if(!IsPlayerNearAnyCrate(playerid))
