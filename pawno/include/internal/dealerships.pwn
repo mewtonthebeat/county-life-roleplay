@@ -97,7 +97,7 @@ Dealership::ShowAllDealerships(playerid)
 {
 
 	new
-	    fstr[512] = "> Vytvoriù nov˝ dealership",
+	    fstr[512] = "> Create new dealership",
 	    tname[ 64 ],
 		tquery[ 128 ],
 		Cache:cache
@@ -116,7 +116,7 @@ Dealership::ShowAllDealerships(playerid)
 	
 	cache_delete(cache);
 	
-	ShowPlayerDialog(playerid, did_dealership, DIALOG_STYLE_LIST, "VäETCI OBCHODNÕCI", fstr, "VYBRAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_dealership, DIALOG_STYLE_LIST, "DEALERSHIPS", fstr, "CHOOSE", "CLOSE");
 
 	return 1;
 }
@@ -144,7 +144,7 @@ Dealership::CreateNew(playerid)
 		break;
 	}
 	
-	if(tmp_id == -1) return SendError(playerid, "Nie je voæn˝ slot na nov˝ dealership!"), Dealership::ShowAllDealerships(playerid);
+	if(tmp_id == -1) return SendError(playerid, "There is not any free dealership slot!"), Dealership::ShowAllDealerships(playerid);
 
 	getdate(year, month, day);
 	gettime(hour, minute);
@@ -190,7 +190,7 @@ Dealership::ShowDetail(playerid)
 	    id = tmp_dealershipedit[playerid]
 	;
 	
-	format(tempString, sizeof tempString, "{FFFFFF}N·zov\t{6793db}%s\n", dealershipenum[id][dealsh_Name]);
+	format(tempString, sizeof tempString, "{FFFFFF}Name\t{6793db}%s\n", dealershipenum[id][dealsh_Name]);
 	strcat(finalString, tempString);
 	
 	format(tempString, sizeof tempString, "{FFFFFF}Multiplier\t{6793db}%.3f\n \n", float(dealershipenum[id][dealsh_Multiplier])/1000.0);
@@ -198,7 +198,7 @@ Dealership::ShowDetail(playerid)
 	
     //*//*//*//
 	
-	format(tempString, sizeof tempString, "{FFFFFF}Majiteæ\t{6793db}N/A\n");
+	format(tempString, sizeof tempString, "{FFFFFF}Owner\t{6793db}N/A\n");
 	strcat(finalString, tempString);
 	
 	format(tempString, sizeof tempString, "{FFFFFF}Cena obchodu\t{6793db}N/A \n \n");
@@ -210,26 +210,26 @@ Dealership::ShowDetail(playerid)
 	
 	if(dealershipenum[id][dealsh_pX] == 0.0 && dealershipenum[id][dealsh_pY] == 0.0) item = 0;
 	
-	format(tempString, sizeof tempString, "{FFFFFF}PozÌcia pickupu\t{6793db}%s\n", ReturnBoolString(item));
+	format(tempString, sizeof tempString, "{FFFFFF}Pickup pos\t{6793db}%s\n", ReturnBoolString(item));
 	strcat(finalString, tempString);
 	
 	item = 1;
     if(dealershipenum[id][dealsh_vX] == 0.0 && dealershipenum[id][dealsh_vY] == 0.0) item = 0;
 
-	format(tempString, sizeof tempString, "{FFFFFF}PozÌcia vozidla\t{6793db}%s\n \n", ReturnBoolString(item));
+	format(tempString, sizeof tempString, "{FFFFFF}Vehicle pos\t{6793db}%s\n \n", ReturnBoolString(item));
 	strcat(finalString, tempString);
 	
 	//*//*//*//
 	
-	format(tempString, sizeof tempString, "{FFFFFF}V˝ber vozidiel ...\n \n");
+	format(tempString, sizeof tempString, "{FFFFFF}Vehicle list ...\n \n");
 	strcat(finalString, tempString);
 
 	//*//*//*//
 
-	format(tempString, sizeof tempString, "{d33232}Odstr·niù dealership ...");
+	format(tempString, sizeof tempString, "{d33232}Remove dealership ...");
 	strcat(finalString, tempString);
 	
-	ShowPlayerDialog(playerid, did_dealership_detail, DIALOG_STYLE_TABLIST, "DETAIL DEALERSHIPU", finalString, "UPRAVIç", "SPAç");
+	ShowPlayerDialog(playerid, did_dealership_detail, DIALOG_STYLE_TABLIST, "DETAIL OF DEALERSHIP", finalString, "CHOOSE", "BACK");
 
 	return 1;
 }
@@ -279,56 +279,56 @@ Dealership::VehicleDetail(playerid, count)
 	format(tstr, sizeof tstr, "{FFFFFF}Model\t{6793db}%s\n", VehicleNames[tmodel-400]);
 	strcat(fstr, tstr);
 	
-	format(tstr, sizeof tstr, "{FFFFFF}Potrebn˝ Donator\t{6793db}Level %d\n \n", tdonator);
+	format(tstr, sizeof tstr, "{FFFFFF}Required Donator\t{6793db}Level %d\n \n", tdonator);
 	strcat(fstr, tstr);
 	
 	//*//*//*//
 	
-	format(tstr, sizeof tstr, "{FFFFFF}Cena\t{6793db}%d$\n", tprice);
+	format(tstr, sizeof tstr, "{FFFFFF}Price\t{6793db}%d$\n", tprice);
 	strcat(fstr, tstr);
-	format(tstr, sizeof tstr, "{FFFFFF}Cena v kreditoch\t{6793db}%d kreditov\n \n", tkredity);
+	format(tstr, sizeof tstr, "{FFFFFF}Price\t{6793db}%d coins\n \n", tkredity);
 	strcat(fstr, tstr);
 	
 	//*//*//*//
 	
-	format(tstr, sizeof tstr, "{FFFFFF}PrefarbiteænÈ\t{6793db}%s\n \n", ReturnBoolString(!trecolor));
+	format(tstr, sizeof tstr, "{FFFFFF}Recolourable\t{6793db}%s\n \n", ReturnBoolString(!trecolor));
 	strcat(fstr, tstr);
 	
 	//*//*//*//
 	
 	new tfactname[64];
 	
-	if(tfactiontype[0]==0) format(tfactname,sizeof tfactname,"Pre vöetky");
+	if(tfactiontype[0]==0) format(tfactname,sizeof tfactname,"For everybody");
 	else format(tfactname,sizeof tfactname,factionTypes[tfactiontype[0]]);
-	format(tstr, sizeof tstr, "{FFFFFF}Typ frakcie\t{6793db}%s\n", tfactname);
+	format(tstr, sizeof tstr, "{FFFFFF}Faction type\t{6793db}%s\n", tfactname);
 	strcat(fstr, tstr);
 	
 	if(tfactiontype[1]==0) format(tfactname,sizeof tfactname,"N/A");
 	else format(tfactname,sizeof tfactname,factionTypes[tfactiontype[1]]);
-	format(tstr, sizeof tstr, "{FFFFFF}Typ frakcie\t{6793db}%s\n", tfactname);
+	format(tstr, sizeof tstr, "{FFFFFF}Faction type\t{6793db}%s\n", tfactname);
 	strcat(fstr, tstr);
 	
 	if(tfactiontype[2]==0) format(tfactname,sizeof tfactname,"N/A");
 	else format(tfactname,sizeof tfactname,factionTypes[tfactiontype[2]]);
-	format(tstr, sizeof tstr, "{FFFFFF}Typ frakcie\t{6793db}%s\n", tfactname);
+	format(tstr, sizeof tstr, "{FFFFFF}Faction type\t{6793db}%s\n", tfactname);
 	strcat(fstr, tstr);
 	
 	if(tfactiontype[3]==0) format(tfactname,sizeof tfactname,"N/A");
 	else format(tfactname,sizeof tfactname,factionTypes[tfactiontype[3]]);
-	format(tstr, sizeof tstr, "{FFFFFF}Typ frakcie\t{6793db}%s\n", tfactname);
+	format(tstr, sizeof tstr, "{FFFFFF}Faction type\t{6793db}%s\n", tfactname);
 	strcat(fstr, tstr);
 	
 	if(tfactiontype[4]==0) format(tfactname,sizeof tfactname,"N/A");
 	else format(tfactname,sizeof tfactname,factionTypes[tfactiontype[4]]);
-	format(tstr, sizeof tstr, "{FFFFFF}Typ frakcie\t{6793db}%s\n \n", tfactname);
+	format(tstr, sizeof tstr, "{FFFFFF}Faction type\t{6793db}%s\n \n", tfactname);
 	strcat(fstr, tstr);
 	
 	//*//*//*//
 	
-	format(tstr, sizeof tstr, "{d33232}Odstr·niù vozidlo ...");
+	format(tstr, sizeof tstr, "{d33232}Remove vehicle ...");
 	strcat(fstr, tstr);
 	
-	ShowPlayerDialog(playerid, did_dealership_vehicle, DIALOG_STYLE_TABLIST, "⁄PRAVA VOZIDLA", fstr, "UPRAVIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_dealership_vehicle, DIALOG_STYLE_TABLIST, "EDIT VEHICLE", fstr, "CHOOSE", "CLOSE");
 	return 1;
 }
 
@@ -345,29 +345,29 @@ Dealership::ShowEdit(playerid,edittype,exid=-1)
 	switch(edittype)
 	{
 		case D_EDIT_TYPE_DONATOR:
-		    ShowPlayerDialog(playerid, did_dealership_vehicle_donator, DIALOG_STYLE_INPUT, "⁄PRAVA VOZIDLA", "{FFFFFF}> Zadaj potrebn˝ donator level pre k˙pu tohoto vozidla:", "OK", "SPAç");
+		    ShowPlayerDialog(playerid, did_dealership_vehicle_donator, DIALOG_STYLE_INPUT, "EDIT VEHICLE", "{FFFFFF}> Enter required donator level:", "OK", "BACK");
 		    
         case D_EDIT_TYPE_PRICE:
-		    ShowPlayerDialog(playerid, did_dealership_vehicle_price, DIALOG_STYLE_INPUT, "⁄PRAVA VOZIDLA", "{FFFFFF}> Zadaj cenu v $ pre k˙pu tohoto vozidla:", "OK", "SPAç");
+		    ShowPlayerDialog(playerid, did_dealership_vehicle_price, DIALOG_STYLE_INPUT, "EDIT VEHICLE", "{FFFFFF}> Enter price in $:", "OK", "BACK");
 		    
   		case D_EDIT_TYPE_CREDITS:
-		    ShowPlayerDialog(playerid, did_dealership_vehicle_credits, DIALOG_STYLE_INPUT, "⁄PRAVA VOZIDLA", "{FFFFFF}> Zadaj cenu v kreditoch pre k˙pu tohoto vozidla (pre vypnutie 0):", "OK", "SPAç");
+		    ShowPlayerDialog(playerid, did_dealership_vehicle_credits, DIALOG_STYLE_INPUT, "EDIT VEHICLE", "{FFFFFF}> Ennter price in coins (0 to turn off):", "OK", "BACK");
 		    
         case D_EDIT_TYPE_RECOLOUR:
-		    ShowPlayerDialog(playerid, did_dealership_vehicle_recolour, DIALOG_STYLE_MSGBOX, "⁄PRAVA VOZIDLA", "{FFFFFF}> M· byù toto vozidlo prefarbiteænÈ v dealershipe?", "¡NO", "NIE");
+		    ShowPlayerDialog(playerid, did_dealership_vehicle_recolour, DIALOG_STYLE_MSGBOX, "EDIT VEHICLE", "{FFFFFF}> Should this vehicle be recolourable?", "YES", "NAH");
 
 		case D_EDIT_TYPE_FACTION:
 		{
 		    new
 			    S_string[512],
 				S_tempString[64];
-			format(S_string, 512, "{FFFFFF}> Zadaj prosÌm ID typu frakcie alebo 0 pre vypnutie:\n\n");
+			format(S_string, 512, "{FFFFFF}> Please specify faction type ID or 0 to make it for everybody:\n\n");
 			for(new i; i < sizeof(factionTypes); i++)
 			{
 			    format(S_tempString, 64, "[ID: %d] %s\n", i, factionTypes[i]);
 			    strcat(S_string,S_tempString);
 			}
-		    ShowPlayerDialog(playerid, did_dealership_vehicle_faction, DIALOG_STYLE_INPUT, "⁄PRAVA VOZIDLA", S_string, "OK", "SPAç");
+		    ShowPlayerDialog(playerid, did_dealership_vehicle_faction, DIALOG_STYLE_INPUT, "EDIT VEHICLE", S_string, "OK", "BACK");
 		}
 	}
 	return 1;
@@ -385,7 +385,7 @@ Dealership::Remove(playerid)
     mysql_format(MYSQL, query, sizeof query, "DELETE FROM dealership_vehicles WHERE dealid='%d'", tmp_dealershipedit[playerid]);
 	mysql_query(MYSQL, query,false);
 
-	SendSuccess(playerid, "Dealership zmazan˝!");
+	SendSuccess(playerid, "Dealership removed!");
 
 	Dealership::ShowAllDealerships(playerid);
 	return 1;
@@ -411,7 +411,7 @@ Dealership::RemoveVehicle(playerid)
 	mysql_format(MYSQL, query, sizeof query, "DELETE FROM dealership_vehicles WHERE dealid='%d' AND model='%d' AND price='%d' AND kredity='%d' ORDER BY model",tmp_dealershipedit[playerid],tmodel,tprice,tkredity);
 	mysql_query(MYSQL, query,false);
 
-	SendSuccess(playerid, "Vozidlo zmazanÈ!");
+	SendSuccess(playerid, "Vehicle removed!");
 
 	Dealership::ShowVehicles(playerid);
 	return 1;
@@ -437,7 +437,7 @@ Dealership::SetRecolorable(playerid, val)
 	mysql_format(MYSQL, query, sizeof query, "UPDATE dealership_vehicles SET recolourable='%d' WHERE dealid='%d' AND model='%d' AND price='%d' AND kredity='%d' ORDER BY model",val,tmp_dealershipedit[playerid],tmodel,tprice,tkredity);
 	mysql_query(MYSQL, query,false);
 
-	SendSuccess(playerid, "Hodnota upraven·!");
+	SendSuccess(playerid, "Value edited!");
 
 	Dealership::VehicleDetail(playerid, dealshcount[playerid]);
 	return 1;
@@ -463,7 +463,7 @@ Dealership::SetFaction(playerid, val)
 	mysql_format(MYSQL, query, sizeof query, "UPDATE dealership_vehicles SET factiontype%d='%d' WHERE dealid='%d' AND model='%d' AND price='%d' AND kredity='%d' ORDER BY model",tmp_factioneditiddeal[playerid]+1,val,tmp_dealershipedit[playerid],tmodel,tprice,tkredity);
 	mysql_query(MYSQL, query,false);
 
-	SendSuccess(playerid, "Hodnota upraven·!");
+	SendSuccess(playerid, "Value edited!");
 
 	Dealership::VehicleDetail(playerid, dealshcount[playerid]);
 	return 1;
@@ -489,7 +489,7 @@ Dealership::SetPrice(playerid, val)
 	mysql_format(MYSQL, query, sizeof query, "UPDATE dealership_vehicles SET price='%d' WHERE dealid='%d' AND model='%d' AND price='%d' AND kredity='%d' ORDER BY model",val,tmp_dealershipedit[playerid],tmodel,tprice,tkredity);
 	mysql_query(MYSQL, query,false);
 
-	SendSuccess(playerid, "Hodnota upraven·!");
+	SendSuccess(playerid, "Value edited!");
 
 	Dealership::VehicleDetail(playerid, dealshcount[playerid]);
 	return 1;
@@ -516,7 +516,7 @@ Dealership::SetKredity(playerid, val)
 	mysql_format(MYSQL, query, sizeof query, "UPDATE dealership_vehicles SET kredity='%d' WHERE dealid='%d' AND model='%d' AND price='%d' AND kredity='%d' ORDER BY model",val,tmp_dealershipedit[playerid],tmodel,tprice,tkredity);
 	mysql_query(MYSQL, query,false);
 
-	SendSuccess(playerid, "Hodnota upraven·!");
+	SendSuccess(playerid, "Value edited!");
 
 	Dealership::VehicleDetail(playerid, dealshcount[playerid]);
 	return 1;
@@ -542,7 +542,7 @@ Dealership::SetDonator(playerid, val)
 	mysql_format(MYSQL, query, sizeof query, "UPDATE dealership_vehicles SET donatorlevel='%d' WHERE dealid='%d' AND model='%d' AND price='%d' AND kredity='%d' ORDER BY model",val,tmp_dealershipedit[playerid],tmodel,tprice,tkredity);
 	mysql_query(MYSQL, query,false);
 
-	SendSuccess(playerid, "Hodnota upraven·!");
+	SendSuccess(playerid, "Value edited!");
 
 	Dealership::VehicleDetail(playerid, dealshcount[playerid]);
 	return 1;
@@ -554,7 +554,7 @@ Dealership::AddNewVeh_internal(playerid,model)
 	mysql_format(MYSQL,query,sizeof query,"INSERT INTO dealership_vehicles (dealid,model) VALUES ('%d','%d')",tmp_dealershipedit[playerid],model);
 	mysql_query(MYSQL,query,false);
 	
-	SCSuccess(playerid, "Pridal si vozidlo %s do %s. Ned· sa k˙più, k˝m ho nenastavÌö!!!", VehicleNames[model-400],dealershipenum[tmp_dealershipedit[playerid]][dealsh_Name]);
+	SCSuccess(playerid, "You added vehicle %s to %s. You have to setup it to make it buyable!!!", VehicleNames[model-400],dealershipenum[tmp_dealershipedit[playerid]][dealsh_Name]);
 	
 	Dealership::ShowVehicles(playerid);
 	return 1;
@@ -562,14 +562,14 @@ Dealership::AddNewVeh_internal(playerid,model)
 
 Dealership::AddNewVeh(playerid)
 {
-    ShowPlayerDialog(playerid, did_dealership_detail_veh_new, DIALOG_STYLE_INPUT, "PRIDAç VOZIDLO", "{FFFFFF}> Zadaj n·zov alebo ID vozidla, ktorÈ chceö pridaù:", "OK", "SPAç");
+    ShowPlayerDialog(playerid, did_dealership_detail_veh_new, DIALOG_STYLE_INPUT, "ADD VEHICLE", "{FFFFFF}> Specify name or vehicle's id to add it:", "OK", "BACK");
 	return 1;
 }
 
 Dealership::ShowVehicles(playerid)
 {
 
-	new query[128],Cache:cache,fstr[2048]="Model\tCena\nPridaù novÈ ...",tstr[128],tmodel,tprice;
+	new query[128],Cache:cache,fstr[2048]="Model\tPrice\nAdd new ...",tstr[128],tmodel,tprice;
 	
 	mysql_format(MYSQL, query, sizeof query, "SELECT * FROM dealership_vehicles WHERE dealid='%d' ORDER BY model", tmp_dealershipedit[playerid]);
 	cache = mysql_query(MYSQL, query);
@@ -581,7 +581,7 @@ Dealership::ShowVehicles(playerid)
 		
 		if(tmodel < 400)
 		{
-		    printf("[ERROR]: V databazi je nezname vozidlo v DEALERSHIPe id %d (model: %d).", tmp_dealershipedit[playerid], tmodel);
+		    printf("[ERROR]: There is unknown vehicle in DB in Dealership %d (model: %d).", tmp_dealershipedit[playerid], tmodel);
 		    continue;
 		}
 		
@@ -595,10 +595,10 @@ Dealership::ShowVehicles(playerid)
 	    playerid,
 	    did_dealership_detail_vehs,
 	    DIALOG_STYLE_TABLIST_HEADERS,
-	    "ZOZNAM VOZIDIEL",
+	    "VEHICLE LIST",
 		fstr,
-		"UPRAVIç",
-		"SPAç"
+		"EDIT",
+		"BACK"
 	);
 
 	return 1;
@@ -613,7 +613,7 @@ Dealership::Rename(playerid, inputtext[])
     mysql_format(MYSQL, query, sizeof query, "UPDATE dealership_places SET name = '%e' WHERE id='%d'", inputtext,tmp_dealershipedit[playerid]);
     mysql_query(MYSQL, query,false);
 
-    SendSuccess(playerid, "Dealership premenovan˝!");
+    SendSuccess(playerid, "Dealership renamed!");
 
     Dealership::ShowDetail(playerid);
 	return 1;
@@ -621,7 +621,7 @@ Dealership::Rename(playerid, inputtext[])
 
 Dealership::ShowRename(playerid)
 {
-	ShowPlayerDialog(playerid, did_dealership_detail_rename, DIALOG_STYLE_INPUT, "PREMENOVAç DEALERSHIP", "{FFFFFF}> Zadaj nov˝ n·zov dealershipu:", "OK", "SPAç");
+	ShowPlayerDialog(playerid, did_dealership_detail_rename, DIALOG_STYLE_INPUT, "RENAME DEALERSHIP", "{FFFFFF}> Enter new name for this dealership:", "OK", "BACK");
 	return 1;
 }
 
@@ -634,7 +634,7 @@ Dealership::EditMultiplier(playerid, inputtext)
     mysql_format(MYSQL, query, sizeof query, "UPDATE dealership_places SET multiplier = '%d' WHERE id='%d'", inputtext,tmp_dealershipedit[playerid]);
     mysql_query(MYSQL, query,false);
 
-    SendSuccess(playerid, "Dealership m· nov˝ multiplier!");
+    SendSuccess(playerid, "Dealership's multiplier changed!");
 
     Dealership::ShowDetail(playerid);
 	return 1;
@@ -642,7 +642,7 @@ Dealership::EditMultiplier(playerid, inputtext)
 
 Dealership::ShowEditMultiplier(playerid)
 {
-	ShowPlayerDialog(playerid, did_dealership_detail_multiplie, DIALOG_STYLE_INPUT, "MULTIPLIER DEALERSHIPU", "{FFFFFF}> Zadaj nov˝ multiplier dealershipu:", "OK", "SPAç");
+	ShowPlayerDialog(playerid, did_dealership_detail_multiplie, DIALOG_STYLE_INPUT, "MULTIPLIER DEALERSHIP", "{FFFFFF}> Enter new mutliplier:", "OK", "BACK");
 	return 1;
 }
 
@@ -676,7 +676,7 @@ Dealership::SaveOnfoot(playerid)
     mysql_format(MYSQL, query, sizeof query, "UPDATE dealership_places SET x='%f',y='%f',z='%f',vw='%d',interior='%d' WHERE id='%d'", X,Y,Z,dealershipenum[id][dealsh_pVW],dealershipenum[id][dealsh_pINT],tmp_dealershipedit[playerid]);
     mysql_tquery(MYSQL, query);
     
-    SendSuccess(playerid, "Nov· pozÌcia obchodu bola nastaven·!");
+    SendSuccess(playerid, "New pickup position set");
 	return 1;
 }
 
@@ -700,7 +700,7 @@ Dealership::SaveIncar(playerid)
     mysql_format(MYSQL, query, sizeof query, "UPDATE dealership_places SET vx='%f',vy='%f',vz='%f',va='%f' WHERE id='%d'", X,Y,Z,A,tmp_dealershipedit[playerid]);
     mysql_tquery(MYSQL, query);
     
-    SendSuccess(playerid, "Nov· pozÌcia k˙penÈho auta bola nastaven·!");
+    SendSuccess(playerid, "New vehicle position set!");
     return 1;
 }
 
@@ -751,8 +751,6 @@ Dealership::Shop(playerid)
 	    maxindex = x;
 	}
 	
-	printf("[DEALERSHIP DEBUG]: Maximalny index: %d", maxindex);
-	
 	while((dealshvehicles[id][dealshipIndex[playerid]][dealveh_Donator] > GetPlayerDonatorLevel(playerid)) ||
 		(dealshvehicles[id][dealshipIndex[playerid]][dealveh_Fact1] != 0 && dealshvehicles[id][dealshipIndex[playerid]][dealveh_Fact1] != GetPlayerFactionType(playerid)) ||
 		(dealshvehicles[id][dealshipIndex[playerid]][dealveh_Fact2] != 0 && dealshvehicles[id][dealshipIndex[playerid]][dealveh_Fact2] != GetPlayerFactionType(playerid)) ||
@@ -766,8 +764,6 @@ Dealership::Shop(playerid)
 	    dealshipIndex[playerid] ++;
 		if(dealshipIndex[playerid] > maxindex)
 		    dealshipIndex[playerid] = 0;
-		    
-        printf("[DEALERSHIP DEBUG]: Nenasiel som, prechadzam na index: %d", dealshipIndex[playerid]);
 	}
 	
 	////////////////////////////////////////////////////////////////////////////
@@ -969,7 +965,7 @@ Dealership::CreateTextdraws(playerid)
 	PlayerTextDrawSetShadow(playerid, dealershipTD[playerid][9], 0);
 	PlayerTextDrawSetSelectable(playerid, dealershipTD[playerid][9], true);
 
-	dealershipTD[playerid][10] = CreatePlayerTextDraw(playerid, 381.047454, 185.306671, "CENA VOZIDLA");
+	dealershipTD[playerid][10] = CreatePlayerTextDraw(playerid, 381.047454, 185.306671, "VEHICLE PRICE");
 	PlayerTextDrawLetterSize(playerid, dealershipTD[playerid][10], 0.221713, 1.002666);
 	PlayerTextDrawAlignment(playerid, dealershipTD[playerid][10], 2);
 	PlayerTextDrawColor(playerid, dealershipTD[playerid][10], -2139062017);
@@ -991,7 +987,7 @@ Dealership::CreateTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, dealershipTD[playerid][11], 1);
 	PlayerTextDrawSetShadow(playerid, dealershipTD[playerid][11], 0);
 
-	dealershipTD[playerid][12] = CreatePlayerTextDraw(playerid, 381.047454, 215.173309, "CENA VOZIDLA (KREDITY)");
+	dealershipTD[playerid][12] = CreatePlayerTextDraw(playerid, 381.047454, 215.173309, "VEHICLE PRICE (COINS)");
 	PlayerTextDrawLetterSize(playerid, dealershipTD[playerid][12], 0.221713, 1.002666);
 	PlayerTextDrawAlignment(playerid, dealershipTD[playerid][12], 2);
 	PlayerTextDrawColor(playerid, dealershipTD[playerid][12], -2139062017);
@@ -1013,7 +1009,7 @@ Dealership::CreateTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, dealershipTD[playerid][13], 1);
 	PlayerTextDrawSetShadow(playerid, dealershipTD[playerid][13], 0);
 
-	dealershipTD[playerid][14] = CreatePlayerTextDraw(playerid, 381.047454, 241.626617, "PRIMARNA FARBA");
+	dealershipTD[playerid][14] = CreatePlayerTextDraw(playerid, 381.047454, 241.626617, "PRIMARY COLOR");
 	PlayerTextDrawLetterSize(playerid, dealershipTD[playerid][14], 0.221713, 1.002666);
 	PlayerTextDrawAlignment(playerid, dealershipTD[playerid][14], 2);
 	PlayerTextDrawColor(playerid, dealershipTD[playerid][14], -2139062017);
@@ -1061,7 +1057,7 @@ Dealership::CreateTextdraws(playerid)
 	PlayerTextDrawSetShadow(playerid, dealershipTD[playerid][17], 0);
 	PlayerTextDrawSetSelectable(playerid, dealershipTD[playerid][17], true);
 
-	dealershipTD[playerid][18] = CreatePlayerTextDraw(playerid, 381.047454, 263.813262, "SEKUNDARNA FARBA");
+	dealershipTD[playerid][18] = CreatePlayerTextDraw(playerid, 381.047454, 263.813262, "SECONDARY COLOR");
 	PlayerTextDrawLetterSize(playerid, dealershipTD[playerid][18], 0.221713, 1.002666);
 	PlayerTextDrawAlignment(playerid, dealershipTD[playerid][18], 2);
 	PlayerTextDrawColor(playerid, dealershipTD[playerid][18], -2139062017);
@@ -1109,7 +1105,7 @@ Dealership::CreateTextdraws(playerid)
 	PlayerTextDrawSetShadow(playerid, dealershipTD[playerid][21], 0);
 	PlayerTextDrawSetSelectable(playerid, dealershipTD[playerid][21], true);
 
-	dealershipTD[playerid][22] = CreatePlayerTextDraw(playerid, 381.809539, 166.533355, "TOTO VOZIDLO JE IBA PRE FRAKCIE");
+	dealershipTD[playerid][22] = CreatePlayerTextDraw(playerid, 381.809539, 166.533355, "THIS VEHICLE IS FOR FACTIONS ONLY");
 	PlayerTextDrawLetterSize(playerid, dealershipTD[playerid][22], 0.175238, 0.785066);
 	PlayerTextDrawAlignment(playerid, dealershipTD[playerid][22], 2);
 	PlayerTextDrawColor(playerid, dealershipTD[playerid][22], -2139062017);
@@ -1120,7 +1116,7 @@ Dealership::CreateTextdraws(playerid)
 	PlayerTextDrawSetProportional(playerid, dealershipTD[playerid][22], 1);
 	PlayerTextDrawSetShadow(playerid, dealershipTD[playerid][22], 0);
 
-	dealershipTD[playerid][23] = CreatePlayerTextDraw(playerid, 382.571441, 296.666595, "KUPIT VOZIDLO");
+	dealershipTD[playerid][23] = CreatePlayerTextDraw(playerid, 382.571441, 296.666595, "BUY VEHICLE");
 	PlayerTextDrawLetterSize(playerid, dealershipTD[playerid][23], 0.266666, 1.143468);
 	PlayerTextDrawTextSize(playerid, dealershipTD[playerid][23], 10.000000, 97.000000);
 	PlayerTextDrawAlignment(playerid, dealershipTD[playerid][23], 2);
@@ -1227,7 +1223,7 @@ Dealership::NextVehicle(playerid)
 	format(tstr, sizeof tstr, "$%d", dealshvehicles[id][dealshipIndex[playerid]][dealveh_Price]);
 	PlayerTextDrawSetString(playerid, dealershipTD[playerid][11], tstr);
 
-	if(dealshvehicles[id][dealshipIndex[playerid]][dealveh_PriceKr] == 0) format(tstr, sizeof tstr, "nedostupne");
+	if(dealshvehicles[id][dealshipIndex[playerid]][dealveh_PriceKr] == 0) format(tstr, sizeof tstr, "not available...");
 	else format(tstr, sizeof tstr, "%d kr", dealshvehicles[id][dealshipIndex[playerid]][dealveh_PriceKr]);
 	PlayerTextDrawSetString(playerid, dealershipTD[playerid][13], tstr);
 
@@ -1298,7 +1294,7 @@ Dealership::PrevVehicle(playerid)
 	format(tstr, sizeof tstr, "$%d", dealshvehicles[id][dealshipIndex[playerid]][dealveh_Price]);
 	PlayerTextDrawSetString(playerid, dealershipTD[playerid][11], tstr);
 
-	if(dealshvehicles[id][dealshipIndex[playerid]][dealveh_PriceKr] == 0) format(tstr, sizeof tstr, "nedostupne");
+	if(dealshvehicles[id][dealshipIndex[playerid]][dealveh_PriceKr] == 0) format(tstr, sizeof tstr, "not available...");
 	else format(tstr, sizeof tstr, "%d kr", dealshvehicles[id][dealshipIndex[playerid]][dealveh_PriceKr]);
 	PlayerTextDrawSetString(playerid, dealershipTD[playerid][13], tstr);
 	
@@ -1498,7 +1494,7 @@ Dealership::Proceed(playerid)
 	{
 	    if(GetPlayerFactionRank(playerid) < 9)
 	    {
-	        SendError(playerid, "Na k˙pu tohoto vozidla potrebujeö frakËn˝ rank 9 alebo 10!");
+	        SendError(playerid, "You need at least faction rank 9 to buy this vehicle!");
 	        return 1;
 	    }
 	}
@@ -1508,14 +1504,14 @@ Dealership::Proceed(playerid)
 	{
 	    // d· sa aj za kredity
 	    new fstr[ 256 ];
-	    format(fstr, sizeof fstr, "{ffffff}> {6cad4e}K˙più za %d$\n{ffffff}> {c775d6}K˙più za kredity (%d kreditov)\n{ffffff}< Sp‰ù do v˝beru", dealshvehicles[id][dealshipIndex[playerid]][dealveh_Price], dealshvehicles[id][dealshipIndex[playerid]][dealveh_PriceKr]);
-	    ShowPlayerDialog(playerid, did_dealership_confirm, DIALOG_STYLE_LIST, "V›BER", fstr, "VYBRAç", "SPAç");
+	    format(fstr, sizeof fstr, "{ffffff}> {6cad4e}Buy for %d$\n{ffffff}> {c775d6}Buy with coins (%d coins)\n{ffffff}< Back", dealshvehicles[id][dealshipIndex[playerid]][dealveh_Price], dealshvehicles[id][dealshipIndex[playerid]][dealveh_PriceKr]);
+	    ShowPlayerDialog(playerid, did_dealership_confirm, DIALOG_STYLE_LIST, "MENU", fstr, "CHOOSE", "BACK");
 	}
 	else
 	{
 	    new fstr[ 256 ];
-	    format(fstr, sizeof fstr, "{FFFFFF}> SkutoËne chceö k˙più vozidlo {6793db}%s {ffffff}za {6793db}%d${ffffff}?\n> Bude napÌsanÈ na tvoje meno.", VehicleNames[dealshvehicles[id][dealshipIndex[playerid]][dealveh_Model]-400], dealshvehicles[id][dealshipIndex[playerid]][dealveh_Price]);
-	    ShowPlayerDialog(playerid, did_dealership_confirm_money_ex, DIALOG_STYLE_MSGBOX, "POTVRDENIE", fstr, "¡NO", "NIE");
+	    format(fstr, sizeof fstr, "{FFFFFF}> Are you sure about buying {6793db}%s {ffffff}for {6793db}%d${ffffff}?\n> You will be the owner.", VehicleNames[dealshvehicles[id][dealshipIndex[playerid]][dealveh_Model]-400], dealshvehicles[id][dealshipIndex[playerid]][dealveh_Price]);
+	    ShowPlayerDialog(playerid, did_dealership_confirm_money_ex, DIALOG_STYLE_MSGBOX, "QUESTION", fstr, "YES", "NO");
 	}
 	return 1;
 }
@@ -1526,8 +1522,8 @@ Dealership::ShowCreditConfirm(playerid)
 		id = tmp_dealershipedit[playerid]
 	;
     new fstr[ 256 ];
-    format(fstr, sizeof fstr, "{FFFFFF}> SkutoËne chceö k˙più vozidlo {6793db}%s {ffffff}za {c775d6}%d kreditov{ffffff}?\n> Bude napÌsanÈ na tvoje meno.", VehicleNames[dealshvehicles[id][dealshipIndex[playerid]][dealveh_Model]-400], dealshvehicles[id][dealshipIndex[playerid]][dealveh_PriceKr]);
-    ShowPlayerDialog(playerid, did_dealership_confirm_credits, DIALOG_STYLE_MSGBOX, "POTVRDENIE", fstr, "¡NO", "NIE");
+    format(fstr, sizeof fstr, "{FFFFFF}> Are you sure about buying {6793db}%s {ffffff}for {c775d6}%d coins{ffffff}?\n> You will be the owner.", VehicleNames[dealshvehicles[id][dealshipIndex[playerid]][dealveh_Model]-400], dealshvehicles[id][dealshipIndex[playerid]][dealveh_PriceKr]);
+    ShowPlayerDialog(playerid, did_dealership_confirm_credits, DIALOG_STYLE_MSGBOX, "QUESTION", fstr, "YES", "NO");
     return 1;
 }
 
@@ -1537,8 +1533,8 @@ Dealership::ShowMoneyConfirm(playerid)
 		id = tmp_dealershipedit[playerid]
 	;
     new fstr[ 256 ];
-    format(fstr, sizeof fstr, "{FFFFFF}> SkutoËne chceö k˙più vozidlo {6793db}%s {ffffff}za {6793db}%d${ffffff}?\n> Bude napÌsanÈ na tvoje meno.", VehicleNames[dealshvehicles[id][dealshipIndex[playerid]][dealveh_Model]-400], dealshvehicles[id][dealshipIndex[playerid]][dealveh_Price]);
-    ShowPlayerDialog(playerid, did_dealership_confirm_money, DIALOG_STYLE_MSGBOX, "POTVRDENIE", fstr, "¡NO", "NIE");
+    format(fstr, sizeof fstr, "{FFFFFF}> Are you sure about buying {6793db}%s {ffffff}for {6793db}%d${ffffff}?\n> You will be the owner.", VehicleNames[dealshvehicles[id][dealshipIndex[playerid]][dealveh_Model]-400], dealshvehicles[id][dealshipIndex[playerid]][dealveh_Price]);
+    ShowPlayerDialog(playerid, did_dealership_confirm_money, DIALOG_STYLE_MSGBOX, "QUESTION", fstr, "YES", "NO");
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -1546,7 +1542,7 @@ Dealership::ShowMoneyConfirm(playerid)
 YCMD:dealerships(playerid, params[], help)
 {
 	if(GetPlayerAdminLevel(playerid) < 6)
-	    return SendError(playerid, "Na tento prikaz nemas opravnenie!");
+	    return SendError(playerid, "You do not have required permission!");
 	    
 	Dealership::ShowAllDealerships(playerid);
 

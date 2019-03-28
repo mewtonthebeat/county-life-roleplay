@@ -2,51 +2,6 @@
 
 //------------------------------------------------------------------------------
 
-/*
-
-		ZaËiatok skriptu:
-		
-		Meno skriptu:           Corpse System
-		v1.0
-		
-		
-		{
-			// pred funkciami atd pouûijem tag
-			CPS_ || CPS
-
-		}
-		
-		Zoznam funkciÌ: {
-		    * CPS_CreateCorpse(playerid)
-		        - returnuje ID mrtvoly pri uspechu
-		        - returnuje CPS_INVALID_CORPSE_ID pri neupsechu
-		        
-            * CPS_CreateCorpseEx(model, Float:pX, Float:pY, Float:pZ, Float:pA, name[] = "", virtualWorld = 0, interiorId = 0)
-		        - returnuje ID mrtvoly pri uspechu
-		        - returnuje CPS_INVALID_CORPSE_ID pri neupsechu
-		        
-            * CPS_DestroyCorpse(id)
-		        - returnuje 1 pri uspechu
-		        - returnuje CPS_INVALID_CORPSE_ID pri neupsechu
-		        
-			* CPS_DestroyOldestCorpse()
-			    - returnuje 1 vzdy
-				
-			* CPS_SetCorpseName(id, name[])
-				- returnuje 0 ak mrtvola neexistuje
-				- returnuje 1 ak success
-				
-			* CPS_SetCorpseAngle(id, Float:angle)
-			    - returnuje 0 ak mrtvola neexistuje
-				- returnuje 1 ak success
-				
-			* CPS_SetCorpseSkin(id, skin)
-			    - returnuje 0 ak mrtvola neexistuje
-				- returnuje 1 ak success
-			...
-		}
-*/
-
 // definicie
 #define     CPS_MAX_CORPSES     			(250)
 #define     CPS_RESYNC_ANIM_TIMER           (1000 * 60 * 5)     // 5 minut
@@ -71,42 +26,42 @@
 #define     CPS_LABEL_STREAM_PRIORITY       (3)
 #define     CPS_LABEL_STRING_SIZE           (144 + (MAX_PLAYER_NAME + 1))
 
-#define     CPS_HEAD_LABEL_DRAGGING         "* t·hne mrtvolu *"
+#define     CPS_HEAD_LABEL_DRAGGING         "* dragging corpse *"
 #define     CPS_HEAD_LABEL_COLOR            (0xc2a2daFF)
 
-#define     CPS_CMD_SYNTAX_ADMIN            "[mrtvola]: /mrtvola [zranenia-bodybag-zapalit-otocit-tahat-kufor-(vytvorit-zmazat-zmazatvsetky-upravit-info)]"
-#define     CPS_CMD_SYNTAX_ADMIN_VYTVORIT   "[mrtvola]: /mrtvola vytvorit [skin id] [meno]"
-#define     CPS_CMD_SYNTAX_ADMIN_UPRAVIT   	"[mrtvola]: /mrtvola upravit [meno-rotacia-skin-stadium] [data]"
-#define     CPS_CMD_SYNTAX            		"[mrtvola]: /mrtvola [zranenia-bodybag-zapalit-otocit-tahat-kufor]"
-#define     CPS_CMD_NO_PERM                 "[mrtvola]: Na pouûitie tohoto prÌkazu nem·ö opr·vnenie."
-#define     CPS_CMD_NO_NEARBY_CORPSE        "[mrtvola]: V tvojom okolÌ nie je ûiadna m‡tvola."
-#define     CPS_CMD_NO_NEARBY_VEHICLE       "[mrtvola]: V tvojom okolÌ nie je ûiadne vozidlo."
-#define     CPS_CMD_NO_EDITING_DRAGGED      "[mrtvola]: NemÙûeö manipulovaù s m‡tvolou, keÔ ju niekto ùah·."
-#define     CPS_CMD_NO_EDITING_BURNING      "[mrtvola]: NemÙûeö manipulovaù s m‡tvolou, keÔ horÌ.."
-#define     CPS_CMD_BAD_ANGLE               "[mrtvola]: ProsÌm zadaj rot·ciu ako d·ta vo veækosti 0.0 aû 359.9."
-#define     CPS_CMD_BAD_SKIN_ID             "[mrtvola]: ProsÌm zadaj spr·vn˝ skin (0 - 311, alebo 20000 - 29999)."
-#define     CPS_CMD_BAD_STADIUM             "[mrtvola]: ProsÌm zadaj spr·vnÈ ID öt·dia. (0 - 8)"
-#define     CPS_CMD_CORPSE_CREATED          "[mrtvola]: M‡tvola bola ˙speöne vytvoren·."
-#define     CPS_CMD_CORPSE_DELETED          "[mrtvola]: M‡tvola bola ˙speöne zmazan·."
-#define     CPS_CMD_CORPSE_DELETED_ALL      "[mrtvola]: Vöetky m‡tvoly boly ˙speöne zmaz·ne."
-#define     CPS_CMD_CORPSE_RENAMED          "[mrtvola]: M‡tvola bola ˙speöne premenovan·."
-#define     CPS_CMD_CORPSE_REANGLED         "[mrtvola]: ⁄speöne si upravil rot·ciu m‡tvoly."
-#define     CPS_CMD_CORPSE_RESKINED         "[mrtvola]: ⁄speöne si upravil skin m‡tvoly."
-#define     CPS_CMD_CORPSE_RESTADIED        "[mrtvola]: ⁄speöne si upravil öt·dium rozkladu m‡tvoly."
-#define     CPS_CMD_OTOCENA                 "[mrtvola]: ⁄speöne si otoËil m‡tvolu."
-#define     CPS_CMD_CORPSE_TAHNES           "[mrtvola]: ZaËal si ùahaù m‡tvolu, pustÌö ju stlaËenÌm tlaËidla F {ENTER}. Kl·vesou Y ju d·ö do kufra auta."
-#define     CPS_CMD_STOP_DRAG               "[mrtvola]: Prestal si ùahaù mrtvolu."
-#define     CPS_CMD_NEMAS_ZAPALKY           "[mrtvola]: Aby si mohol zap·liù mrtvolu, musÌö maù zapalovaË."
-#define     CPS_CMD_CORPSE_ZAPALILS         "[mrtvola]: Zap·lil si mrtvolu."
-#define     CPS_STORE_SUCCESS               "[mrtvola]: Vloûil si mrtvolu do kufra vozidla %s, je tam %d z maxim·lnych %d m‡tvol. Vytiahneö ju prÌkazom /mrtvola kufor."
-#define     CPS_UNSTORE_SUCCESS             "[mrtvola]: Vytiahol si mrtvolu z kufra vozidla %s, mÙûeö ju ùahaù prÌkazom /mrtvola tahat."
-#define     CPS_CMD_NO_CORPSE_IN_VEHICLE    "[mrtvola]: Nem·ö vo vozidle ûiadnu mrtvolu!"
-#define     CPS_CMD_NEMAS_BODYBAG           "[mrtvola]: Nem·ö vrece na mrtvoly!"
-#define     CPS_CMD_BODYBAG_DOWN            "[mrtvola]: Vytiahol si telo z vreca na mrtvoly!"
-#define     CPS_CMD_BODYBAG_ON              "[mrtvola]: Zabalil si telo do vreca na mrtvoly!"
-#define     CPS_CMD_CANT_EXAMINE            "[mrtvola]: T˙to akciu nemÙûeö spraviù, keÔ je telo vo vreci!"
-#define    	CPS_CMD_TRUNK_CLOSED            "[mrtvola]: Kufor tohoto vozidla je zatvoren˝!"
-#define     CPS_CMD_NO_DAMAGE               "[mrtvola]: T·to mrtvola nem· ûiadne zaznamenanÈ poökodenie!"
+#define     CPS_CMD_SYNTAX_ADMIN            "[corpse]: /corpse [injuries-bodybag-lightup-turn-grab-trunk-(create-delete-deleteall-edit-info)]"
+#define     CPS_CMD_SYNTAX_ADMIN_VYTVORIT   "[corpse]: /corpse create [skin id] [name]"
+#define     CPS_CMD_SYNTAX_ADMIN_UPRAVIT   	"[corpse]: /corpse edit [name-rotation-skin-state] [data]"
+#define     CPS_CMD_SYNTAX            		"[corpse]: /corpse [injuries-bodybag-lightup-turn-grab-trunk]"
+#define     CPS_CMD_NO_PERM                 "[corpse]: You do not have permissions to use this command."
+#define     CPS_CMD_NO_NEARBY_CORPSE        "[corpse]: There is no nearby corpse."
+#define     CPS_CMD_NO_NEARBY_VEHICLE       "[corpse]: There is not any vehicle nearby."
+#define     CPS_CMD_NO_EDITING_DRAGGED      "[corpse]: You can't manipulate corpse when it's being dragged."
+#define     CPS_CMD_NO_EDITING_BURNING      "[corpse]: You cannot manipulate with corpse when it's burning."
+#define     CPS_CMD_BAD_ANGLE               "[corpse]: Please specify rotation ranging from 0.0 to 359.9."
+#define     CPS_CMD_BAD_SKIN_ID             "[corpse]: Please specify skin ID ranging from (0 - 311, or 20000 - 29999)."
+#define     CPS_CMD_BAD_STADIUM             "[corpse]: Please specify valid state. (0 - 8)"
+#define     CPS_CMD_CORPSE_CREATED          "[corpse]: Corpse created."
+#define     CPS_CMD_CORPSE_DELETED          "[corpse]: Corpse remove."
+#define     CPS_CMD_CORPSE_DELETED_ALL      "[corpse]: All corpses removed."
+#define     CPS_CMD_CORPSE_RENAMED          "[corpse]: Corpse renamed."
+#define     CPS_CMD_CORPSE_REANGLED         "[corpse]: Corpse rotated."
+#define     CPS_CMD_CORPSE_RESKINED         "[corpse]: Corpse reskinned."
+#define     CPS_CMD_CORPSE_RESTADIED        "[corpse]: Corpse's state changed."
+#define     CPS_CMD_OTOCENA                 "[corpse]: Corpse turned upside down."
+#define     CPS_CMD_CORPSE_TAHNES           "[corpse]: You started to drag corpse, you can stop dragging it by pressing F {ENTER}. By pressing Y you can store it into trunk."
+#define     CPS_CMD_STOP_DRAG               "[corpse]: You stopped dragging corpse."
+#define     CPS_CMD_NEMAS_ZAPALKY           "[corpse]: You must have a lighter to light corpse up."
+#define     CPS_CMD_CORPSE_ZAPALILS         "[corpse]: You lit corpse up."
+#define     CPS_STORE_SUCCESS               "[corpse]: You put corpse into vehicle %s, there are %d out of %d possible corpses. You can take it out with /corpse trunk."
+#define     CPS_UNSTORE_SUCCESS             "[corpse]: You took corpse out of the vehicle %s, you can drag it with /corpse grab"
+#define     CPS_CMD_NO_CORPSE_IN_VEHICLE    "[corpse]: There is not any corpse in this vehicle!"
+#define     CPS_CMD_NEMAS_BODYBAG           "[corpse]: You do not have a bodybag!"
+#define     CPS_CMD_BODYBAG_DOWN            "[corpse]: You took corpse out of a bodybag!"
+#define     CPS_CMD_BODYBAG_ON              "[corpse]: You put corpse inside a bodybag!"
+#define     CPS_CMD_CANT_EXAMINE            "[corpse]: You cannot do that, when corpse is in bodybag!"
+#define    	CPS_CMD_TRUNK_CLOSED            "[corpse]: This vehicle's trunk is closed!"
+#define     CPS_CMD_NO_DAMAGE               "[corpse]: This corpse has not any registered injuries!"
 
 #define     CPS_INVALID_CORPSE_ID           (-255)
 
@@ -487,117 +442,63 @@ stock const CPS_gVehicleTempDataNames[][] =
 };
 
 new const CPS_A_BodypartNames[][] = {
-	"TRUP",
-	"OBLAST éEBER",
-	"LEV¡ RUKA",
-	"PRAV¡ RUKA",
-	"LEV¡ NOHA",
-	"PRAV¡ NOHA",
-	"HLAVA"
-	/*"Trup",
-	"Oblast ûeber",
-	"Lev· ruka",
-	"Prav· ruka",
-	"Lev· noha",
-	"Prav· noha",
-	"Hlava"*/
+	"TORSO",
+	"GROIN",
+	"LEFT ARM",
+	"RIGHT ARM",
+	"LEFT LEG",
+	"RIGHT LEG",
+	"HEAD"
 };
 
 new const CPS_A_weaponNames[][] = {
-	/*"PÃST",
-	"BOXER",
-	"GOLFOV¡ HŸL",
-	"OBUäEK",
-	"NŸé",
-	"P¡LKA",
-	"LOPATA",
-	"BILIARDOV¡ TY»",
-	"KATANA",
-	"MOTOROV¡ PILA",
-	"DILDO",
-	"DILDO",
-	"VIBR¡TOR",
-	"VIBR¡TOR",
-	"KVÃTINY",
-	"HŸL",
-	"GRAN¡T",
-	"SLZN› PLYN",
-	"MOLOTOVŸV KOKTEJL",
-	"",
-	"",
-	"",
-	"COLT .45",
-	"COLT .45 TLUMEN›",
-	"DESERT EAGLE",
-	"BROKOVNICE",
-	"UPIL. BROKOVNICE",
-	"BOJ. BROKOVNICE",
-	"MICRO SMG",
-	"MP5",
-	"AK-47",
-	"M4",
-	"TEC-9",
-	"VESNICK¡ PUäKA",
-	"SNIPERKA",
-	"RPG",
-	"RAKETOMET",
-	"PLAMÃNOMET",
-	"MINIGUN",
-	"SATCHEL",
-	"DETON¡TOR",
-	"SPREJ",
-	"HASÕCÕ PÿÕSTROJ",
-	"KAMERA",
-	"NIGHT V. GOGGLES",
-	"THERMAL GOGGLES",
-	"PAD¡K"*/               // nadtymto to je robene velkym, jak chces to daj
-	"PÏst",
+	"Fist",
 	"Boxer",
-	"Golfov· h˘l",
-	"Obuöek",
-	"N˘û",
-	"P·lka",
-	"Lopata",
-	"Biliardov· tyË",
+	"Golf Club",
+	"Baton",
+	"Knife",
+	"Bat",
+	"Shovel",
+	"Billiard Hoe",
 	"Katana",
-	"Motorov· pila",
+	"Chainsaw",
 	"Dildo",
 	"Dildo",
-	"Vibr·tor",
-	"Vibr·tor",
-	"KvÏtiny",
-	"H˘l",
-	"Gran·t",
-	"Slzn˝ plyn",
-	"Molotov˘v koktejl",
+	"Vibrator",
+	"Vibrator",
+	"Flowers",
+	"Hoe",
+	"Grenade",
+	"Teargas",
+	"Molotov Cocktail",
 	"",
 	"",
 	"",
 	"Colt .45",
-	"Colt s tlumiËem",
+	"Colt .45 Silenced",
 	"Desert Eagle",
-	"Brokovnice",
-	"Upil. brokovnice",
-	"Bojov. brokovnice",
+	"Shotgun",
+	"Sawed-off Shotgun",
+	"Combat Shotgun",
 	"Micro SMG",
 	"MP5",
 	"AK-47",
 	"M4",
 	"Tec-9",
-	"Vesnick· puöka",
-	"Sniperka",
+	"County Rifle",
+	"Sniper Rifle",
 	"RPG",
-	"Raketomet",
-	"Plamenomet",
+	"Rocket Launcher",
+	"Flamethrower",
 	"Minigun",
 	"Satchel",
-	"Deton·tor",
-	"Sprej",
-	"HasÌcÌ p¯Ìstroj",
-	"Kamera",
-	"NoËnÌ vidÏnÌ",
-	"TeplÈ vidÏnÌ",         // idk jak prelozit thermal googles neviem to ani len slovensky povedat
-	"Pad·k"
+	"Detonator",
+	"Spray",
+	"Fire Extinguisher",
+	"Camera",
+	"Night Vision",
+	"Thermal Goggles",         // idk jak prelozit thermal googles neviem to ani len slovensky povedat
+	"Parachute"
 };
 // koniec premennych, enumov
 
@@ -973,59 +874,59 @@ stock CPS_Create3DTextLabelVehicle(id)
 	    case CPS_STADIUM_CERSTVA:
 	        format(
 				lLabelString, sizeof lLabelString,
-				"(( Mrtvola hr·Ëe %s ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{eeeeee}** TÏlo je ËerstvÈ, jeöte je teplÈ. **",
+				"(( Corpse of %s ))\n(( To interact with body use /corpse ))\n{eeeeee}** Body is warm and fresh. **",
 				CPS_E_corpse[id][CPS_E_name]
 			);
 
         case CPS_STADIUM_STUDENA:
 	        format(
 				lLabelString, sizeof lLabelString,
-				"(( Mrtvola hr·Ëe %s ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{c7eee9}** TÏlo je ËerstvÈ, uû vychladlo. **",
+				"(( Corpse of %s ))\n(( To interact with body use /corpse ))\n{c7eee9}** Body is cold, however, it is quite fresh. **",
 				CPS_E_corpse[id][CPS_E_name]
 			);
 
         case CPS_STADIUM_ROZKLAD_I:
 	        format(
 				lLabelString, sizeof lLabelString,
-				"(( Mrtvola hr·Ëe %s ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{e1c9c9}** TÏlo je studenÈ a zaËÌn· zap·chat. **",
+				"(( Corpse of %s ))\n(( To interact with body use /corpse ))\n{e1c9c9}** Body is cold and starting to stink. **",
 				CPS_E_corpse[id][CPS_E_name]
 			);
 
         case CPS_STADIUM_ROZKLAD_II:
 	        format(
 				lLabelString, sizeof lLabelString,
-				"(( Mrtvola hr·Ëe %s ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{dfb7b7}** TÏlo je v zaË·teËnÈm st·diu rozkladu, zap·ch·. **",
+				"(( Corpse of %s ))\n(( To interact with body use /corpse ))\n{dfb7b7}** Body is starting to decompose. **",
 				CPS_E_corpse[id][CPS_E_name]
 			);
 
         case CPS_STADIUM_ROZKLAD_III:
 	        format(
 				lLabelString, sizeof lLabelString,
-				"(( Mrtvola hr·Ëe %s ??? ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{df9999}** TÏlo je ve znaËnÈm st·diu rozkladu, silnÏ zap·ch· a kolem tÏla lÌt· hmyz. **",
+				"(( Corpse of %s ??? ))\n(( To interact with body use /corpse ))\n{df9999}** Body is decomposing, insects are flying around it. **",
 				firstName
 			);
 
 		case CPS_STADIUM_ROZKLAD_IV:
 	        format(
 				lLabelString, sizeof lLabelString,
-				"(( Nezn·m· mrtvola ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{d26b6b}** TÏlo je rozloûeno, zap·ch· a lÌtajÌ okolo nÏj mouchy. **"
+				"(( Unknown corpse ))\n(( To interact with body use /corpse ))\n{d26b6b}** Body is decomposed. **"
 			);
 
         case CPS_STADIUM_OBHORENA:
 	        format(
 				lLabelString, sizeof lLabelString,
-				"(( Oho¯el· mrtvola ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{8d8d8d}** TÏlo je oho¯elÈ, je ËernÈ a smrdÌ jak sp·lenÈ maso. **"
+				"(( Burned corpse ))\n(( To interact with body use /corpse ))\n{8d8d8d}** Body is burning, black and stinks like grilled pork. **"
 			);
 
         case CPS_STADIUM_HORI:
 	        format(
 				lLabelString, sizeof lLabelString,
-				"(( Ho¯ÌcÌ mrtvola ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{8d8d8d}** TÏlo ho¯Ì, jde z nÏj Ëern˝ d˝m a smrdÌ jak sp·lenÈ maso. **"
+				"(( Burning corpse ))\n(( To interact with body use /corpse ))\n{8d8d8d}** Body is burning, black smoke is around it and it stinks. **"
 			);
 	}
 
 	CPS_E_corpse[id][CPS_E_labelId]						= CreateDynamic3DTextLabel(
-																		"** V kufru/na korbÏ je mrtvÈ tÏlo **",
+																		"** There is a corpse in/on trunk **",
 																		CPS_LABEL_COLOR,
 																		vX, vY, vZ,
 																		7.0,
@@ -1064,59 +965,59 @@ stock CPS_Refresh3DTextLabelText(id)
 		    case CPS_STADIUM_CERSTVA:
 		        format(
 					lLabelString, sizeof lLabelString,
-					"(( Mrtvola hr·Ëe %s ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{eeeeee}** TÏlo je ËerstvÈ, jeöte je teplÈ. **",
+					"(( Corpse of %s ))\n(( To interact with body use /corpse ))\n{eeeeee}** Body is warm and fresh. **",
 					CPS_E_corpse[id][CPS_E_name]
 				);
 
 	        case CPS_STADIUM_STUDENA:
 		        format(
 					lLabelString, sizeof lLabelString,
-					"(( Mrtvola hr·Ëe %s ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{c7eee9}** TÏlo je ËerstvÈ, uû vychladlo. **",
+					"(( Corpse of %s ))\n(( To interact with body use /corpse ))\n{c7eee9}** Body is cold, however, it is quite fresh. **",
 					CPS_E_corpse[id][CPS_E_name]
 				);
 
 	        case CPS_STADIUM_ROZKLAD_I:
 		        format(
 					lLabelString, sizeof lLabelString,
-					"(( Mrtvola hr·Ëe %s ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{e1c9c9}** TÏlo je studenÈ a zaËÌn· zap·chat. **",
+					"(( Corpse of %s ))\n(( To interact with body use /corpse ))\n{e1c9c9}** Body is cold and starting to stink. **",
 					CPS_E_corpse[id][CPS_E_name]
 				);
 
 	        case CPS_STADIUM_ROZKLAD_II:
 		        format(
 					lLabelString, sizeof lLabelString,
-					"(( Mrtvola hr·Ëe %s ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{dfb7b7}** TÏlo je v zaË·teËnÈm st·diu rozkladu, zap·ch·. **",
+					"(( Corpse of %s ))\n(( To interact with body use /corpse ))\n{dfb7b7}** Body is starting to decompose. **",
 					CPS_E_corpse[id][CPS_E_name]
 				);
 
 	        case CPS_STADIUM_ROZKLAD_III:
 		        format(
 					lLabelString, sizeof lLabelString,
-					"(( Mrtvola hr·Ëe %s ??? ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{df9999}** TÏlo je ve znaËnÈm st·diu rozkladu, silnÏ zap·ch· a kolem tÏla lÌt· hmyz. **",
+					"(( Corpse of %s ??? ))\n(( To interact with body use /corpse ))\n{df9999}** Body is decomposing, insects are flying around it. **",
 					firstName
 				);
 
 			case CPS_STADIUM_ROZKLAD_IV:
 		        format(
 					lLabelString, sizeof lLabelString,
-					"(( Nezn·m· mrtvola ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{d26b6b}** TÏlo je rozloûeno, zap·ch· a lÌtajÌ okolo nÏj mouchy. **"
+					"(( Unknown corpse ))\n(( To interact with body use /corpse ))\n{d26b6b}** Body is decomposed. **"
 				);
 
 	        case CPS_STADIUM_OBHORENA:
 		        format(
 					lLabelString, sizeof lLabelString,
-					"(( Oho¯el· mrtvola ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{8d8d8d}** TÏlo je oho¯elÈ, je ËernÈ a smrdÌ jak sp·lenÈ maso. **"
+					"(( Burned corpse ))\n(( To interact with body use /corpse ))\n{8d8d8d}** Body is burning, black and stinks like grilled pork. **"
 				);
 
 	        case CPS_STADIUM_HORI:
 		        format(
 					lLabelString, sizeof lLabelString,
-					"(( Ho¯ÌcÌ mrtvola ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))\n{8d8d8d}** TÏlo ho¯Ì, jde z nÏj Ëern˝ d˝m a smrdÌ jak sp·lenÈ maso. **"
+					"(( Burning corpse ))\n(( To interact with body use /corpse ))\n{8d8d8d}** Body is burning, black smoke is around it and it stinks. **"
 				);
 		}
 	}
 	else
-	    strcat(lLabelString, "(( TÏlo v pytli na mrtvoly ))\n(( Pro interakci s tÏlem pouûij /mrtvola ))");
+	    strcat(lLabelString, "(( Corpse in bodybag ))\n(( To interact with body use /corpse ))");
 
 	UpdateDynamic3DTextLabelText(CPS_E_corpse[id][CPS_E_labelId], CPS_LABEL_COLOR, lLabelString);
 
@@ -1725,7 +1626,7 @@ timer CPSburntimer[(1000 * 60 * 10) + (1000 * 60 * random(45))](id) // od 10 do 
 }
 // koniec timerov
 
-CMD:mrtvola(playerid, params[])
+CMD:corpse(playerid, params[])
 {
     new
         lPar1[ 12 ],
@@ -1741,7 +1642,7 @@ CMD:mrtvola(playerid, params[])
 		    return SendClientMessage(playerid, 0xD0D0D0, CPS_CMD_SYNTAX);
 	}
 	
-	if(!strcmp( lPar1, "vytvorit", true ))
+	if(!strcmp( lPar1, "create", true ))
 	{
 	    // chce to vytvorit
 		if( !CPS_HasPlayerAdminRights(playerid) )
@@ -1774,7 +1675,7 @@ CMD:mrtvola(playerid, params[])
 		SendClientMessage(playerid, 0xD0D0D0, CPS_CMD_CORPSE_CREATED);
 		
 	}
-	else if(!strcmp( lPar1, "zmazat", true ))
+	else if(!strcmp( lPar1, "delete", true ))
 	{
 	    // chce to smazat
 		if( !CPS_HasPlayerAdminRights(playerid) && GetPlayerFaction(playerid) != FACTION_TYPE_FIRE )
@@ -1797,7 +1698,7 @@ CMD:mrtvola(playerid, params[])
 
 		SendClientMessage(playerid, 0xD0D0D0, CPS_CMD_CORPSE_DELETED);
 	}
-	if(!strcmp( lPar1, "zmazatvsetky", true ))
+	if(!strcmp( lPar1, "deleteall", true ))
 	{
 	    // chce to smazat
 		if( !CPS_HasPlayerAdminRights(playerid) )
@@ -1813,7 +1714,7 @@ CMD:mrtvola(playerid, params[])
 
 		SendClientMessage(playerid, 0xD0D0D0, CPS_CMD_CORPSE_DELETED_ALL);
 	}
-	else if(!strcmp( lPar1, "upravit", true ))
+	else if(!strcmp( lPar1, "edit", true ))
 	{
 	    // chce to vytvorit
 		if( !CPS_HasPlayerAdminRights(playerid) )
@@ -1838,7 +1739,7 @@ CMD:mrtvola(playerid, params[])
 
 			SendClientMessage(playerid, 0xD0D0D0, CPS_CMD_CORPSE_RENAMED);
 		}
-		else if(!strcmp(lPar2, "rotacia", true))
+		else if(!strcmp(lPar2, "rotation", true))
 		{
 		    new
 			    id = CPS_GetNearestCorpse(playerid, 5.0),
@@ -1878,7 +1779,7 @@ CMD:mrtvola(playerid, params[])
 
 			SendClientMessage(playerid, 0xD0D0D0, CPS_CMD_CORPSE_RESKINED);
 		}
-		else if(!strcmp(lPar2, "stadium", true))
+		else if(!strcmp(lPar2, "state", true))
 		{
 		    new
 			    id = CPS_GetNearestCorpse(playerid, 5.0),
@@ -1919,17 +1820,17 @@ CMD:mrtvola(playerid, params[])
 		    lString[ 128 ]
 		;
 		
-		format(lString, sizeof lString, "|---------------- M‡tvola hr·Ëa %s (id m‡tvoly: %d) ----------------|", CPS_E_corpse[id][CPS_E_name], id);
+		format(lString, sizeof lString, "|---------------- Corpse of %s (corpse id: %d) ----------------|", CPS_E_corpse[id][CPS_E_name], id);
 		SendClientMessage(playerid, 0xD0D0D0, lString);
 		
 		format(lString, sizeof lString, "| Skin: %d", CPS_E_corpse[id][CPS_E_skinId]);
 		SendClientMessage(playerid, 0xD0D0D0, lString);
 		
-		format(lString, sizeof lString, "| Vytvoren· pred: %d min˙tami", floatround((gettime() - CPS_E_corpse[id][CPS_E_timestampCreated]) / 60, floatround_ceil));
+		format(lString, sizeof lString, "| Created: %d minutes ago", floatround((gettime() - CPS_E_corpse[id][CPS_E_timestampCreated]) / 60, floatround_ceil));
 		SendClientMessage(playerid, 0xD0D0D0, lString);
 	}
 	/* PRIKAZY PRE HRACOV */
-	else if(!strcmp ( lPar1, "otocit", true ))
+	else if(!strcmp ( lPar1, "turn", true ))
 	{
 	
 	    new
@@ -1951,7 +1852,7 @@ CMD:mrtvola(playerid, params[])
 
 		SendClientMessage(playerid, 0xD0D0D0, CPS_CMD_OTOCENA);
 	}
-	else if(!strcmp ( lPar1, "tahat", true ))
+	else if(!strcmp ( lPar1, "grab", true ))
 	{
 	    new
 		    id = CPS_GetNearestCorpse(playerid, 3.0)
@@ -1979,7 +1880,7 @@ CMD:mrtvola(playerid, params[])
 
 		SendClientMessage(playerid, 0xD0D0D0, CPS_CMD_CORPSE_TAHNES);
 	}
-	else if(!strcmp ( lPar1, "zapalit", true ))
+	else if(!strcmp ( lPar1, "lightup", true ))
 	{
 	    new
 		    id = CPS_GetNearestCorpse(playerid, 3.0)
@@ -2021,7 +1922,7 @@ CMD:mrtvola(playerid, params[])
 		
 		SendClientMessage(playerid, 0xD0D0D0, CPS_CMD_CORPSE_ZAPALILS);
 	}
-	else if(!strcmp ( lPar1, "kufor", true ))
+	else if(!strcmp ( lPar1, "trunk", true ))
 	{
 	    new
 			vehicleid = -1,
@@ -2065,7 +1966,7 @@ CMD:mrtvola(playerid, params[])
 		    return SendClientMessage(playerid, 0xD0D0D0, CPS_CMD_TRUNK_CLOSED);
 		    
 		new
-		    lDialogStr[ 861 ] = "Typ\t(( Meno ))\n",
+		    lDialogStr[ 861 ] = "Type\t(( Name ))\n",
 		    lTempStr[ 43 ],
 		    firstName[ MAX_PLAYER_NAME + 1 ],
 		    pocet
@@ -2078,14 +1979,14 @@ CMD:mrtvola(playerid, params[])
 		        continue;
 
 			if(CPS_E_corpse[corpse][CPS_E_bodyBag] == (CPS_VALID_BODYBAG))
-			    strcat(lDialogStr, "TÏlo v pytli na mrtvoly\tNezn·mÈ\n");
+			    strcat(lDialogStr, "Corpse in bodybag\tNezn·mÈ\n");
 			else
 			{
 				switch(CPS_E_corpse[corpse][CPS_E_stadium])
 				{
 				    case CPS_STADIUM_CERSTVA..CPS_STADIUM_ROZKLAD_II:
 				    {
-				        format(lTempStr, sizeof lTempStr, "MrtvÈ tÏlo\t%s\n", CPS_E_corpse[corpse][CPS_E_name]);
+				        format(lTempStr, sizeof lTempStr, "Dead body\t%s\n", CPS_E_corpse[corpse][CPS_E_name]);
 				        strcat(lDialogStr, lTempStr);
 					}
 
@@ -2096,16 +1997,16 @@ CMD:mrtvola(playerid, params[])
 						strcat(firstName, CPS_E_corpse[corpse][CPS_E_name]);
 						strdel(firstName, strfind(firstName," ",true), MAX_PLAYER_NAME+1);
 
-				        format(lTempStr, sizeof lTempStr, "M‡tve telo\t%s\n", firstName);
+				        format(lTempStr, sizeof lTempStr, "Dead body\t%s\n", firstName);
 				        strcat(lDialogStr, lTempStr);
 
 					}
 
 					case CPS_STADIUM_ROZKLAD_IV:
-	                	strcat(lDialogStr, "M‡tve telo\tNezn·me\n");
+	                	strcat(lDialogStr, "Dead body\tNezn·me\n");
 
 	                case CPS_STADIUM_OBHORENA, CPS_STADIUM_HORI:
-	                	strcat(lDialogStr, "ObhoretÈ telo\tNezn·me\n");
+	                	strcat(lDialogStr, "Burned body\tNezn·me\n");
 				}
 			}
 
@@ -2116,7 +2017,7 @@ CMD:mrtvola(playerid, params[])
 		    return SendClientMessage(playerid, 0xD0D0D0, CPS_CMD_NO_CORPSE_IN_VEHICLE);
 		
 		SetPVarInt(playerid, PVAR_TEMP_VEHICLE, vehicleid);
-		ShowPlayerDialog(playerid, CPS_DIALOG, DIALOG_STYLE_TABLIST_HEADERS, "KUFR ï TEL¡", lDialogStr, "VYBRAT", "ZAVRIEç");
+		ShowPlayerDialog(playerid, CPS_DIALOG, DIALOG_STYLE_TABLIST_HEADERS, "TRUNK ï BODIES", lDialogStr, "TAKE", "CLOSE");
 
 	}
 	else if(!strcmp ( lPar1, "bodybag", true ))
@@ -2180,7 +2081,7 @@ CMD:mrtvola(playerid, params[])
 
 		CPS_Refresh3DTextLabelText(id);
 	}
-	else if(!strcmp ( lPar1, "zranenia", true ))
+	else if(!strcmp ( lPar1, "injuries", true ))
 	{
 	    new
 		    id = CPS_GetNearestCorpse(playerid, 3.0)
@@ -2205,7 +2106,7 @@ CMD:mrtvola(playerid, params[])
 		    if(x < 0)
 		        break;
 		
-		    format(lTempStr, sizeof lTempStr, "Rana od %s (%s)\n", CPS_GetWeaponName(CPS_corpseDamage[id][x][0]), CPS_GetBodypartName(CPS_corpseDamage[id][x][1]));
+		    format(lTempStr, sizeof lTempStr, "Damage by %s (%s)\n", CPS_GetWeaponName(CPS_corpseDamage[id][x][0]), CPS_GetBodypartName(CPS_corpseDamage[id][x][1]));
 		    strcat(lDialogStr, lTempStr);
 		}
 		
@@ -2216,7 +2117,7 @@ CMD:mrtvola(playerid, params[])
 			playerid,
 			CPS_DIALOG_DAMAGE,
 			DIALOG_STYLE_LIST,
-			"MRTVOLA ï ZRANENIA",
+			"CORPSE ï INJURIES",
 			lDialogStr,
 			"OK",
 			""

@@ -239,9 +239,9 @@ Character::ShowMainTextdraws(playerid)
 	PlayerTextDrawShow(playerid, character_SelectionTD[playerid][1]);
 	PlayerTextDrawShow(playerid, character_SelectionTD[playerid][2]);
 
-	PlayerTextDrawShow(playerid, character_SelectionTD[playerid][3]); // VYTVORIT POSTAVU MAIN
-    PlayerTextDrawShow(playerid, character_SelectionTD[playerid][7]); // VYTVORIT POSTAVU +
-    PlayerTextDrawShow(playerid, character_SelectionTD[playerid][8]); // VYTVORIT POSTAVU TEXT
+	PlayerTextDrawShow(playerid, character_SelectionTD[playerid][3]);
+    PlayerTextDrawShow(playerid, character_SelectionTD[playerid][7]);
+    PlayerTextDrawShow(playerid, character_SelectionTD[playerid][8]);
 
     if(Character::count[playerid] > MAX_CHARACTER_PAGE)
     {
@@ -1066,7 +1066,7 @@ Character::OnPlayerClickPTD(playerid, PlayerText:playertextid)
 	        if(strlen(CharacterCreate::name[playerid]) > 5)
 	        	CharacterCreate::Create(playerid);
 			else
-			    SendError(playerid, "Najprv si zvo¾ meno charakteru!");
+			    SendError(playerid, "Choose your character name first!");
 	    }
 	}
 
