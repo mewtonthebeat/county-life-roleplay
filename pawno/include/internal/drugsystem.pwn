@@ -39,7 +39,7 @@ new Iterator:Drugs<MAX_DRUGS>;
 /* FUNCTIONS */
 
 // * native drug_addDrug(drugId, drugType, drugName[], quality);
-drug_addDrug(drugid, drugtype, drugname[], quality = 0, undername[] = "dávok")
+drug_addDrug(drugid, drugtype, drugname[], quality = 0, undername[] = "uses")
 {
 	if(drugid >= MAX_DRUGS)
 	    return (false);

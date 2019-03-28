@@ -678,10 +678,10 @@ stock ELM_PlayerSelectListitem(playerid, const listitem)
 		}
 		
 		case ELM_MULTIPLE_DIRS:
-		 	ELM_ShowInfoPanel(playerid, "NEMUZES MIT ZAPNUTYCH VIC JAK JEDEN TRAFFIC ADVISOR!", 3500, 1);
+		 	ELM_ShowInfoPanel(playerid, "YOU MIGHT HAVE ONLY ONE TRAFFIC ADVISOR ENABLED!", 3500, 1);
 		 	
 		default:
-            ELM_ShowInfoPanel(playerid, "TOHLE VOZIDLO NEDISPONUJE TOUTO FUNKCI!", 3500, 2);
+            ELM_ShowInfoPanel(playerid, "THIS FUNCTION IS NOT AVAIABLE!", 3500, 2);
 	}
 	
 	return 1;
@@ -767,7 +767,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				  	SetPVarInt(playerid, "ELM_IsUsing", 1);
 				  	SetPVarInt(playerid, "ELM_CurrentItem", GetPVarInt(playerid, "ELM_CurrentItem"));
 
-				  	ELM_ShowInfoPanel(playerid, "~w~SCROLLUJES TLACIDLEM ~r~~k~~VEHICLE_FIREWEAPON_ALT~~w~, VYBERES ~r~~k~~VEHICLE_FIREWEAPON~~w~!", 3000, 0);
+				  	ELM_ShowInfoPanel(playerid, "~w~YOU ARE SCROLLING USING ~r~~k~~VEHICLE_FIREWEAPON_ALT~~w~, CHOOSING WITH ~r~~k~~VEHICLE_FIREWEAPON~~w~!", 3000, 0);
 			    }
 			    else
 			    {
@@ -865,7 +865,7 @@ hook OnPlayerStateChange(playerid, newstate, oldstate)
 	if(ELM_CarHasModule(GetPlayerVehicleID(playerid)) && ((newstate == PLAYER_STATE_DRIVER) || (newstate == PLAYER_STATE_PASSENGER)))
 	{
 		SetPVarInt(playerid, "ELM_IsUsingNow", 1);
-		ELM_ShowInfoPanel(playerid, "~w~ELM PANEL OTEVRES TLACIDLEM ~r~~k~~CONVERSATION_YES~~w~!", .disappear = false);
+		ELM_ShowInfoPanel(playerid, "~w~OPEN MODULE USING ~r~~k~~CONVERSATION_YES~~w~!", .disappear = false);
 	}
 
 	return 1;

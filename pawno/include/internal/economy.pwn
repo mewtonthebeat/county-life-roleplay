@@ -25,11 +25,11 @@ enum {
 
 new Economy::catnames[][] = {
 	"null",
-	"Pr·ce",
-	"V˝platy",
-	"VodiË·ky",
-	"Majetok",
-	"Vöetko moûnÈ",
+	"Jobs",
+	"Paydays",
+	"Licenses",
+	"Ownership",
+	"Everything possible",
 	"Ammu Nation"
 };
 
@@ -163,7 +163,7 @@ Economy::ShowCategories(playerid)
 		strcat(finalstr, "\n");
 	}
 	
-	ShowPlayerDialog(playerid, did_econ_categories, DIALOG_STYLE_LIST, "ZVOL KATEG”RIU", finalstr, "VYBRAç", "SPAç");
+	ShowPlayerDialog(playerid, did_econ_categories, DIALOG_STYLE_LIST, "CHOOSE CATEGORY", finalstr, "CHOOSE", "BACK");
 	
 	return 1;
 }
@@ -172,7 +172,7 @@ Economy::ShowList(playerid)
 {
     Economy::currentlist[playerid]  = 0;
 
-	new finalstr[2048] = "N·zov\tHodnota (od)\tHodnota (do)\tPosledn· ˙prava\n", tstr[256];
+	new finalstr[2048] = "Name\tValue (from)\tValue (to)\tLast edit\n", tstr[256];
 	
 	for(new x = ECONOMY_LIST_NULL+1; x < MAX_ECONOMY_LIST; x++)
 	{
@@ -193,7 +193,7 @@ Economy::ShowList(playerid)
 		strcat(finalstr, tstr);
 	}
 	
-	ShowPlayerDialog(playerid, did_econ_lists, DIALOG_STYLE_TABLIST_HEADERS, Economy::catnames[Economy::currentcat[playerid]], finalstr, "UPRAVIç", "SPAç");
+	ShowPlayerDialog(playerid, did_econ_lists, DIALOG_STYLE_TABLIST_HEADERS, Economy::catnames[Economy::currentcat[playerid]], finalstr, "EDIT", "BACK");
 	
 	return 1;
 }
@@ -219,51 +219,51 @@ Economy::EditList(playerid, bool:isactual = false)
 		}
 	}
 
-	new finalstr[1024] = "Premenn·\tHodnota\n", tstr[128];
+	new finalstr[1024] = "Variable\tValue\n", tstr[128];
 	
 	format(
 		tstr, sizeof tstr,
-		"{ffffff}Identifik·tor\t{ad5353}%02d\n",
+		"{ffffff}ID\t{ad5353}%02d\n",
 		Economy::currentlist[playerid]
 	);
 	strcat(finalstr, tstr);
 	
 	format(
 		tstr, sizeof tstr,
-		"{ffffff}N·zov\t{6fad53}%s\n",
+		"{ffffff}Name\t{6fad53}%s\n",
 		Economy::enum[Economy::currentlist[playerid]][economy_Name]
 	);
 	strcat(finalstr, tstr);
 	
 	format(
 		tstr, sizeof tstr,
-		"{ffffff}KategÛria\t{6fad53}%s\n",
+		"{ffffff}Category\t{6fad53}%s\n",
 		Economy::catnames[Economy::GetCategory(Economy::currentlist[playerid])]
 	);
 	strcat(finalstr, tstr);
 	
 	format(
 		tstr, sizeof tstr,
-		"{ffffff}Posledn· ˙prava\t{ad5353}%s\n \n",
+		"{ffffff}Last changed\t{ad5353}%s\n \n",
 		getdateunix(Economy::GetLastUpdate(Economy::currentlist[playerid]))
 	);
 	strcat(finalstr, tstr);
 	
 	format(
 		tstr, sizeof tstr,
-		"{ffffff}Hodnota (*od)\t{6fad53}%d\n",
+		"{ffffff}Value (*from)\t{6fad53}%d\n",
 		Economy::enum[Economy::currentlist[playerid]][economy_Value]
 	);
 	strcat(finalstr, tstr);
 	
 	format(
 		tstr, sizeof tstr,
-		"{ffffff}Hodnota (**do)\t{6fad53}%d",
+		"{ffffff}Value (**to)\t{6fad53}%d",
 		Economy::enum[Economy::currentlist[playerid]][economy_ValueEx]
 	);
 	strcat(finalstr, tstr);
 	
-	ShowPlayerDialog(playerid, did_econ_list, DIALOG_STYLE_TABLIST_HEADERS, "UPRAVA PREMENNYCH", finalstr, "UPRAVIç", "SPAç");
+	ShowPlayerDialog(playerid, did_econ_list, DIALOG_STYLE_TABLIST_HEADERS, "VARIABLES", finalstr, "EDIT", "BACK");
 
 	return 1;
 }
@@ -276,11 +276,11 @@ Economy::EditName(playerid)
 
 	format(
 		finalstr, sizeof finalstr,
-		"{FFFFFF}> Upravujeö n·zov ekonomickej premennej {6fad53}%s{ffffff}! Zadaj prosÌm nov˝ n·zov.",
+		"{FFFFFF}> You are changing name of variable {6fad53}%s{ffffff}!",
 		Economy::enum[Economy::currentlist[playerid]][economy_Name]
 	);
 
-	ShowPlayerDialog(playerid, did_econ_edit_name, DIALOG_STYLE_INPUT, "MENO EKONOMICKEJ PREMENNEJ", finalstr, "UPRAVIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_econ_edit_name, DIALOG_STYLE_INPUT, "VARIABLE", finalstr, "EDIT", "CLOSE");
 
 	return 1;
 }
@@ -297,7 +297,7 @@ Economy::EditCategory(playerid)
 		strcat(finalstr, "\n");
 	}
 	
-	ShowPlayerDialog(playerid, did_econ_edit_category, DIALOG_STYLE_LIST, "ZVOL KATEGORIU", finalstr, "VYBRAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_econ_edit_category, DIALOG_STYLE_LIST, "CHOOSE CATEGORY", finalstr, "CHOOSE", "CLOSE");
 	
 	return 1;
 }
@@ -308,11 +308,11 @@ Economy::EditValueFrom(playerid)
 
 	format(
 		finalstr, sizeof finalstr,
-		"{FFFFFF}> Upravujeö hodnotu (od) ekonomickej premennej {6fad53}%s{ffffff} (teraz je {6fad53}%d{ffffff})! Zadaj prosÌm nov˙ hodnotu.\n\n* T·to hodnota je povinn·!!!",
+		"{FFFFFF}> You are chaning value from of variable {6fad53}%s{ffffff} (now it is {6fad53}%d{ffffff})! Specify new value.\n\n* This is required.!!!",
 		Economy::enum[Economy::currentlist[playerid]][economy_Name]
 	);
 
-	ShowPlayerDialog(playerid, did_econ_edit_value_from, DIALOG_STYLE_INPUT, "HODNOTA EKONOMICKEJ PREMENNEJ", finalstr, "UPRAVIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_econ_edit_value_from, DIALOG_STYLE_INPUT, "VARIABLE", finalstr, "EDIT", "CLOSE");
 
 	return 1;
 }
@@ -323,11 +323,11 @@ Economy::EditValueTo(playerid)
 
 	format(
 		finalstr, sizeof finalstr,
-		"{FFFFFF}> Upravujeö hodnotu (do) ekonomickej premennej {6fad53}%s{ffffff} (teraz je {6fad53}%d{ffffff})! Zadaj prosÌm nov˙ hodnotu.\n\n** T·to hodnota nie je povinn·, ak ju zad·ö v˝sledn· hodnota bude n·hodn· vo vzorci hodnota_od+random(hodnota_do)!!!",
+		"{FFFFFF}> You are changing value to of variable {6fad53}%s{ffffff} (now it is {6fad53}%d{ffffff})! Specify new value.\n\n** This value is not required!!!",
 		Economy::enum[Economy::currentlist[playerid]][economy_Name]
 	);
 
-	ShowPlayerDialog(playerid, did_econ_edit_value_to, DIALOG_STYLE_INPUT, "HODNOTA EKONOMICKEJ PREMENNEJ", finalstr, "UPRAVIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_econ_edit_value_to, DIALOG_STYLE_INPUT, "VARIABLE", finalstr, "EDIT", "CLOSE");
 
 	return 1;
 }

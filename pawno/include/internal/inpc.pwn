@@ -111,66 +111,47 @@ new PlayerText:inpc_talkTD[MAX_PLAYERS][9];
 
 new InteractiveNPC::selftalking[][][] = {
 	//Drug on spawn
-    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{1}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG1}, 				"grrrh..-br·cho, hoÔ mi sem t˙ ihlu."},
-    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{1}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"kkrgh....jak˙ ihlu hihi."},
-    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{1}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG1}, 				"t--tt-y dd-ebil,..ËÌm si to m·m pichnnn-˙ù..?"},
-    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{1}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"**smiech** daj mi pokoj Matij--Matija..."},
+    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{1}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG1}, 				"ey, throw me that needle."},
+    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{1}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"aagh, motherfucker, what needle??."},
+    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{1}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG1}, 				"maaan i need that brownie?"},
+    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{1}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"**laugh** let me alone Matija."},
     
-    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{2}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"hÈÈÈj, Matij···..-Ëuj sem..,nemali by sme prestaù s t˝mi tabletkami?"},
+    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{2}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"heey, Matija, shouldn't we stop using those pills?"},
     {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{2}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG1}, 				"ÈÈÈÈÈÈÈÈÈÈÈÈÈÈ-··············-˙˙˙˙˙˙˙˙˙˙˙˙˙"},
-    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{2}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"**smiech** ttt-y si dobre mm-mmimo!"},
+    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{2}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"**laugh** holy god!"},
     
-    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{3}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"hen do piËi Matija! Kukaj! Hentu vyrastol jak˝ strom!"},
-    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{3}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG1}, 				"Ëo tam po strome hen na to UFO hore!"},
-    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{3}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"No do piËe. Drû hubu, lebo n·s zobere. **depresÌvnym, vystraöen˝m hlasom**"},
+    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{3}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"oh fuck Matija! look at that big tree!"},
+    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{3}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG1}, 				"fuck your tree, look at that UFO!"},
+    {{NPC_DIALOGGROUP_DRUG_SPAWN}, 	{3}, {2}, {0xFFFFFFFF}, {NPC_SPAWN_DRUG2}, 				"shut the fuck up be quiet man"},
 
 	//Whitetaker
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"To jsme uû jako v tom Flint County, zlato?"},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"Jo, mil·Ëku, vypad· to tak, nelÌbÌ se ti to tu?"},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Proboha, takûe tady budeme bydlet? Ty vole, ale vûdyù to vypad· hroznÏ!"},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"J· chci jet zp·tky do Los Santos! ProË tam nem˘ûeme z˘stat?"},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"NemÌnÌm to tady ¯eöit, uû jsme se o tom p¯ece bavili..."},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Ty jseö fakt straönej sr·Ë, Dereku!"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Is this the Flint County, darling?"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"Yes, my love, don't you like it here?"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Oh god, this looks awful, are we really going to live here?"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"I want to go back to Los Santos, I want to live here, why can't we, Derek?!"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"I am not going to talk about it AGAIN..."},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{1}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"You are such a cunt, Derek!"},
 
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Tak Dereku, kde je vlastnÏ ten motel, kde jsme mÏli p¯espat?"},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"Noooo, eh.. no.."},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Jak˝ eh a no, pro krista?!"},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Ty nikdy nic neudÏl·ö spr·vnÏ, udÏlala jsem chybu, ûe jsem kv˘li tobÏ odkopla Roba!"},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"ProsÌm tÏ, nevytahuj to zas..."},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Budu to vytahovat, protoûe jsem v t˝hle dÌ¯e kdyû jsem se teÔ mohla opalovat na Havaji!"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Sooo, where is that motel, Derek?"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"Eh.. no.."},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"What eh and no, for fucks sakes?!"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"You never did anything the right way, I am such dumb that I stopped dating Rob!"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"Don't come with that again..."},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{2}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"I will, because I am in this hole when I could've been in Santos!"},
 	
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{3}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"A proË tu tady teÔ vlastnÏ stojÌme, jen tak? Co, Dereku?"},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{3}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"Vûdyù vÌö, Ëek·me tady na Kristiana ..."},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{3}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Ale j· toho tvÈho Kristiana v˘bec nechci ani jen vidÏt, je to jenom dalöÌ daÚov˝ podvodnÌk!"},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{3}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"Nek¯iË prosimtÏ, nepoutej zbyteËnÏ pozornost, jo?"},
-	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{3}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Ty vole, Dereku, fakt, jeötÏ chvÌli mÏ ser, seberu ti klÌËe a pojedu nazp·tek do Los Santos!"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{3}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"Why are we still standing here?"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{3}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"You know, we are waiting for Chris ..."},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{3}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"But I do not want to see your Chris, he is just another scammer just like you!"},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{3}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_M_WHIT}, 			"Don't scream, my god, you're just gaining attention."},
+	{{NPC_DIALOGGROUP_WHIT_SPAWN}, 	{3}, {1}, {0xFFFFFFFF}, {NPC_SPAWN_W_WHIT}, 			"OH MY GOD! Don't test me or I will take your keys and drive back to Los Santos!"},
 	
 	////////////////////////////////////////////////////////////////////////////
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},            	"Tohle je ten hotel jo? To si ze mÏ dÏl·ö srandu, Dereku?"},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},            	"Ty vole, vûdyù to je nÏjak· vÏznice, to snad nemyslÌö v·ûne, debile!"},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},            	"Ale not·k zlato, nevypad· tak öpatnÏ, podÌvej se na to z druhÈ strany, je levn˝!"},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},            	"PojÔ, jdeme se podÌvat dovnit¯, bude se ti to lÌbit, uvidÌö."},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},            	"Nikam nejdu, radöi budu sp·t venku na chodnÌku, buÔ najdeö nÏco lepöÌho nebo si vemu klÌËky a jedu do Los Santos.."},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},            	"JÛ, jasnÏ..."},
-
-    {{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},             "ProË se na n·s ten debÌlek t·mhle tak dÌv·?"},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {4}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},				"se kouk· na muûe v okÈnku domu p¯es ulici."},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},     		"Jak˝ zas prosÌmtÏ. NebuÔ tak paranoidnÌ."},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {4}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},				"se nervÛznÏ usmÌv· a paranoidnÏ se rozhlÌûÌ kolem sebe."},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},             "J· a paranoidnÌ, jÛ? Ty furt musÌö rejpat!"},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},             "VÌö co? Radöi jdeme dov..."},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {4}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},				"p¯eruöuje Dereka a zaËÌn· velmi rychle mluvit."},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},             "No to si piö ûe jdeme dom˘! NelÌbÌ se mi to tady!"},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {4}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},				"se podÌval na Catherine a smutnÏ si povzdechl."},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},				"ProstÏ jedeme dom..."},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {4}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},				"zaËal mluvit p¯es Catarine."},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {2}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},				"P˘jdeme dovnit¯, rozumÌö?"},
-
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {3}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},            	"Kdyû jsem ¯ekla, aù najdeö hotel tak jsem myslela opravdov˝ hotel!"},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {3}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},            	"Nech·pu tÏ Dereku, co to m·ö v tvÈ hlavÏ, tam musÌö mÌt jen jedniËky a nuly ..."},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {3}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},            	"NemusÌö mÏ furt ur·ûet, ty taky kdyû jsi nÏco posrala, tak jsem nekriËel, obËas tÏ fakt nech·pu!"},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {3}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},            	"VÌö co najdeme nÏjakÈj hotel a p˘jdeme do baru, to ti zlepöÌ n·ladu, co?"},
-	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {3}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},            	"No to bych teda ¯ekla, koneËnÏ z t˝ huby vypouötÌö nÏco norm·lnÌho."}
+	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},            	"Is that the hotel? Are you kidding me?"},
+	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},            	"That is just some kind of jail, motherfucker!"},
+	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},            	"Baby, it is not that bad, and it's cheap!"},
+	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},            	"Lets check in, come on..."},
+	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_W_WHIT},            	"I am not going anywhere!"},
+	{{NPC_DIALOGGROUP_WHIT_MOTEL},  {1}, {1}, {0xFFFFFFFF}, {NPC_MOTEL_M_WHIT},            	"Yeah, sure..."},
 };
 
 //////////////////////////////
@@ -515,7 +496,7 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 			    Parked,
 				Impounded,
 				Fine,
-				finalString[512] = "Model\tSPZ\tPokuta\n",
+				finalString[512] = "Model\Plate\tFine\n",
 				tempString[128],
 
 				vehcount = 0
@@ -546,19 +527,19 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-			format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Pot¯ebuju vydat zabavenÈ vozidlo, pane!");
+			format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "I need to take my impounded vehicle!");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
 			if(vehcount <= 0)
                 return InteractiveNPC::Response_Pulaski(playerid, inpc, INPC_PULASKI_R_NOT_IMPOUNDED);
 			
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Jo, rozumÌm, co to je za auto?");
+	    	format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "I understand, what car is it?");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 	    	
 	    	////////////////////////////////////////////////////////////////////
 	    	
-	    	SendSuccess(playerid, "Vyber z okna vozidlo, ktorÈ chceö vyzdvihn˙ù!");
-			ShowPlayerDialog(playerid, did_impound_get, DIALOG_STYLE_TABLIST_HEADERS, "VYZDVIHN⁄ç VOZIDLO", finalString, "VYBRAç", "ZRUäIç");
+	    	SendSuccess(playerid, "Choose vehicle you wan't to unimpound!");
+			ShowPlayerDialog(playerid, did_impound_get, DIALOG_STYLE_TABLIST_HEADERS, "IMPOUNDED VEHICLES", finalString, "CHOOSE", "CLOSE");
 
 			cache_delete(query);
 	    }
@@ -572,10 +553,10 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 			      tstr[ 144 ]
 				;
 
-				format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Dobrej, m·m pro v·s tady auto.");
+				format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Hey, I've got a car for you.");
 		    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-		    	format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Ty vole, ty nejseö policajt, zmiz!");
+		    	format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "OH MY FUCKING GOD YOU ARE NOT A COP! GET LOST!");
 		    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 		    	InteractiveNPC::StopTalking(playerid, inpc);
 		    	
@@ -586,13 +567,13 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-			format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Zdar, m·m tady pro tebe k·ru!");
+			format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Hey, I've got a car for you!");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Jo? A kter· to je?");
+	    	format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Which one?");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 	    	
-	    	SCFM(playerid, COLOR_LIGHTBLUE, "[ ! ] Vyber prosÌm auto, ktorÈ chceö zabaviù. FrakËnÈ a pracovnÈ aut· sa zabaviù nedaj˙.");
+	    	SCFM(playerid, COLOR_LIGHTBLUE, "[ ! ] Choose car you want to impound. Job and faction vehicles cannot be impounded.");
 			
 			Impound_ShowNearVehicles(playerid);
 	    }
@@ -603,22 +584,22 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-			format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Tak co pane, jak jde sluûba?");
+			format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "How's your day going sir?");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
 			switch(random(4))
 			{
 			    case 0:
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Ale jo, jde to.");
+			        format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Quite good.");
 
                 case 1:
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Jako jo, celkem klÌdek, ale kou¯il bych.");
+			        format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "It's good, but I need a cigarette...");
 
                 case 2:
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Na pÌËu, chtÏj mnÏ vyhodit protoûe jsem zml·til negra.");
+			        format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "It's fucked up man, they're going to fire me, because I fought a nigger.");
 
                 case 3:
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "VÌte jak, stojÌm tady protoûe nad¯Ìzen˝ je kokot, co v·m povim.");
+			        format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "You know, I am standing here because my chief is retarded, what shall I say.");
 			}
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
@@ -637,10 +618,10 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-			format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Nic pane, vöechno v po¯·dku, pÏkn˝ den.");
+			format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Nothing sir, everything is good.");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "V pohodÏ, nic se nedÏje, mÏjte se.");
+	    	format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Alrighty.");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
 	    	InteractiveNPC::StopTalking(playerid, inpc);
@@ -652,16 +633,16 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 	    
-	        format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Tak budu pot¯ebovat Vaöe ctÏnÈ jmÈno.");
+	        format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "I will need your humble name.");
     		ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-    		format(tstr, sizeof tstr, "%s hovorÌ: Jmenuju se %s.", GetPlayerNameEx(playerid, USE_MASK), GetPlayerNameEx(playerid, NO_MASK));
+    		format(tstr, sizeof tstr, "%s says: Sure, it is %s.", GetPlayerNameEx(playerid, USE_MASK), GetPlayerNameEx(playerid, NO_MASK));
     		ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-    		format(tstr, sizeof tstr, "* %s nÏco ¯ekl do vysÌlaËky, poËkal na odezvu a pak podÌval na osobu naproti nÏj.", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name]);
+    		format(tstr, sizeof tstr, "* %s said something in his radio, got response and looked at person standing next to him.", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name]);
     		ProxDetector(playerid, 15.0, COLOR_VIOLET, tstr);
 
-    		format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Je mi lÌto, ale û·dnÈ vozidlo tady pro V·s nenÌ.");
+    		format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Well, I'm sorry but the car you are looking for is not here!");
     		ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
     		InteractiveNPC::StopTalking(playerid, inpc);
@@ -673,10 +654,10 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-			format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "A nebo, kaölete na to.");
+			format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Well, fuck it.");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "NedÏlejte si ze mnÏ laskavÏ srandu, vypadnÏte!!!1111");
+	    	format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "ARE YOU FUCKING MAKING FUN OF ME? GET LOST!!!1111");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
 	    	InteractiveNPC::StopTalking(playerid, inpc);
@@ -688,16 +669,16 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-			format(tstr, sizeof tstr, "* %s diktuje ˙daje o vozidlu.", GetPlayerNameEx(playerid, USE_MASK));
+			format(tstr, sizeof tstr, "* %s says the vehicle's details.", GetPlayerNameEx(playerid, USE_MASK));
     		ProxDetector(playerid, 15.0, COLOR_VIOLET, tstr);
 
-    		format(tstr, sizeof tstr, "* %s nÏco ¯ekl do vysÌlaËky, poËkal na odezvu a pak podÌval na osobu naproti nÏj.", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name]);
+    		format(tstr, sizeof tstr, "* %s said something in his radio, got response and looked at person standing next to him.", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name]);
     		ProxDetector(playerid, 15.0, COLOR_VIOLET, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Jo, tak prosÌm o zaplacenÌ pokuty.");
+	    	format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Yeah, pay the fine.");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Nem·m na to, promiÚte, pÏkn˝ den...");
+	    	format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "I ain't got no money...");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
 	    	InteractiveNPC::StopTalking(playerid, inpc);
@@ -709,16 +690,16 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-			format(tstr, sizeof tstr, "* %s diktuje ˙daje o vozidlu.", GetPlayerNameEx(playerid, USE_MASK));
+			format(tstr, sizeof tstr, "* %s says the vehicle's details.", GetPlayerNameEx(playerid, USE_MASK));
     		ProxDetector(playerid, 15.0, COLOR_VIOLET, tstr);
 
-    		format(tstr, sizeof tstr, "* %s nÏco ¯ekl do vysÌlaËky, poËkal na odezvu a pak podÌval na osobu naproti nÏj.", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name]);
+    		format(tstr, sizeof tstr, "* %s said something in his radio, got response and looked at person standing next to him.", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name]);
     		ProxDetector(playerid, 15.0, COLOR_VIOLET, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Tohle vozidlo jeötÏ nenÌ moûnÈ vyzvednout.");
+	    	format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "This vehicle is not available yet.");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Hmmm, dÏkuji...");
+	    	format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Hmmm, thanks...");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
 	    	InteractiveNPC::StopTalking(playerid, inpc);
@@ -730,19 +711,19 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-			format(tstr, sizeof tstr, "* %s diktuje ˙daje o vozidlu.", GetPlayerNameEx(playerid, USE_MASK));
+			format(tstr, sizeof tstr, "* %s says the vehicle's details.", GetPlayerNameEx(playerid, USE_MASK));
     		ProxDetector(playerid, 15.0, COLOR_VIOLET, tstr);
 
-    		format(tstr, sizeof tstr, "* %s nÏco ¯ekl do vysÌlaËky, poËkal na odezvu a pak podÌval na osobu naproti nÏj.", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name]);
+    		format(tstr, sizeof tstr, "* %s said something in his radio, got response and looked at person standing next to him.", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name]);
     		ProxDetector(playerid, 15.0, COLOR_VIOLET, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Tak teda dob¯e, vozidlo V·m bude vyd·no.");
+	    	format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Alrighty.");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Hmmm, dÏkuji...");
+	    	format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Hmmm, thanks...");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 	    	
-	    	format(tstr, sizeof tstr, "** Po p·r minut·ch p¯ijelo z gar·ûe vozidlo. (( Server ))");
+	    	format(tstr, sizeof tstr, "** Car arrived from the garage. (( Server ))");
     		ProxDetector(playerid, 15.0, COLOR_VIOLET, tstr);
 
 	    	InteractiveNPC::StopTalking(playerid, inpc);
@@ -754,10 +735,10 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Eh no, tak ser na to.");
+	    	format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Fuck it");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Ty vole, nedÏlej si ze mÏ prdel ...");
+	    	format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Ahh shit ...");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 	    	InteractiveNPC::StopTalking(playerid, inpc);
 	    }
@@ -768,10 +749,10 @@ InteractiveNPC::Response_Pulaski(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Jo, t·mhle to.");
+	    	format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Yeah, that one.");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Postar·m se o to.");
+	    	format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "I will take care of it.");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 	    	InteractiveNPC::StopTalking(playerid, inpc);
 	    }
@@ -787,40 +768,13 @@ InteractiveNPC::Response_Farmer(playerid, inpc, response)
 		{
 			new
 		      	tstr[ 144 ],
-		      	tstr2[ 144 ],
-
-				extra = 0
+		      	tstr2[ 144 ]
 			;
 
-			switch(random(77))
-			{
-			    case 0..25:
-			    {
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Dobr˝, jak se dostanu do mÏsta?");
-			        format(tstr2, sizeof tstr2, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Jo, t·mhle v infocentru si pronajmi kolo a pÏknÏ si to odölap, dobr·?");
-			    }
-
-			    case 26..50:
-			    {
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Pane, m˘ûu se zeptat, kudy se jde do mÏsta?");
-			        format(tstr2, sizeof tstr2, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Jo, tady vyjdete, p˘jdete doleva, pak nahoru na ten most a do Blueberry.");
-			    }
-
-			    default:
-			    {
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "ZdravÌËko, uk·ûete mi cestu do mÏsta, prosÌm?");
-			        format(tstr2, sizeof tstr2, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Kurva fix, seru na to, ne, vezmi si kolo v info centru a odjeÔ tam.");
-			        
-			        extra = 1;
-			    }
-			}
+			format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Howdy, how to get to city?");
+			format(tstr2, sizeof tstr2, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "There in the INFOCENTER, rent a bike.");
 
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
-	    	if(extra == 1)
-	    	{
-	    	    format(tstr, sizeof tstr, "* %s se chtÏl otoËit, ale zachytil se mu ruk·v o öroub a tak se mu natrhl.", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name]);
-    			ProxDetector(playerid, 15.0, COLOR_VIOLET, tstr);
-	    	}
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr2);
 
 	    	InteractiveNPC::StopTalking(playerid, inpc);
@@ -832,10 +786,10 @@ InteractiveNPC::Response_Farmer(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-			format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Nepot¯ebujete pomoc, pane?");
+			format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Don't you need help, sir?");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
-	    	format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Ani ne. A nebo, kdybys vidÏl öroubek, p¯ines mi ho, simtÏ!");
+	    	format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "I don't!");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 	    	
 			InteractiveNPC::StopTalking(playerid, inpc);
@@ -847,28 +801,19 @@ InteractiveNPC::Response_Farmer(playerid, inpc, response)
 		      tstr[ 144 ]
 			;
 
-			format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Co to pro vöechny svat˝ dÏl·ö, boûe?");
+			format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "The fuck are you doing?");
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
 			switch(random(4))
 			{
 			    case 0:
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "StavÌm t·Ëmah·l, ty pÌËo...");
+			        format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "I'm building world trade center, motherfucker...");
 
                 case 1:
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Opravuju m˘j Zetor, nevidÌö?");
+			        format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "I am fixing my Zetor, are you blind?");
 
-                case 2:
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Kdyû se vÏci serou, tak se prostÏ serou, to nepochopÌö!!");
-
-                case 3:
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "J· se na to m˘ûu vysrat, jeötÏ hodnÏ lidÌ se mÏ to bude pt·t?!");
-			        
-                case 4:
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "J· se na to m˘ûu vysrat, jeötÏ hodnÏ lidÌ se mÏ to bude pt·t?!");
-			        
-                case 5:
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Uû dobr˝ch p·r hodin se snaûÌm opravit traktor, jenûe nevÌm najÌt ten öroubek co mi spadl!");
+                default:
+			        format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Things are fucked up man!!");
 			}
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
@@ -879,48 +824,26 @@ InteractiveNPC::Response_Farmer(playerid, inpc, response)
 	    {
 	       	new
 		      	tstr[ 144 ],
-		      	tstr2[ 144 ],
-		      
-				extra = 0
+		      	tstr2[ 144 ]
 			;
 			
 			switch(random(77))
 			{
-			    case 0..25:
+			    case 0..75:
 			    {
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Nic, kretÈne sedl·ckej..");
-			        format(tstr2, sizeof tstr2, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Moc mÏ neser, Ë˘r·Ëku!");
-			    }
-			    
-			    case 26..50:
-			    {
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "No, vlastnÏ nic, promiÚ.");
-			        format(tstr2, sizeof tstr2, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Tak mÏ p¯ÌötÏ neruö, dÌk.");
-			        extra = 1;
-			    }
-			    
-			    case 51..75:
-			    {
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "DÏlej si svou pr·ci, scvrkl· bezzub· kurviËko.");
-			        format(tstr2, sizeof tstr2, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Hehe, tady radöi nic ne¯Ìk·m, ale jmÈno O'Neil, si zapamatuj.");
+			        format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Nothing, you fucking redneck..");
+			        format(tstr2, sizeof tstr2, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Don't push me!");
 			    }
 			    
 			    default:
 			    {
-			        format(tstr, sizeof tstr, "%s hovorÌ: %s", GetPlayerNameEx(playerid, USE_MASK), "Ez al zara hizketan?");
-			        format(tstr2, sizeof tstr2, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Co prosÌm, kurva fix?!");
+			        format(tstr, sizeof tstr, "%s says: %s", GetPlayerNameEx(playerid, USE_MASK), "Ez al zara hizketan?");
+			        format(tstr2, sizeof tstr2, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "the fuck man?!");
 			    }
 			}
 			
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 	    	ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr2);
-	    	
-	    	if(extra == 1)
-	    	{
-	    	    format(tstr2, sizeof tstr2, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], "Jo, a kdybys naöel öroubek, p¯ines mi ho prosÌm tÏ!");
-	    	    ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr2);
-	    	}
-
 	    	InteractiveNPC::StopTalking(playerid, inpc);
 	    }
 	}
@@ -1059,7 +982,7 @@ timer InteractiveNPC_Talk[10000](npcid, messageid, sequenceid, dialogid)
 				}
 				
 	            new color = InteractiveNPC::selftalking[arrid][3][0];
-	            format(tstr, sizeof tstr, "%s hovorÌ potichu: %s", InteractiveNPC[target][inpc_Name], InteractiveNPC::selftalking[arrid][5]);
+	            format(tstr, sizeof tstr, "%s says quietly: %s", InteractiveNPC[target][inpc_Name], InteractiveNPC::selftalking[arrid][5]);
 			 	ProxDetectorNPC(target, 7, color, tstr);
 			 	defer InteractiveNPC_AnimBack[(strlen(InteractiveNPC::selftalking[arrid][5])) * 100](target);
 	        }
@@ -1075,7 +998,7 @@ timer InteractiveNPC_Talk[10000](npcid, messageid, sequenceid, dialogid)
 
 	            new color = InteractiveNPC::selftalking[arrid][3][0];
 	            if(color == 0xFFFFFFFF) color = 0xe2aa2fFF;
-	            format(tstr, sizeof tstr, "%s kriËÌ: %s", InteractiveNPC[target][inpc_Name], InteractiveNPC::selftalking[arrid][5]);
+	            format(tstr, sizeof tstr, "%s shouts: %s", InteractiveNPC[target][inpc_Name], InteractiveNPC::selftalking[arrid][5]);
 			 	ProxDetectorNPC(target, 20, color, tstr);
 			 	defer InteractiveNPC_AnimBack[(strlen(InteractiveNPC::selftalking[arrid][5])) * 100](target);
 	        }
@@ -1116,7 +1039,7 @@ timer InteractiveNPC_Talk[10000](npcid, messageid, sequenceid, dialogid)
 				}
 				
 	            new color = InteractiveNPC::selftalking[arrid][3][0];
-	            format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[target][inpc_Name], InteractiveNPC::selftalking[arrid][5]);
+	            format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[target][inpc_Name], InteractiveNPC::selftalking[arrid][5]);
 			 	ProxDetectorNPC(target, 15, color, tstr);
 			 	defer InteractiveNPC_AnimBack[(strlen(InteractiveNPC::selftalking[arrid][5])) * 100](target);
 	        }
@@ -1178,23 +1101,23 @@ InteractiveNPC::Init()
 	InteractiveNPC::Add(NPC_PULASKI, 20092, 632.248, -587.191, 16.3359, 275.976);
 	InteractiveNPC::Anim("COP_AMBIENT", "COPLOOK_LOOP", 4.1, 1, 0, 0, 0, 0);
 	InteractiveNPC::SetName("Willie Towsend");
-	InteractiveNPC::SetMessage(I_NPC_MESSAGE_MAIN, "Dobrej den se p¯eje, co pot¯ebujete?");
-	InteractiveNPC::SetMessage(I_NPC_MESSAGE_OCCUPIED, "PoËkejte prosÌm, pr·vÏ jsem zanepr·zdnÏn!");
-	InteractiveNPC::AddOption(0, "Chci vyzvednout vozidlo");
-	InteractiveNPC::AddOption(1, "M·m pro tebe k·ru,Willie");
-	InteractiveNPC::AddOption(2, "Tak co,jak jde sluûba");
-	InteractiveNPC::AddOption(3, "Nic,promiÚte");
+	InteractiveNPC::SetMessage(I_NPC_MESSAGE_MAIN, "Hello, what do you need?");
+	InteractiveNPC::SetMessage(I_NPC_MESSAGE_OCCUPIED, "Wait please, I am dealing with something else!");
+	InteractiveNPC::AddOption(0, "I want my car back");
+	InteractiveNPC::AddOption(1, "I've got a car for you");
+	InteractiveNPC::AddOption(2, "How's your duty going");
+	InteractiveNPC::AddOption(3, "Nothing but a G thang");
 	InteractiveNPC::SetDefaultResponse(3);
 
     InteractiveNPC::Add(NPC_FARMER1, 159, -572.643, -1031.752, 23.98, 250.0);
 	//InteractiveNPC::Anim("BD_FIRE", "WASH_UP", 4.1, 1, 1, 1, 0, 0);
 	InteractiveNPC::SetName("Dayton O'Neil");
-	InteractiveNPC::SetMessage(I_NPC_MESSAGE_MAIN, "Nazd·rek, co je?");
-	InteractiveNPC::SetMessage(I_NPC_MESSAGE_OCCUPIED, "Neruö n·s kurva, kdyû se bavÌme!");
-	InteractiveNPC::AddOption(0, "Jak se dostanu do mÏsta");
-	InteractiveNPC::AddOption(1, "Nepot¯ebujeö pomoc");
-	InteractiveNPC::AddOption(2, "Co to proboha dÏl·ö");
-	InteractiveNPC::AddOption(3, "Nic,promiÚ");
+	InteractiveNPC::SetMessage(I_NPC_MESSAGE_MAIN, "What is up?");
+	InteractiveNPC::SetMessage(I_NPC_MESSAGE_OCCUPIED, "Don't you fucking dare...");
+	InteractiveNPC::AddOption(0, "How to get to the city?");
+	InteractiveNPC::AddOption(1, "Don't you need help");
+	InteractiveNPC::AddOption(2, "What are you doing");
+	InteractiveNPC::AddOption(3, "Nothing,sorry");
 	InteractiveNPC::SetDefaultResponse(3);
 	
 	////////////////////////////////////////////////////////////////////////////
@@ -1239,7 +1162,7 @@ InteractiveNPC::Init()
 	InteractiveNPC::Sleep();
 
 	////////////////////////////////////////////////////////////////////////////
-    inpc_popUpTD[0] = TextDrawCreate(86.952339, 302.639923, "Pre komunikaciu s postavou stlac klavesu Y.");
+    inpc_popUpTD[0] = TextDrawCreate(86.952339, 302.639923, "To talk with NPC press Y.");
 	TextDrawLetterSize(inpc_popUpTD[0], 0.181712, 0.870400);
 	TextDrawTextSize(inpc_popUpTD[0], 0.000000, 150.000000);
 	TextDrawAlignment(inpc_popUpTD[0], 2);
@@ -1333,7 +1256,7 @@ InteractiveNPC::OnKeyStateChange(playerid, newkeys, oldkeys)
 		        tstr[ 144 ]
 			;
 
-			format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_MessageNotNow]);
+			format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_MessageNotNow]);
 		    ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
 		    return 1;
@@ -1345,7 +1268,7 @@ InteractiveNPC::OnKeyStateChange(playerid, newkeys, oldkeys)
 	        tstr[ 144 ]
 		;
 
-		format(tstr, sizeof tstr, "%s hovorÌ: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Message]);
+		format(tstr, sizeof tstr, "%s says: %s", InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Name], InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_Message]);
 	    ProxDetector(playerid, 15.0, 0xFFFFFFFF, tstr);
 
 	    InteractiveNPC[InteractiveNPC::playernpcid[playerid]][inpc_OccupiedBy] = playerid;

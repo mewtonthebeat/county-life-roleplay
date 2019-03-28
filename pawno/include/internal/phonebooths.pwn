@@ -101,9 +101,9 @@ function phoneb_timer_Message_NoCredit(toid)
 		phonebotmp_id[playerid] = 0;
 		phonebotmp_id[fromid]   = 0;
 
-		if(fromid != playerid) SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
-		SCFM(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk poloûenia**");
-		SCFM(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Nem·te dostatok peÚazÌ na zaplatenie hovoru!**");
+		if(fromid != playerid) SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] They hung up.");
+		SCFM(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] They hung up.");
+		SCFM(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] You do not have enough money to pay for the call!");
 	    
 	}
 	
@@ -124,7 +124,7 @@ forward phoneb_timer_Dial_Failed(playerid); public phoneb_timer_Dial_Failed(play
 
 	phonebotmp_id[playerid] = 0;
 	ph_IsDialing[playerid] = false;
-	SendClientMessage(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] éensk˝ hlas hovorÌ: VolanÈ ËÌslo nie je dostupnÈ!");
+	SendClientMessage(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] Female voice says: Number dialed is not currently available!");
 
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_STOPUSECELLPHONE);
 	RemovePlayerAttachedObject(playerid, 8);
@@ -147,9 +147,9 @@ forward phoneb_timer_Dial_Emergency(fromid); public phoneb_timer_Dial_Emergency(
 
 	ph_CallWith[fromid] = EMERGENCY_NUMBER;
 
-	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Dobr˝ deÚ, ak˙ sluûbu vyûadujete?");
+	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Hello, what kind of emergency do you need?");
 	
-	EnterInfo(fromid, "~w~Hovor mozes zrusit prikazom /h!");
+	EnterInfo(fromid, "~w~You can hang up by /h!");
 
 	return 1;
 }
@@ -168,9 +168,9 @@ forward phoneb_timer_Dial_Swoop(fromid); public phoneb_timer_Dial_Swoop(fromid)
 
 	ph_CallWith[fromid] = EMERGENCY_TAXI;
 
-	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Kr·sny deÚ prajem! Kde sa prosÌm V·s nach·dzate?");
+	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Hello, where are you at?");
 
-    EnterInfo(fromid, "~w~Hovor mozes zrusit prikazom /h!");
+    EnterInfo(fromid, "~w~You can hang up by /h!");
 
 	return 1;
 }
@@ -189,9 +189,9 @@ forward phoneb_timer_Dial_RCN(fromid); public phoneb_timer_Dial_RCN(fromid)
 
 	ph_CallWith[fromid] = EMERGENCY_RCN;
 
-	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: Dobr˝ deÚ! »o by ste n·m radi odk·zali?");
+	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Hello, what kind of informations do you have?");
 	
-	EnterInfo(fromid, "~w~Hovor mozes zrusit prikazom /h!");
+	EnterInfo(fromid, "~w~You can hang up by /h!");
 
 	return 1;
 }
@@ -210,9 +210,9 @@ forward phoneb_timer_Dial_HAWKINS(fromid); public phoneb_timer_Dial_HAWKINS(from
 
 	ph_CallWith[fromid] = EMERGENCY_HAWKINS;
 
-	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: No, Ëo je? »o potrebujeö?");
+	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: The fuck you need?");
 	
-	EnterInfo(fromid, "~w~Hovor mozes zrusit prikazom /h!");
+	EnterInfo(fromid, "~w~You can hang up by /h!");
 
 	return 1;
 }
@@ -238,7 +238,7 @@ forward phoneb_timer_Dial_Success(fromid, toid); public phoneb_timer_Dial_Succes
 	ph_CallWith[fromid] = toid;
 	ph_CallWith[toid] = fromid;
 
-	SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] Prich·dzaj˙ci hovor od %s, pouûi /(p)ick pre zodvihnutie alebo /(h)angup pre zloûenie.", phoneboEnum[ phonebotmp_id[fromid]-1 ][phonebo_Code]);
+	SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] Incoming call from %s, use /(p)ick to pick it up or /(h)angup to hang yourself.", phoneboEnum[ phonebotmp_id[fromid]-1 ][phonebo_Code]);
 
 	new
 		Float:X,
@@ -268,7 +268,7 @@ forward phoneb_timer_Dial_Success(fromid, toid); public phoneb_timer_Dial_Succes
 	    phone_Screen[toid]          = 0;
 	    phone_IsOut[toid]           = true;
 
-	    EnterInfo(toid, "~w~Telefon mozes zatvorit prikazom ~b~/phone~w~ alebo kliknutim na tlacidlo ~b~BACK~w~!~n~Kurzor otvoris prikazom ~b~/pc~w~!");
+	    EnterInfo(toid, "~w~Can yan close phone using ~b~/phone~w~ or click button ~b~BACK~w~!~n~You can bring your mouse up with ~b~/pc~w~!");
 
 	    phone_refreshTextdraw(toid);
 
@@ -322,7 +322,7 @@ public PhoneBooth_OnPlayerDial(playerid)
 	
 	TogglePlayerControllable(playerid, 0);
 	
-	SendPlayerAction(playerid, "ùuk· Ëislo do kl·vesnice na b˙dke a vyt·Ëa ho ...");
+	SendPlayerAction(playerid, "presses numbers in the keyboard and calls ...");
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USECELLPHONE);
 	
 	ph_IsDialing[playerid] = true;
@@ -380,7 +380,7 @@ public PhoneBooths_OnPlaceObject(playerid, objectid, response, Float:x, Float:y,
 	        IsEditingPB[playerid] = false;
 	        DestroyDynamicObject(objectid);
 
-            SendError(playerid, "Tvorba telefonnej budky zruöen·!");
+            SendError(playerid, "Phonebooth creation cancelled!");
 	    }
 	    else if(response == 1)
 		{
@@ -403,7 +403,7 @@ public PhoneBooths_OnPlaceObject(playerid, objectid, response, Float:x, Float:y,
 		        IsEditingPB[playerid] = false;
 		        DestroyDynamicObject(objectid);
 
-	            return SendError(playerid, "Tvorba telefonnej budky zruöen·!");
+	            return SendError(playerid, "Phonebooth creation cancelled!");
 		    }
 
 		    DestroyDynamicObject(objectid);
@@ -423,13 +423,13 @@ public PhoneBooths_OnPlaceObject(playerid, objectid, response, Float:x, Float:y,
             phoneboEnum[i][phonebo_Price] = phonebotmp_price[playerid];
         	format(phoneboEnum[i][phonebo_Code], 24, phonebotmp_name[playerid]);
             
-            format(tstring, sizeof tstring, "%s\n/zavolat\n%.2f$/min˙ta",phoneboEnum[i][phonebo_Code], phoneboEnum[i][phonebo_Price]);
+            format(tstring, sizeof tstring, "%s\n/call\n%.2f$/minute",phoneboEnum[i][phonebo_Code], phoneboEnum[i][phonebo_Price]);
 
 			phoneboEnum[i][phonebo_Object] = CreateDynamicObject(1216, x, y, z, rx, ry, rz, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid), -1, 100.0, 70.0, -1, 1);
 	        phoneboEnum[i][phonebo_AreaID] = CreateDynamicSphere(x, y, z, 3.0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid), -1);
 	        phoneboEnum[i][phonebo_Label] = CreateDynamic3DTextLabel(tstring, 0xffffffff, x, y, z, 6.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 0, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid), -1, 16.0, -1, 0);
 
-            SendSuccess(playerid, "Telefonna budka ˙speöne vytvoren·!");
+            SendSuccess(playerid, "Phonebooth created successfully!");
 
             SetDynamicObjectPos(objectid, x, y, z);
 			SetDynamicObjectRot(objectid, rx, ry, rz);
@@ -506,7 +506,7 @@ function OnPhoneBoothLoad() {
         phoneboEnum[i][phonebo_posINT] = Interior;
         phoneboEnum[i][phonebo_Price] = Price;
         
-        format(tstring, sizeof tstring, "%s\n/zavolat\n%.2f$/min˙ta",phoneboEnum[i][phonebo_Code], Price);
+        format(tstring, sizeof tstring, "%s\n/call\n%.2f$/minute",phoneboEnum[i][phonebo_Code], Price);
 
         phoneboEnum[i][phonebo_Object] = CreateDynamicObject(1216, X, Y, Z, RX, RY, RZ, VW, Interior, -1, 100.0, 70.0, -1, 1);
         phoneboEnum[i][phonebo_AreaID] = CreateDynamicSphere(X, Y, Z, 3.0, VW, Interior, -1);
@@ -519,17 +519,17 @@ function OnPhoneBoothLoad() {
 
 ////////////////////////////////////////////////////////////////////////////////
 
-YCMD:vytvoritbudku(playerid, params[], help)
+YCMD:createbooth(playerid, params[], help)
 {
 
 	if(GetPlayerAdminLevel(playerid) < 5)
 	    return SendClientCantUseCommand(playerid);
 
 	if(IsPlayerInAnyVehicle(playerid))
-	    return SendError(playerid, "Nesmieö sedieù v aute!");
+	    return SendError(playerid, "You cannot sit in any vehicle!");
 
 	if(IsEditingPB[playerid] == true)
-	    return SendError(playerid, "Uû editujeö budku!");
+	    return SendError(playerid, "You are already editing a phonebooth!");
 	    
 	new
 	    Float:S_temp,
@@ -537,13 +537,13 @@ YCMD:vytvoritbudku(playerid, params[], help)
 	;
 	
 	if(sscanf(params,"fs[9]",S_temp,S_temp1))
-	    return SendClientSyntax(playerid, "/vytvoritbudku [cena za minutu hovoru] [kod v tvare XXX-XXX-XXX, mozu byt cisla aj pismena]");
+	    return SendClientSyntax(playerid, "/createbooth [price for minute of call] [code in format XXX-XXX-XXX]");
 	    
 	if(S_temp < 0)
-	    return SendError(playerid, "Cena nemoze byt zaporna!");
+	    return SendError(playerid, "Price should not be negative!");
 	    
 	if(strlen(S_temp1) < 3)
-	    return SendError(playerid, "KÛd nemÙûe byù kratöÌ troch znakov!");
+	    return SendError(playerid, "Code can not be shorter than 3 chars!");
 
     for(new i; i < MAX_PHONE_BOOTHS; i++)
 	{
@@ -551,7 +551,7 @@ YCMD:vytvoritbudku(playerid, params[], help)
    			break;
 
         if(i >= MAX_PHONE_BOOTHS)
-            return SendError(playerid, "Nie je voln˝ slot na budku!");
+            return SendError(playerid, "All slots are occupied!");
 
 		continue;
 	}
@@ -584,14 +584,14 @@ YCMD:vytvoritbudku(playerid, params[], help)
 	return 1;
 }
 
-YCMD:zmazatbudku(playerid, params[], help)
+YCMD:deletebooth(playerid, params[], help)
 {
 
     if(GetPlayerAdminLevel(playerid) < 5)
 	    return SendClientCantUseCommand(playerid);
 
 	if(GetPlayerDynamicPB(playerid) == -1)
-	    return SendError(playerid, "NestojÌö pri ûiadnej telefonnej budke!");
+	    return SendError(playerid, "There are not any nearby phone booths!");
 
 	new
 		id = GetPlayerDynamicPB(playerid),
@@ -618,33 +618,33 @@ YCMD:zmazatbudku(playerid, params[], help)
 	DestroyDynamicObject(phoneboEnum[id][phonebo_Object]);
 	DestroyDynamic3DTextLabel(phoneboEnum[id][phonebo_Label]);
 
-	SendError(playerid, "Telefonna budka ˙speöna zmazan·!");
+	SendError(playerid, "Phone booth removed!");
 
 	return 1;
 }
-YCMD:zavolat(playerid, params[], help)
+YCMD:call(playerid, params[], help)
 {
 
     if(GetPlayerDynamicPB(playerid) == -1)
-	    return SendError(playerid, "NestojÌö pri ûiadnej telefonnej budke!");
+	    return SendError(playerid, "There are not any nearby phone booths!");
 
 	if(phone_IsOut[playerid] == true)
-	    return SendError(playerid, "M·ö vybran˝ svoj mobil!");
+	    return SendError(playerid, "You have your phone out!");
 
     if(ph_IsDialing[playerid] == true)
-		return SendError(playerid, "Vyt·Ëaö nejakÈ ËÌslo ...");
+		return SendError(playerid, "You are already calling ...");
 		
     if(ph_CanAccept[playerid] == true)
-        return SendError(playerid, "Niekto ti vol·!");
+        return SendError(playerid, "Somebody is calling you!");
 
 	if(ph_IsTalking[playerid] == true)
-	    return SendError(playerid, "Telefonujeö..");
+	    return SendError(playerid, "You are already on phone..");
 	    
     phonebotmp_id[playerid] = GetPlayerDynamicPB(playerid)+1;
     
     if(ex_GetPlayerMoney(playerid) < phoneboEnum[ phonebotmp_id[playerid]-1 ][phonebo_Price])
     {
-        SendError(playerid, "Nem·ö dosù peÚazÌ na hovor!");
+        SendError(playerid, "You have not enough money!");
         phonebotmp_id[playerid] = 0;
         return 1;
     }
@@ -652,9 +652,9 @@ YCMD:zavolat(playerid, params[], help)
     new
         dialogstr[ 256 ];
         
-	format(dialogstr, sizeof dialogstr, "{ffffff}> Zadaj prosÌm telefÛnne ËÌslo, na ktorÈ chceö zavolaù!\n\nTelefÛnne ËÌslo b˙dky: %s\nCena za min˙tu hovoru: %.2f$\nPohotovostnÈ linky s˙ zadarmo.", phoneboEnum[ phonebotmp_id[playerid]-1 ][phonebo_Code], phoneboEnum[ phonebotmp_id[playerid]-1 ][phonebo_Price]);
+	format(dialogstr, sizeof dialogstr, "{ffffff}> Specify the number you want to call!\n\nPhoen booth code: %s\nPrice for a minute call: %.2f$\nEmergency liens are for free.", phoneboEnum[ phonebotmp_id[playerid]-1 ][phonebo_Code], phoneboEnum[ phonebotmp_id[playerid]-1 ][phonebo_Price]);
 
-	ShowPlayerDialog(playerid, did_phonebooth, DIALOG_STYLE_INPUT, "TELEF”NNA B⁄DKA -> DIAL", dialogstr, "VYTO»Iç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_phonebooth, DIALOG_STYLE_INPUT, "PHONE BOOTH -> DIAL", dialogstr, "CALL", "CLOSE");
 
 	return 1;
 }

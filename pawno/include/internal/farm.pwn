@@ -147,7 +147,7 @@ Farm::RetrieveLabelString(farmId)
 	{
 		format(
 			tmpvar, sizeof tmpvar,
-			"[ FARMA ]\n{EAEAEA}%s",
+			"[ FARM ]\n{EAEAEA}%s",
 
 			Farm::data[ farmId ][ farm_Name ]
 		);
@@ -156,7 +156,7 @@ Farm::RetrieveLabelString(farmId)
 	{
 	    format(
 			tmpvar, sizeof tmpvar,
-			"[ FARMA ]\n{EAEAEA}%s\n({679646}$%d{EAEAEA})\n\nNA PREDAJ!\n/buyfarm",
+			"[ FARM ]\n{EAEAEA}%s\n({679646}$%d{EAEAEA})\n\nFOR SALE!\n/buyfarm",
 
 			Farm::data[ farmId ][ farm_Name ],
 			Farm::data[ farmId ][ farm_BuyPrice]
@@ -166,7 +166,7 @@ Farm::RetrieveLabelString(farmId)
 	{
 	    format(
 			tmpvar, sizeof tmpvar,
-			"[ FARMA ]\n{EAEAEA}%s",
+			"[ FARM ]\n{EAEAEA}%s",
 
 			Farm::data[ farmId ][ farm_Name ]
 		);

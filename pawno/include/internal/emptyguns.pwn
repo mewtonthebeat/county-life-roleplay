@@ -28,7 +28,7 @@ stock EmptyGuns::GiveGun(playerid, weaponid, bool:replace = true, pweapon = -1, 
 	
 	    lReturn = 2;
 	    
-	    FormatLog(log_type_player, "%s(%s) dostal prazdnu zbran ID %d, bola prepisana lebo na tom slote uz bola zbran ID %d!", ReturnName(playerid), ReturnIP(playerid), weaponid, playerEmptyGuns[playerid][lSlot]);
+	    FormatLog(log_type_player, "%s(%s) got empty weapon ID %d, it was rewrote because there was already a weapon ID %d on this slot!", ReturnName(playerid), ReturnIP(playerid), weaponid, playerEmptyGuns[playerid][lSlot]);
 		return 1;
 	}
 	else if(!replace && lOld <= 0)
@@ -69,15 +69,15 @@ stock EmptyGuns::GiveGun(playerid, weaponid, bool:replace = true, pweapon = -1, 
 	    CreateDynamicDrop(
 			1, weaponid, 0,
 			X, Y, Z, Angle, GetPlayerVirtualWorld(playerid), GetPlayerInterior(playerid),
-			ReturnName(playerid), date, dropfact, "Prázdná zbraò", 1,
+			ReturnName(playerid), date, dropfact, "Empty weapon", 1,
 			.w_serialnum = serial,
 			.w_origin = origin,
 			.w_iswork = iswork,
 			.w_ispermit = ispermit
 		);
 	    
-	    SendSuccess(playerid, "Už si mal rovnaký typ zbrane v /myguns, táto bola položená na zem!");
-	    FormatLog(log_type_player, "%s(%s) dropol prazdnu zbran ID %d, lebo ma prazdnu zbran ID %d!", ReturnName(playerid), ReturnIP(playerid), weaponid, playerEmptyGuns[playerid][lSlot]);
+	    SendSuccess(playerid, "You already had the same weapon type in /myguns, it will be dropped!");
+	    FormatLog(log_type_player, "%s(%s) dropped empty weapon ID %d, because he has empty weapon ID %d!", ReturnName(playerid), ReturnIP(playerid), weaponid, playerEmptyGuns[playerid][lSlot]);
 	    
 	    lReturn = 3;
 	}
