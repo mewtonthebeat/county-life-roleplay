@@ -125,7 +125,7 @@ new bool:donotsave[MAX_PLAYERS];
 #define GM_VERSION              "1.0.3 R2"
 #define GM_AUTHOR               "bigw3b."
 #define GM_MAP_NAME             "San Andreas"
-#define GM_LANGUAGE             "CZ/SK"
+#define GM_LANGUAGE             "English"
 #define GM_LINES                "194789" //(INTERNAL INCLUDES: 532 + 149 + 281) + (MAPS: 3162 + 19541) + (SNOWMAP: 853) + (EXTERNAL INCLUDES: 5856 + 486 + 716)
 #define GM_COMMANDS             475
 #define GM_CREATED_V1           "01/06/2016"
@@ -226,7 +226,7 @@ new bool:donotsave[MAX_PLAYERS];
 #define USE_PLAYERID            2
 #define USE_PUREIDNAME          3
 #define NO_MASK     			0
-#define MASK_TEXT               "Maskovan˝"
+#define MASK_TEXT               "Masked"
 
 // CHAT RANGES
 #define LOCAL_CHAT_RANGE        15.0
@@ -1145,18 +1145,18 @@ new menuNames[][] = {
 	"_", //menut_bucks_coffee
 	"Buck's Coffee /menu", //menut_foodshop_buckscoffee
 	"Bait Shop /menu", //menut_baitshop
-	"Brig·da ryb·renie /rybarit", //menut_brigada_rybarit
-	"Automat na Ëokol·du /menu", //menut_automat_chocolate
+	"Fishing job /fish", //menut_brigada_rybarit
+	"Chocolate automat /menu", //menut_automat_chocolate
 	"_", //menut_locker_sd
-	"St·nok s hotdogmi /menu", //menut_foodshop_hotdog
+	"Hotdog stand /menu", //menut_foodshop_hotdog
 	"_", //menut_locker_fd
-	"Predaù ryby leg·l /predatryby", //menut_brigada_predatryby
-	"Predaù ryby neleg·l /predatryby", //menut_brigada_predatrybyex
+	"Sell fish legal /sellfishes", //menut_brigada_predatryby
+	"Sell fishes illegaly /sellfishes", //menut_brigada_predatrybyex
 	"_", //menut_drivingschool
 	"_", //menut_brigada_krabice_mg
-	"Hardware (éeleziarstvo) /menu", //menut_shop_hardware
-	"Obchod s obleËenÌm /menu", //menut_skin_shop
-	"LaboratÛrium na zistenie krvi /menu (SD)", //menut_sd_lab
+	"Hardware /menu", //menut_shop_hardware
+	"Clothing store /menu", //menut_skin_shop
+	"Blood lab /menu (SD)", //menut_sd_lab
 	"_", //menut_watson_automotive
 	"Burger Shot (drive-thru) /menu", //menut_burgershot_drive
 	"Burger Shot /menu", //menut_burgershot
@@ -1172,25 +1172,25 @@ new menuNames[][] = {
 	"Upgrade Shop /menu", //menut_upgrade_shop
 	"General Store /menu", //menut_general_store
 	"Electro Shop /menu /buycredit", //menut_electro_shop
-	"MDC poËÌtaË /mdc", //menut_mdc
+	"MDC /mdc", //menut_mdc
 	"_", //menut_mr_grants
 	"_", //menut_general
 	"Food Welcome Pump /menu", //menut_welcome_pump
 	"Food Marco's Bistro /menu", //menut_marcosbistro
-	"TelocviËÚa (bojovy styl) /buystyle", //menut_gym
+	"Fight style /buystyle", //menut_gym
 	"_", //menut_fdhq_patro
 	"_", //menut_pdhq_garaz,
-	"Zoörotovanie auta /zosrotovat", //menut_zosrotovat
+	"Car scrapyard /scrapvehicle", //menut_zosrotovat
 	"Advertisement /menu", //menut_advert
 	"Ammu Nation /buyweapons", //menut_ammun
-	"éiv˝ prenos /live", //menut_live
+	"Live /live", //menut_live
 	"_", //menut_zamestnat_pizzaman
 	"_", //menut_rybar_brana
-	"Obchod s auto vecickami /buy", //menut_car_tools
+	"Car things store /buy", //menut_car_tools
 	"FOS FD MDC /fos", //menut_fos
-	"N·kup tovaru /sklad", //menut_trucker_vyklad
-	"N·kup paliva /sklad", //menut_trucker_naklad
-	"AutodielÚa", //menut_autodielna
+	"Cargo buy /sklad", //menut_trucker_vyklad
+	"Fuel buy /sklad", //menut_trucker_naklad
+	"Auto-mechanics", //menut_autodielna
 	"_", //menut_brigada_krabice_od1
 	"_", //menut_brigada_krabice_od2
 	"_", //menut_pracovat_od_kontajner
@@ -1199,41 +1199,41 @@ new menuNames[][] = {
 	"_", //menut_locker_mech
 	"_", //menut_pracovat_od_regaly
 	"_", //menut_pracovat_od_trucks
-	"ALC /rozhlas", //menut_pola_rozhlas
+	"ALC /broadcast", //menut_pola_rozhlas
 	"_", //menut_boatshop
 	"_", //menut_planeshop
-	"Lek·reÚ /buydrugs", //menut_lekaren
-	"Vykup drog /selldrugs", //menut_selldrugs
-	"Tutori·l /tutorial", //menut_tutorial
-	"ZniËenie cisterny /cisterna", //menut_d_cisterna
-	"Predaj krabic /predatkrabicu",  //menut_sellkrab
-	"Prepr·vna spolocnost /zamesnat", //menut_zamestnat_preprava
-	"Pohrebna sluzba /pracovat", //menut_pohrebna_sluzba
+	"Drug store /buydrugs", //menut_lekaren
+	"Drug sell /selldrugs", //menut_selldrugs
+	"Tutorial /tutorial", //menut_tutorial
+	"Cistren sell /cistern", //menut_d_cisterna
+	"Box sell /sellbox",  //menut_sellkrab
+	"Delivery job /employme", //menut_zamestnat_preprava
+	"funeral service /work", //menut_pohrebna_sluzba
 	"Alcohol shop /buyalcohol", //menut_alcohol_shop
 	"Rent Bike Spawn /rentbike", //menut_rent_bike
-	"ALC /praca", //menut_anawalt_praca
-	"ALC obchod /buy", //menut_anawalt_obchod
-	"ALC sklad /storage", //menut_anawalt_storage
+	"ALC /work", //menut_anawalt_praca
+	"ALC shop /buy", //menut_anawalt_obchod
+	"ALC storage /storage", //menut_anawalt_storage
 	"ALC export /export" //menut_anawalt_export
 };
 
 new menuPickups[][][] = {
-	{ 0, 		"éiadny pickup"},
-	{ 1240, 	"Srdce" },
-	{ 1242, 	"Vesta" },
-	{ 1239, 	"Inform·cie (info icon)" },
-	{ 1272, 	"Modr˝ dom" },
-	{ 1273, 	"Zelen˝ dom" },
-	{ 1241, 	"Pilulka (adrenaline)"},
-	{ 1247, 	"Hviezda (bribe)"},
-	{ 1254, 	"Smrtka (skull)"},
-	{ 1274, 	"Dol·r (money icon)"},
-	{ 1275, 	"ModrÈ triËko"},
-	{ 1277, 	"Disketa (save disk)"},
-	{ 1313, 	"Dve smrtky (2 skulls)"},
-	{ 1314, 	"Dvaja hr·Ëi (2 players)"},
-	{ 1318, 	"Biela öipka dole"},
-	{ 1279, 	"BalÌËek s drogami"}
+	{ 0, 		"No pickup"},
+	{ 1240, 	"Hearth" },
+	{ 1242, 	"Armour" },
+	{ 1239, 	"Informations (info icon)" },
+	{ 1272, 	"Blue house" },
+	{ 1273, 	"Green house" },
+	{ 1241, 	"Pill (adrenaline)"},
+	{ 1247, 	"Star (bribe)"},
+	{ 1254, 	"Skull (skull)"},
+	{ 1274, 	"Dollar (money icon)"},
+	{ 1275, 	"Green shirt"},
+	{ 1277, 	"Disc (save disk)"},
+	{ 1313, 	"(2 skulls)"},
+	{ 1314, 	"(2 players)"},
+	{ 1318, 	"Arrow pointing down"},
+	{ 1279, 	"Drug bag"}
 };
 
 enum
@@ -1937,22 +1937,22 @@ enum E_BARRIERS_LISTITEM
 
 new const BARRIERS_LIST[][E_BARRIERS_LISTITEM] =
 {
-	{"Kuzel", 					1238},
-    {"Znacka DETOUR", 			1425},
-    {"Znacka pracovne vozidla", 3091},
-    {"Vodna bariera", 			1554},
-    {"Vodna bariera", 			1237},
-    {"Bariera", 				1459},
-    {"Bariera", 				1424},
-    {"Bariera", 				1423},
-    {"Bariera so svetlom", 		1427},
-    {"Retarder", 				19425},
-    {"Rebrik (maly)", 			1428},
-    {"Rebrik (velky)", 			1437},
-    {"Svetlica", 				18728},
-    {"Betonova zatarasa", 		3578},
-	{"Retarder", 				19425},
-	{"Sipky",                   8843}
+	{"Cone", 					1238},
+    {"DETOUR", 			1425},
+    {"Working vehicles", 3091},
+    {"Water barrier", 			1554},
+    {"Water barrier", 			1237},
+    {"Barrier", 				1459},
+    {"Barrier", 				1424},
+    {"Barrier", 				1423},
+    {"Lightning barrier", 		1427},
+    {"speed bump", 				19425},
+    {"Ladder", 			1428},
+    {"Ladder (big)", 			1437},
+    {"Light", 				18728},
+    {"Cement barrier", 		3578},
+	{"Barrier", 				19425},
+	{"Arrows",                   8843}
 };
 
 new lockerSkin_FD_m[] = {
@@ -2532,76 +2532,63 @@ new PlayerText:ID_Textdraw21[MAX_PLAYERS];
 new PlayerText:TACHOMETER_TD[MAX_PLAYERS][9];
 #include <internal\cctv>
 new itemname[][] = {
-	"Peniaze",
-	"Maska",
+	"Money",
+	"Mask",
 	"Boombox",
-	"ObËiansky preukaz",
-	"Plechovka Pepsi",
-	"Plechovka Coca Coly",
-	"Kit Kat »okol·da",
-	"»ipsy Pringles",
-	"Ryby",
-	"Ryb·rske povolanie",
-	"VodiË·k A",
-	"VodiË·k B",
-	"VodiÊ·k C",
-	"VodiË·k T",
-	"P·Ëidlo",
-	"Lano",
-	"Vrece",
-	"Kocka",
-	"Krvn˝ vak",
-	"Put·",
-	"Kreditn· karta",
-	"Marihuana",
-	"Semienko marihuany",
-	"Cigarety",
-	"ZapalovaË",
-	"TelefÛn",
-	"SIM karta",
-	"N·boje",
-	"Band·û",
-	"Zbrojn˝ preukaz",
-	"LÌstok do lotÈrie",
-	"AutobatÈria",
-	"VysielaËka",
-	"Motorov˝ olej",
+	"ID",
+	"Pepsi Can",
+	"Coca Cola Can",
+	"Kit Kat",
+	"Pringles",
+	"Fishes",
+	"Fishing Permit",
+	"License Group A",
+	"License Group B",
+	"License Group C",
+	"License Group T",
+	"Crowbar",
+	"Rope",
+	"Sack",
+	"Dice",
+	"Blood bag",
+	"Cuffs",
+	"Credit car",
+	"Marijuana",
+	"Marijuana seed",
+	"Cigarettes",
+	"Lighter",
+	"Cellphone",
+	"SIM card",
+	"Ammo",
+	"Bandage",
+	"Firearm permit",
+	"Lottery ticket",
+	"Car battery",
+	"Radio",
+	"Engine oil",
 	"Pizza",
-	"Kanister",
-	"Rezerva",
-	"Sadenica marihuany Phatt Fruity",
-	"Sadenica marihuany Amnesia Haze",
-	"Sadenica marihuany Sour Diesel",
-	"Hnojivo",
+	"Gas Can",
+	"Spare Tire",
+	"Marijuana Seed Phatt Fruity",
+	"Marijuana Seed Amnesia Haze",
+	"Marijuana Seed Sour Diesel",
+	"Fertilizer",
 	"Sprite",
-	"Fæaöa leanu",
-	"Plastov˝ poh·rik",
+	"Lean Bottle",
+	"Cup",
 	"Actavis Promethazine",
 	"Skateboard",
-	"KatalÛg",
-	"Leteck˝ preukaz",
-	"Lodn˝ preukaz",
-	"Sadenice",
-	"DubovÈ drevo",
-	"BrezovÈ drevo",
-	"SmrekovÈ drevo"
+	"Catalog",
+	"Flying permit",
+	"Boat permit",
+	"Seeds",
+	"Oak wood",
+	"Birch wood",
+	"Spruce wood"
 };
 
 new RandomMessage[][] = {
-	"UrËite navötÌv n·ö web {ZVYRAZNI}www.countyliferoleplay.eu{DEFAULT}, n·jdeö tam plno uûitoËn˝ch inform·ciÌ!",
-	"Ak sa ti hra na {ZVYRAZNI}County Life: Roleplay{DEFAULT} p·Ëi, mÙûes si na UCP zak˙più Donatora!",
-	"VidÌö niekoho ako poruöuje pravidl·? Vyfoù ho a podaj {ZVYRAZNI}fÛrum report{DEFAULT} alebo pouûi prÌkaz {ZVYRAZNI}/report{DEFAULT}!",
-	"Obmedzuj pouûÌvanie {ZVYRAZNI}Out Of Character {DEFAULT}chatu, za jeho nadmernÈ pouûÌvanie mÙûeö byù potrestan˝!",
-	"BuÔ k ostatn˝m ˙stretov˝, moûno bud˙ aj oni k {ZVYRAZNI}tebe{DEFAULT}!",
-	"Ak si nevieö rady, pouûi prÌkaz {ZVYRAZNI}/assistance{DEFAULT}!",
-	"Laguje sa ti hra? Nastav si maxim·lny poËet streamovan˝ch objektov prÌkazom {ZVYRAZNI}/setvisibleobjects{DEFAULT}!",
-	"PreËo si nenastaviù popis Ëi prÌzvuk charakteru? {ZVYRAZNI}/nastavenie{DEFAULT}!",
-	"Zaparkuj svoje auto a predÌÔ kr·deûi prÌkazom {ZVYRAZNI}/veh park {DEFAULT}avöak, ak nem·ö parkovacie miesto k˙p ho prÌkazom {ZVYRAZNI}/veh buypark {DEFAULT}za 500$!",
-	"Veci z invent·ra vieö inÈmu hr·Ëovi podaù tak, ûe otvorÌö invent·r prÌkazom {ZVYRAZNI}/inv{DEFAULT}, klikneö na item a pod·ö ho!",
-	"Zbrane Ëi vestu vieö hr·Ëovi podaù prÌkazmi {ZVYRAZNI}/givewep {DEFAULT}a {ZVYRAZNI}/givevest{DEFAULT}!",
-	"Ak chceö s niek˝m komunikovaù, ûiadne {ZVYRAZNI}/pm{DEFAULT}, ale {ZVYRAZNI}/ph {DEFAULT}alebo {ZVYRAZNI}/vysielacka{DEFAULT}!",
-	"VysielaËku mÙûeö k˙più v ktoromkoævek obchode s {ZVYRAZNI}elektronikou{DEFAULT}!",
-	"MÙûeö si zapn˙ù automatickÈ odopÌnanie p·sov v {ZVYRAZNI}/nastavenie{DEFAULT}!"
+	"You should add your own random messages in gamemode, variable RandomMessage!"
 };
 
 new randomDoc[][] = {
@@ -3470,9 +3457,9 @@ ShowBoomboxMenu(boomid, playerid)
 	new
 	    string[512];
 
-	strcat(string, "{e75454}Vypn˙ù r·dio\n");
-	strcat(string, "{ffffff}Vlastn· URL adresa\n");
-	strcat(string, "{62e357}Pridaù stanicu\n{ffffff}");
+	strcat(string, "{e75454}Disable car radio\n");
+	strcat(string, "{ffffff}Custom URL address\n");
+	strcat(string, "{62e357}Add station\n{ffffff}");
 
 	new
         tstring[72],
@@ -3494,7 +3481,7 @@ ShowBoomboxMenu(boomid, playerid)
 
 	cache_delete(cache);
 
-	ShowPlayerDialog(playerid, did_boombox, DIALOG_STYLE_LIST, "R¡DIO", string, "VYBRAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_boombox, DIALOG_STYLE_LIST, "RADIO", string, "CHOOSE", "CLOSE");
 	return 1;
 }
 
@@ -3504,9 +3491,9 @@ ShowCarRadioMenu(playerid)
 	new
 	    string[512];
 
-	strcat(string, "{e75454}Vypn˙ù r·dio\n");
-	strcat(string, "{ffffff}Vlastn· URL adresa\n");
-	strcat(string, "{62e357}Pridaù stanicu\n{ffffff}");
+	strcat(string, "{e75454}Disable car radio\n");
+	strcat(string, "{ffffff}Custom URL address\n");
+	strcat(string, "{62e357}Add station\n{ffffff}");
 
 	new
         tstring[72],
@@ -3528,7 +3515,7 @@ ShowCarRadioMenu(playerid)
 
 	cache_delete(cache);
 
-	ShowPlayerDialog(playerid, did_carradio, DIALOG_STYLE_LIST, "AUTOR¡DIO", string, "VYBRAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_carradio, DIALOG_STYLE_LIST, "RADIO", string, "CHOOSE", "CLOSE");
 	return 1;
 }
 
@@ -3569,19 +3556,19 @@ new VehicleNames[][] = {
 };
 
 new factionTypes[][] = {
-	"Pr·zdna frakcia",
+	"Empty faction",
 	"Law-Enforcement",
 	"Fire Department",
-	"MÈdi·",
-	"Vl·da, spr·va",
-	"Drevorubci",
-	"(PRACA) Smetiarsk· firma",
-	"(PRACA) »istiË ulÌc",
-	"Taxi Firma",
-	"(PRACA) Pizza Rozvoz",
-	"Mechanici",
-	"(PRACA) Prepravn· spoloËnosù",
-	"Autobazar"
+	"News",
+	"Government",
+	"Woodcutting",
+	"(JOB) Trashmaster Service",
+	"(JOB) Street Sweeper",
+	"Taxi Company",
+	"(JOB) Pizza Delviery",
+	"Car mechanics",
+	"(JOB) Truck delivery",
+	"used cars company"
 };
 
 new factionPayday[] = {
@@ -3602,26 +3589,26 @@ new factionPayday[] = {
 };
 
 new weathers[][][] = {
-	{ {0}, "Extremne slnecno (LS)" },
-	{ {1}, "Slnecno (LS) (buguje)" },
-	{ {2}, "Extremne slnecno so smogom (LS)" },
-    { {3}, "Slnecno so smogom (LS)" },
-    { {4}, "Oblacno (LS)" },
-    { {5}, "Slnecno (SF)" },
-    { {6}, "Extremne slnecno (SF)" },
-    { {7}, "Oblacno (SF)" },
-    { {8}, "Dazd (SF)" },
-    { {9}, "Hmla (SF)" },
-    { {10}, "Slnecno (LV)" },
-    { {11}, "Extremne slnecno (LV) (buguje)" },
-    { {12}, "Oblacno (LV)" },
-    { {13}, "Extremne slnecno (COUNTY)" },
-    { {14}, "Slnecno (COUNTY)" },
-    { {15}, "Oblacno (COUNTY)" },
-    { {16}, "Dazd (COUNTY)" },
-    { {17}, "Extremne slnecno (PUST) (buguje)" },
-    { {18}, "Slnecno (PUST) (buguje)" },
-    { {19}, "Piesocna burka (PUST) (buguje)" }
+	{ {0}, "Extreme sun (LS)" },
+	{ {1}, "Sunny (LS) (buggy)" },
+	{ {2}, "Extreme sun with smog (LS)" },
+    { {3}, "Sun with smog (LS)" },
+    { {4}, "Cloudy (LS)" },
+    { {5}, "Sunny (SF)" },
+    { {6}, "Extreme sun (SF)" },
+    { {7}, "Cloudy (SF)" },
+    { {8}, "Storm (SF)" },
+    { {9}, "Fog (SF)" },
+    { {10}, "Sunny (LV)" },
+    { {11}, "Extreme sun (LV) (buggy)" },
+    { {12}, "Cloudy (LV)" },
+    { {13}, "Extreme sun (COUNTY)" },
+    { {14}, "Sunny (COUNTY)" },
+    { {15}, "Cloudy (COUNTY)" },
+    { {16}, "Storm (COUNTY)" },
+    { {17}, "Extreme sun (PUST) (buggy)" },
+    { {18}, "Sun (PUST) (buggy)" },
+    { {19}, "Sandstorm (PUST) (buggy)" }
 };
 
 stock Float: ex_GetPlayerMoney(playerid)
@@ -4246,7 +4233,7 @@ hook OnVehicleDeath(vehicleid, killerid)
 
 			DestroyDMV(playerid);
 
-			SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Gratulujem. Tvoj test bol ne˙speön˝. Ty neschop·k!");
+			SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Congratulations, you failed your test!");
 	    }
 	}
 
@@ -4420,8 +4407,8 @@ forward GivePlayerLegalFactionTimer(playerid, toid); public GivePlayerLegalFacti
 
 	give_LegalFaction[playerid] = -1;
 
-	SCFM(playerid, COLOR_GREY, "> Ponuka na nabranie do frakcie vypröala!");
-	SCFM(toid, COLOR_GREY, "> Ponuka na nabranie do frakcie vypröala!");
+	SCFM(playerid, COLOR_GREY, "> Faction offer expired!");
+	SCFM(toid, COLOR_GREY, "> Faction offer expired!");
 
 	return 1;
 }
@@ -4434,8 +4421,8 @@ forward GivePlayerNeLegalFactionTimer(playerid, toid); public GivePlayerNeLegalF
 
 	give_NeLegalFaction[playerid] = -1;
 
-	SCFM(playerid, COLOR_GREY, "> Ponuka na nabranie do neleg·lnej frakcie vypröala!");
-	SCFM(toid, COLOR_GREY, "> Ponuka na nabranie do neleg·lnej frakcie vypröala!");
+	SCFM(playerid, COLOR_GREY, "> Illegal Faction offer expired!");
+	SCFM(toid, COLOR_GREY, "> Illegal Faction offer expired!");
 
 	return 1;
 }
@@ -4449,8 +4436,8 @@ forward GivePlayerKevlarTimer(playerid, toid); public GivePlayerKevlarTimer(play
 	give_Kevlar[playerid][0] = 0;
 	give_Kevlar[playerid][1] = 0;
 
-	SCFM(playerid, COLOR_GREY, "> Ponuka na podanie vesty vypröala!");
-	SCFM(toid, COLOR_GREY, "> Ponuka na podanie vesty vypröala!");
+	SCFM(playerid, COLOR_GREY, "> Armour offer expired!");
+	SCFM(toid, COLOR_GREY, "> Armour offer expired!");
 
 	return 1;
 }
@@ -4470,8 +4457,8 @@ forward GivePlayerWeaponTimer(playerid, toid); public GivePlayerWeaponTimer(play
 	give_Weapon[playerid][1] = 0;
 	give_Weapon[playerid][2] = 0;
 
-	SCFM(playerid, COLOR_GREY, "> Ponuka na podanie zbrane vypröala!");
-	SCFM(toid, COLOR_GREY, "> Ponuka na podanie zbrane vypröala!");
+	SCFM(playerid, COLOR_GREY, "> Weapon offer expired!");
+	SCFM(toid, COLOR_GREY, "> Weapon offer expired!");
 
 	return 1;
 }
@@ -4490,7 +4477,7 @@ forward phone_timer_Dial_Emergency(fromid); public phone_timer_Dial_Emergency(fr
 
 	ph_CallWith[fromid] = EMERGENCY_NUMBER;
 
-	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Dobr˝ deÚ, ak˙ sluûbu vyûadujete?");
+	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Hello, whatk kind of an emergency service do you need?");
 
  	new str[256];
     if(phone_IsOut[fromid] == false)
@@ -4501,7 +4488,7 @@ forward phone_timer_Dial_Emergency(fromid); public phone_timer_Dial_Emergency(fr
 	    phone_Screen[fromid]          = 0;
 	    phone_IsOut[fromid]           = true;
 
-	    EnterInfo(fromid, "~w~Telefon mozes zatvorit prikazom ~b~/phone~w~ alebo kliknutim na tlacidlo ~b~BACK~w~!~n~Kurzor otvoris prikazom ~b~/pc~w~!");
+	    EnterInfo(fromid, "~w~You can hide your phone with command ~b~/phone~w~ or clicking ~b~BACK~w~!~n~You can bring your mouse up ~b~/pc~w~!");
 
 	    phone_refreshTextdraw(fromid);
 
@@ -4555,7 +4542,7 @@ forward phone_timer_Dial_Swoop(fromid); public phone_timer_Dial_Swoop(fromid)
 
 	ph_CallWith[fromid] = EMERGENCY_TAXI;
 
-	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: Kr·sny deÚ prajem! Kde sa prosÌm V·s nach·dzate?");
+	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Hi, where are you at?");
 
     new str[256];
     if(phone_IsOut[fromid] == false)
@@ -4566,7 +4553,7 @@ forward phone_timer_Dial_Swoop(fromid); public phone_timer_Dial_Swoop(fromid)
 	    phone_Screen[fromid]          = 0;
 	    phone_IsOut[fromid]           = true;
 
-	    EnterInfo(fromid, "~w~Telefon mozes zatvorit prikazom ~b~/phone~w~ alebo kliknutim na tlacidlo ~b~BACK~w~!~n~Kurzor otvoris prikazom ~b~/pc~w~!");
+	    EnterInfo(fromid, "~w~You can hide your phone with command ~b~/phone~w~ or clicking ~b~BACK~w~!~n~You can bring your mouse up ~b~/pc~w~!");
 
 	    phone_refreshTextdraw(fromid);
 
@@ -4620,7 +4607,7 @@ forward phone_timer_Dial_RCN(fromid); public phone_timer_Dial_RCN(fromid)
 
 	ph_CallWith[fromid] = EMERGENCY_RCN;
 
-	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·torka: Dobr˝ deÚ! »o by ste n·m radi odk·zali?");
+	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Hello, what would you like to inform us with?");
 	new str[256];
     if(phone_IsOut[fromid] == false)
     {
@@ -4630,7 +4617,7 @@ forward phone_timer_Dial_RCN(fromid); public phone_timer_Dial_RCN(fromid)
 	    phone_Screen[fromid]          = 0;
 	    phone_IsOut[fromid]           = true;
 
-	    EnterInfo(fromid, "~w~Telefon mozes zatvorit prikazom ~b~/phone~w~ alebo kliknutim na tlacidlo ~b~BACK~w~!~n~Kurzor otvoris prikazom ~b~/pc~w~!");
+	    EnterInfo(fromid, "~w~You can hide your phone with command ~b~/phone~w~ or clicking ~b~BACK~w~!~n~You can bring your mouse up ~b~/pc~w~!");
 
 	    phone_refreshTextdraw(fromid);
 
@@ -4685,7 +4672,7 @@ forward phone_timer_Dial_HAWKINS(fromid); public phone_timer_Dial_HAWKINS(fromid
 
 	ph_CallWith[fromid] = EMERGENCY_HAWKINS;
 
-	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Oper·tor: No, Ëo je? »o potrebujeö?");
+	SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] Operator: Hey, what the fuck do you need?");
 	new str[256];
     if(phone_IsOut[fromid] == false)
     {
@@ -4695,7 +4682,7 @@ forward phone_timer_Dial_HAWKINS(fromid); public phone_timer_Dial_HAWKINS(fromid
 	    phone_Screen[fromid]          = 0;
 	    phone_IsOut[fromid]           = true;
 
-	    EnterInfo(fromid, "~w~Telefon mozes zatvorit prikazom ~b~/phone~w~ alebo kliknutim na tlacidlo ~b~BACK~w~!~n~Kurzor otvoris prikazom ~b~/pc~w~!");
+	    EnterInfo(fromid, "~w~You can hide your phone with command ~b~/phone~w~ or clicking ~b~BACK~w~!~n~You can bring your mouse up ~b~/pc~w~!");
 
 	    phone_refreshTextdraw(fromid);
 
@@ -4757,7 +4744,7 @@ forward phone_timer_Dial_Success(fromid, toid); public phone_timer_Dial_Success(
 	ph_CallWith[fromid] = toid;
 	ph_CallWith[toid] = fromid;
 
-	SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] Prich·dzaj˙ci hovor od %s, pouûi /(p)ick pre zodvihnutie alebo /(h)angup pre zloûenie.", phone_getPlayerContact(toid, phone_getPlayerNumber(fromid)));
+	SCFM(toid, COLOR_PHONE_MESSAGE, "[ PHONE ] Incoming call from %s, use /(p)ick to pick it up or /(h)angup to hang up.", phone_getPlayerContact(toid, phone_getPlayerNumber(fromid)));
 
 	new
 		Float:X,
@@ -4787,7 +4774,7 @@ forward phone_timer_Dial_Success(fromid, toid); public phone_timer_Dial_Success(
 	    phone_Screen[toid]          = 0;
 	    phone_IsOut[toid]           = true;
 
-	    EnterInfo(toid, "~w~Telefon mozes zatvorit prikazom ~b~/phone~w~ alebo kliknutim na tlacidlo ~b~BACK~w~!~n~Kurzor otvoris prikazom ~b~/pc~w~!");
+	    EnterInfo(toid, "~w~You can hide your phone with command ~b~/phone~w~ or clicking ~b~BACK~w~!~n~You can bring your mouse up ~b~/pc~w~!");
 
 	    phone_refreshTextdraw(toid);
 
@@ -4834,7 +4821,7 @@ forward phone_timer_Dial_Failed(playerid); public phone_timer_Dial_Failed(player
 {
 
 	ph_IsDialing[playerid] = false;
-	SendClientMessage(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] éensk˝ hlas hovorÌ: VolanÈ ËÌslo nie je dostupnÈ!");
+	SendClientMessage(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] Woman voice says: Number dailed is not available!");
 
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_STOPUSECELLPHONE);
 	RemovePlayerAttachedObject(playerid, 8);
@@ -4849,40 +4836,40 @@ forward phone_timer_Dial_Failed(playerid); public phone_timer_Dial_Failed(player
 function FriskCancel(var, var1) {
     if(friskZiadost[var][var1] != 1) return 1;
     friskZiadost[var][var1] = 0;
-    SCFM(var, COLOR_GREY, "> »as na potvrdenie ûiadosti o prehladanie vypröal.");
-	SCFM(var1, COLOR_GREY, "> »as na potvrdenie ûiadosti o prehladanie vypröal.");
+    SCFM(var, COLOR_GREY, "> Time to accept the offer has expired.");
+	SCFM(var1, COLOR_GREY, "> Time to accept the offer has expired.");
 	return 1;
 }
 
 function DregerCancel(var, var1) {
     if(dregerZiadost[var][var1] != 1) return 1;
     dregerZiadost[var][var1] = 0;
-    SCFM(var, COLOR_GREY, "> »as na potvrdenie ûiadosti o test na poûitie alkoholu vypröal.");
-	SCFM(var1, COLOR_GREY, "> »as na potvrdenie ûiadosti o test na poûitie alkoholu vypröal.");
+    SCFM(var, COLOR_GREY, "> Time to accept the offer has expired.");
+	SCFM(var1, COLOR_GREY, "> Time to accept the offer has expired.");
 	return 1;
 }
 
 function BazarSCancel(var, var1) {
     if(bazarsZiadost[var][var1] != 1) return 1;
     bazarsZiadost[var][var1] = 0;
-    SCFM(var, COLOR_GREY, "> »as na potvrdenie ûiadosti o predanie vozidla vypröal.");
-	SCFM(var1, COLOR_GREY, "> »as na potvrdenie ûiadosti o predanie vozidla vypröal.");
+    SCFM(var, COLOR_GREY, "> Time to accept the offer has expired.");
+	SCFM(var1, COLOR_GREY, "> Time to accept the offer has expired.");
 	return 1;
 }
 
 function BazarBCancel(var, var1) {
     if(bazarbZiadost[var][var1] != 1) return 1;
     bazarbZiadost[var][var1] = 0;
-    SCFM(var, COLOR_GREY, "> »as na potvrdenie ûiadosti o predanie vozidla bazaru vypröal.");
-	SCFM(var1, COLOR_GREY, "> »as na potvrdenie ûiadosti o predanie vozidla bazaru vypröal.");
+    SCFM(var, COLOR_GREY, "> Time to accept the offer has expired.");
+	SCFM(var1, COLOR_GREY, "> Time to accept the offer has expired.");
 	return 1;
 }
 
 function AlkoholCancel(var, var1) {
     if(flasaZiadost[var][var1] == 0) return 1;
     flasaZiadost[var][var1] = 0;
-    SCFM(var, COLOR_GREY, "> »as na potvrdenie ûiadosti o podanie alkoholu vypröal.");
-	SCFM(var1, COLOR_GREY, "> »as na potvrdenie ûiadosti o podanie alkoholu vypröal.");
+    SCFM(var, COLOR_GREY, "> Time to accept the offer has expired.");
+	SCFM(var1, COLOR_GREY, "> Time to accept the offer has expired.");
 	return 1;
 }
 
@@ -5240,8 +5227,8 @@ function timer_StopItemPonuka(playerid, offeredid, item, quantity)
 	if(!IsPlayerLogged(playerid) || !IsPlayerLogged(offeredid))
 	    return 0;
 
-	SCFM(playerid, COLOR_GREY, "> Ponuka na podanie itemu vypröala!");
-	SCFM(offeredid, COLOR_GREY, "> Ponuka na podanie itemu vypröala!");
+	SCFM(playerid, COLOR_GREY, "> Time to accept the offer has expired!");
+	SCFM(offeredid, COLOR_GREY, "> Time to accept the offer has expired!");
 
 	return 1;
 }
@@ -5259,15 +5246,15 @@ function timer_StopDrogPonuka(playerid, offeredid, item, quantity)
 	if(!IsPlayerLogged(playerid) || !IsPlayerLogged(offeredid))
 	    return 0;
 
-	SCFM(playerid, COLOR_GREY, "> Ponuka na podanie drogy vypröala!");
-	SCFM(offeredid, COLOR_GREY, "> Ponuka na podanie drogy vypröala!");
+	SCFM(playerid, COLOR_GREY, "> Time to accept the offer has expired!");
+	SCFM(offeredid, COLOR_GREY, "> Time to accept the offer has expired!");
 
 	return 1;
 }
 
 function timer_rst_KickPlayers()
 {
-    SendClientMessageToAll(COLOR_SERVER, "> Prebieha reötart serveru, vyËkajte prosÌm, mÙûe to trvaù do troch min˙t!");
+    SendClientMessageToAll(COLOR_SERVER, "> Restart is occuring, it might take up to 5 minutes!");
     if(IsPlayerNPC(npcid_x))
     	Kick(npcid_x);
 
@@ -5295,7 +5282,7 @@ function timer_rst_Restart()
 	if(IsPlayerNPC(npcid_x))
     	Kick(npcid_x);
 
-	SendClientMessageToAll(COLOR_SERVER, "> Prebieha reötart serveru, vyËkajte prosÌm, mÙûe to trvaù do troch min˙t!");
+	SendClientMessageToAll(COLOR_SERVER, "> Restart is occuring, it might take up to 5 minutes!");
     SendRconCommand("gmx");
     return 1;
 }
@@ -5333,7 +5320,7 @@ function timer_BleedTimer(playerid)
     new
         formattedString[64];
 
-	format(formattedString, 64, "~w~Krvacanie rany ti ubera zivot!~n~~r~(%.1f HP)", pocetzivotu);
+	format(formattedString, 64, "~w~Bleeding is decreasing your health!~n~~r~(%.1f HP)", pocetzivotu);
 
     EnterInfo(playerid, formattedString);
     SetTimerEx("timer_BleedTimer", 600+random(2600), false, "i", playerid);
@@ -5421,11 +5408,11 @@ function timer_RybaritTimer(playerid)
     rybari[playerid] = false;
 
     if(!IsPlayerInDynamicMenu(playerid, menut_brigada_rybarit))
-        return EnterInfo(playerid, "Nestojis pri prute!");
+        return EnterInfo(playerid, "You are not near any fishing rod!");
 
 	new
 	    ryba = random(100000),
-		rybaN[30],
+		rybaN[30] = "Blue Fish",
 		Float:rybaHM,
 		S_string[256],
 		isMoney;
@@ -5434,84 +5421,75 @@ function timer_RybaritTimer(playerid)
 	{
 	    case 0..14999:
 	    {
-	        strcat(rybaN, "Kapra");
+
 	        rybaHM = (1.138 + randomF(14.8 - 1.138));
 		}
 
 		case 15000..29999:
 		{
-		    strcat(rybaN, "LieÚ");
 		    rybaHM = (0.34 + randomF(2.27-0.34));
 		}
 
 		case 30000..43999:
 		{
-		    strcat(rybaN, "äùuku");
 		    rybaHM = (1.540 + randomF(15.8-1.54));
 		}
 
 		case 44000..59999:
 		{
-		    strcat(rybaN, "Amura");
 		    rybaHM = (2.9 + randomF(12.90-2.9));
 		}
 
 		case 60000..64999:
 		{
-		    strcat(rybaN, "PleskaËa");
 			rybaHM = (0.25 + randomF(2.18-0.25));
 		}
 
 		case 65000..72999:
 		{
-		    strcat(rybaN, "LipÚa");
 		    rybaHM = (0.18 + randomF(1.23-0.18));
 		}
 
 		case 73000..74999:
 		{
-			strcat(rybaN, "Pstruha jazernÈho");
 			rybaHM = (1.3 + randomF(5.80-1.3));
 		}
 
 		case 75000..79999:
 		{
-			strcat(rybaN, "Sumca veækeho");
 			rybaHM = (3.37 + randomF(24.8-3.37));
 		}
 
 		case 80000..84999:
 		{
-			strcat(rybaN, "Tolstolobika");
 			rybaHM = (2.11 + randomF(33.7-2.11));
 		}
 
 		case 85000..89999:
 		{
-			strcat(rybaN, "Zub·Ëa veækÈho");
 			rybaHM = (1.24 + randomF(10.9-1.24));
 		}
 
 		case 90000..90999:
 		{
-			strcat(rybaN, "Mrenu");
 			rybaHM = (0.89 + randomF(4.86-0.89));
 		}
 
 		case 91000..91999:
 		{
-			strcat(rybaN, "⁄hora");
 			rybaHM = (0.48 + randomF(2.55-0.48));
 		}
 
 		case 92000:
 		{
+		    rybaN[0] = EOS;
 			strcat(rybaN, "Veærybu");
 			rybaHM = (7000.0 + randomF(150000.0-7000.0));
 		}
 
 		case 92001:
 		{
+		    rybaN[0] = EOS;
 			strcat(rybaN, "polis");
 	        rybaHM = (0.0);
 	        isMoney = 5;
@@ -5519,28 +5497,32 @@ function timer_RybaritTimer(playerid)
 
 	    case 92002..92999:
 	    {
-	        strcat(rybaN, "peÚaûenku");
+	        rybaN[0] = EOS;
+	        strcat(rybaN, "wallet");
 	        rybaHM = (40.0 + randomF(660.0));
 	        isMoney = 1;
 	    }
 
 	    case 93000..93999:
 	    {
-	        strcat(rybaN, "kufrÌk s peniazmi");
+	        rybaN[0] = EOS;
+	        strcat(rybaN, "suitcase with money");
 	        rybaHM = (800.0 + randomF(1200.0));
 	        isMoney = 1;
 	    }
 
 	    case 94000..94500:
 	    {
-	        strcat(rybaN, "star˙ v·zu");
+	        rybaN[0] = EOS;
+	        strcat(rybaN, "old vase");
 	        rybaHM = (800.0 + randomF(1200.0));
 	        isMoney = 2;
 	    }
 
 	    case 94501:
 	    {
-	        strcat(rybaN, "vikingsk˙ prilbu");
+	        rybaN[0] = EOS;
+	        strcat(rybaN, "old helmet");
 	        rybaHM = (10000.0 + randomF(30000.0));
 	        isMoney = 4;
 	    }
@@ -5552,7 +5534,6 @@ function timer_RybaritTimer(playerid)
 
 	    default:
 	    {
-	        strcat(rybaN, "MieÚa");
 	        rybaHM = (0.121 + randomF(2.268));
 	    }
 	}
@@ -5561,34 +5542,34 @@ function timer_RybaritTimer(playerid)
 	{
 	    case 0:
 		{
-	        format(S_string, 256, "Navil si prut, pozrel si sa Ëo na Úom je a zbadal si %s s hmotnosùou %.3f kÌl!", rybaN, rybaHM);
+	        format(S_string, 256, "You rolled your rod and saw %s weighing %.3f kÌl!", rybaN, rybaHM);
 
 	        SetPlayerInventoryItem(playerid, inv_rybyKG, GetPlayerInventoryItem(playerid, inv_rybyKG) + rybaHM);
 	    }
 	    case 1:
 	    {
-	        format(S_string, 256, "Navil si prut, pozrel si sa Ëo na Úom je a zbadal si %s s %d dol·rmi!", rybaN, floatround(rybaHM, floatround_round));
+	        format(S_string, 256, "You rolled your rod and saw %s containing %d dollars!", rybaN, floatround(rybaHM, floatround_round));
 
 	        ex_GivePlayerMoney(playerid, floatround(rybaHM, floatround_round));
 	        money_work[playerid] += floatround(rybaHM, floatround_round);
 		}
 		case 2:
 	    {
-	        format(S_string, 256, "Navil si prut, pozrel si sa Ëo na Úom je a zbadal si %s!", rybaN);
+	        format(S_string, 256, "You rolled your rod and saw  %s!", rybaN);
 	    }
 	    case 3:
 	    {
-	        format(S_string, 256, "Navil si prut no niË na Úom nebolo!");
+	        format(S_string, 256, "You rolled your rod and saw nothing!");
 	    }
 	    case 4:
 	    {
-	        format(S_string, 256, "Navil si prut, pozrel si sa Ëo na Úom je a zbadal si %s (transformovanÈ do %d$)!", rybaN, floatround(rybaHM, floatround_round));
+	        format(S_string, 256, "You rolled your rod and saw %s (transofmred into %d$)!", rybaN, floatround(rybaHM, floatround_round));
 	        ex_GivePlayerMoney(playerid, floatround(rybaHM, floatround_round));
 	        money_work[playerid] += floatround(rybaHM, floatround_round);
 	    }
 	    case 5:
 	    {
-	        format(S_string, 256, "Navil si prut, pozrel si sa Ëo na Úom je a zbadal si Polisa, ktor˝ ti ukradol vöetky ryby a skoËil do mora!");
+	        format(S_string, 256, "You rolled your rod and saw Polis who stole all your fishes!");
 	        SetPlayerInventoryItem(playerid, inv_rybyKG, 0.0);
 	    }
 	}
@@ -5707,13 +5688,13 @@ function timer_PickUpCrate_PC(playerid) // uliËka v Palomino Creek
 	new S_str[144];
 
 	if(GetPlayerGender(playerid) == 1)
-		format(S_str, 144, "* %s sa zohol a pevne chytil krabicu do oboch r˙k. *", GetPlayerNameEx(playerid, USE_MASK));
+		format(S_str, 144, "* %s has bent over and grabbed a box. *", GetPlayerNameEx(playerid, USE_MASK));
 	else
-	    format(S_str, 144, "* %s sa zohla a pevne chytila krabicu do oboch r˙k. *", GetPlayerNameEx(playerid, USE_MASK));
+	    format(S_str, 144, "* %s has bent over and grabbed a box. *", GetPlayerNameEx(playerid, USE_MASK));
 
 	SendLocalMessage(playerid,ME_CHAT_RANGE,COLOR_VIOLET,S_str);
 
-	SendSuccess(playerid, "Zobral si krabicu! Odnes ju na vyznaËenÈ miesto.");
+	SendSuccess(playerid, "You took a box! Bring it over to the next checkpoint.");
 
 	DisablePlayerCheckpoint(playerid);
     g_I_playerCheckpoint[playerid] = checkp_brigada_krabicePC_1;
@@ -5730,13 +5711,13 @@ function timer_PutDownCrate_PC(playerid) // uliËka v Palomino Creek
 	new S_str[144];
 
 	if(GetPlayerGender(playerid) == 1)
-		format(S_str, 144, "* %s sa zohol a opatrne poloûil krabicu na zem. *", GetPlayerNameEx(playerid, USE_MASK));
+		format(S_str, 144, "* %s has bent over and placed the box on the ground. *", GetPlayerNameEx(playerid, USE_MASK));
 	else
-	    format(S_str, 144, "* %s sa zohla a opatrne poloûila krabicu na zem. *", GetPlayerNameEx(playerid, USE_MASK));
+	    format(S_str, 144, "* %s has bent over and placed the box on the ground. *", GetPlayerNameEx(playerid, USE_MASK));
 
 	SendLocalMessage(playerid,ME_CHAT_RANGE,COLOR_VIOLET,S_str);
 
-	SendSuccess(playerid, "Doniesol si krabicu, vr·ù sa po svoje peniaze!");
+	SendSuccess(playerid, "You brought the box to the finish, get back for your money!");
 
 	DisablePlayerCheckpoint(playerid);
 	g_I_playerCheckpoint[playerid] = checkp_brigada_krabicePC_2;
@@ -5753,14 +5734,11 @@ function timer_PickUpCrate_MG(playerid) // uliËka v Montgomery
 
 	new S_str[144];
 
-	if(GetPlayerGender(playerid) == 1)
-		format(S_str, 144, "* %s sa zohol a pevne chytil krabicu do oboch r˙k. *", GetPlayerNameEx(playerid, USE_MASK));
-	else
-	    format(S_str, 144, "* %s sa zohla a pevne chytila krabicu do oboch r˙k. *", GetPlayerNameEx(playerid, USE_MASK));
+	format(S_str, 144, "* %s has bent over and grabbed a box. *", GetPlayerNameEx(playerid, USE_MASK));
 
 	SendLocalMessage(playerid,ME_CHAT_RANGE,COLOR_VIOLET,S_str);
 
-	SendSuccess(playerid, "Zobral si krabicu! Odnes ju na vyznaËenÈ miesto.");
+	SendSuccess(playerid, "You took a box! Bring it over to the next checkpoint");
 
 	DisablePlayerCheckpoint(playerid);
     g_I_playerCheckpoint[playerid] = checkp_brigada_krabiceMG_1;
@@ -5777,13 +5755,13 @@ function timer_PutDownCrate_MG(playerid) // uliËka v Montgomery
 	new S_str[144];
 
 	if(GetPlayerGender(playerid) == 1)
-		format(S_str, 144, "* %s sa zohol a opatrne poloûil krabicu na zem. *", GetPlayerNameEx(playerid, USE_MASK));
+		format(S_str, 144, "* %s has bent over and placed the box on the ground. *", GetPlayerNameEx(playerid, USE_MASK));
 	else
-	    format(S_str, 144, "* %s sa zohla a opatrne poloûila krabicu na zem. *", GetPlayerNameEx(playerid, USE_MASK));
+	    format(S_str, 144, "* %s has bent over and placed the box on the ground. *", GetPlayerNameEx(playerid, USE_MASK));
 
 	SendLocalMessage(playerid,ME_CHAT_RANGE,COLOR_VIOLET,S_str);
 
-	SendSuccess(playerid, "Doniesol si krabicu, vr·ù sa po svoje peniaze!");
+	SendSuccess(playerid, "You brought the box to the finish, get back for your money!");
 
 	DisablePlayerCheckpoint(playerid);
 	g_I_playerCheckpoint[playerid] = checkp_brigada_krabiceMG_2;
@@ -5800,12 +5778,12 @@ function timer_DeathAllow(playerid, isDeath)
 	B_allowDeath[playerid] = true;
 	if(isDeath == 0)
 	{
-	    SendClientMessage(playerid, /*0xB33C3CFF*/0xD0D0D0FF, "> Tvoj charakter zomrel! Pre viac inform·ciÌ pouûi /damages [tvoje id].");
-		SendClientMessage(playerid, /*0xB33C3CFF*/0xD0D0D0FF, "> MÙûeö pouûiù prÌkaz /death alebo /accept death.");
+	    SendClientMessage(playerid, /*0xB33C3CFF*/0xD0D0D0FF, "> You died! Use /damages [your id].");
+		SendClientMessage(playerid, /*0xB33C3CFF*/0xD0D0D0FF, "> You can use /death or /accept death.");
 	}
 	else
 	{
-		SendClientMessage(playerid, /*0xB33C3CFF*/0xD0D0D0FF, "> MÙûeö pouûiù prÌkaz /death alebo /accept death.");
+		SendClientMessage(playerid, /*0xB33C3CFF*/0xD0D0D0FF, "> You can use /death or /accept death.");
 	}
 	return 1;
 }
@@ -5913,7 +5891,7 @@ function tautosave_AnawaltKontrakt()
 				if(GetPlayerFactionType(x) == FACTION_TYPE_WOODCUTTER)
 		  			continue;
 
-				SCFM(x, COLOR_LIGHTBLUE2, "[ WARN ] Kontrakt za %d$ bol ne˙speön˝, firma zaplatila poplatok %d$!", cena,cena*2);
+				SCFM(x, COLOR_LIGHTBLUE2, "[ WARN ] Contract costing %d$ was not successful, company paid %d$!", cena,cena*2);
 			}
 
 		    mysql_format(MYSQL, S_query, sizeof S_query, "UPDATE anawalt_kontrakt SET finished = 2 WHERE finished = 0");
@@ -6015,7 +5993,7 @@ autosave_Houses()
 
 	    if(houseEnum[i][ho_IsRental] == 1 && houseEnum[i][ho_RentTo] <= gettime() && strlen( houseEnum[i][ho_Owner]) > 4)
 	    {
-	        FormatLog(log_type_admin, "Domu %s (%d) - %s) expiroval prenajom! (hrac: %s)", houseEnum[i][ho_Street], houseEnum[i][ho_Number], houseEnum[i][ho_City], houseEnum[i][ho_Owner]);
+	        FormatLog(log_type_admin, "House %s (%d) - %s) has expired rent! (player: %s)", houseEnum[i][ho_Street], houseEnum[i][ho_Number], houseEnum[i][ho_City], houseEnum[i][ho_Owner]);
 
             houseEnum[i][ho_RentTo] = 0;
 
@@ -6420,7 +6398,7 @@ function timer_FuelDecrease()
 
 				GetVehiclePos(i, Pos[0], Pos[1], Pos[2]);
 
-				format(S_string, 148, "* Motor sa zadrel a vypol sa. (( %s ))", GetVehicleName(i));
+				format(S_string, 148, "* Engine has broken down. (( %s ))", GetVehicleName(i));
 
 				foreach( new playerid : Player )
 				{
@@ -6458,7 +6436,7 @@ function timer_FuelDecrease()
 
 				GetVehiclePos(i, Pos[0], Pos[1], Pos[2]);
 
-				format(S_string, 148, "* Motor zdochol. (( %s ))", GetVehicleName(i));
+				format(S_string, 148, "* Engine died. (( %s ))", GetVehicleName(i));
 
 				foreach( new playerid : Player )
 				{
@@ -6567,10 +6545,10 @@ function timer_Speedometer()
 			    SetVehicleParams(vid, VEHICLE_TYPE_ENGINE, 0);
 
 			    new S_str[144];
-				format(S_str, 144, "* Motor vozidla %s zachrËal a vypol sa. (( %s ))", GetVehicleName(vid), GetPlayerNameEx(i, USE_MASK));
+				format(S_str, 144, "* Engine of %s died. (( %s ))", GetVehicleName(vid), GetPlayerNameEx(i, USE_MASK));
 				SendLocalMessage(i, ME_CHAT_RANGE,COLOR_VIOLET,S_str);
 
-				EnterInfo(i, "~r~Toto vozidlo je poskodene, zavolaj mechanika!");
+				EnterInfo(i, "~r~This car is broken, call a mechanic!");
 			}
 		}
 
@@ -6713,7 +6691,7 @@ function timer_Speedometer()
 
 					GetVehiclePos(vid, Pos[0], Pos[1], Pos[2]);
 
-					format(S_string, sizeof S_string, "* Zvonka vozidla sa ozvalo zasyËanie, pneumatika syËÌ. (( %s ))", GetVehicleName(vid));
+					format(S_string, sizeof S_string, "* pssst, car tire has blown. (( %s ))", GetVehicleName(vid));
 
 					foreach( new playerid : Player )
 					{
@@ -6982,7 +6960,7 @@ func_timer_CheckPayDay()
 
 	    	if(g_I_paydayTime[i] < 1740)
 	    	{
-	    	    SendClientMessage(i, 0xD0D0D0FF, "> Neodohral si dosù Ëasu, aby ti priöla v˝plata.");
+	    	    SendClientMessage(i, 0xD0D0D0FF, "> You haven't played enough to receive your payday.");
 	    	    g_B_canHavePayDay[i] = false;
 	    	    g_B_canPickUpPayDay[i] = false;
 	    	    g_I_VyplataExpire[i] = 0;
@@ -6992,8 +6970,8 @@ func_timer_CheckPayDay()
 
 				if(Vyplata_TYP[i] == 0)
 				{
-				    SCFM(i, 0xD0D0D0FF, "> Priöla ti v˝plata! Vyzdvihni si ju v Palomino Creek Town Hall prÌkazom /signcheck [ËÌslo öeku], ak chceö!");
-				    SCFM(i, 0xD0D0D0FF, "> »Ìslo öeku vidÌö v pravom dolnom rohu.");
+				    SCFM(i, 0xD0D0D0FF, "> Paycheck has came! You can take it in nearest Town Hall using /signcheck [check number]!");
+				    SCFM(i, 0xD0D0D0FF, "> Check number is visible in right down corner.");
 
 					g_B_canHavePayDay[i] = true;
 		    	    g_B_canPickUpPayDay[i] = true;
@@ -7005,7 +6983,7 @@ func_timer_CheckPayDay()
 					new
 						tdStr[64];
 
-					format(tdStr, sizeof tdStr, "Cislo seku: ~w~%04d", payDayCheck[i]);
+					format(tdStr, sizeof tdStr, "Payday: ~w~%04d", payDayCheck[i]);
 
 		    	    PlayerTextDrawShow(i, TD_vyplaty[i][0]);
 		    	    PlayerTextDrawSetString(i, TD_vyplaty[i][0], tdStr);
@@ -7027,7 +7005,7 @@ func_timer_CheckPayDay()
 		    {
 		        SetPlayerInventoryItem(i, inv_lotteryTicket, 0);
 
-		        SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] V jackpote bolo $%d USD, no ËÌslo %d netipol nikto!", lottery, lotteryNumber);
+		        SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] There were %d$ in jackpot, but number %d was not guessed!!", lottery, lotteryNumber);
 		    }
 		}
 		else if(lotteryCount == 1)
@@ -7036,15 +7014,15 @@ func_timer_CheckPayDay()
 		    {
 		        SetPlayerInventoryItem(i, inv_lotteryTicket, 0);
 
-		        SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] V jackpote bolo $%d USD a spr·vne ËÌslo %d tipol iba %s!", lottery, lotteryNumber, GetPlayerNameEx(lotteryWinner, NO_MASK));
+		        SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] There were %d$ in jackpot and number %d was guessed by %s!!", lottery, lotteryNumber, GetPlayerNameEx(lotteryWinner, NO_MASK));
 				if(i == lotteryWinner)
 				{
-				    SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] Gratulujem, vyhral si $%d USD! Uûi ich dobre!", lottery);
+				    SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] Congratulations, you won %d$!", lottery);
 				    ex_GivePlayerMoney(i, lottery);
 				    
 				    money_admin[i] += floatround(lottery,floatround_round);
 
-				    web_LatestFormat("%s vyhral v loterii", GetPlayerNameEx(i, NO_MASK));
+				    web_LatestFormat("%s won in lottery", GetPlayerNameEx(i, NO_MASK));
 				}
 			}
 		}
@@ -7055,16 +7033,16 @@ func_timer_CheckPayDay()
 
 		        if(GetPlayerInventoryItem(i, inv_lotteryTicket) == lotteryNumber)
 		        {
-		            SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] V jackpote bolo $%d USD a spr·vne ËÌslo %d tipli %d æudia!", lottery, lotteryNumber, lotteryCount);
-                    SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] Gratulujem, vyhral si $%d USD! Uûi ich dobre!", floatround(float(lottery) / float(lotteryCount), floatround_round));
+		            SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] There were %d$ in jackpot and number %d was guessed by %d people!!", lottery, lotteryNumber, lotteryCount);
+                    SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] Congratulations, you won %d$!", floatround(float(lottery) / float(lotteryCount), floatround_round));
                     ex_GivePlayerMoney(i, floatround(float(lottery) / float(lotteryCount), floatround_round));
                     
                     money_admin[i] += floatround(float(lottery) / float(lotteryCount), floatround_round);
 
-                    web_LatestFormat("%s vyhral v loterii", GetPlayerNameEx(i, NO_MASK));
+                    web_LatestFormat("%s won in lottery", GetPlayerNameEx(i, NO_MASK));
 				}
 				else
-				    SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] V jackpote bolo $%d USD a spr·vne ËÌslo %d tipli %d æudia!", lottery, lotteryNumber, lotteryCount);
+				    SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] There were %d$ in jackpot and number %d was guessed by %d people!!", lottery, lotteryNumber, lotteryCount);
 
 		        SetPlayerInventoryItem(i, inv_lotteryTicket, 0);
 			}
@@ -7087,10 +7065,10 @@ func_timer_CheckPayDay()
 	            payDayCheck[i] = 0;
 	            g_I_VyplataExpire[i] = 0;
 	            g_B_canPickUpPayDay[i] = false;
-	            SCFM(i, 0xD0D0D0FF, "> »as na vybratie v˝platy vypröal, k Ôalöej v˝plate sa ti pripoËÌta %d$!", floatround(g_I_Vyplata[i] / 100 * 40, floatround_round));
+	            SCFM(i, 0xD0D0D0FF, "> Time to take your payday is over, %d$ will be added to your next payday!!", floatround(g_I_Vyplata[i] / 100 * 40, floatround_round));
 	        }
 
-	        SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] Hr· sa o jackpot $%d USD, k˙pte si lÌstok v General Store a zapojte sa, losovanie prebehne o 30 min˙t!", lottery);
+	        SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] There are %d$ in jackpot, buy ticket in General Store!", lottery);
 	    }
 	}
 
@@ -7211,7 +7189,7 @@ func_timer_FactionLeave(i)
 {
     if(g_I_VypovedUnix[i] > 10 && g_I_VypovedUnix[i] < gettime())
 	{
- 		FormatLog(log_type_player, "%s(%s) bol automaticky prepusteny z frakcie %s!", ReturnName(i), ReturnIP(i), factEnum[GetPlayerFaction(i)][fact_Name]);
+ 		FormatLog(log_type_player, "%s(%s) was automatically kicked out of faction %s!", ReturnName(i), ReturnIP(i), factEnum[GetPlayerFaction(i)][fact_Name]);
 
 		g_I_VypovedUnix[i] = 0;
   		SetPlayerFaction(i, 0);
@@ -7220,7 +7198,7 @@ func_timer_FactionLeave(i)
   		ex_SetPlayerSkin(i, I_pSkin_Civil[i]);
 
 
-		SCFM(i, COLOR_SERVER, "> Uplynul potrebn˝ Ëas pre podanie v˝povede zo zamestnania, bol si automaticky prepusten˝!");
+		SCFM(i, COLOR_SERVER, "> You were unemployed automatically!");
 	}
 
 	return;
@@ -7305,7 +7283,7 @@ func_timer_IsSpectating(playerid)
 	}
 	else
 	{
-	    format(vehName, sizeof vehName, "~n~NENI VO VOZIDLE");
+	    format(vehName, sizeof vehName, "~n~NOT IN VEHICLE");
 	}
 	PlayerTextDrawSetString(playerid, SpectateTD[playerid][15], vehName);
 	return 1;
@@ -7353,10 +7331,6 @@ func_timer_PlayerAntiCheat(playerid)
 		    stats_Ban[playerid] ++;
 		    BanPlayer(playerid, "JetPack Hack", "System", 2);
 		}
-		else
-		{
-		    SCFM(playerid, COLOR_SERVER, "[ ANTI-CHEAT ] Ak by si nebol administr·tor, dostal by si BAN za JetPack Hack.");
-		}
 	    return 1;
 	}
 	////////////////////////////////////////////////////////////////////////////
@@ -7385,10 +7359,6 @@ func_timer_PlayerAntiCheat(playerid)
 					    format(tstr, sizeof tstr, "Speed Hack (%d MPH)", I_Speed);
 					    BanPlayer(playerid, tstr, "System", 2);
 					}
-					else
-					{
-					    SCFM(playerid, COLOR_SERVER, "[ ANTI-CHEAT ] Ak by si nebol administr·tor, dostal by si BAN za Speed Hack.");
-					}
 				}
 			}
 	    }
@@ -7404,7 +7374,7 @@ func_timer_PlayerAntiCheat(playerid)
 
     ////////////////////////////////////////////////////////////////////////////
     // veh health hack
-	if(IsPlayerInAnyVehicle(playerid) && GetPlayerVehicleSeat(playerid) == 0 && isAntiVhpUsed[playerid] == false)
+	/*if(IsPlayerInAnyVehicle(playerid) && GetPlayerVehicleSeat(playerid) == 0 && isAntiVhpUsed[playerid] == false)
 	{
 
 	    new
@@ -7429,10 +7399,10 @@ func_timer_PlayerAntiCheat(playerid)
 	    {
 	        upozornenie_VHP[playerid] = 0;
 	    }
-	}
+	}*/
     ////////////////////////////////////////////////////////////////////////////
     // health hack
-	if(isAntiHPUsed[playerid] == false)
+	/*if(isAntiHPUsed[playerid] == false)
 	{
 	    new
 			Float:ahac_HP,
@@ -7457,10 +7427,10 @@ func_timer_PlayerAntiCheat(playerid)
 	    {
 	        upozornenie_HP[playerid] = 0;
 	    }
-	}
+	}*/
     ////////////////////////////////////////////////////////////////////////////
     // armour hack
-	if(isAntiARUsed[playerid] == false)
+	/*if(isAntiARUsed[playerid] == false)
 	{
 	    new
 			Float:ahac_AR,
@@ -7485,7 +7455,7 @@ func_timer_PlayerAntiCheat(playerid)
 	    {
 	        upozornenie_AR[playerid] = 0;
 	    }
-	}
+	}*/
 
 	return 0;
 
@@ -7508,7 +7478,7 @@ func_timer_UpdateLoginTD()
 	    }
 	}
 
-	format(string, 128, "Momentalne je pripojenych %d hracov.", pCount);
+	format(string, 128, "%d players are connected right now.", pCount);
 	TextDrawSetString(textdraw_LoginTD[1], string);
 
 	return;
@@ -7524,7 +7494,7 @@ func_timer_JailCheck(playerid)
 	        new
 			    str[128];
 
-			format(str, 128, "~w~Pre prepustenie napis prikaz ~b~/prepustit~w~!");
+			format(str, 128, "~w~To get out type ~b~/bailout~w~!");
 
 			EnterInfo(playerid, str, 5000, 3);
 	    }
@@ -7533,7 +7503,7 @@ func_timer_JailCheck(playerid)
 			new
 			    str[128];
 
-			format(str, 128, "~w~Budes prepusteny ~b~%s~w~!", getdateunix(ic_jailTime[playerid]));
+			format(str, 128, "~w~You will be freed ~b~%s~w~!", getdateunix(ic_jailTime[playerid]));
 
 			EnterInfo(playerid, str, 5000, 3);
 	    }
@@ -7560,11 +7530,11 @@ func_timer_JailCheck(playerid)
 		SetPlayerVirtualWorld(playerid, 0);
 		SetCameraBehindPlayer(playerid);
 
-		SendSuccess(playerid, "Tvoj Ëas nastal, si voln˝!");
+		SendSuccess(playerid, "Your time is up, youre free!");
 
 		stats_Jail[playerid] ++;
 
-		FormatLog(log_type_punish, "%s(%s) si odsedel trest v admin jaile!", ReturnName(playerid), ReturnIP(playerid));
+		FormatLog(log_type_punish, "%s(%s) is out of admin jail!", ReturnName(playerid), ReturnIP(playerid));
 	}
 
 	if(jail_Time[playerid][1] < 1)
@@ -7652,13 +7622,13 @@ func_timer_DMVCheck(i)
 	        if(DMV_checkpoint[i]-1 <= 0) spd = 0;
 			else spd = DMV_checkpoint[i]-1;
 
-		    format(string, 128, "Maximalna rychlost: ~b~~h~%dMPH", floatround(DMV_pos_1[spd][3], floatround_round));
+		    format(string, 128, "Speed limit: ~b~~h~%dMPH", floatround(DMV_pos_1[spd][3], floatround_round));
 			PlayerTextDrawSetString(i, TD_autoskola0[i], string);
 
 			if(DMV_checkpoint[i] + 1 >= sizeof(DMV_pos_1)-1)
-				format(string, 128, "Nasledujuca rychlost: ~b~~h~FINISH");
+				format(string, 128, "Next limit: ~b~~h~FINISH");
 			else
-				format(string, 128, "Nasledujuca rychlost: ~b~~h~%dMPH", floatround(DMV_pos_1[DMV_checkpoint[i]][3], floatround_round));
+				format(string, 128, "Next limit: ~b~~h~%dMPH", floatround(DMV_pos_1[DMV_checkpoint[i]][3], floatround_round));
 			PlayerTextDrawSetString(i, TD_autoskola1[i], string);
 		}
 		else
@@ -7673,17 +7643,17 @@ func_timer_DMVCheck(i)
 	        if(DMV_checkpoint[i]-1 < 0) spd = 0;
 			else spd = DMV_checkpoint[i]-1;
 
-		    format(string, 128, "Maximalna rychlost: ~b~~h~%dMPH", floatround(DMV_pos_2[spd][3], floatround_round));
+		    format(string, 128, "Speed limit: ~b~~h~%dMPH", floatround(DMV_pos_2[spd][3], floatround_round));
 			PlayerTextDrawSetString(i, TD_autoskola0[i], string);
 
 			if(DMV_checkpoint[i] + 1 >= sizeof(DMV_pos_2)-1)
-				format(string, 128, "Nasledujuca rychlost: ~b~~h~FINISH");
+				format(string, 128, "Next limit: ~b~~h~FINISH");
 			else
-				format(string, 128, "Nasledujuca rychlost: ~b~~h~%dMPH", floatround(DMV_pos_2[DMV_checkpoint[i]][3], floatround_round));
+				format(string, 128, "Next limit: ~b~~h~%dMPH", floatround(DMV_pos_2[DMV_checkpoint[i]][3], floatround_round));
 			PlayerTextDrawSetString(i, TD_autoskola1[i], string);
 		}
 
-		format(string, 128, "Trvanie tejto jazdy: ~b~~h~%d:%02d", DMV_time[i][0], DMV_time[i][1]);
+		format(string, 128, "Time of ride: ~b~~h~%d:%02d", DMV_time[i][0], DMV_time[i][1]);
 		PlayerTextDrawSetString(i, TD_autoskola2[i], string);
 
 		PlayerTextDrawShow(i, TD_autoskola0[i]);
@@ -7755,8 +7725,8 @@ function timer_CheckCalling(playerid)
 				ph_CallWith[playerid] = -1;
 				ph_CallWith[fromid] = -1;
 
-				SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk preruöenia hovoru**");
-				SCFM(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] **Zvuk preruöenia hovoru**");
+				SCFM(fromid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
+				SCFM(playerid, COLOR_PHONE_MESSAGE, "[ PHONE ] **They hung up**");
 
 				KillTimer(ph_timer[playerid]);
 
@@ -7784,10 +7754,9 @@ func_timer_PlayerExpireDonator(i)
 
 	PlayerPlaySound(i, 3200, 0.0, 0.0, 0.0);
 
-	SCFM( i, COLOR_ADMINCMD, "|___________________| !!! POZOR !!! |___________________|" );
-	SCFM( i, COLOR_ADMINCMD, "| {ffffff}Tvoj prÈmium (donator) level %d pr·ve expiroval!", GetPlayerDonatorLevel(i) );
-	SCFM( i, COLOR_ADMINCMD, "| {ffffff}Pr·ve je %s, donator mal expirovaù %s!", getdateunix(gettime()), getdateunix(g_I_donatorExpire[i]) );
-	SCFM( i, COLOR_ADMINCMD, "| {ffffff}Ak si myslÌö, ûe sa jedn· o chybu, vyfoù toto a poöli to Managementu!");
+	SCFM( i, COLOR_ADMINCMD, "|___________________| !!! HEY !!! |___________________|" );
+	SCFM( i, COLOR_ADMINCMD, "| {ffffff}Your Donator Level %d expired!", GetPlayerDonatorLevel(i) );
+	SCFM( i, COLOR_ADMINCMD, "| {ffffff}Now it is %s and it should expire %s!", getdateunix(gettime()), getdateunix(g_I_donatorExpire[i]) );
 
 	B_playerTogGold[i] = false;
 	foreach ( new x : Player )
@@ -8078,8 +8047,8 @@ func_timer_PoLAAnnounce()
 		if(mins % 20 == 0 && sec == 0)
 		{
 
-			SendClientMessageToAll(0x5eb04cff, "[Company Advert] »o najr˝chlejöie zh·Úame niekoho kto je schopn˝ previezù neboûtÌka a umiestniù ho na hrobovÈ miesto!");
-			SendClientMessageToAll(0x5eb04cff, "[Company Advert] Z·ujemca nech sa Ëo najr˝chlejöie dostavÌ na cintorÌn do Palomino Creek!");
+			SendClientMessageToAll(0x5eb04cff, "[Company Advert] We are looking for somebody willing to transport a dead body!");
+			SendClientMessageToAll(0x5eb04cff, "[Company Advert] Come over to cemetery in Palomino Creek!");
 
 		}
 	}
@@ -8146,7 +8115,7 @@ function timer_PrimaryTimer()
 		{
 		    isuserafk[i] = 1;
 		    isuserafk_start[i] = gettime();
-		    SendError(i, "SystÈm detekoval, ûe si AFK! Si tu?");
+		    SendError(i, "System detected that you are AFK!");
 		}
 
 		////////////////////////////////////////////////////////////////////////
@@ -8200,7 +8169,7 @@ function timer_PrimaryTimer()
 		        {
 		            if(GetVehicleTrailer(vehid) != Trucking::vWorkEnum[vehid][tworkv_TrailerId])
 		            {
-		                SendError(i, "Toto nie je tvoj n·ves!");
+		                SendError(i, "This is not your truck!");
 		                DetachTrailerFromVehicle(vehid);
 		            }
 		        }
@@ -8210,7 +8179,7 @@ function timer_PrimaryTimer()
 					timeleft = (Trucking::gWorkEnum[i][tworkp_ToUnix] - gettime())
 				;
 
-			    format(str, sizeof str, "Zostavajuci cas ~r~%02d:%02d", floatround(timeleft / 60, floatround_floor), timeleft % 60);
+			    format(str, sizeof str, "Remaining time ~r~%02d:%02d", floatround(timeleft / 60, floatround_floor), timeleft % 60);
 
 				PlayerTextDrawSetString(i, PTD_timeleft[i], str);
 			}
@@ -8220,7 +8189,7 @@ function timer_PrimaryTimer()
 		        {
 		            if(GetVehicleTrailer(vehid) != Trucking::vWorkEnum[vehid][tworkv_TrailerId])
 		            {
-		                SendError(i, "Toto nie je tvoj n·ves!");
+		                SendError(i, "This is not your truck!");
 		                DetachTrailerFromVehicle(vehid);
 		            }
 		        }
@@ -8230,7 +8199,7 @@ function timer_PrimaryTimer()
 					timeleft = (Trucking::gWorkEnum[i][tworkp_ToUnix] - gettime())
 				;
 
-			    format(str, sizeof str, "Naves sa naklada, zostava ~r~%02d:%02d", floatround(timeleft / 60, floatround_floor), timeleft % 60);
+			    format(str, sizeof str, "Loading.. Time remaining: ~r~%02d:%02d", floatround(timeleft / 60, floatround_floor), timeleft % 60);
 
 				PlayerTextDrawSetString(i, PTD_timeleft[i], str);
 
@@ -8260,7 +8229,7 @@ function timer_PrimaryTimer()
 
 					PlayerTextDrawSetString(i, PTD_timeleft[i], "Vrat sa do Blueberry");
 
-					SCFM(i, COLOR_GREEN, "[ROUTE ADVISOR v11.5.4.134]; {FFFFFF}Navigujem ùa na v˝kladisko! Ani len to tu nepoökr·b!");
+					SCFM(i, COLOR_GREEN, "[ROUTE ADVISOR v11.5.4.134]; {FFFFFF}Navigatin to depot!");
 				}
 			}
 			else if(Trucking::vWorkEnum[vehid][tworkv_State] == 4)
@@ -8270,7 +8239,7 @@ function timer_PrimaryTimer()
 					timeleft = (Trucking::gWorkEnum[i][tworkp_ToUnix] - gettime())
 				;
 
-			    format(str, sizeof str, "Naves sa vyklada, zostava ~r~%02d:%02d", floatround(timeleft / 60, floatround_floor), timeleft % 60);
+			    format(str, sizeof str, "Unloading.. Time remaining: ~r~%02d:%02d", floatround(timeleft / 60, floatround_floor), timeleft % 60);
 
 				PlayerTextDrawSetString(i, PTD_timeleft[i], str);
 
@@ -8290,8 +8259,8 @@ function timer_PrimaryTimer()
 
 					TogglePlayerControllable(i, 1);
 
-					SCFM(i, COLOR_GREEN, "[ROUTE ADVISOR v11.5.4.134]; {FFFFFF}Navigujem ùa domov!");
-					SendSuccess(i, "Naves bol vylozeny, cestuj domov!");
+					SCFM(i, COLOR_GREEN, "[ROUTE ADVISOR v11.5.4.134]; {FFFFFF}Navigating home!");
+					SendSuccess(i, "Load unloaded, go home!");
 					PlayerTextDrawHide(i, PTD_timeleft[i]);
 				}
 			}
@@ -8625,22 +8594,15 @@ function timer_LoadPlayerAfterSpawn(playerid)
 		mysql_format(MYSQL, query2, 256, "UPDATE char_main SET WasPlayed = '1' WHERE Username = '%e'", srvcharname[playerid]);
 		mysql_query(MYSQL, query2, false);
 
-		SendClientMessage(playerid, 0xD0D0D0FF, "> Vybral si si tvoj novo zaloûen˝ charakter, vitaj!");
-		SendClientMessage(playerid, 0xD0D0D0FF, "> Na zaËiatok ti d·m nejakÈ tie rady, ale aj tak, pred Information Centre m·ö tutori·l, urËite si ho prezri!");
-		SendClientMessage(playerid, 0xD0D0D0FF, "> Do budovy vst˙piö stlaËenÌm kl·vesy Y alebo prÌkazom /enter, vyjdeö z nej prÌkazom /exit.");
-		SendClientMessage(playerid, 0xD0D0D0FF, "> Na zaËiatok urËite navötÌv Information Centre, kde si urobÌö obËiansky preukaz a prenajmeö bicykel.");
-		SendClientMessage(playerid, 0xD0D0D0FF, "> Ak si technick˝ typ alebo proste len chceö maù ËÌm niekomu zavolaù, k˙p si mobil v MnB Electronics,");
-		SendClientMessage(playerid, 0xD0D0D0FF, "> ktor· je hneÔ vedæa, naæavo od Information Centre!");
-		SendClientMessage(playerid, 0xD0D0D0FF, ">");
-		SendClientMessage(playerid, 0xD0D0D0FF, "> Ak by si nieËomu nerozumel, op˝taj sa prÌkazom /assist. D˙fame, ûe si u n·s uûijeö hru!");
-		
+		SendClientMessage(playerid, 0xD0D0D0FF, "> Welcome!");
+
 		TogglePlayerControllable(playerid, 1);
 
 	}
 	else
 	{
 	    Attachment_Load(playerid);
-	    SendClientMessage(playerid, 0xD0D0D0FF, "> ⁄speöne si si vybral svoj charakter! Vitaj sp‰ù v hre.");
+	    SendClientMessage(playerid, 0xD0D0D0FF, "> Welcome back.");
 	    TogglePlayerControllable(playerid, 1);
 	}
 
@@ -8675,9 +8637,9 @@ function timer_LoadPlayerAfterSpawn(playerid)
 	TextDrawHideForPlayer(playerid, blackTD);
 
 	new
-	    S_statLogin[256] = "> ätatistiky: {ffffff}",
+	    S_statLogin[256] = "> Stats: {ffffff}",
 	    S_tempStrig[256];
-    format(S_tempStrig, 256, "éivot (%.1f%%) - Vesta (%.1f%%) - Hlad (%.1f%%) - Hotovosù ($%.2f)", F_Health, F_Armour, F_Hunger, I_Money);
+    format(S_tempStrig, 256, "Health (%.1f%%) - Armour (%.1f%%) - Hunger (%.1f%%) - Cash ($%.2f)", F_Health, F_Armour, F_Hunger, I_Money);
 	strcat(S_statLogin, S_tempStrig);
 	SendClientMessage(playerid, 0xD0D0D0FF, S_statLogin);
 
@@ -8789,7 +8751,7 @@ function timer_LoadPlayerAfterSpawn(playerid)
 	mysql_tquery(MYSQL, S_query);
 
 	if(haveguns == 1)
-	    SendClientMessage(playerid, 0xD0D0D0FF, "> Pr·zdne zbrane: M·ö nejakÈ pr·zdne zbrane! Pouûi /myguns!");
+	    SendClientMessage(playerid, 0xD0D0D0FF, "> Empty Weapons: You have some empty weapons! Use /myguns!");
 
 	/* DRUGS SYSTEM */
 	mysql_format(MYSQL, S_query, sizeof(S_query), "SELECT * FROM char_drugs_inv WHERE Username = '%e'", srvcharname[playerid]);
@@ -8884,11 +8846,11 @@ function timer_LoadPlayerAfterSpawn(playerid)
 	}
 
 	if(IsPlayerWorking(playerid) && GetPlayerFaction(playerid) > 0)
-	    SendClientMessage(playerid, COLOR_ADMINCMD, "> {ffffff}Nezabudni, ûe tvoj charakter je moment·lne v sluûbe!");
+	    SendClientMessage(playerid, COLOR_ADMINCMD, "> {ffffff}You are on duty!");
 
     if(g_I_paydayTime[playerid] > 1739 && g_I_VyplataExpire[playerid] > gettime() + 5)
    	{
-    	SCFM(playerid, 0xD0D0D0FF, "> Priöla ti v˝plata! Vyzdvihni si ju v Palomino Creek Town Hall prÌkazom /signcheck [ËÌslo öeku], ak chceö!");
+    	SCFM(playerid, 0xD0D0D0FF, "> Payday has come, go get it into nearest Town hall!");
 	    g_B_canHavePayDay[playerid] = true;
 	    g_B_canPickUpPayDay[playerid] = true;
 
@@ -8897,7 +8859,7 @@ function timer_LoadPlayerAfterSpawn(playerid)
 		new
 			tdStr[64];
 
-		format(tdStr, sizeof tdStr, "Cislo seku: ~w~%04d", payDayCheck[playerid]);
+		format(tdStr, sizeof tdStr, "Payday: ~w~%04d", payDayCheck[playerid]);
 
 		PlayerTextDrawShow(playerid, TD_vyplaty[playerid][0]);
 	  	PlayerTextDrawSetString(playerid, TD_vyplaty[playerid][0], tdStr);
@@ -8917,7 +8879,7 @@ function timer_LoadPlayerAfterSpawn(playerid)
 	if(isInJail[playerid] == true)
 	{
 
-		SCFM(playerid, COLOR_SERVER, "> Si v admin jaile od administr·tora %s za %s", jail_Admin[playerid], jail_Reason[playerid]);
+		SCFM(playerid, COLOR_SERVER, "> You are in admin jail by %s for %s", jail_Admin[playerid], jail_Reason[playerid]);
 
 		SetPlayerInterior(playerid, 0);
 		SetPlayerVirtualWorld(playerid, playerid+90000);
@@ -8963,7 +8925,7 @@ function timer_LoadPlayerAfterSpawn(playerid)
 
 	if(cache_num_rows() > 0)
 	{
-	    SCFM(playerid, COLOR_LIGHTBLUE2, "> M·ö %d nezaplaten˝ch pok˙t, zaplaù ich v najbliûöej Town Hall!", cache_num_rows());
+	    SCFM(playerid, COLOR_LIGHTBLUE2, "> You have %d unpaid fines!", cache_num_rows());
 	}
 
 	cache_delete(cache);
@@ -8975,7 +8937,7 @@ function timer_LoadPlayerAfterSpawn(playerid)
 
 	if(cache_num_rows() > 0)
 	{
-	    SCFM(playerid, COLOR_LIGHTBLUE2, "> M·ö %d vozidiel na odùahovom parkovisku!", cache_num_rows());
+	    SCFM(playerid, COLOR_LIGHTBLUE2, "> You have %d impounded vehicles!", cache_num_rows());
 	}
 
 	cache_delete(cache);
@@ -9016,13 +8978,13 @@ function timer_LoadPlayerAfterSpawn(playerid)
 	if(vehicleid != 0)
 	{
 		vEnum[vehicleid][v_rentalb_LastUnix] = gettime();
-		SCFM(playerid, COLOR_LIGHTGREEN, "> M·ö prenajat˝ bicykel, vr·ù ho prÌkazom /returnbike!");
+		SCFM(playerid, COLOR_LIGHTGREEN, "> You have rented bike, unrent it with /returnbike!");
 	}
 
     ////////////////////////////////////////////////////////////////////////////
     
     TogglePlayerControllable(playerid, 0);
-    EnterInfo(playerid, "Vydrz prosim, prebieha nacitavanie uctu ...", 100000, 50);
+    EnterInfo(playerid, "Loading ...", 100000, 50);
     donotsave[playerid]=true;
     SetTimerEx("login_loaded", 3000, false, "i", playerid);
 	return 1;
@@ -9032,7 +8994,7 @@ function login_loaded(playerid)
 {
     donotsave[playerid]=false;
 	TogglePlayerControllable(playerid, 1);
-	EnterInfo(playerid, "Ucet bol nacitany, vitaj v hre.", 2000, 51);
+	EnterInfo(playerid, "Account loaded.", 2000, 51);
 
 	new S_query[512], Cache:cache;
 
@@ -9177,7 +9139,7 @@ function timer_HungerTimer(playerid)
 	    new
 			S_string[128];
 
-		format(S_string, sizeof(S_string), "* Zvuky ökv‡kania zo ûal˙dku. (( %s ))", GetPlayerNameEx(playerid, USE_MASK));
+		format(S_string, sizeof(S_string), "* Stomach rumbling. (( %s ))", GetPlayerNameEx(playerid, USE_MASK));
 
 	    BubbleChat(playerid, COLOR_VIOLET, S_string);
 	}
@@ -9490,10 +9452,10 @@ stock drug_playerShowMenu(playerid)
 	    playerid,
 	    did_inv_drugs_menu,
 	    DIALOG_STYLE_LIST,
-	    "VYBER DROGU S KTOROU CHCEä MANIPULOVAç",
+	    "CHOOSE DRUG",
 		finstr,
-		"VYBRAç",
-		"SPAç"
+		"CHOOSE",
+		"BACK"
 	);
 
 
@@ -9509,7 +9471,7 @@ stock drug_showPlayerDrugInv(playerid, forplayerid)
 	    tempstr[128]
 	;
 
-	format(finstr, sizeof finstr, "{7bb875}> Drogy ktorÈ pri sebe m· hr·Ë %s:\n\n{eaeaea}", GetPlayerNameEx(playerid, USE_MASK));
+	format(finstr, sizeof finstr, "{7bb875}> %s's drugs:\n\n{eaeaea}", GetPlayerNameEx(playerid, USE_MASK));
 
 	foreach( new drugid : Drugs )
 	{
@@ -9528,10 +9490,10 @@ stock drug_showPlayerDrugInv(playerid, forplayerid)
 		    forplayerid,
 		    did_inv_drugs,
 		    DIALOG_STYLE_MSGBOX,
-		    "ZOZNAM DROG",
+		    "DRUG LIST",
 		    finstr,
 		    "MENU",
-		    "ZRUäIç"
+		    "CLOSE"
 		);
 	}
 	else
@@ -9540,9 +9502,9 @@ stock drug_showPlayerDrugInv(playerid, forplayerid)
 		    forplayerid,
 		    did_inv_drugs,
 		    DIALOG_STYLE_MSGBOX,
-		    "ZOZNAM DROG",
+		    "DRUG LIST",
 		    finstr,
-		    "ZRUäIç",
+		    "CLOSE",
 		    ""
 		);
 	}
@@ -9617,7 +9579,7 @@ ps_StopBreaking(playerid, type = 0)
 
 	if(type == 2)
     {
-		SendSuccess(playerid, "Vykopal si jamu na rakvu, choÔ vr·tiù lopatu!");
+		SendSuccess(playerid, "You dug a hole!");
 		g_I_playerCheckpoint[playerid] = checkp_pohrebak5;
 	   	fix_SetPlayerCheckpoint(playerid, 2250.604, -52.948, 26.493, 1.0);
 	}
@@ -9704,19 +9666,19 @@ breakin_StopBreaking(playerid, type = 0)
 
 	if(type == 0)
 	{
-		SendClientMessage(playerid, 0xAFAFAFFF, "> Zruöil si p·Ëenie vozidla!");
+		SendClientMessage(playerid, 0xAFAFAFFF, "> Vehicle breaking stopped!");
 
 		if(random(5) == 1)
 		    SetVehiclesAlarm(breakin_vehId[playerid], 1);
 	}
 	else if(type == 1)
 	{
-		SendClientMessage(playerid, 0xAFAFAFFF, "> P·Ëenie bolo ne˙speönÈ!");
+		SendClientMessage(playerid, 0xAFAFAFFF, "> Breakin failed!");
 		SetVehiclesAlarm(breakin_vehId[playerid], 1);
 	}
     else if(type == 2)
     {
-		SendClientMessage(playerid, 0xAFAFAFFF, "> P·Ëenie bolo ˙speönÈ!");
+		SendClientMessage(playerid, 0xAFAFAFFF, "> Breakin successful!");
 		SetVehiclesAlarm(breakin_vehId[playerid], 1);
 
 		ex_SetVehicleLocked(breakin_vehId[playerid], false);
@@ -9849,10 +9811,10 @@ doPlayerLogout(playerid) {
 
 	if(hasConv[playerid] == true)
 	{
-		FormatWarn(-1, "ASSIST -", COLOR_PURPLE, "{ffffff}ID %d sa odpojilo poËas konverz·cie s %s!", playerid, ReturnMaster(dotaz_Conv[playerid]));
-		FormatLog(log_type_assist, "%s((%d) %s - %s) sa odpojil pocas konverzacie s %s((%d) %s - %s)", ReturnName(playerid), playerid, ReturnMaster(playerid), ReturnIP(playerid), ReturnName(dotaz_Conv[playerid]), dotaz_Conv[playerid], ReturnMaster(dotaz_Conv[playerid]), ReturnIP(dotaz_Conv[playerid]));
+		FormatWarn(-1, "ASSIST -", COLOR_PURPLE, "{ffffff}ID %d disconnected during assistance with %s!", playerid, ReturnMaster(dotaz_Conv[playerid]));
+		FormatLog(log_type_assist, "%s((%d) %s - %s) disconnected during assistance with s %s((%d) %s - %s)", ReturnName(playerid), playerid, ReturnMaster(playerid), ReturnIP(playerid), ReturnName(dotaz_Conv[playerid]), dotaz_Conv[playerid], ReturnMaster(dotaz_Conv[playerid]), ReturnIP(dotaz_Conv[playerid]));
 
-		SCFM(dotaz_Conv[playerid], COLOR_PURPLE, "[ ASSIST ] {ffffff}%s(%s) sa odpojil poËas konverz·cie s tebou!", ReturnName(playerid), ReturnMaster(playerid));
+		SCFM(dotaz_Conv[playerid], COLOR_PURPLE, "[ ASSIST ] {ffffff}%s(%s) disconnected during assistance with you!", ReturnName(playerid), ReturnMaster(playerid));
 
 		hasConv[dotaz_Conv[playerid]] = false;
 		dotaz_Conv[dotaz_Conv[playerid]] = 0;
@@ -9862,8 +9824,8 @@ doPlayerLogout(playerid) {
 
 	if(hasDotaz[playerid] == true)
 	{
-	    FormatWarn(-1, "ASSIST -", COLOR_PURPLE, "{ffffff}ID %d zruöil assist: %s", playerid, dotaz_String[playerid]);
-		FormatLog(log_type_assist, "%s((%d) %s - %s) zrusil otazku: %s",ReturnName(playerid), playerid, ReturnMaster(playerid), ReturnIP(playerid), dotaz_String[playerid]);
+	    FormatWarn(-1, "ASSIST -", COLOR_PURPLE, "{ffffff}ID %d removed assist: %s", playerid, dotaz_String[playerid]);
+		FormatLog(log_type_assist, "%s((%d) %s - %s) removed assist: %s",ReturnName(playerid), playerid, ReturnMaster(playerid), ReturnIP(playerid), dotaz_String[playerid]);
 
 		hasDotaz[playerid] = false;
 		dotaz_Time[playerid] = 0;
@@ -10104,7 +10066,7 @@ ShowPlayerCCTVMenu(playerid)
 
 		strcat(str_long, str);
 	}
-	ShowPlayerDialog(playerid, did_mdc_cctv, DIALOG_STYLE_LIST, "MESTSK… KAMERY", str_long, "UK¡ZAç", "SPAç");
+	ShowPlayerDialog(playerid, did_mdc_cctv, DIALOG_STYLE_LIST, "CCTV", str_long, "GO", "BACK");
 	return 1;
 }
 
@@ -10122,7 +10084,7 @@ ShowPlayerWDBMenu(playerid)
 
 		strcat(str_long, str);
 	}
-	ShowPlayerDialog(playerid, did_mdc_cctv, DIALOG_STYLE_LIST, "MESTSK… KAMERY", str_long, "UK¡ZAç", "SPAç");
+	ShowPlayerDialog(playerid, did_mdc_cctv, DIALOG_STYLE_LIST, "CCTV", str_long, "GO", "BACK");
 	return 1;
 }
 
@@ -10145,7 +10107,7 @@ function repcctv(i)
 		if(!IsPlayerWorking(ix))
 			continue;
 
-		SCFM(ix, COLOR_RADIO, "[ Radio - 9112 MHz ] DispeËer: Kamera %s mi znova naskoËila.", CCTVInfo[i][cctv_Name]);
+		SCFM(ix, COLOR_RADIO, "[ Radio - 9112 MHz ] Dispatcher: Camera %s is up now.", CCTVInfo[i][cctv_Name]);
 	}
 
 	return 1;
@@ -10165,7 +10127,7 @@ ShowPlayerCCTVMenuFD(playerid)
 
 		strcat(str_long, str);
 	}
-	ShowPlayerDialog(playerid, did_fos_cctv, DIALOG_STYLE_LIST, "MESTSK… KAMERY", str_long, "UK¡ZAç", "SPAç");
+	ShowPlayerDialog(playerid, did_fos_cctv, DIALOG_STYLE_LIST, "CCTV", str_long, "GO", "BACK");
 	return 1;
 }
 
@@ -10183,7 +10145,7 @@ ShowPlayerCCTVMenuEx(playerid)
 
 		strcat(str_long, str);
 	}
-	ShowPlayerDialog(playerid, did_cctv, DIALOG_STYLE_LIST, "MESTSK… KAMERY", str_long, "UK¡ZAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_cctv, DIALOG_STYLE_LIST, "CCTV", str_long, "GO", "CLOSE");
 	return 1;
 }
 
@@ -10254,7 +10216,7 @@ ShowPlayerGoldMenu_1(playerid)
 	format(
 	    S_caption,
 	    sizeof S_caption,
-	    "{eeeeee}KREDIT-MENU [M¡ä {FFCC50}%d KREDITOV{EEEEEE}]",
+	    "{eeeeee}COIN MENU [YOU HAVE {FFCC50}%d COINS{EEEEEE}]",
 	    g_I_mince[playerid]
 	);
 
@@ -10264,7 +10226,7 @@ ShowPlayerGoldMenu_1(playerid)
 	    S_caption,
 	    "{FFFFFF}> Zadaj prosÌm nov˙ SPZ tohoto auta!\nMusÌ maù 2-9 znakov (obsahovaù mÙûe iba: A-Z;0-9; ;_;$).\nT·to akcia je nevratn·.",
 	    "OK",
-	    "SPAç"
+	    "BACK"
 	);
 
 	return 1;
@@ -10289,7 +10251,7 @@ ShowPlayerGoldMenu_2(playerid)
 	    S_caption,
 	    "{FFFFFF}> Zadaj prosÌm tvoje novÈ telefÛnne ËÌslo!\nMusÌ maù 5-9 cifier.\nT·to akcia je nevratn·.",
 	    "OK",
-	    "SPAç"
+	    "BACK"
 	);
 
 	return 1;
@@ -10349,7 +10311,7 @@ ShowPlayerGoldMenu_Lease(playerid)
 
 	format(finalString, sizeof finalString, "{ffffff}> PredÂûenie {f4d142}Donator Levelu %d {ffffff}stojÌ {f4d142}%d kreditov {ffffff}na jeden deÚ.\nZadaj poËet dnÌ, o koæko chceö level predÂûiù.", GetPlayerDonatorLevel(playerid), cena);
 
-	ShowPlayerDialog(playerid, did_goldmenu_donor, DIALOG_STYLE_INPUT, "PRED≈éIç DONATOR LEVEL", finalString, "PRED≈éIç", "SPAç");
+	ShowPlayerDialog(playerid, did_goldmenu_donor, DIALOG_STYLE_INPUT, "PRED≈éIç DONATOR LEVEL", finalString, "PRED≈éIç", "BACK");
 	return 1;
 }
 
@@ -10380,8 +10342,8 @@ ShowPlayerGoldMenu(playerid)
 		did_goldmenu, DIALOG_STYLE_LIST,
 	    S_caption,
 	    S_string,
-	    "VYBRAç",
-	    "ZRUäIç"
+	    "CHOOSE",
+	    "CLOSE"
 	);
 
 	return 1;
@@ -10599,7 +10561,7 @@ ShowPlayerWhitelistDetail(playerid, const count)
 	wl_verdikt[playerid] = false;
 	wl_count[playerid] = count;
 
-	ShowPlayerDialog(playerid, did_whitelist_detail, DIALOG_STYLE_TABLIST_HEADERS, "WHITELIST (DETAIL)", query, "VYBRAç", "SPAç");
+	ShowPlayerDialog(playerid, did_whitelist_detail, DIALOG_STYLE_TABLIST_HEADERS, "WHITELIST (DETAIL)", query, "CHOOSE", "BACK");
 
 	return 1;
 }
@@ -10778,7 +10740,7 @@ ShowPlayerGraffitiMenu(playerid, const id)
 	    retResolStringFromInt(graffitiEnum[id][graffiti_MatSize])
 	);
 
-	ShowPlayerDialog(playerid, did_graffiti_menu, DIALOG_STYLE_LIST, "TVORBA SPRAY TAGU", finalString, "ZVOLIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_graffiti_menu, DIALOG_STYLE_LIST, "TVORBA SPRAY TAGU", finalString, "ZVOLIç", "CLOSE");
 
 	return (true);
 
@@ -11350,7 +11312,7 @@ ShowBoomboxDetail(playerid, count)
 
 	cache_delete(cache);
 
-	return ShowPlayerDialog(playerid, did_boombox_menu, DIALOG_STYLE_LIST, "STANICA", "Spustiù r·dio\nVymazaù stanicu", "VYBRAç", "SPAç");
+	return ShowPlayerDialog(playerid, did_boombox_menu, DIALOG_STYLE_LIST, "STANICA", "Spustiù r·dio\nVymazaù stanicu", "CHOOSE", "BACK");
 
 }
 
@@ -11369,7 +11331,7 @@ ShowCarRadioDetail(playerid, count)
 
 	cache_delete(cache);
 
-	return ShowPlayerDialog(playerid, did_carradio_menu, DIALOG_STYLE_LIST, "STANICA", "Spustiù r·dio\nVymazaù stanicu", "VYBRAç", "SPAç");
+	return ShowPlayerDialog(playerid, did_carradio_menu, DIALOG_STYLE_LIST, "STANICA", "Spustiù r·dio\nVymazaù stanicu", "CHOOSE", "BACK");
 
 }
 
@@ -11894,7 +11856,7 @@ ShowPlayerAmmoShop(playerid)
 	format(string, sizeof(string), "%s{ffffff}KrabiËka 150 n·bojov\t{2fb838}315$\n", string);
 	format(string, sizeof(string), "%s{ffffff}KrabiËka 500 n·bojov\t{2fb838}1000$\n", string);
 
-	ShowPlayerDialog(playerid, did_buy_ammo, DIALOG_STYLE_TABLIST, "N¡KUP N¡BOJOV", string, "K⁄PIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_buy_ammo, DIALOG_STYLE_TABLIST, "N¡KUP N¡BOJOV", string, "K⁄PIç", "CLOSE");
 
 	return 1;
 
@@ -11969,7 +11931,7 @@ Attachment_Show(playerid)
 		strcat(content, tempstring);
 	}
 
-	ShowPlayerDialog(playerid, did_clothing, DIALOG_STYLE_LIST, "TVOJE DOPLNKY", content, "VYBRAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_clothing, DIALOG_STYLE_LIST, "TVOJE DOPLNKY", content, "CHOOSE", "CLOSE");
 
 	return 1;
 
@@ -12103,7 +12065,7 @@ Attachment_AddNew_Bone(playerid)
 
 	content[strlen(content) - 1] = 0;
 
-	ShowPlayerDialog(playerid, did_clothing_new_bone, DIALOG_STYLE_LIST, "PRIDAç DOPLNOK", content, "VYBRAç", "SPAç");
+	ShowPlayerDialog(playerid, did_clothing_new_bone, DIALOG_STYLE_LIST, "PRIDAç DOPLNOK", content, "CHOOSE", "BACK");
 
 	return 1;
 
@@ -12212,7 +12174,7 @@ Attachment_ShowItem(playerid, requested, edititem = -1)
     format(tempstring, sizeof tempstring, "{f45555}Zmazaù doplnok");
     strcat(finalstring, tempstring);
 
-    ShowPlayerDialog(playerid, did_clothing_menu, DIALOG_STYLE_LIST, "DOPLNOK", finalstring, "VYBRAç", "ZRUäIç");
+    ShowPlayerDialog(playerid, did_clothing_menu, DIALOG_STYLE_LIST, "DOPLNOK", finalstring, "CHOOSE", "CLOSE");
 
 	return 1;
 
@@ -12233,7 +12195,7 @@ Attachment_EditBone(playerid)
 
 	content[strlen(content) - 1] = 0;
 
-	ShowPlayerDialog(playerid, did_clothing_menu_bone, DIALOG_STYLE_LIST, "UPRAVIç KOSç", content, "VYBRAç", "SPAç");
+	ShowPlayerDialog(playerid, did_clothing_menu_bone, DIALOG_STYLE_LIST, "UPRAVIç KOSç", content, "CHOOSE", "BACK");
 
 	return 1;
 
@@ -12254,7 +12216,7 @@ Attachment_ShowColorPalette(playerid)
 
 	content[strlen(content) - 1] = 0;
 
-	ShowPlayerDialog(playerid, did_clothing_menu_color, DIALOG_STYLE_LIST, "UPRAVIç KOSç", content, "VYBRAç", "SPAç");
+	ShowPlayerDialog(playerid, did_clothing_menu_color, DIALOG_STYLE_LIST, "UPRAVIç KOSç", content, "CHOOSE", "BACK");
 
 	return 1;
 
@@ -12536,7 +12498,7 @@ ShowPDCallDetails(playerid, listitem)
 		Caller, getdateunix(Date), Location, FromNumber, handlers, Situation);
 
 	return ShowPlayerDialog(playerid, did_mdc_call, DIALOG_STYLE_MSGBOX, "MOBILE DATABASE COMPUTER",
-	    finalString, "MENU", "SPAç");
+	    finalString, "MENU", "BACK");
 }
 
 ShowFDCallDetails(playerid, listitem)
@@ -12578,7 +12540,7 @@ ShowFDCallDetails(playerid, listitem)
 		Caller, getdateunix(Date), Location, FromNumber, Situation);
 
 	return ShowPlayerDialog(playerid, did_fos_call, DIALOG_STYLE_MSGBOX, "FIRE OPERATING SYSTEM",
-	    finalString, "MENU", "SPAç");
+	    finalString, "MENU", "BACK");
 }
 
 ShowPlayerLastCallsFD(playerid)
@@ -12611,7 +12573,7 @@ ShowPlayerLastCallsFD(playerid)
 	cache_delete(query);
 
 	ShowPlayerDialog(playerid, did_fos_calls, DIALOG_STYLE_TABLIST_HEADERS, "FIRE OPERATING SYSTEM",
-	    finalString, "DETAIL", "SPAç");
+	    finalString, "DETAIL", "BACK");
 
 	return 1;
 
@@ -12651,7 +12613,7 @@ ShowPlayerLastCallsPD(playerid)
 	cache_delete(query);
 
 	ShowPlayerDialog(playerid, did_mdc_calls, DIALOG_STYLE_TABLIST_HEADERS, "MOBILE DATABASE COMPUTER",
-	    finalString, "DETAIL", "SPAç");
+	    finalString, "DETAIL", "BACK");
 
 	return 1;
 
@@ -12682,7 +12644,7 @@ ShowPlayerMDC_DetailVeh_Want(playerid)
 	else
 	{
 	    return ShowPlayerDialog(playerid, did_mdc_vehicle_detail_want, DIALOG_STYLE_INPUT, "MOBILE DATABASE COMPUTER",
-	    	"{ffffff}> Zadajte prosÌm, zaËo je toto vozidlo hladanÈ!", "OK", "SPAç");
+	    	"{ffffff}> Zadajte prosÌm, zaËo je toto vozidlo hladanÈ!", "OK", "BACK");
 	}
 
 	return ShowPlayerMDC_DetailVehicle(playerid, mdc_SPZ[playerid]);
@@ -12777,7 +12739,7 @@ ShowPlayerMDC_DetailVehicle(playerid, spz[])
 
 	cache_delete(cache);
 
-	ShowPlayerDialog(playerid, did_mdc_vehicle_detail, DIALOG_STYLE_LIST, caption, finalString, "VYBRAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_mdc_vehicle_detail, DIALOG_STYLE_LIST, caption, finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 
@@ -12791,7 +12753,7 @@ ShowPlayerMDC_DetailPerson_AFin(playerid)
 		did_mdc_pokuta_add, DIALOG_STYLE_INPUT,
 		"PRIDAç POKUTU",
 		"{FFFFFF}> Zadaj prosÌm sumu pokuty v rozmedzÌ 1-20000$!",
-		"œALEJ", "SPAç"
+		"œALEJ", "BACK"
 	);
 	return 1; //ShowPlayerMDC_DetailPerson(playerid, mdc_Username[playerid]);
 
@@ -12801,7 +12763,7 @@ ShowPlayerMDC_DetailPerson_ACin(playerid)
 {
 
 	ShowPlayerDialog(playerid, did_mdc_add_cin, DIALOG_STYLE_INPUT, "MOBILE DATABASE COMPUTER", "{ffffff}> Zadajte prosÌm, Ëoho sa t·to osoba dopustila.",
-	    "PRIDAç", "SPAç");
+	    "PRIDAç", "BACK");
 
 	return 1;
 
@@ -13225,7 +13187,7 @@ ShowPlayerMDC_DetailPerson_LFin(playerid)
 
 	cache_delete(cache);
 
-	ShowPlayerDialog(playerid, did_mdc_fines, DIALOG_STYLE_TABLIST_HEADERS, "POKUTY", finalString, "VYMAZAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_mdc_fines, DIALOG_STYLE_TABLIST_HEADERS, "POKUTY", finalString, "VYMAZAç", "CLOSE");
 
 	return 1;
 }
@@ -13264,7 +13226,7 @@ ShowPlayerMDC_DetailPerson_LCin(playerid)
 
 	cache_delete(cache);
 
-	ShowPlayerDialog(playerid, did_mdc_ciny, DIALOG_STYLE_TABLIST_HEADERS, "TRESTN… »INY", finalString, "VYMAZAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_mdc_ciny, DIALOG_STYLE_TABLIST_HEADERS, "TRESTN… »INY", finalString, "VYMAZAç", "CLOSE");
 
 	return 1;
 }
@@ -13526,7 +13488,7 @@ ShowPlayerPhoneMenu(playerid)
 
 	strcat(finalString, tempString);
 
-	ShowPlayerDialog(playerid, did_phone, DIALOG_STYLE_TABLIST_HEADERS, "TELEF”N", finalString, "ZVOLIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_phone, DIALOG_STYLE_TABLIST_HEADERS, "TELEF”N", finalString, "ZVOLIç", "CLOSE");
 
 	return 1;
 
@@ -13588,7 +13550,7 @@ ShowPlayerPhoneDial(playerid)
 	format(tempString, sizeof tempString, "{ffffff}> Zadajte prosÌm telefÛnne ËÌslo, ktorÈ chcete vytoËiù.\n\nUûitoËnÈ ËÌsla:\n\t911 (Emergency Services)\n\r\t222-444-666 (Taxi Service)\n\r\t8778 (Red County News Network)\n\r\t333 (Hayes' Home Service)");
 	strcat(finalString, tempString);
 
-	ShowPlayerDialog(playerid, did_phone_dial, DIALOG_STYLE_INPUT, "TELEF”N - VYTO»Iç", finalString, "VOLAç", "SPAç");
+	ShowPlayerDialog(playerid, did_phone_dial, DIALOG_STYLE_INPUT, "TELEF”N - VYTO»Iç", finalString, "VOLAç", "BACK");
 
 	return 1;
 }
@@ -14819,7 +14781,7 @@ ShowPlayerPhoneSendMsg(playerid)
 {
 
 	ShowPlayerDialog(playerid, did_phone_msg_1, DIALOG_STYLE_INPUT, "TELEF”N - NOV¡ SPR¡VA",
-	    "{ffffff}> Zadajte prosÌm telefÛnne ËÌslo na ktorÈ chcete spr·vu odoslaù!\n\n(1444 - podanie inzer·tu, 6$/znak)", "œALEJ", "ZRUäIç");
+	    "{ffffff}> Zadajte prosÌm telefÛnne ËÌslo na ktorÈ chcete spr·vu odoslaù!\n\n(1444 - podanie inzer·tu, 6$/znak)", "œALEJ", "CLOSE");
 
 	return 1;
 }
@@ -14827,7 +14789,7 @@ ShowPlayerPhoneSendMsg(playerid)
 ShowPlayerPhoneSendMsgText(playerid)
 {
     ShowPlayerDialog(playerid, did_phone_msg_2, DIALOG_STYLE_INPUT, "TELEF”N - NOV¡ SPR¡VA",
-	    "{ffffff}> Zadajte prosÌm text, ak˝ chcete na ËÌslo odoslaù!", "ODOSLAç", "SPAç");
+	    "{ffffff}> Zadajte prosÌm text, ak˝ chcete na ËÌslo odoslaù!", "ODOSLAç", "BACK");
 
 	return 1;
 }
@@ -14871,7 +14833,7 @@ ShowPlayerPhoneMessages(playerid)
 
 	cache_delete(c);
 
-	ShowPlayerDialog(playerid, did_phone_last_msg, DIALOG_STYLE_TABLIST_HEADERS, "TELEF”N - SPR¡VY", finalString, "DETAIL", "SPAç");
+	ShowPlayerDialog(playerid, did_phone_last_msg, DIALOG_STYLE_TABLIST_HEADERS, "TELEF”N - SPR¡VY", finalString, "DETAIL", "BACK");
 
 	return 1;
 }
@@ -14907,7 +14869,7 @@ ShowPlayerPhoneContacts(playerid)
 
 	cache_delete(c);
 
-	ShowPlayerDialog(playerid, did_phone_contacts, DIALOG_STYLE_TABLIST_HEADERS, "TELEF”N - KONTAKTY", finalString, "MENU", "SPAç");
+	ShowPlayerDialog(playerid, did_phone_contacts, DIALOG_STYLE_TABLIST_HEADERS, "TELEF”N - KONTAKTY", finalString, "MENU", "BACK");
 
 	return 1;
 }
@@ -15118,7 +15080,7 @@ ShowPlayerVehicleInventory(playerid, vehicleid)
 	strcat(finalString, tString);
 
 
-	ShowPlayerDialog(playerid, did_trunk, DIALOG_STYLE_LIST, "KUFOR VOZIDLA", finalString, "ZVOLIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_trunk, DIALOG_STYLE_LIST, "KUFOR VOZIDLA", finalString, "ZVOLIç", "CLOSE");
 
 	return 1;
 }
@@ -15177,7 +15139,7 @@ ShowPlayerUpgradeShop(playerid)
 	else
 		format(finalString, 1024, "Produkt\tCena\n{ffffff}Oprava vozidla\t{57985f}%d$\n{ffffff}Autor·dio\t{57985f}320$\n{ffffff}Prefarbenie vozidla\t{57985f}1500$", repPrice);
 
-	ShowPlayerDialog(playerid, did_upgrade_shop, DIALOG_STYLE_TABLIST_HEADERS, "MECHANICS", finalString, "K⁄PIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_upgrade_shop, DIALOG_STYLE_TABLIST_HEADERS, "MECHANICS", finalString, "K⁄PIç", "CLOSE");
 
 	return 1;
 }
@@ -15240,7 +15202,7 @@ function gps_OpenGPS(playerid)
 		strcat(tstring, "\n");
 	}
 
-	ShowPlayerDialog(playerid, did_gps, DIALOG_STYLE_LIST, "GPS", tstring, "VYBRAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_gps, DIALOG_STYLE_LIST, "GPS", tstring, "CHOOSE", "CLOSE");
 
     return 1;
 }
@@ -15262,7 +15224,7 @@ function gps_OpenGPSEx(playerid)
 		strcat(tstring, "\n");
 	}
 
-	ShowPlayerDialog(playerid, did_gpsex, DIALOG_STYLE_LIST, "GPS (PRE ZMAZANIE VYBER)", tstring, "VYBRAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_gpsex, DIALOG_STYLE_LIST, "GPS (PRE ZMAZANIE VYBER)", tstring, "CHOOSE", "CLOSE");
 
     return 1;
 }
@@ -15364,7 +15326,7 @@ ShowPlayerIllegalStore(playerid)
 	format(tString, 128, "{e57070}Objednaù\t{e57070}%d$", cena+ILLEGAL_STORE_SHIPPING);
 	strcat(finalString, tString);
 
-	ShowPlayerDialog(playerid, did_illegal_store, DIALOG_STYLE_TABLIST_HEADERS, "»IERNY TRH", finalString, "VYBRAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_illegal_store, DIALOG_STYLE_TABLIST_HEADERS, "»IERNY TRH", finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 
@@ -15662,7 +15624,7 @@ ShowPlayerCrateInventory(playerid, const crateid)
 	        GetCrateItemName(crateEnum[crateid][crate_Kevlar_Slot_3])
 	 );
 
-	ShowPlayerDialog(playerid, did_crate, DIALOG_STYLE_LIST, "DREVEN¡ KRABICA", finalString, "VYBRAç", "ZAVRIEç");
+	ShowPlayerDialog(playerid, did_crate, DIALOG_STYLE_LIST, "DREVEN¡ KRABICA", finalString, "CHOOSE", "ZAVRIEç");
 
 	return 1;
 }
@@ -16058,7 +16020,7 @@ ShowPlayerFines(playerid)
 
 	cache_delete(cache);
 
-	ShowPlayerDialog(playerid, did_fines, DIALOG_STYLE_TABLIST_HEADERS, "POKUTY", finalString, "ZOBRAZIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_fines, DIALOG_STYLE_TABLIST_HEADERS, "POKUTY", finalString, "ZOBRAZIç", "CLOSE");
 
 	return 1;
 }
@@ -16180,7 +16142,7 @@ ShowPlayerFineDetail(playerid, count, Sumae = 0, Datee = 0)
 	    Officer, Dovod, Suma, getdateunix(Date), paidstr);
 
 	if(Paid == 0)
-		ShowPlayerDialog(playerid, did_fine, DIALOG_STYLE_MSGBOX, "POKUTA", finalString, "ZAPLATIç", "ZRUäIç");
+		ShowPlayerDialog(playerid, did_fine, DIALOG_STYLE_MSGBOX, "POKUTA", finalString, "ZAPLATIç", "CLOSE");
 	else
 	    ShowPlayerDialog(playerid, did_fine, DIALOG_STYLE_MSGBOX, "POKUTA", finalString, "OK", "");
 
@@ -16542,14 +16504,14 @@ CreateDMVVehicle(playerid)
 
 StartLearning(playerid)
 {
-	SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Vozidlo mÙûeö naötartovaù prÌkazom /motor alebo drûanÌm kl·vesy N (default).");
-	SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Pred jazdou si zapni p·sy (/pasy), alebo si nasaÔ helmu (RP/doplnok).");
-	SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Svetl· mÙûeö zapn˙ù drûanÌm + (default) alebo prÌkazom /svetla. Zapni ich podæa znenia z·kona.");
-	SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ]");
-	SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Vpravo vidÌö ötatistiky, Ëas a maxim·lnu povolen˙ r˝chlosù. R˝chlosù dodrûuj, jazdi bezpeËne.");
-	SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Naötartuj, zabezpeË sa a pokraËuj po Ëerven˝ch checkpointoch.");
-	SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Ak by sa nieËo stalo, mÙûeö pouûiù /zrusittest, ale peniaze nebud˙ vr·tenÈ.");
-	SCFM(playerid, COLOR_ADMINCMD, "[ AUTOäKOLA ] {ffffff}V meste je povolen· r˝chlosù 40MPH, mimo mesta Ëi na dialnici 60MPH.");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Vozidlo mÙûeö naötartovaù prÌkazom /motor alebo drûanÌm kl·vesy N (default).");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Pred jazdou si zapni p·sy (/pasy), alebo si nasaÔ helmu (RP/doplnok).");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Svetl· mÙûeö zapn˙ù drûanÌm + (default) alebo prÌkazom /svetla. Zapni ich podæa znenia z·kona.");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ]");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Vpravo vidÌö ötatistiky, Ëas a maxim·lnu povolen˙ r˝chlosù. R˝chlosù dodrûuj, jazdi bezpeËne.");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Naötartuj, zabezpeË sa a pokraËuj po Ëerven˝ch checkpointoch.");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Ak by sa nieËo stalo, mÙûeö pouûiù /zrusittest, ale peniaze nebud˙ vr·tenÈ.");
+	SCFM(playerid, COLOR_ADMINCMD, "[ DRIVING SCHOOL ] {ffffff}V meste je povolen· r˝chlosù 40MPH, mimo mesta Ëi na dialnici 60MPH.");
 
 	DMV_checkpoint[playerid] = 0;
 	DMV_warn[playerid] = 0;
@@ -16612,24 +16574,24 @@ FinishDMV(playerid)
 	{
 		DestroyDMV(playerid);
 		FormatLog(log_type_buythings, "%s(%s) zlyhal v teste na opravnenie (poskodenie)!", ReturnName(playerid), ReturnIP(playerid));
-		return SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Je n·m æ˙to, ale poökodil si vozidlo a tvoj test bol ne˙speön˝.");
+		return SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Je n·m æ˙to, ale poökodil si vozidlo a tvoj test bol ne˙speön˝.");
 	}
 	else if((DMV_license[playerid] == LICENSE_A || DMV_license[playerid] == LICENSE_B || DMV_license[playerid] == LICENSE_C) && DMV_time[playerid][0] >= 10)
 	{
 		DestroyDMV(playerid);
 		FormatLog(log_type_buythings, "%s(%s) zlyhal v teste na opravnenie (cas)!", ReturnName(playerid), ReturnIP(playerid));
-		return SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Je n·m æ˙to, ale jazda ti trvala moc dlho a tvoj test bol ne˙speön˝.");
+		return SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Je n·m æ˙to, ale jazda ti trvala moc dlho a tvoj test bol ne˙speön˝.");
 	}
 	/*else if(DMV_warn[playerid] >= 7)
 	{
 	    DestroyDMV(playerid);
 		FormatLog(log_type_buythings, "%s(%s) zlyhal v teste na opravnenie (rychlost)!", ReturnName(playerid), ReturnIP(playerid));
-		return SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Je n·m æ˙to, ale jazda bola r˝chla (viac ako 3 mÌle navyöe) a tvoj test bol ne˙speön˝.");
+		return SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Je n·m æ˙to, ale jazda bola r˝chla (viac ako 3 mÌle navyöe) a tvoj test bol ne˙speön˝.");
 	}*/
 
 	DestroyDMV(playerid);
 
-	SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Gratulujem. Tvoj test bol ˙speön˝. Uûi si svoje novÈ opr·vnenie!");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Gratulujem. Tvoj test bol ˙speön˝. Uûi si svoje novÈ opr·vnenie!");
 
 	web_LatestFormat("%s dokoncil test z autoskoly", GetPlayerNameEx(playerid, NO_MASK));
 
@@ -16807,7 +16769,7 @@ ShowDMVInfo(playerid, license)
 
 	DMV_license[playerid] = license;
 
-	ShowPlayerDialog(playerid, did_dmv_info, DIALOG_STYLE_MSGBOX, "AUTOäKOLA", finalString, "¡NO", "NIE");
+	ShowPlayerDialog(playerid, did_dmv_info, DIALOG_STYLE_MSGBOX, "DRIVING SCHOOL", finalString, "¡NO", "NIE");
 
 	return 1;
 }
@@ -16852,7 +16814,7 @@ ShowDMV(playerid)
 	/*
 	    SHOW DIALOG TO PLAYER
 	*/
-	ShowPlayerDialog(playerid, did_dmv, DIALOG_STYLE_TABLIST, "AUTOäKOLA", finalString, "INFO", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_dmv, DIALOG_STYLE_TABLIST, "DRIVING SCHOOL", finalString, "INFO", "CLOSE");
 	return 1;
 }
 
@@ -17170,7 +17132,7 @@ Impound_ShowNearVehicles(playerid)
 
 	impound_veharr[playerid][0] = vid+1;
 
-	ShowPlayerDialog(playerid, did_impound_add_select, DIALOG_STYLE_TABLIST_HEADERS, "VYBER VOZIDLO", finalstr, "VYBRAç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_impound_add_select, DIALOG_STYLE_TABLIST_HEADERS, "VYBER VOZIDLO", finalstr, "CHOOSE", "CLOSE");
 
 	return 1;
 }
@@ -17717,7 +17679,7 @@ ShowPlayerSkinStorage(playerid)
 
 	strcat(finalString, tempString);
 
-	ShowPlayerDialog(playerid, did_skinstorage_choose, DIALOG_STYLE_LIST, "VYBRAç SKIN", finalString, "VYBRAç", "ZAVRIEç");
+	ShowPlayerDialog(playerid, did_skinstorage_choose, DIALOG_STYLE_LIST, "CHOOSE SKIN", finalString, "CHOOSE", "ZAVRIEç");
 
 	return 1;
 }
@@ -17900,7 +17862,7 @@ ShowPlayerSDLocker_Guns(playerid)
 	    strcat(finalString, "\n");
 	}
 
-	ShowPlayerDialog(playerid, did_locker_sd_guns, DIALOG_STYLE_LIST, "ZBROJNICA", finalString, "VYBRAç", "ZAVRIEç");
+	ShowPlayerDialog(playerid, did_locker_sd_guns, DIALOG_STYLE_LIST, "ZBROJNICA", finalString, "CHOOSE", "ZAVRIEç");
 
 	return 1;
 
@@ -17933,7 +17895,7 @@ ShowPlayerSDLocker(playerid)
 	strcat(finalString, "{d64d4d}Podaù v˝poveÔ\n");
 
 	ShowPlayerDialog(
-		playerid, did_locker_sd, DIALOG_STYLE_LIST, caption, finalString, "VYBRAç", "ZAVRIEç"
+		playerid, did_locker_sd, DIALOG_STYLE_LIST, caption, finalString, "CHOOSE", "ZAVRIEç"
 	);
 	return 1;
 
@@ -17966,7 +17928,7 @@ ShowPlayerFDLocker(playerid)
 	strcat(finalString, "{d64d4d}Podaù v˝poveÔ\n");
 
 	ShowPlayerDialog(
-		playerid, did_locker_fd, DIALOG_STYLE_LIST, caption, finalString, "VYBRAç", "ZAVRIEç"
+		playerid, did_locker_fd, DIALOG_STYLE_LIST, caption, finalString, "CHOOSE", "ZAVRIEç"
 	);
 	return 1;
 
@@ -17984,7 +17946,7 @@ ShowPlayerFDLocker_Guns(playerid)
 	    strcat(finalString, "\n");
 	}
 
-	ShowPlayerDialog(playerid, did_locker_fd_guns, DIALOG_STYLE_LIST, "ZBROJNICA", finalString, "VYBRAç", "ZAVRIEç");
+	ShowPlayerDialog(playerid, did_locker_fd_guns, DIALOG_STYLE_LIST, "ZBROJNICA", finalString, "CHOOSE", "ZAVRIEç");
 
 	return 1;
 
@@ -18459,7 +18421,7 @@ ShowPlayerBuyFoodMenu(playerid, menuid)
 	    }
 	}
 
-	ShowPlayerDialog(playerid, menuid, DIALOG_STYLE_TABLIST_HEADERS, S_caption, S_finalString, "K⁄PIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, menuid, DIALOG_STYLE_TABLIST_HEADERS, S_caption, S_finalString, "K⁄PIç", "CLOSE");
 
 	return 1;
 }
@@ -18696,7 +18658,7 @@ ShowPlayerMenu(playerid, menuid)
 			return ShowSkinShop(playerid);
 	    }
 
-	    // Autoökola
+	    // DRIVING SCHOOL
 	    case menut_dmv:
 	    {
 			return ShowDMV(playerid);
@@ -18715,7 +18677,7 @@ ShowPlayerMenu(playerid, menuid)
 	    }
 	}
 
-	ShowPlayerDialog(playerid, menuid, DIALOG_STYLE_TABLIST_HEADERS, S_caption, S_finalString, "K⁄PIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, menuid, DIALOG_STYLE_TABLIST_HEADERS, S_caption, S_finalString, "K⁄PIç", "CLOSE");
 
 	return 1;
 }
@@ -18726,7 +18688,7 @@ ShowPlayerBank(playerid)
 	ShowPlayerDialog(playerid, did_banka, DIALOG_STYLE_TABLIST,
 	    "NOV… KONTO",
 		"{ffffff}Vytvoriù bankovÈ konto\t{47b059}50$\n{ffffff}Vloûiù peniaze na konto\nZÌskaù kreditn˙ kartu\nMoje bankovÈ kont·",
-		"VYBRAç", "ZAVRIEç");
+		"CHOOSE", "ZAVRIEç");
 
 	return 1;
 }
@@ -19006,7 +18968,7 @@ ShowPlayerFactionMember(playerid, counts)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_Faction_Member, DIALOG_STYLE_TABLIST, S_caption, S_finalString, "UPRAVIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_Faction_Member, DIALOG_STYLE_TABLIST, S_caption, S_finalString, "UPRAVIç", "CLOSE");
 
 	return 1;
 }
@@ -19079,7 +19041,7 @@ ShowPlayerIFactionMember(playerid, counts)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_I_Faction_Member, DIALOG_STYLE_TABLIST, S_caption, S_finalString, "UPRAVIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_I_Faction_Member, DIALOG_STYLE_TABLIST, S_caption, S_finalString, "UPRAVIç", "CLOSE");
 
 	return 1;
 }
@@ -19117,7 +19079,7 @@ DeletePlayerBankAccounts(playerid, forplayerid = -11)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(forplayerid, did_banka_accs, DIALOG_STYLE_TABLIST_HEADERS, "BANKOV… KONT¡", S_finalString, "VYMAZAç", "SPAç");
+	ShowPlayerDialog(forplayerid, did_banka_accs, DIALOG_STYLE_TABLIST_HEADERS, "BANKOV… KONT¡", S_finalString, "VYMAZAç", "BACK");
 
 	return 1;
 }
@@ -19152,7 +19114,7 @@ AddPlayerBankDollar(playerid)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_banka_add, DIALOG_STYLE_TABLIST_HEADERS, "ZVOL KONTO", S_finalString, "VYBRAç", "SPAç");
+	ShowPlayerDialog(playerid, did_banka_add, DIALOG_STYLE_TABLIST_HEADERS, "ZVOL KONTO", S_finalString, "CHOOSE", "BACK");
 
 	return 1;
 }
@@ -19187,7 +19149,7 @@ PlayerBankCard(playerid)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_banka_card, DIALOG_STYLE_TABLIST_HEADERS, "ZVOL KONTO", S_finalString, "VYBRAç", "SPAç");
+	ShowPlayerDialog(playerid, did_banka_card, DIALOG_STYLE_TABLIST_HEADERS, "ZVOL KONTO", S_finalString, "CHOOSE", "BACK");
 
 	return 1;
 }
@@ -19254,7 +19216,7 @@ ShowPlayerFactionMemb(playerid)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_Faction_Members, DIALOG_STYLE_TABLIST_HEADERS, "»LENOVIA FRAKCIE", S_finalString, "UPRAVIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_Faction_Members, DIALOG_STYLE_TABLIST_HEADERS, "»LENOVIA FRAKCIE", S_finalString, "UPRAVIç", "CLOSE");
 
 	return 1;
 }
@@ -19313,7 +19275,7 @@ ShowPlayerIFactionMemb(playerid)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_I_Faction_Members, DIALOG_STYLE_TABLIST_HEADERS, "»LENOVIA FRAKCIE", S_finalString, "UPRAVIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_I_Faction_Members, DIALOG_STYLE_TABLIST_HEADERS, "»LENOVIA FRAKCIE", S_finalString, "UPRAVIç", "CLOSE");
 
 	return 1;
 }
@@ -19372,7 +19334,7 @@ ShowPlayerOwnFaction(playerid)
 		i, factEnum[i][fact_Name], GetFactionTypeName(factEnum[i][fact_Type]), factEnum[i][fact_Cash], pocetClenov);
 
 	strcat(S_string, S_tempString);
-	ShowPlayerDialog(playerid, did_Frakcia_Own, DIALOG_STYLE_LIST, "FRAKCIA", S_string, "ZVOLIç", "SPAç");
+	ShowPlayerDialog(playerid, did_Frakcia_Own, DIALOG_STYLE_LIST, "FRAKCIA", S_string, "ZVOLIç", "BACK");
 	return 1;
 }
 
@@ -19397,7 +19359,7 @@ ShowPlayerOwnIFaction(playerid)
 		i_factEnum[i][ifact_Name], GetFactionPerms(i_factEnum[i][ifact_Perm_Drug_Marijuana], i_factEnum[i][ifact_Perm_Guns], i_factEnum[i][ifact_Perm_Graffitis]), i_factEnum[i][ifact_Cash], pocetClenov);
 
 	strcat(S_string, S_tempString);
-	ShowPlayerDialog(playerid, did_I_Frakcia_Own, DIALOG_STYLE_LIST, "ILEG¡LNA FRAKCIA", S_string, "ZVOLIç", "SPAç");
+	ShowPlayerDialog(playerid, did_I_Frakcia_Own, DIALOG_STYLE_LIST, "ILEG¡LNA FRAKCIA", S_string, "ZVOLIç", "BACK");
 	return 1;
 }
 
@@ -20175,7 +20137,7 @@ ShowPlayerEditFactionMenu(playerid, listitem)
 		strcat(S_string, S_finalString);
 	}
 
-	ShowPlayerDialog(playerid, did_Frakcie_EditEx, DIALOG_STYLE_LIST, "UPRAVIç FRAKCIU", S_string, "ZVOLIç", "SPAç");
+	ShowPlayerDialog(playerid, did_Frakcie_EditEx, DIALOG_STYLE_LIST, "UPRAVIç FRAKCIU", S_string, "ZVOLIç", "BACK");
 	return 1;
 }
 
@@ -20287,7 +20249,7 @@ ShowPlayerEditIFactionMenu(playerid, listitem)
 		strcat(S_string, S_finalString);
 	}
 
-	ShowPlayerDialog(playerid, did_I_Frakcie_EditEx, DIALOG_STYLE_LIST, "UPRAVIç FRAKCIU", S_string, "ZVOLIç", "SPAç");
+	ShowPlayerDialog(playerid, did_I_Frakcie_EditEx, DIALOG_STYLE_LIST, "UPRAVIç FRAKCIU", S_string, "ZVOLIç", "BACK");
 	return 1;
 }
 
@@ -27580,7 +27542,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					did_mdc_pokuta_add_reas, DIALOG_STYLE_INPUT,
 					"PRIDAç POKUTU",
 					"{FFFFFF}> Zadaj prosÌm dÙvod pokuty!",
-					"UDELIç", "SPAç"
+					"UDELIç", "BACK"
 				);
 			    return SendError(playerid, "Zadal si neplatn˝ dÙvod, musÌ byù kratöÌ ako 65 znakov!");
 			}
@@ -27634,7 +27596,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					did_mdc_pokuta_add, DIALOG_STYLE_INPUT,
 					"PRIDAç POKUTU",
 					"{FFFFFF}> Zadaj prosÌm sumu pokuty v rozmedzÌ 1-20000$!",
-					"œALEJ", "SPAç"
+					"œALEJ", "BACK"
 				);
 			    return SendError(playerid, "Zadal si neplatn˙ sumu!");
 			}
@@ -27646,7 +27608,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				did_mdc_pokuta_add_reas, DIALOG_STYLE_INPUT,
 				"PRIDAç POKUTU",
 				"{FFFFFF}> Zadaj prosÌm dÙvod pokuty!",
-				"UDELIç", "SPAç"
+				"UDELIç", "BACK"
 			);
 	    }
 	
@@ -28381,7 +28343,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 	        impound_selcar[playerid] = impound_veharr[playerid][listitem+1];
 
-	        ShowPlayerDialog(playerid, did_impound_add_fine, DIALOG_STYLE_INPUT, "IMPOUND BOOKING #1", "{FFFFFF}> Zadaj prosÌm pokutu v dol·roch, koæko bude musieù majiteæ pri vyzdvihnutÌ zaplatiù.\n> Pre ûiadnu pokutu napÌö 0.", "œALEJ", "ZRUäIç");
+	        ShowPlayerDialog(playerid, did_impound_add_fine, DIALOG_STYLE_INPUT, "IMPOUND BOOKING #1", "{FFFFFF}> Zadaj prosÌm pokutu v dol·roch, koæko bude musieù majiteæ pri vyzdvihnutÌ zaplatiù.\n> Pre ûiadnu pokutu napÌö 0.", "œALEJ", "CLOSE");
 
 	        return 1;
 	    }
@@ -28398,7 +28360,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        if(!IsNumeric(inputtext) || strval(inputtext) < 0 || strval(inputtext) > 10000)
 	        {
 	            SendError(playerid, "Pokuta musi byt v rozmedzi 0-10000$!");
-	            ShowPlayerDialog(playerid, did_impound_add_fine, DIALOG_STYLE_INPUT, "IMPOUND BOOKING #1", "{FFFFFF}> Zadaj prosÌm pokutu v dol·roch, koæko bude musieù majiteæ pri vyzdvihnutÌ zaplatiù.\n> Pre ûiadnu pokutu napÌö 0.", "œALEJ", "ZRUäIç");
+	            ShowPlayerDialog(playerid, did_impound_add_fine, DIALOG_STYLE_INPUT, "IMPOUND BOOKING #1", "{FFFFFF}> Zadaj prosÌm pokutu v dol·roch, koæko bude musieù majiteæ pri vyzdvihnutÌ zaplatiù.\n> Pre ûiadnu pokutu napÌö 0.", "œALEJ", "CLOSE");
 				return 1;
 	        }
 
@@ -28407,7 +28369,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        ShowPlayerDialog(
 				playerid, did_impound_add_time, DIALOG_STYLE_INPUT, "IMPOUND BOOKING #2",
 				"{FFFFFF}> Zadaj prosÌm Ëas, o koæko hodÌn bude mÙcù majiteæ auto vybraù.\n> Pre okamûitÈ vybratie zadaj 0.",
-				"œALEJ", "ZRUäIç"
+				"œALEJ", "CLOSE"
 			);
 	        return 1;
 	    }
@@ -28427,7 +28389,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            ShowPlayerDialog(
 					playerid, did_impound_add_time, DIALOG_STYLE_INPUT, "IMPOUND BOOKING #2",
 					"{FFFFFF}> Zadaj prosÌm Ëas, o koæko hodÌn bude mÙcù majiteæ auto vybraù.\n> Pre okamûitÈ vybratie zadaj 0.",
-					"œALEJ", "ZRUäIç"
+					"œALEJ", "CLOSE"
 				);
 				return 1;
 	        }
@@ -28437,7 +28399,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        ShowPlayerDialog(
 				playerid, did_impound_add_reason, DIALOG_STYLE_INPUT, "IMPOUND BOOKING #3",
 				"{FFFFFF}> Zadaj prosÌm dÙvod zabavenia vozidla.",
-				"œALEJ", "ZRUäIç"
+				"œALEJ", "CLOSE"
 			);
 	        return 1;
 	    }
@@ -28457,7 +28419,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            ShowPlayerDialog(
 					playerid, did_impound_add_reason, DIALOG_STYLE_INPUT, "IMPOUND BOOKING #3",
 					"{FFFFFF}> Zadaj prosÌm dÙvod zabavenia vozidla.",
-					"œALEJ", "ZRUäIç"
+					"œALEJ", "CLOSE"
 				);
 				return 1;
 	        }
@@ -28479,7 +28441,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        ShowPlayerDialog(
 				playerid, did_impound_add_recap, DIALOG_STYLE_MSGBOX, "IMPOUND BOOKING FINAL",
 				finalstr,
-				"ZABAVIç", "ZRUäIç"
+				"ZABAVIç", "CLOSE"
 			);
 	        return 1;
 	    }
@@ -28654,7 +28616,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				 	VehicleNames[Model-400], SPZ, getdateunix(Impounded_Date), takeit_date, Impounded_Reason, Impounded_Fine, str_replace("_", " ", Impounded_By)
 				);
 
-				ShowPlayerDialog(playerid, did_impound_check, DIALOG_STYLE_MSGBOX, "VYZDVIHN⁄ç VOZIDLO", finalString, "VYZDVIHN⁄ç", "SPAç");
+				ShowPlayerDialog(playerid, did_impound_check, DIALOG_STYLE_MSGBOX, "VYZDVIHN⁄ç VOZIDLO", finalString, "VYZDVIHN⁄ç", "BACK");
 
 		     	break;
 			}
@@ -28689,7 +28651,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        if(strlen(inputtext) < 1 || !IsNumeric(inputtext))
 	        {
 	            SendError(playerid, "Zadaj prosÌm poËet n·bojov!");
-	            ShowPlayerDialog(playerid, did_emptygun_reload, DIALOG_STYLE_INPUT, "NABIç PR¡ZDNU ZBRA“", "{FFFFFF}Aby si z tejto zbrane mohol strielaù, musÌö ju nabiù! Zadaj poËet n·bojov, koæko chceö nabiù.", "OK", "ZRUäIç");
+	            ShowPlayerDialog(playerid, did_emptygun_reload, DIALOG_STYLE_INPUT, "NABIç PR¡ZDNU ZBRA“", "{FFFFFF}Aby si z tejto zbrane mohol strielaù, musÌö ju nabiù! Zadaj poËet n·bojov, koæko chceö nabiù.", "OK", "CLOSE");
 				return 1;
 	        }
 
@@ -28698,7 +28660,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        if(ammo > GetPlayerInventoryItem(playerid, inv_naboje) || ammo < 1)
 	        {
 	            SendError(playerid, "Toæko n·bojov nem·ö!");
-	            ShowPlayerDialog(playerid, did_emptygun_reload, DIALOG_STYLE_INPUT, "NABIç PR¡ZDNU ZBRA“", "{FFFFFF}Aby si z tejto zbrane mohol strielaù, musÌö ju nabiù! Zadaj poËet n·bojov, koæko chceö nabiù.", "OK", "ZRUäIç");
+	            ShowPlayerDialog(playerid, did_emptygun_reload, DIALOG_STYLE_INPUT, "NABIç PR¡ZDNU ZBRA“", "{FFFFFF}Aby si z tejto zbrane mohol strielaù, musÌö ju nabiù! Zadaj poËet n·bojov, koæko chceö nabiù.", "OK", "CLOSE");
 				return 1;
 	        }
 
@@ -28736,7 +28698,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(wid > 0 && ammox > 0)
 			{
 			    SendError(playerid, "Uû m·ö jednu zbraÚ podobnÈho typu, zbav sa jej!");
-	            ShowPlayerDialog(playerid, did_emptygun_reload, DIALOG_STYLE_INPUT, "NABIç PR¡ZDNU ZBRA“", "{FFFFFF}Aby si z tejto zbrane mohol strielaù, musÌö ju nabiù! Zadaj poËet n·bojov, koæko chceö nabiù.", "OK", "ZRUäIç");
+	            ShowPlayerDialog(playerid, did_emptygun_reload, DIALOG_STYLE_INPUT, "NABIç PR¡ZDNU ZBRA“", "{FFFFFF}Aby si z tejto zbrane mohol strielaù, musÌö ju nabiù! Zadaj poËet n·bojov, koæko chceö nabiù.", "OK", "CLOSE");
 				return 1;
 			}
 
@@ -28754,7 +28716,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(ammo > MaxAmmo)
 			{
 			    SendError(playerid, "Toæko n·bojov nemÙûeö nabiù!");
-	            ShowPlayerDialog(playerid, did_emptygun_reload, DIALOG_STYLE_INPUT, "NABIç PR¡ZDNU ZBRA“", "{FFFFFF}Aby si z tejto zbrane mohol strielaù, musÌö ju nabiù! Zadaj poËet n·bojov, koæko chceö nabiù.", "OK", "ZRUäIç");
+	            ShowPlayerDialog(playerid, did_emptygun_reload, DIALOG_STYLE_INPUT, "NABIç PR¡ZDNU ZBRA“", "{FFFFFF}Aby si z tejto zbrane mohol strielaù, musÌö ju nabiù! Zadaj poËet n·bojov, koæko chceö nabiù.", "OK", "CLOSE");
 				return 1;
 			}
 
@@ -28773,7 +28735,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return 1;
 
             if(listitem == 0)
-                ShowPlayerDialog(playerid, did_emptygun_reload, DIALOG_STYLE_INPUT, "NABIç PR¡ZDNU ZBRA“", "{FFFFFF}Aby si z tejto zbrane mohol strielaù, musÌö ju nabiù! Zadaj poËet n·bojov, koæko chceö nabiù.", "OK", "ZRUäIç");
+                ShowPlayerDialog(playerid, did_emptygun_reload, DIALOG_STYLE_INPUT, "NABIç PR¡ZDNU ZBRA“", "{FFFFFF}Aby si z tejto zbrane mohol strielaù, musÌö ju nabiù! Zadaj poËet n·bojov, koæko chceö nabiù.", "OK", "CLOSE");
 			else if(listitem == 1)
 			{
 
@@ -28847,7 +28809,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
             emptyguntmp[playerid] = listitem;
 
-            ShowPlayerDialog(playerid, did_emptygun_menu, DIALOG_STYLE_LIST, "V›BER AKCIE", "Nabiù zbraÚ\nPoloûiù zbraÚ", "VYBRAç", "ZRUäIç");
+            ShowPlayerDialog(playerid, did_emptygun_menu, DIALOG_STYLE_LIST, "V›BER AKCIE", "Nabiù zbraÚ\nPoloûiù zbraÚ", "CHOOSE", "CLOSE");
 
 		}
 
@@ -29028,7 +28990,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return ShowPlayerDialog(
 						playerid, did_trucker_buyfuel, DIALOG_STYLE_INPUT, "SKLAD ï K⁄PIç",
 						"{FFFFFF}> Zadaj poËet litrov od 100-4000, koæko chceö naloûiù!",
-						"OK","SPAç"
+						"OK","BACK"
 					);
 
             new
@@ -29048,7 +29010,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    return SendError(playerid, "Nem·ö dosù peÚazÌ!"), ShowPlayerDialog(
 						playerid, did_trucker_buyfuel, DIALOG_STYLE_INPUT, "SKLAD ï K⁄PIç",
 						"{FFFFFF}> Zadaj poËet litrov od 100-4000, koæko chceö naloûiù!",
-						"OK","SPAç"
+						"OK","BACK"
 					);
 
 			ex_GivePlayerMoney(playerid, -cena);
@@ -29176,7 +29138,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			SetPVarInt(playerid, "pvadiel", xslot);
 
-			ShowPlayerDialog(playerid, did_vattach_menuex, DIALOG_STYLE_LIST, "TUNING ï AKCIA", "Upraviù\nZmazaù tuning", "VYBRAç", "ZRUäIç");
+			ShowPlayerDialog(playerid, did_vattach_menuex, DIALOG_STYLE_LIST, "TUNING ï AKCIA", "Upraviù\nZmazaù tuning", "CHOOSE", "CLOSE");
 	    }
 
 	    case did_vattach_kata:
@@ -29259,19 +29221,19 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return 1;
 
 			if(isnull(inputtext) || !IsNumeric(inputtext))
-			    return SendError(playerid, "Zadal si zle ID objektu!"), ShowPlayerDialog(playerid, did_vattach_adm_add, DIALOG_STYLE_INPUT, "TUNING ï PRIDAç NOV› OBJEKT", "{FFFFFF}> Zadaj prosÌm ID objektu, ktorÈ chceö pridaù!", "œALEJ", "SPAç");
+			    return SendError(playerid, "Zadal si zle ID objektu!"), ShowPlayerDialog(playerid, did_vattach_adm_add, DIALOG_STYLE_INPUT, "TUNING ï PRIDAç NOV› OBJEKT", "{FFFFFF}> Zadaj prosÌm ID objektu, ktorÈ chceö pridaù!", "œALEJ", "BACK");
 
 			SetPVarInt(playerid, "vattach_temp", strval(inputtext));
-			ShowPlayerDialog(playerid, did_vattach_adm_add_name, DIALOG_STYLE_INPUT, "TUNING ï PRIDAç NOV› OBJEKT", "{FFFFFF}> Zadaj prosÌm meno objektu, ktorÈ chceö pridaù!", "PRIDAç", "SPAç");
+			ShowPlayerDialog(playerid, did_vattach_adm_add_name, DIALOG_STYLE_INPUT, "TUNING ï PRIDAç NOV› OBJEKT", "{FFFFFF}> Zadaj prosÌm meno objektu, ktorÈ chceö pridaù!", "PRIDAç", "BACK");
 	    }
 
 	    case did_vattach_adm_add_name:
 	    {
 	        if(!response)
-	            return ShowPlayerDialog(playerid, did_vattach_adm_add, DIALOG_STYLE_INPUT, "TUNING ï PRIDAç NOV› OBJEKT", "{FFFFFF}> Zadaj prosÌm ID objektu, ktorÈ chceö pridaù!", "œALEJ", "SPAç");
+	            return ShowPlayerDialog(playerid, did_vattach_adm_add, DIALOG_STYLE_INPUT, "TUNING ï PRIDAç NOV› OBJEKT", "{FFFFFF}> Zadaj prosÌm ID objektu, ktorÈ chceö pridaù!", "œALEJ", "BACK");
 
 			if(isnull(inputtext))
-			    return SendError(playerid, "Zadal si zle meno objektu!"), ShowPlayerDialog(playerid, did_vattach_adm_add_name, DIALOG_STYLE_INPUT, "TUNING ï PRIDAç NOV› OBJEKT", "{FFFFFF}> Zadaj prosÌm meno objektu, ktorÈ chceö pridaù!", "PRIDAç", "SPAç");
+			    return SendError(playerid, "Zadal si zle meno objektu!"), ShowPlayerDialog(playerid, did_vattach_adm_add_name, DIALOG_STYLE_INPUT, "TUNING ï PRIDAç NOV› OBJEKT", "{FFFFFF}> Zadaj prosÌm meno objektu, ktorÈ chceö pridaù!", "PRIDAç", "BACK");
 
 			new
 			    query[144];
@@ -29288,7 +29250,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return 1;
 
 			if(isnull(inputtext) || strlen(inputtext) <= 3 || strlen(inputtext) >= 64)
-				return ShowPlayerDialog(playerid, did_map_newmap, DIALOG_STYLE_INPUT, "BMAP ï NOV¡ MAPA", "{FFFFFF}> Zadaj prosÌm meno mapy, ktor˙ chceö vytvoriù!\n\tZadaj meno mapy dlhöie ako tri a kratöie ako 64 znakov!", "VYTVORIç", "ZRUäIç");
+				return ShowPlayerDialog(playerid, did_map_newmap, DIALOG_STYLE_INPUT, "BMAP ï NOV¡ MAPA", "{FFFFFF}> Zadaj prosÌm meno mapy, ktor˙ chceö vytvoriù!\n\tZadaj meno mapy dlhöie ako tri a kratöie ako 64 znakov!", "VYTVORIç", "CLOSE");
 
 			new
 			    query[ 192 ],
@@ -29302,7 +29264,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(cache_num_rows() != 0)
 			{
 			    cache_delete(cache);
-			    return ShowPlayerDialog(playerid, did_map_newmap, DIALOG_STYLE_INPUT, "BMAP ï NOV¡ MAPA", "{FFFFFF}> Zadaj prosÌm meno mapy, ktor˙ chceö vytvoriù!\n\tMapa s t˝mto menom uû existuje!", "VYTVORIç", "ZRUäIç");
+			    return ShowPlayerDialog(playerid, did_map_newmap, DIALOG_STYLE_INPUT, "BMAP ï NOV¡ MAPA", "{FFFFFF}> Zadaj prosÌm meno mapy, ktor˙ chceö vytvoriù!\n\tMapa s t˝mto menom uû existuje!", "VYTVORIç", "CLOSE");
 			}
 
 			cache_delete(cache);
@@ -29386,7 +29348,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(strval(inputtext) > drug_getPlayerDrug(playerid, tdrugid{playerid}) || strval(inputtext) < 50)
 			    return SendError(playerid, "Nem·ö dostatoËn˝ poËet d·vok tejto drogy!"),
-			            ShowPlayerDialog(playerid, did_selldrugs, DIALOG_STYLE_INPUT, "PREDAJ DROG", "{ffffff}> Zadaj prosÌm poËet d·vok, ktor˝ chceö predaù! (musÌ byù v‰ËöÌ alebo rovn˝ minim·lnemu mnoûstvu)", "PREDAç", "ZRUäIç");
+			            ShowPlayerDialog(playerid, did_selldrugs, DIALOG_STYLE_INPUT, "PREDAJ DROG", "{ffffff}> Zadaj prosÌm poËet d·vok, ktor˝ chceö predaù! (musÌ byù v‰ËöÌ alebo rovn˝ minim·lnemu mnoûstvu)", "PREDAç", "CLOSE");
 
 			new cena;
 
@@ -29422,7 +29384,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			else if(listitem == 2 && drug_getPlayerDrug(playerid, listitem) < 100)
 			    return SendError(playerid, "Nem·ö dostatoËn˝ poËet d·vok tejto drogy!"), ShowPlayerMenu(playerid, menut_selldrugs);
 
-			ShowPlayerDialog(playerid, did_selldrugs, DIALOG_STYLE_INPUT, "PREDAJ DROG", "{ffffff}> Zadaj prosÌm poËet d·vok, ktor˝ chceö predaù! (musÌ byù v‰ËöÌ alebo rovn˝ minim·lnemu mnoûstvu)", "PREDAç", "ZRUäIç");
+			ShowPlayerDialog(playerid, did_selldrugs, DIALOG_STYLE_INPUT, "PREDAJ DROG", "{ffffff}> Zadaj prosÌm poËet d·vok, ktor˝ chceö predaù! (musÌ byù v‰ËöÌ alebo rovn˝ minim·lnemu mnoûstvu)", "PREDAç", "CLOSE");
 
 	    }
 
@@ -29746,7 +29708,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 					case 4: // Zmazaù picovinu
 	        	    {
-					 	ShowPlayerDialog(playerid, did_tuning_remove, DIALOG_STYLE_LIST, "ZMAZAT TUNING", "Zmazaù predn˝ n·raznÌk\nZmazaù zadn˝ n·raznÌk\nZmazaù spojler\nZmazaù boËn˝ prah\nZmazaù prieduchy a ods·vanie\nZmazaù osvetlenie\nZmazaù v˝fuky\nZmazaù koles·\nZmazaù nitro\nZmazaù hydrauliku\nZmazat strechu\n \nSp‰ù", "VYBRAç", "ZAVRIEç");
+					 	ShowPlayerDialog(playerid, did_tuning_remove, DIALOG_STYLE_LIST, "ZMAZAT TUNING", "Zmazaù predn˝ n·raznÌk\nZmazaù zadn˝ n·raznÌk\nZmazaù spojler\nZmazaù boËn˝ prah\nZmazaù prieduchy a ods·vanie\nZmazaù osvetlenie\nZmazaù v˝fuky\nZmazaù koles·\nZmazaù nitro\nZmazaù hydrauliku\nZmazat strechu\n \nSp‰ù", "CHOOSE", "ZAVRIEç");
 	    				return 1;
 	        	    }
 				}
@@ -29903,7 +29865,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 					case 6:
 	        	    {
-            	 		ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+            	 		ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 				}
 			}
@@ -29993,12 +29955,12 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 		            case 11:
 		            {
-		                return ShowPlayerDialog(playerid, did_tuning_remove, DIALOG_STYLE_LIST, "ZMAZAT TUNING", "Zmazaù predn˝ n·raznÌk\nZmazaù zadn˝ n·raznÌk\nZmazaù spojler\nZmazaù boËn˝ prah\nZmazaù prieduchy a ods·vanie\nZmazaù osvetlenie\nZmazaù v˝fuky\nZmazaù koles·\nZmazaù nitro\nZmazaù hydrauliku\nZmazat strechu\n \nSp‰ù", "VYBRAç", "ZAVRIEç");
+		                return ShowPlayerDialog(playerid, did_tuning_remove, DIALOG_STYLE_LIST, "ZMAZAT TUNING", "Zmazaù predn˝ n·raznÌk\nZmazaù zadn˝ n·raznÌk\nZmazaù spojler\nZmazaù boËn˝ prah\nZmazaù prieduchy a ods·vanie\nZmazaù osvetlenie\nZmazaù v˝fuky\nZmazaù koles·\nZmazaù nitro\nZmazaù hydrauliku\nZmazat strechu\n \nSp‰ù", "CHOOSE", "ZAVRIEç");
 		            }
 
 		            default:
 		            {
-		                return ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+		                return ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 		            }
 
 		        }
@@ -30748,7 +30710,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 	        	    case 10: // Back
 	        	    {
-	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 				}
 			}
@@ -31009,7 +30971,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 					case 5:
 	        	    {
-	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 				}
 			}
@@ -31274,7 +31236,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 					case 5:
 	        	    {
-	     				ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	     				ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 	 			}
 			}
@@ -31570,7 +31532,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 					case 6:
 	        	    {
-	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 	 			}
 			}
@@ -32148,7 +32110,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 					case 10:
 	        	    {
-	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 	 			}
 			}
@@ -32561,7 +32523,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 					case 9:
 	        	    {
-	    			ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	    			ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 	 			}
 			}
@@ -32660,7 +32622,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 					case 5:
 	        	    {
-	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 	 			}
 			}
@@ -32953,7 +32915,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 					case 18:
 	        	    {
-	     			ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	     			ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 	 			}
 			}
@@ -32990,7 +32952,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 	        	    case 2:
 	        	    {
-	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 	 			}
 			}
@@ -33027,7 +32989,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 	        	    case 2:
 	        	    {
-	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 	 			}
 			}
@@ -33048,7 +33010,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			            vEnum[carVar][v_Nitrous] = 60.0;
 						PlayerPlaySound(playerid, 1133, 0.0, 0.0, 0.0);
 			            SendSuccess(playerid, "Komponent pridan˝!");
-	           			ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	           			ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 	        	    case 1:
 	        	    {
@@ -33056,7 +33018,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 	        	    case 2:
 	        	    {
-	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 	 			}
 			}
@@ -33229,7 +33191,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 					case 5: // Back
 	        	    {
-	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 				}
 			}
@@ -33436,7 +33398,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 	        	    case 3: // Back
 	        	    {
-	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	                ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 				}
 			}
@@ -33556,7 +33518,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        	    }
 	        	    case 3: // Back
 	        	    {
-	                	ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+	                	ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	        	    }
 				}
 			}
@@ -33568,7 +33530,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return ShowPlayerWhitelistDetail(playerid, wl_count[playerid]);
 
 			if(strlen(inputtext) < 1)
-			    return ShowPlayerDialog(playerid, did_whitelist_reason, DIALOG_STYLE_INPUT, "WHITELIST (VERDIKT)", "> Zadaj dÙvod, preËo chceö ûiadosù schv·liù!", "OK", "SPAç");
+			    return ShowPlayerDialog(playerid, did_whitelist_reason, DIALOG_STYLE_INPUT, "WHITELIST (VERDIKT)", "> Zadaj dÙvod, preËo chceö ûiadosù schv·liù!", "OK", "BACK");
 
 			new
 			    activated = 0,
@@ -33624,7 +33586,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			else
 			    wl_verdikt[playerid] = false;
 
-   			ShowPlayerDialog(playerid, did_whitelist_reason, DIALOG_STYLE_INPUT, "WHITELIST (VERDIKT)", "> Zadaj dÙvod, preËo chceö ûiadosù schv·liù!", "OK", "SPAç");
+   			ShowPlayerDialog(playerid, did_whitelist_reason, DIALOG_STYLE_INPUT, "WHITELIST (VERDIKT)", "> Zadaj dÙvod, preËo chceö ûiadosù schv·liù!", "OK", "BACK");
 	    }
 
 	    case did_whitelist:
@@ -33655,7 +33617,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            {
 	                return ShowPlayerDialog(playerid, did_graffiti_input_text, DIALOG_STYLE_INPUT, "TVORBA SPRAY TAGU",
 	                    "{FFFFFF}> Zadaj prosÌm text tagu!\nFarbu zad·ö tak, ûe pouûijeö hranatÈ z·tvorky {dfae51}[] {ffffff}a medzi ne vloûÌö öesùmiestny HEX kÛd. Nov˝ riadok tak, ûe napÌöeö {dfae51}[LINE]{ffffff}\nNaprÌklad, {dfae51}[FF0000] {ffffff}bude Ëerven· farba.\nNa zistenie hex kÛdu pouûi naprÌklad str·nku {dfae51}www.color-hex.com{ffffff}!",
-						"OK", "SPAç"
+						"OK", "BACK"
 					);
 	            }
 
@@ -33687,7 +33649,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            {
 	                return ShowPlayerDialog(playerid, did_graffiti_input_fontsize, DIALOG_STYLE_INPUT, "TVORBA SPRAY TAGU",
 	                    "{FFFFFF}> Zadaj prosÌm veækosù pÌsma, ktorou bude text v tagu napÌsan˝!\nMinim·lna hodnota je 8, maxim·lna 32!",
-						"OK", "SPAç"
+						"OK", "BACK"
 					);
 	            }
 
@@ -33785,7 +33747,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			    return ShowPlayerDialog(playerid, did_graffiti_input_fontsize, DIALOG_STYLE_INPUT, "TVORBA SPRAY TAGU",
        				"{FFFFFF}> Zadaj prosÌm veækosù pÌsma, ktorou bude text v tagu napÌsan˝!\nMinim·lna hodnota je 8, maxim·lna 32!",
-					"OK", "SPAç"
+					"OK", "BACK"
 				);
 			}
 
@@ -33809,7 +33771,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			    return ShowPlayerDialog(playerid, did_graffiti_input_text, DIALOG_STYLE_INPUT, "TVORBA SPRAY TAGU",
        				"{FFFFFF}> Zadaj prosÌm text tagu!\nFarbu zad·ö tak, ûe pouûijeö hranatÈ z·tvorky {dfae51}[] {ffffff}a medzi ne vloûÌö öesùmiestny HEX kÛd. Nov˝ riadok tak, ûe napÌöeö {dfae51}[LINE]{ffffff}.\nNaprÌklad, {dfae51}[FF0000] {ffffff}bude Ëerven· farba.\nNa zistenie hex kÛdu pouûi naprÌklad str·nku {dfae51}www.color-hex.com{ffffff}!",
-					"OK", "SPAç"
+					"OK", "BACK"
 				);
 			}
 
@@ -33928,7 +33890,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 			    SendError(playerid, "Advert nemÙûe byù dlhöÌ, ako 92 znakov.");
 			    return ShowPlayerDialog(playerid, did_advert, DIALOG_STYLE_INPUT, "ADVERT", "{ffffff}> Zadaj text tvojej reklamy! Za kaûd˝ znak zaplatÌö 1$ ak nie si Donator Level 2+.",
-	        		"PUBLIKUJ", "SPAç");
+	        		"PUBLIKUJ", "BACK");
 			}
 
 			new cena = strlen(inputtext);
@@ -34335,7 +34297,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			        return
 			            ShowPlayerDialog(playerid, did_clothing_menu_color_menu, DIALOG_STYLE_LIST, "PREFARBIç DOPLNOK",
 							"Prefarbiù farbu na slote 1\nPrefarbiù farbu na slote 2",
-							"VYBRAç", "ZRUäIç");
+							"CHOOSE", "CLOSE");
 			    }
 
 			    case 7:
@@ -34430,7 +34392,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return
 	            	ShowPlayerDialog(playerid, did_clothing_menu_color_menu, DIALOG_STYLE_LIST, "PREFARBIç DOPLNOK",
 						"Prefarbiù farbu na slote 1\nPrefarbiù farbu na slote 2",
-						"VYBRAç", "ZRUäIç");
+						"CHOOSE", "CLOSE");
 
 			if(clothingColor_Slot[ playerid ] == 1)
 			    playerAttachments[playerid][ clothingMenu_Edit[playerid] ][COLOR1] = attachmentPallete[listitem][1][0];
@@ -34544,7 +34506,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 	        ShowPlayerDialog(playerid, did_fos_call_menu, DIALOG_STYLE_LIST, "FIRE OPERATING SYSTEM",
 	            "Kontaktovaù volaj˙ceho\nVymazaù z datab·ze",
-	            "VYBRAç", "SPAç");
+	            "CHOOSE", "BACK");
 	    }
 
 	    case did_fos_call_menu:
@@ -34571,7 +34533,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    if(GetPlayerFactionRank(playerid) < 4)
 				        return SendError(playerid, "Pre zmazanie z·znamu musÌö byù aspoÚ rank 4!"), ShowPlayerDialog(playerid, did_fos_call_menu, DIALOG_STYLE_LIST, "FIRE OPERATING SYSTEM",
 					            "Kontaktovaù volaj˙ceho\nVymazaù z datab·ze",
-					            "VYBRAç", "SPAç");
+					            "CHOOSE", "BACK");
 
 				    new
 				        query[90];
@@ -34769,7 +34731,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 	        ShowPlayerDialog(playerid, did_mdc_call_menu, DIALOG_STYLE_LIST, "MOBILE DATABASE COMPUTER",
 	            "Kontaktovaù volaj˙ceho\nOznaËiù ako reaguj˙ci\nOznaËiù ako vyrieöenÈ\nVymazaù z datab·ze",
-	            "VYBRAç", "SPAç");
+	            "CHOOSE", "BACK");
 	    }
 
 	    case did_mdc_call_menu:
@@ -34796,7 +34758,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    if(!IsPlayerInAnyVehicle(playerid) || vEnum[GetPlayerVehicleID(playerid)][v_unit_isUsed] == false)
 				        return SendError(playerid, "Pre reagovanie musÌö sedieù v aute s nastaven˝m /unit!"), ShowPlayerDialog(playerid, did_mdc_call_menu, DIALOG_STYLE_LIST, "MOBILE DATABASE COMPUTER",
 					            "Kontaktovaù volaj˙ceho\nOznaËiù ako reaguj˙ci\nOznaËiù ako vyrieöenÈ\nVymazaù z datab·ze",
-					            "VYBRAç", "SPAç");
+					            "CHOOSE", "BACK");
 
                     if(mdc_HANDLED[playerid] == 2)
 				        return SendError(playerid, "Tento hovor uû je vyrieöen˝!"), ShowPlayerLastCallsPD(playerid);
@@ -34878,7 +34840,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    if(GetPlayerFactionRank(playerid) < 9)
 				        return SendError(playerid, "Pre zmazanie z·znamu musÌö byù aspoÚ rank 9!"), ShowPlayerDialog(playerid, did_mdc_call_menu, DIALOG_STYLE_LIST, "MOBILE DATABASE COMPUTER",
 					            "Kontaktovaù volaj˙ceho\nOznaËiù ako reaguj˙ci\nOznaËiù ako vyrieöenÈ\nVymazaù z datab·ze",
-					            "VYBRAç", "SPAç");
+					            "CHOOSE", "BACK");
 
 				    new
 				        query[128];
@@ -35001,7 +34963,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(isnull(inputtext) || strlen(inputtext) > 110)
 			    return ShowPlayerDialog(playerid, did_mdc_vehicle_detail_want, DIALOG_STYLE_INPUT, "MOBILE DATABASE COMPUTER",
-	    			"{ffffff}> Zadajte prosÌm, zaËo je toto vozidlo hladanÈ!", "OK", "SPAç");
+	    			"{ffffff}> Zadajte prosÌm, zaËo je toto vozidlo hladanÈ!", "OK", "BACK");
 
 			new
 			    query[256];
@@ -35249,7 +35211,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			SendError(playerid, "Trestn˝ Ëin zmazan˝!");
 
-			ShowPlayerDialog(playerid, did_mdc_ciny, DIALOG_STYLE_TABLIST_HEADERS, "TRESTN… »INY", finalString, "VYMAZAç", "ZRUäIç");
+			ShowPlayerDialog(playerid, did_mdc_ciny, DIALOG_STYLE_TABLIST_HEADERS, "TRESTN… »INY", finalString, "VYMAZAç", "CLOSE");
 
 			foreach( new x : Player )
 			{
@@ -35340,7 +35302,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			SendError(playerid, "Pokuta zmazan·!");
 
-			ShowPlayerDialog(playerid, did_mdc_fines, DIALOG_STYLE_TABLIST_HEADERS, "POKUTY", finalString, "VYMAZAç", "ZRUäIç");
+			ShowPlayerDialog(playerid, did_mdc_fines, DIALOG_STYLE_TABLIST_HEADERS, "POKUTY", finalString, "VYMAZAç", "CLOSE");
 
 			foreach( new x : Player )
 			{
@@ -35557,7 +35519,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		 	format(ph_SendMsg_To[playerid], 30, "%d", from);
 
 			ShowPlayerDialog(playerid, did_phone_sms_last_od, DIALOG_STYLE_INPUT, "TELEF”N - NOV¡ SPR¡VA",
-	    		"{ffffff}> Zadajte prosÌm text, ak˝ chcete na ËÌslo odoslaù!", "ODOSLAç", "SPAç");
+	    		"{ffffff}> Zadajte prosÌm text, ak˝ chcete na ËÌslo odoslaù!", "ODOSLAç", "BACK");
 
 	    }
 
@@ -35602,7 +35564,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(isnull(inputtext))
 			    return ShowPlayerDialog(playerid, did_phone_sms_last_od, DIALOG_STYLE_INPUT, "TELEF”N - NOV¡ SPR¡VA",
-	    			"{ffffff}> Zadajte prosÌm text, ak˝ chcete na ËÌslo odoslaù!", "ODOSLAç", "SPAç");
+	    			"{ffffff}> Zadajte prosÌm text, ak˝ chcete na ËÌslo odoslaù!", "ODOSLAç", "BACK");
 
 			SendMessage(playerid, ph_SendMsg_To[playerid], inputtext);
 		}
@@ -35631,7 +35593,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    return SendError(playerid, "V tomto zariadenÌ nie je viac miesta!"), ShowPlayerPhoneContacts(playerid);
 
                 ShowPlayerDialog(playerid, did_phone_contact_new, DIALOG_STYLE_INPUT, "TELEF”N - NOV› KONTAKT",
-	    			"{ffffff}> Zadajte prosÌm meno novÈho kontaktu, ktor˝ chcete pridaù!", "PRIDAç", "SPAç");
+	    			"{ffffff}> Zadajte prosÌm meno novÈho kontaktu, ktor˝ chcete pridaù!", "PRIDAç", "BACK");
 			}
 			else
 			{
@@ -35641,7 +35603,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			    return ShowPlayerDialog(playerid, did_phone_contact_menu, DIALOG_STYLE_LIST, "TELEF”N - KONTAKT",
 			        "Zavolaù kontaktu\nZaslaù SMS spr·vu\nVymazaù",
-			        "ZVOLIç", "SPAç");
+			        "ZVOLIç", "BACK");
 			}
 		}
 
@@ -35678,7 +35640,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    format(ph_SendMsg_To[playerid], 30, "%s", contactnumber);
 
 				return ShowPlayerDialog(playerid, did_phone_sms_contact, DIALOG_STYLE_INPUT, "TELEF”N - NOV¡ SPR¡VA",
-		    		"{ffffff}> Zadajte prosÌm text, ak˝ chcete na toto ËÌslo odoslaù!", "ODOSLAç", "SPAç");
+		    		"{ffffff}> Zadajte prosÌm text, ak˝ chcete na toto ËÌslo odoslaù!", "ODOSLAç", "BACK");
 			}
 			else
 			{
@@ -35698,11 +35660,11 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		    if(!response)
 		    	return ShowPlayerDialog(playerid, did_phone_contact_menu, DIALOG_STYLE_LIST, "TELEF”N - KONTAKT",
 			        "Zavolaù kontaktu\nZaslaù SMS spr·vu\nVymazaù",
-			        "ZVOLIç", "SPAç");
+			        "ZVOLIç", "BACK");
 
 			if(isnull(inputtext))
 			    return ShowPlayerDialog(playerid, did_phone_sms_contact, DIALOG_STYLE_INPUT, "TELEF”N - NOV¡ SPR¡VA",
-		    		"{ffffff}> Zadajte prosÌm text, ak˝ chcete na toto ËÌslo odoslaù!", "ODOSLAç", "SPAç");
+		    		"{ffffff}> Zadajte prosÌm text, ak˝ chcete na toto ËÌslo odoslaù!", "ODOSLAç", "BACK");
 
 			SendMessage(playerid, ph_SendMsg_To[playerid], inputtext);
 		}
@@ -35714,23 +35676,23 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(isnull(inputtext))
 			    return ShowPlayerDialog(playerid, did_phone_contact_new, DIALOG_STYLE_INPUT, "TELEF”N - NOV› KONTAKT",
-	    			"{ffffff}> Zadajte prosÌm meno novÈho kontaktu, ktor˝ chcete pridaù!", "PRIDAç", "SPAç");
+	    			"{ffffff}> Zadajte prosÌm meno novÈho kontaktu, ktor˝ chcete pridaù!", "PRIDAç", "BACK");
 
             format(ph_SendMsg_To[playerid], 30, "%s", inputtext);
 
             return ShowPlayerDialog(playerid, did_phone_contact_new_2, DIALOG_STYLE_INPUT, "TELEF”N - NOV› KONTAKT",
-	    		"{ffffff}> Zadajte prosÌm ËÌslo novÈho kontaktu, ktor˝ chcete pridaù!", "PRIDAç", "SPAç");
+	    		"{ffffff}> Zadajte prosÌm ËÌslo novÈho kontaktu, ktor˝ chcete pridaù!", "PRIDAç", "BACK");
 		}
 
 		case did_phone_contact_new_2:
 		{
 		    if(!response)
 				return ShowPlayerDialog(playerid, did_phone_contact_new, DIALOG_STYLE_INPUT, "TELEF”N - NOV› KONTAKT",
-	    			"{ffffff}> Zadajte prosÌm meno novÈho kontaktu, ktor˝ chcete pridaù!", "PRIDAç", "SPAç");
+	    			"{ffffff}> Zadajte prosÌm meno novÈho kontaktu, ktor˝ chcete pridaù!", "PRIDAç", "BACK");
 
 			if(isnull(inputtext) || strlen(inputtext) > 14)
 			    return ShowPlayerDialog(playerid, did_phone_contact_new_2, DIALOG_STYLE_INPUT, "TELEF”N - NOV› KONTAKT",
-	    		"{ffffff}> Zadajte prosÌm ËÌslo novÈho kontaktu, ktor˝ chcete pridaù!", "PRIDAç", "SPAç");
+	    		"{ffffff}> Zadajte prosÌm ËÌslo novÈho kontaktu, ktor˝ chcete pridaù!", "PRIDAç", "BACK");
 
 			new
 				query[512];
@@ -35754,9 +35716,9 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             trunkitemid[playerid] = listitem;
 
 		    return ShowPlayerDialog(playerid, did_trunk_add, DIALOG_STYLE_INPUT,
-		        "VLOéIç/VYBRAç ITEM",
+		        "VLOéIç/CHOOSE ITEM",
 		        "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö vybraù alebo vloûiù!\n\nAk nechceö niË robiù, nechaj pr·zdne pole a stlaË akÈkoævek tlaËidlo.",
-		        "VLOéIç", "VYBRAç");
+		        "VLOéIç", "CHOOSE");
 
 			#undef veh
 	    }
@@ -35772,9 +35734,9 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(!IsNumeric(inputtext) || strval(inputtext) < 1)
 			    return ShowPlayerDialog(playerid, did_trunk_add, DIALOG_STYLE_INPUT,
-			        "VLOéIç/VYBRAç ITEM",
+			        "VLOéIç/CHOOSE ITEM",
 			        "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö vybraù alebo vloûiù!\n\nAk nechceö niË robiù, nechaj pr·zdne pole a stlaË akÈkoævek tlaËidlo.\nZadal si nespr·vny poËet.",
-			        "VLOéIç", "VYBRAç");
+			        "VLOéIç", "CHOOSE");
 
 			new invid;
 
@@ -35804,15 +35766,15 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(response && ((invid != 0 && strval(inputtext) > GetPlayerInventoryItem(playerid, invid)) || (invid == 0 && strval(inputtext) > ex_GetPlayerMoney(playerid))))
 	            return SendError(playerid, "Toæko toho nem·ö!"), ShowPlayerDialog(playerid, did_trunk_add, DIALOG_STYLE_INPUT,
-			        "VLOéIç/VYBRAç ITEM",
+			        "VLOéIç/CHOOSE ITEM",
 			        "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö vybraù alebo vloûiù!\n\nAk nechceö niË robiù, nechaj pr·zdne pole a stlaË akÈkoævek tlaËidlo.",
-			        "VLOéIç", "VYBRAç");
+			        "VLOéIç", "CHOOSE");
 
 			else if(!response && strval(inputtext) > vehicleInventory[veh][item])
 			    return SendError(playerid, "Toæko tam toho nie je!"), ShowPlayerDialog(playerid, did_trunk_add, DIALOG_STYLE_INPUT,
-			        "VLOéIç/VYBRAç ITEM",
+			        "VLOéIç/CHOOSE ITEM",
 			        "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö vybraù alebo vloûiù!\n\nAk nechceö niË robiù, nechaj pr·zdne pole a stlaË akÈkoævek tlaËidlo.",
-			        "VLOéIç", "VYBRAç");
+			        "VLOéIç", "CHOOSE");
 			        
 			if(response)
 			{
@@ -35821,9 +35783,9 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			        if(strval(inputtext) > ex_GetPlayerMoney(playerid))
 			        {
 			            return SendError(playerid, "Toæko toho nem·ö!"), ShowPlayerDialog(playerid, did_trunk_add, DIALOG_STYLE_INPUT,
-					        "VLOéIç/VYBRAç ITEM",
+					        "VLOéIç/CHOOSE ITEM",
 					        "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö vybraù alebo vloûiù!\n\nAk nechceö niË robiù, nechaj pr·zdne pole a stlaË akÈkoævek tlaËidlo.",
-					        "VLOéIç", "VYBRAç");
+					        "VLOéIç", "CHOOSE");
 			        }
 			    }
 			}
@@ -35970,7 +35932,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				ShowPlayerDialog(playerid, did_upgrade_shop_col, DIALOG_STYLE_INPUT, "PREFARBENIE",
 				    "{FFFFFF}> Zadaj prosÌm novÈ ID farieb tvojho vozidla v öt˝le 'ID1 ID2' bez kvoËiek.\n\nNaprÌklad: '16 1' bez kvoËiek.",
-				    "OK", "ZRUäIç");
+				    "OK", "CLOSE");
 			}
 		}
 
@@ -35982,7 +35944,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             if(isnull(inputtext))
 			    ShowPlayerDialog(playerid, did_upgrade_shop_col, DIALOG_STYLE_INPUT, "PREFARBENIE",
 				    "{FFFFFF}> Zadaj prosÌm novÈ ID farieb tvojho vozidla v öt˝le 'ID1 ID2' bez kvoËiek.\n\nNaprÌklad: '16 1' bez kvoËiek.",
-				    "OK", "ZRUäIç");
+				    "OK", "CLOSE");
 
 			new col[2][5], count, fincol[2];
 
@@ -35991,7 +35953,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(count != 2)
 			    return ShowPlayerDialog(playerid, did_upgrade_shop_col, DIALOG_STYLE_INPUT, "PREFARBENIE",
 				    "{FFFFFF}> Zadaj prosÌm novÈ ID farieb tvojho vozidla v öt˝le 'ID1 ID2' bez kvoËiek.\n\nNaprÌklad: '16 1' bez kvoËiek.",
-				    "OK", "ZRUäIç");
+				    "OK", "CLOSE");
 
 			fincol[0] = strval(col[0]);
 			fincol[1] = strval(col[1]);
@@ -36000,7 +35962,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 			    return ShowPlayerDialog(playerid, did_upgrade_shop_col, DIALOG_STYLE_INPUT, "PREFARBENIE",
 				    "{FFFFFF}> Zadaj prosÌm novÈ ID farieb tvojho vozidla v öt˝le 'ID1 ID2' bez kvoËiek.\n\nNaprÌklad: '16 1' bez kvoËiek.\nZlÈ ID farieb!",
-				    "OK", "ZRUäIç");
+				    "OK", "CLOSE");
 			}
 
 			ChangeVehicleColor(GetPlayerVehicleID(playerid), fincol[0], fincol[1]);
@@ -36022,7 +35984,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		        return CallRemoteFunction("gps_OpenGPSEx", "i", playerid);
 
 			if(strlen(inputtext) < 5 || strlen(inputtext) > 120)
-			    return ShowPlayerDialog(playerid, did_gpsex_add, DIALOG_STYLE_INPUT, "GPS - PRIDAç", "{FFFFFF}> Zadaj meno novej destin·cie, ktor· bude tu!\n\tZadaj text dlhöÌ ako 5 a kratöÌ ako 120 znakov!", "OK", "SPAç");
+			    return ShowPlayerDialog(playerid, did_gpsex_add, DIALOG_STYLE_INPUT, "GPS - PRIDAç", "{FFFFFF}> Zadaj meno novej destin·cie, ktor· bude tu!\n\tZadaj text dlhöÌ ako 5 a kratöÌ ako 120 znakov!", "OK", "BACK");
 
 			new Float:Pos[3];
 
@@ -36056,7 +36018,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 			    // Vypn˙ù GPS
 
-			    ShowPlayerDialog(playerid, did_gpsex_add, DIALOG_STYLE_INPUT, "GPS - PRIDAç", "{FFFFFF}> Zadaj meno novej destin·cie, ktor· bude tu!", "OK", "SPAç");
+			    ShowPlayerDialog(playerid, did_gpsex_add, DIALOG_STYLE_INPUT, "GPS - PRIDAç", "{FFFFFF}> Zadaj meno novej destin·cie, ktor· bude tu!", "OK", "BACK");
 
 				return 1;
 			}
@@ -36133,7 +36095,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    // VlastnÈ s˙rodnice
 
 			    return ShowPlayerDialog(playerid, did_gps_custom, DIALOG_STYLE_INPUT, "GPS",
-					"{ffffff}> Zadaj prosÌm vlastnÈ s˙radnice v öt˝le 'X.0 Y.0 Z.0' bez ''\nMedzi ËÌslami musia byù medzery a ËÌsla musia maù desatinn˙ BODKU, nie Ëiarku.", "OK", "SPAç");
+					"{ffffff}> Zadaj prosÌm vlastnÈ s˙radnice v öt˝le 'X.0 Y.0 Z.0' bez ''\nMedzi ËÌslami musia byù medzery a ËÌsla musia maù desatinn˙ BODKU, nie Ëiarku.", "OK", "BACK");
 			}
 			else if(listitem == 3)
 			{
@@ -36155,7 +36117,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			else if(listitem == 4)
 			{
-			    ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "SPAç");
+			    ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "BACK");
 			    return 1;
 
 			}
@@ -36191,7 +36153,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(isnull(inputtext))
 			    ShowPlayerDialog(playerid, did_gps_custom, DIALOG_STYLE_INPUT, "GPS",
-					"{ffffff}> Zadaj prosÌm vlastnÈ s˙radnice v öt˝le 'X.0 Y.0 Z.0' bez ''\nMedzi ËÌslami musia byù medzery a ËÌsla musia maù desatinn˙ BODKU, nie Ëiarku.", "OK", "SPAç");
+					"{ffffff}> Zadaj prosÌm vlastnÈ s˙radnice v öt˝le 'X.0 Y.0 Z.0' bez ''\nMedzi ËÌslami musia byù medzery a ËÌsla musia maù desatinn˙ BODKU, nie Ëiarku.", "OK", "BACK");
 
 			new pos[3][15], count, Float:finpos[3];
 
@@ -36199,7 +36161,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(count != 3)
 			    return ShowPlayerDialog(playerid, did_gps_custom, DIALOG_STYLE_INPUT, "GPS",
-		 			"{ffffff}> Zadaj prosÌm vlastnÈ s˙radnice v öt˝le 'X.0 Y.0 Z.0' bez ''\nMedzi ËÌslami musia byù medzery a ËÌsla musia maù desatinn˙ BODKU, nie Ëiarku.", "OK", "SPAç");
+		 			"{ffffff}> Zadaj prosÌm vlastnÈ s˙radnice v öt˝le 'X.0 Y.0 Z.0' bez ''\nMedzi ËÌslami musia byù medzery a ËÌsla musia maù desatinn˙ BODKU, nie Ëiarku.", "OK", "BACK");
 
 			finpos[0] = floatstr(pos[0]);
 			finpos[1] = floatstr(pos[1]);
@@ -36222,7 +36184,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    return CallRemoteFunction("gps_OpenGPS", "i", playerid);
 
 			if(isnull(inputtext))
-			    return ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "SPAç");
+			    return ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "BACK");
 
 			new count, tstr[64];
 
@@ -36283,7 +36245,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 
 			if(count == 0)
-			    return SendError(playerid, "T·to nehnuteænosù nebola n·jden·!"), ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "SPAç");
+			    return SendError(playerid, "T·to nehnuteænosù nebola n·jden·!"), ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "BACK");
 
 			new finstr[1024];
 			for(new i; i < count; i++)
@@ -36316,20 +36278,20 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				strcat(finstr, tstr);
 			}
 
-			ShowPlayerDialog(playerid, did_gps_custchoose, DIALOG_STYLE_LIST, "VYHºADAç NEHNUTEºNOSç", finstr, "VYBRAç", "SPAç");
+			ShowPlayerDialog(playerid, did_gps_custchoose, DIALOG_STYLE_LIST, "VYHºADAç NEHNUTEºNOSç", finstr, "CHOOSE", "BACK");
 		}
 
 		case did_gps_custchoose:
 		{
 
 		    if(!response)
-		          return ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "SPAç");
+		          return ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "BACK");
 
             if(gpscust[playerid][listitem] <= MAX_HOUSE_ADDRESS && gpscust[playerid][listitem] >= MIN_HOUSE_ADDRESS)
 			{
 		        new hid = searchhousebypsc(gpscust[playerid][listitem]);
 		        if(hid == -1)
-		            return ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "SPAç");
+		            return ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "BACK");
 
 		    	gps_On[playerid] = true;
 		  		g_I_playerCheckpoint[playerid] = checkp_gps;
@@ -36341,7 +36303,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		    {
 		        new hid = searchgaragebypsc(gpscust[playerid][listitem]);
 		        if(hid == -1)
-		            return ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "SPAç");
+		            return ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "BACK");
 
 		    	gps_On[playerid] = true;
 		  		g_I_playerCheckpoint[playerid] = checkp_gps;
@@ -36353,7 +36315,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		    {
 	        	new hid = searchbizzbypsc(gpscust[playerid][listitem]);
 		        if(hid == -1)
-		            return ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "SPAç");
+		            return ShowPlayerDialog(playerid, did_gps_cust, DIALOG_STYLE_INPUT, "VYHºADAç NEHNUTEºNOSç", "{ffffff}> Zadajte prosÌm adresu nehnuteænosti, ktor˙ chcete vyhæadaù!", "OK", "BACK");
 
    			    gps_On[playerid] = true;
 		  		g_I_playerCheckpoint[playerid] = checkp_gps;
@@ -36670,7 +36632,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			cache_delete(c);
 
 			if(isnull(inputtext) || !IsNumeric(inputtext) || floatstr(inputtext) < 1.00 || floatstr(inputtext) > Cash)
-			    return isUsingDialog[playerid] = true, ShowPlayerDialog(playerid, did_atm_vyber, DIALOG_STYLE_INPUT, "ATM", string, "VYBRAç", "ZRUäIç");
+			    return isUsingDialog[playerid] = true, ShowPlayerDialog(playerid, did_atm_vyber, DIALOG_STYLE_INPUT, "ATM", string, "CHOOSE", "CLOSE");
 
 			ex_GivePlayerMoney(playerid, strval(inputtext));
 			money_accepted[playerid] += floatround(strval(inputtext),floatround_round);
@@ -36699,7 +36661,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			format(string, 128, "{ffffff}> Ak˝ chceö nov˝ PIN kÛd?");
 
 			if(isnull(inputtext) || !IsNumeric(inputtext) || strval(inputtext) < 0 || strval(inputtext) > 9999)
-			    return isUsingDialog[playerid] = false, ShowPlayerDialog(playerid, did_atm_pin, DIALOG_STYLE_INPUT, "ATM", string, "POTVRDIç", "ZRUäIç");
+			    return isUsingDialog[playerid] = false, ShowPlayerDialog(playerid, did_atm_pin, DIALOG_STYLE_INPUT, "ATM", string, "POTVRDIç", "CLOSE");
 
 			new query[128];
 			mysql_format(MYSQL, query, 128, "UPDATE gm_bankaccs SET PIN = '%d' WHERE AccID = '%d'",
@@ -36820,7 +36782,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			cache_delete(C_q);
 
-			ShowPlayerDialog(playerid, did_banka_add_count, DIALOG_STYLE_INPUT, "VLOéIç NA KONTO", S_finalString, "VLOéIç", "SPAç");
+			ShowPlayerDialog(playerid, did_banka_add_count, DIALOG_STYLE_INPUT, "VLOéIç NA KONTO", S_finalString, "VLOéIç", "BACK");
 
 	    }
 
@@ -36992,11 +36954,11 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			else if(listitem == 1)
 			{
-			    return ShowPlayerDialog(playerid, did_boombox_custom, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj URL vlastnej hudobnej stanice!", "OK", "ZRUäIç");
+			    return ShowPlayerDialog(playerid, did_boombox_custom, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj URL vlastnej hudobnej stanice!", "OK", "CLOSE");
 			}
 			else if(listitem == 2)
 			{
-			    return ShowPlayerDialog(playerid, did_boombox_add_1, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj meno novej stanice!", "œALEJ", "SPAç");
+			    return ShowPlayerDialog(playerid, did_boombox_add_1, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj meno novej stanice!", "œALEJ", "BACK");
 			}
 			else
 			{
@@ -37012,11 +36974,11 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(isnull(inputtext) || strlen(inputtext) > 35)
 			    return
 					SendError(playerid, "Meno stanice musÌ maù od 1 do 35 znakov!"),
-					ShowPlayerDialog(playerid, did_boombox_add_1, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj meno novej stanice!", "œALEJ", "SPAç");
+					ShowPlayerDialog(playerid, did_boombox_add_1, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj meno novej stanice!", "œALEJ", "BACK");
 
 			format(bbAdd_NAME[playerid], 64, "%s", inputtext);
 
-			ShowPlayerDialog(playerid, did_boombox_add_2, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj URL tejto novej stanice novej stanice!", "œALEJ", "ZRUäIç");
+			ShowPlayerDialog(playerid, did_boombox_add_2, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj URL tejto novej stanice novej stanice!", "œALEJ", "CLOSE");
 		}
 
 	    case did_boombox_add_2:
@@ -37027,7 +36989,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             if(isnull(inputtext))
 			    return
 					SendError(playerid, "Zadaj prosÌm URL adresu tejto stanice!"),
-					ShowPlayerDialog(playerid, did_boombox_add_2, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj URL tejto novej stanice novej stanice!", "œALEJ", "ZRUäIç");
+					ShowPlayerDialog(playerid, did_boombox_add_2, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj URL tejto novej stanice novej stanice!", "œALEJ", "CLOSE");
 
 			new
 			    query[512];
@@ -37089,7 +37051,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return ShowBoomboxMenu(boomzal[playerid], playerid);
 
 			if(isnull(inputtext))
-			    return ShowPlayerDialog(playerid, did_boombox_custom, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj URL vlastnej hudobnej stanice!", "OK", "ZRUäIç");
+			    return ShowPlayerDialog(playerid, did_boombox_custom, DIALOG_STYLE_INPUT, "BOOMBOX", "{ffffff}> Zadaj URL vlastnej hudobnej stanice!", "OK", "CLOSE");
 
             format(bb_Url[boomzal[playerid]], 256, inputtext);
    			RefreshBoombox(boomzal[playerid]);
@@ -37145,10 +37107,10 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			 	return ShowCarRadioMenu(playerid);
 			}
 			else if(listitem == 1)
-			    return ShowPlayerDialog(playerid, did_carradio_custom, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj URL vlastnej hudobnej stanice!", "OK", "ZRUäIç");
+			    return ShowPlayerDialog(playerid, did_carradio_custom, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj URL vlastnej hudobnej stanice!", "OK", "CLOSE");
 			else if(listitem == 2)
 			{
-			    return ShowPlayerDialog(playerid, did_carradio_add_1, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj meno novej stanice!", "œALEJ", "SPAç");
+			    return ShowPlayerDialog(playerid, did_carradio_add_1, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj meno novej stanice!", "œALEJ", "BACK");
 			}
 			else
 			{
@@ -37162,7 +37124,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return ShowCarRadioMenu(playerid);
 
 			if(isnull(inputtext))
-			    return ShowPlayerDialog(playerid, did_carradio_custom, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj URL vlastnej hudobnej stanice!", "OK", "ZRUäIç");
+			    return ShowPlayerDialog(playerid, did_carradio_custom, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj URL vlastnej hudobnej stanice!", "OK", "CLOSE");
 
             format(vEnum[GetPlayerVehicleID(playerid)][v_RadioURL], 256, inputtext);
    			RefreshCarRadio(GetPlayerVehicleID(playerid));
@@ -37195,11 +37157,11 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(isnull(inputtext) || strlen(inputtext) > 35)
 			    return
 					SendError(playerid, "Meno stanice musÌ maù od 1 do 35 znakov!"),
-					ShowPlayerDialog(playerid, did_carradio_add_1, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj meno novej stanice!", "œALEJ", "SPAç");
+					ShowPlayerDialog(playerid, did_carradio_add_1, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj meno novej stanice!", "œALEJ", "BACK");
 
 			format(bbAdd_NAME[playerid], 64, "%s", inputtext);
 
-			ShowPlayerDialog(playerid, did_carradio_add_2, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj URL tejto novej stanice novej stanice!", "œALEJ", "ZRUäIç");
+			ShowPlayerDialog(playerid, did_carradio_add_2, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj URL tejto novej stanice novej stanice!", "œALEJ", "CLOSE");
 		}
 
 	    case did_carradio_add_2:
@@ -37210,7 +37172,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             if(isnull(inputtext))
 			    return
 						SendError(playerid, "Zadaj prosÌm URL adresu tejto stanice!"),
-						ShowPlayerDialog(playerid, did_carradio_add_2, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj URL tejto novej stanice novej stanice!", "œALEJ", "ZRUäIç");
+						ShowPlayerDialog(playerid, did_carradio_add_2, DIALOG_STYLE_INPUT, "AUTOR¡DIO", "{ffffff}> Zadaj URL tejto novej stanice novej stanice!", "œALEJ", "CLOSE");
 
 			new
 			    query[512];
@@ -37487,7 +37449,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(ex_GetPlayerMoney(playerid) < cena)
 	            return SendError(playerid, "Nem·ö dosù peÚazÌ!"), ShowPlayerDialog(playerid, did_kupit_kredit_electro, DIALOG_STYLE_TABLIST, "DOBIç KREDIT",
 			        "{FFFFFF}5 USD\t{2fb838}$5\n{FFFFFF}10 USD\t{2fb838}$10\n{FFFFFF}20 USD\t{2fb838}$20",
-			        "VYBRAç", "SPAç");
+			        "CHOOSE", "BACK");
 
             DecrBizTovar(GetPlayerBusiness(playerid));
 
@@ -37501,7 +37463,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			return ShowPlayerDialog(playerid, did_kupit_kredit_electro, DIALOG_STYLE_TABLIST, "DOBIç KREDIT",
    				"{FFFFFF}5 USD\t{2fb838}$5\n{FFFFFF}10 USD\t{2fb838}$10\n{FFFFFF}20 USD\t{2fb838}$20",
-			    "VYBRAç", "SPAç");
+			    "CHOOSE", "BACK");
 	    }
 
 	    case menut_electro_shop:
@@ -37526,7 +37488,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			    return ShowPlayerDialog(playerid, did_kupit_kredit_electro, DIALOG_STYLE_TABLIST, "DOBIç KREDIT",
 			        "{FFFFFF}5 USD\t{2fb838}$5\n{FFFFFF}10 USD\t{2fb838}$10\n{FFFFFF}20 USD\t{2fb838}$20",
-			        "VYBRAç", "SPAç");
+			        "CHOOSE", "BACK");
 			}
 
 	        if(ex_GetPlayerMoney(playerid) < menuitem_electro[listitem][1][0])
@@ -37536,7 +37498,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 			    return ShowPlayerDialog(playerid, did_kupit_sim_kartu, DIALOG_STYLE_LIST, "VYBER SI",
 			        "Chcem pouûÌvaù kredit\nChcem strh·vanie z v˝platy",
-			        "VYBRAç", "SPAç");
+			        "CHOOSE", "BACK");
 			}
 
             new
@@ -37575,7 +37537,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	        if(!response)
 	            return ShowPlayerDialog(playerid, did_kupit_sim_kartu, DIALOG_STYLE_LIST, "VYBER SI",
 			        "Chcem pouûÌvaù kredit\nChcem strh·vanie z v˝platy",
-			        "VYBRAç", "SPAç");
+			        "CHOOSE", "BACK");
 
 			new
    				randNumber = rand(100000000, 999999999),
@@ -38130,7 +38092,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(isnull(inputtext) || strlen(inputtext) < 6 || strlen(inputtext) > 32)
 			{
 			    SendError(playerid, "Heslo musi mat od 6 do 32 znakov!");
-			    return ShowPlayerDialog(playerid, did_options_pwd, DIALOG_STYLE_INPUT, "ZMENA HESLA", "{FFFFFF}> Zadaj prosÌm svoje novÈ heslo! MusÌ maù od 6 do 32 znakov.", "ZMENIç", "SPAç");
+			    return ShowPlayerDialog(playerid, did_options_pwd, DIALOG_STYLE_INPUT, "ZMENA HESLA", "{FFFFFF}> Zadaj prosÌm svoje novÈ heslo! MusÌ maù od 6 do 32 znakov.", "ZMENIç", "BACK");
 			}
 
 			new query[255];
@@ -38152,7 +38114,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(listitem == 0)
 			{
-				return ShowPlayerDialog(playerid, did_options_pwd, DIALOG_STYLE_INPUT, "ZMENA HESLA", "{FFFFFF}> Zadaj prosÌm svoje novÈ heslo! MusÌ maù od 6 do 32 znakov.", "ZMENIç", "SPAç");
+				return ShowPlayerDialog(playerid, did_options_pwd, DIALOG_STYLE_INPUT, "ZMENA HESLA", "{FFFFFF}> Zadaj prosÌm svoje novÈ heslo! MusÌ maù od 6 do 32 znakov.", "ZMENIç", "BACK");
 			}
 	        else if(listitem == 1)
 	        {
@@ -38209,7 +38171,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else
 				    format(S_string, sizeof(S_string), "{FFFFFF}> Zadaj nov˝ prÌzvuk tvojho charakteru!\n\nMaxim·lne 20 znakov.\nAktu·lny prÌzvuk: NIE JE\n\nPre vypnutie zadaj 'off'.");
 
-	            return ShowPlayerDialog(playerid, did_options_prizvuk, DIALOG_STYLE_INPUT, "ZMENA PRÕZVUKU", S_string, "OK", "ZRUäIç");
+	            return ShowPlayerDialog(playerid, did_options_prizvuk, DIALOG_STYLE_INPUT, "ZMENA PRÕZVUKU", S_string, "OK", "CLOSE");
 	        }
 	        else if(listitem == 8)
 	        {
@@ -38223,7 +38185,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else
 				    format(S_string, sizeof(S_string), "{FFFFFF}> Zadaj nov˝ popis tvojho charakteru!\n\nMaxim·lne 120 znakov.\nAktu·lny popis: NIE JE\n\nPre vypnutie zadaj 'off'.");
 
-	            return ShowPlayerDialog(playerid, did_options_popis, DIALOG_STYLE_INPUT, "ZMENA POPISU", S_string, "OK", "ZRUäIç");
+	            return ShowPlayerDialog(playerid, did_options_popis, DIALOG_STYLE_INPUT, "ZMENA POPISU", S_string, "OK", "CLOSE");
 	        }
 	        else if(listitem == 9)
 	        {
@@ -38238,7 +38200,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            if(Vyplata_TYP[playerid] != 0)
 	                Vyplata_TYP[playerid] = 0;
 				else
-				    return ShowPlayerDialog(playerid, did_options_bankacc, DIALOG_STYLE_INPUT, "V›PLATA NA ⁄»ET", "{ffffff}> Zadaj prosÌm ËÌslo ˙Ëtu, na ktor˝ chceö v˝platu posielaù!", "OK", "ZRUäIç");
+				    return ShowPlayerDialog(playerid, did_options_bankacc, DIALOG_STYLE_INPUT, "V›PLATA NA ⁄»ET", "{ffffff}> Zadaj prosÌm ËÌslo ˙Ëtu, na ktor˝ chceö v˝platu posielaù!", "OK", "CLOSE");
 	        }
 	        else if(listitem == 11)
 	        {
@@ -38285,7 +38247,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return ShowPlayerOptions(playerid);
 
 			if(isnull(inputtext) || !IsNumeric(inputtext))
-			    return ShowPlayerDialog(playerid, did_options_bankacc, DIALOG_STYLE_INPUT, "V›PLATA NA ⁄»ET", "{ffffff}> Zadaj prosÌm ËÌslo ˙Ëtu, na ktor˝ chceö v˝platu posielaù!", "OK", "ZRUäIç");
+			    return ShowPlayerDialog(playerid, did_options_bankacc, DIALOG_STYLE_INPUT, "V›PLATA NA ⁄»ET", "{ffffff}> Zadaj prosÌm ËÌslo ˙Ëtu, na ktor˝ chceö v˝platu posielaù!", "OK", "CLOSE");
 
 			new
 			    Query[90],
@@ -38300,7 +38262,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(pocet == 0)
 				return SendError(playerid, "Tak˝to ˙Ëet neexistuje!"),
-				    ShowPlayerDialog(playerid, did_options_bankacc, DIALOG_STYLE_INPUT, "V›PLATA NA ⁄»ET", "{ffffff}> Zadaj prosÌm ËÌslo ˙Ëtu, na ktor˝ chceö v˝platu posielaù!", "OK", "ZRUäIç");
+				    ShowPlayerDialog(playerid, did_options_bankacc, DIALOG_STYLE_INPUT, "V›PLATA NA ⁄»ET", "{ffffff}> Zadaj prosÌm ËÌslo ˙Ëtu, na ktor˝ chceö v˝platu posielaù!", "OK", "CLOSE");
 
 			SendSuccess(playerid, "»Ìslo ˙Ëtu ˙speöne aktualizovanÈ!");
 
@@ -38324,7 +38286,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else
 				    format(S_string, sizeof(S_string), "{FFFFFF}> Zadaj nov˝ prÌzvuk tvojho charakteru!\n\nMaxim·lne 20 znakov.\nAktu·lny prÌzvuk: NIE JE\n\nPre vypnutie zadaj 'off'.");
 
-	           	return ShowPlayerDialog(playerid, did_options_prizvuk, DIALOG_STYLE_INPUT, "ZMENA PRÕZVUKU", S_string, "OK", "ZRUäIç");
+	           	return ShowPlayerDialog(playerid, did_options_prizvuk, DIALOG_STYLE_INPUT, "ZMENA PRÕZVUKU", S_string, "OK", "CLOSE");
 			}
 
 			format(prizvuk[playerid], 32, inputtext);
@@ -38352,7 +38314,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else
 				    format(S_string, sizeof(S_string), "{FFFFFF}> Zadaj nov˝ popis tvojho charakteru!\n\nMaxim·lne 120 znakov.\nAktu·lny popis: NIE JE\n\nPre vypnutie zadaj 'off'.");
 
-	            return ShowPlayerDialog(playerid, did_options_popis, DIALOG_STYLE_INPUT, "ZMENA POPISU", S_string, "OK", "ZRUäIç");
+	            return ShowPlayerDialog(playerid, did_options_popis, DIALOG_STYLE_INPUT, "ZMENA POPISU", S_string, "OK", "CLOSE");
 			}
 			
 			if(!strcmp(inputtext,"off",true))
@@ -39170,8 +39132,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    DIALOG_STYLE_LIST,
 				    "VYBER AKCIU",
 					"Skonzumovaù/pouûiù drogu\nPodaù drogu hr·Ëovi\nPoloûiù drogu na zem\n{d44848}Nevratne zahodiù",
-					"VYBRAç",
-					"SPAç"
+					"CHOOSE",
+					"BACK"
 				);
 	            return 1;
 	        }
@@ -39193,8 +39155,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    DIALOG_STYLE_INPUT,
 				    "ZADAJ PO»ET",
 					finstr,
-					"VYBRAç",
-					"SPAç"
+					"CHOOSE",
+					"BACK"
 				);
 
 				return 1;
@@ -39219,8 +39181,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    DIALOG_STYLE_LIST,
 				    "VYBER AKCIU",
 					"Skonzumovaù/pouûiù drogu\nPodaù drogu hr·Ëovi\nPoloûiù drogu na zem\n{d44848}Nevratne zahodiù",
-					"VYBRAç",
-					"SPAç"
+					"CHOOSE",
+					"BACK"
 				);
 	            return 1;
 	        }
@@ -39242,8 +39204,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    DIALOG_STYLE_INPUT,
 				    "ZADAJ PO»ET",
 					finstr,
-					"VYBRAç",
-					"SPAç"
+					"CHOOSE",
+					"BACK"
 				);
 
 				return 1;
@@ -39265,8 +39227,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    DIALOG_STYLE_INPUT,
 			    "ZADAJ PO»ET",
 				finstr,
-				"VYBRAç",
-				"SPAç"
+				"CHOOSE",
+				"BACK"
 			);
 
 	    }
@@ -39289,8 +39251,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    DIALOG_STYLE_INPUT,
 				    "ZADAJ PO»ET",
 					finstr,
-					"VYBRAç",
-					"SPAç"
+					"CHOOSE",
+					"BACK"
 				);
 
 	            return 1;
@@ -39316,8 +39278,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    DIALOG_STYLE_INPUT,
 				    "ZADAJ PO»ET",
 					finstr,
-					"VYBRAç",
-					"SPAç"
+					"CHOOSE",
+					"BACK"
 				);
 
 				return 1;
@@ -39340,8 +39302,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    DIALOG_STYLE_INPUT,
 				    "ZADAJ PO»ET",
 					finstr,
-					"VYBRAç",
-					"SPAç"
+					"CHOOSE",
+					"BACK"
 				);
 
 				return 1;
@@ -39379,8 +39341,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    DIALOG_STYLE_LIST,
 				    "VYBER AKCIU",
 					"Skonzumovaù/pouûiù drogu\nPodaù drogu hr·Ëovi\nPoloûiù drogu na zem\n{d44848}Nevratne zahodiù",
-					"VYBRAç",
-					"SPAç"
+					"CHOOSE",
+					"BACK"
 				);
 	            return 1;
 	        }
@@ -39403,8 +39365,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    DIALOG_STYLE_INPUT,
 				    "ZADAJ PO»ET",
 					finstr,
-					"VYBRAç",
-					"SPAç"
+					"CHOOSE",
+					"BACK"
 				);
 
 				return 1;
@@ -39501,8 +39463,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					    DIALOG_STYLE_INPUT,
 					    "ZADAJ PO»ET",
 						finstr,
-						"VYBRAç",
-						"SPAç"
+						"CHOOSE",
+						"BACK"
 					);
 			    }
 
@@ -39522,8 +39484,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					    DIALOG_STYLE_INPUT,
 					    "ZADAJ PO»ET",
 						finstr,
-						"VYBRAç",
-						"SPAç"
+						"CHOOSE",
+						"BACK"
 					);
 			    }
 
@@ -39543,8 +39505,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					    DIALOG_STYLE_INPUT,
 					    "ZADAJ PO»ET",
 						finstr,
-						"VYBRAç",
-						"SPAç"
+						"CHOOSE",
+						"BACK"
 					);
 			    }
 			}
@@ -39570,8 +39532,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    DIALOG_STYLE_LIST,
 			    "VYBER AKCIU",
 				"Skonzumovaù/pouûiù drogu\nPodaù drogu hr·Ëovi\nPoloûiù drogu na zem\n{d44848}Nevratne zahodiù",
-				"VYBRAç",
-				"SPAç"
+				"CHOOSE",
+				"BACK"
 			);
 	    }
 
@@ -39614,8 +39576,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						    DIALOG_STYLE_LIST,
 						    "VYBER AKCIU",
 							"Zobraù do ruky\nPoloûiù fæaöu na zem\n{d44848}Nevratne zahodiù",
-							"VYBRAç",
-							"SPAç"
+							"CHOOSE",
+							"BACK"
 						);
 					    return 1;
 					}
@@ -39733,8 +39695,8 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    DIALOG_STYLE_LIST,
 			    "VYBER AKCIU",
 				"Zobraù do ruky\nPoloûiù fæaöu na zem\n{d44848}Nevratne zahodiù",
-				"VYBRAç",
-				"SPAç"
+				"CHOOSE",
+				"BACK"
 			);
 	    }
 
@@ -39801,7 +39763,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			#undef invitem
 
-			ShowPlayerDialog(playerid, did_InventoryMenu, DIALOG_STYLE_LIST, "INVENT¡R > MENU", finalString, "VYBRAç", "SPAç");
+			ShowPlayerDialog(playerid, did_InventoryMenu, DIALOG_STYLE_LIST, "INVENT¡R > MENU", finalString, "CHOOSE", "BACK");
 
 			return 1;
 	    }
@@ -39822,14 +39784,14 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				|| invitem == _:inv_bandaz || invitem == _:inv_rezerva || invitem == _:inv_weeds1 || invitem == _:inv_weeds2 || invitem == _:inv_weeds3 || invitem == _:inv_hnojivo||invitem==_:inv_spritelean||invitem==_:inv_prometh)
 				{
 					//Podaù item hr·Ëovi
-					ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!", "œALEJ", "SPAç");
+					ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!", "œALEJ", "BACK");
 				}
 				else if(invitem == _:inv_pepsiCan || invitem == _:inv_colaCan || invitem == _:inv_kitKatChocolate || invitem == _:inv_pringlesChips ||invitem == _:inv_skateboard ||invitem == _:inv_katalog ||
 					invitem==_:inv_tree_sadenica||invitem==_:inv_tree_log_oak||invitem==_:inv_tree_log_birch||invitem==_:inv_tree_log_spruce||
 			    	invitem == _:inv_kocka || invitem == _:inv_mask || invitem == _:inv_cigarety || invitem == _:inv_zapalovac || invitem == _:inv_carBattery || invitem == _:inv_carOil || invitem == _:inv_pizza||invitem == _:inv_petcup ||invitem == _:inv_sprite)
 			    {
 			        //Podaù item hr·Ëovi
-			        ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!", "œALEJ", "SPAç");
+			        ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!", "œALEJ", "BACK");
 			    }
 			    else if(invitem == _:inv_boomBox || invitem == _:inv_idCard || invitem == _:inv_blood || invitem == _:inv_creditCard || invitem == _:inv_simcard || invitem == _:inv_telefon || invitem == _:inv_vysielacka || invitem == _:inv_kanister)
 			    {
@@ -39843,7 +39805,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						return ShowPlayerInventory(playerid, playerid);
 			        }
 
-			        ShowPlayerDialog(playerid, did_InventoryZahodit, DIALOG_STYLE_INPUT, "INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!", "ZAHODIç", "SPAç");
+			        ShowPlayerDialog(playerid, did_InventoryZahodit, DIALOG_STYLE_INPUT, "INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!", "ZAHODIç", "BACK");
 			    }
 			}
 			else if(listitem == 1)
@@ -39852,7 +39814,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				|| invitem == _:inv_bandaz || invitem == _:inv_rezerva || invitem == _:inv_weeds1 || invitem == _:inv_weeds2 || invitem == _:inv_weeds3 || invitem == _:inv_hnojivo||invitem==_:inv_spritelean||invitem==_:inv_prometh)
 				{
 					//Poloûiù item na zem
-					ShowPlayerDialog(playerid, did_InventoryPolozit, DIALOG_STYLE_INPUT, "INVENT¡R > POLOéIç", "{ffffff}> Zadaj prosÌm poËet (alebo objem), koæko toho chceö poloûiù!", "POLOéIç", "SPAç");
+					ShowPlayerDialog(playerid, did_InventoryPolozit, DIALOG_STYLE_INPUT, "INVENT¡R > POLOéIç", "{ffffff}> Zadaj prosÌm poËet (alebo objem), koæko toho chceö poloûiù!", "POLOéIç", "BACK");
 				}
 				else if(invitem == _:inv_pepsiCan || invitem == _:inv_colaCan || invitem == _:inv_kitKatChocolate || invitem == _:inv_pringlesChips||invitem == _:inv_skateboard || invitem == _:inv_katalog||
 					invitem==_:inv_tree_sadenica||invitem==_:inv_tree_log_oak||invitem==_:inv_tree_log_birch||invitem==_:inv_tree_log_spruce
@@ -39866,7 +39828,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						return ShowPlayerInventory(playerid, playerid);
 			        }
 
-			        ShowPlayerDialog(playerid, did_InventoryZahodit, DIALOG_STYLE_INPUT, "INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!", "ZAHODIç", "SPAç");
+			        ShowPlayerDialog(playerid, did_InventoryZahodit, DIALOG_STYLE_INPUT, "INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!", "ZAHODIç", "BACK");
 			    }
 			}
 			else if(listitem == 2)
@@ -39875,7 +39837,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				|| invitem == _:inv_naboje || invitem == _:inv_bandaz || invitem == _:inv_rezerva || invitem == _:inv_weeds1 || invitem == _:inv_weeds2 || invitem == _:inv_weeds3 || invitem == _:inv_hnojivo||invitem==_:inv_spritelean)
 				{
 					//Zahodiù item
-					ShowPlayerDialog(playerid, did_InventoryZahodit, DIALOG_STYLE_INPUT, "INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!", "ZAHODIç", "SPAç");
+					ShowPlayerDialog(playerid, did_InventoryZahodit, DIALOG_STYLE_INPUT, "INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!", "ZAHODIç", "BACK");
 				}
 			}
 			#undef invitem
@@ -39918,18 +39880,18 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				#undef invitem
 
-				ShowPlayerDialog(playerid, did_InventoryMenu, DIALOG_STYLE_LIST, "INVENT¡R > MENU", finalString, "VYBRAç", "SPAç");
+				ShowPlayerDialog(playerid, did_InventoryMenu, DIALOG_STYLE_LIST, "INVENT¡R > MENU", finalString, "CHOOSE", "BACK");
 				return 0;
 			}
 
 			if(isnull(inputtext) || !IsNumeric(inputtext) || (invEditItem[playerid] != 0 && strval(inputtext) < 1) || (invEditItem[playerid] == 0 && floatstr(inputtext) < 0.01))
-			    return ShowPlayerDialog(playerid, did_InventoryPolozit, DIALOG_STYLE_INPUT, "INVENT¡R > POLOéIç", "{ffffff}> Zadaj prosÌm poËet (alebo objem), koæko toho chceö poloûiù!", "POLOéIç", "SPAç");
+			    return ShowPlayerDialog(playerid, did_InventoryPolozit, DIALOG_STYLE_INPUT, "INVENT¡R > POLOéIç", "{ffffff}> Zadaj prosÌm poËet (alebo objem), koæko toho chceö poloûiù!", "POLOéIç", "BACK");
 
 			if(invEditItem[playerid] == 0 && (ex_GetPlayerMoney(playerid) < floatstr(inputtext) || floatstr(inputtext) < 1.0))
-                return ShowPlayerDialog(playerid, did_InventoryPolozit, DIALOG_STYLE_INPUT, "INVENT¡R > POLOéIç", "{ffffff}> Zadaj prosÌm poËet (alebo objem), koæko toho chceö poloûiù!\n{ea5959}NemÙûeö toho vyhodiù viac, ako m·ö!\nNemÙûeö tieû poloûiù menej ako 1$!", "POLOéIç", "SPAç");
+                return ShowPlayerDialog(playerid, did_InventoryPolozit, DIALOG_STYLE_INPUT, "INVENT¡R > POLOéIç", "{ffffff}> Zadaj prosÌm poËet (alebo objem), koæko toho chceö poloûiù!\n{ea5959}NemÙûeö toho vyhodiù viac, ako m·ö!\nNemÙûeö tieû poloûiù menej ako 1$!", "POLOéIç", "BACK");
 
     		if(invEditItem[playerid] > 0 && GetPlayerInventoryItem(playerid, invEditItem[playerid]) < strval(inputtext))
-                return ShowPlayerDialog(playerid, did_InventoryPolozit, DIALOG_STYLE_INPUT, "INVENT¡R > POLOéIç", "{ffffff}> Zadaj prosÌm poËet (alebo objem), koæko toho chceö poloûiù!\n{ea5959}NemÙûeö toho vyhodiù viac, ako m·ö!", "POLOéIç", "SPAç");
+                return ShowPlayerDialog(playerid, did_InventoryPolozit, DIALOG_STYLE_INPUT, "INVENT¡R > POLOéIç", "{ffffff}> Zadaj prosÌm poËet (alebo objem), koæko toho chceö poloûiù!\n{ea5959}NemÙûeö toho vyhodiù viac, ako m·ö!", "POLOéIç", "BACK");
 
 			if(invEditItem[playerid] == 0)
 			{
@@ -40073,20 +40035,20 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				#undef invitem
 
-				ShowPlayerDialog(playerid, did_InventoryMenu, DIALOG_STYLE_LIST, "INVENT¡R > MENU", finalString, "VYBRAç", "SPAç");
+				ShowPlayerDialog(playerid, did_InventoryMenu, DIALOG_STYLE_LIST, "INVENT¡R > MENU", finalString, "CHOOSE", "BACK");
 				return 0;
 			}
 
 			if(isnull(inputtext) || !IsNumeric(inputtext) || strval(inputtext) < 1)
-			    return ShowPlayerDialog(playerid, did_InventoryZahodit, DIALOG_STYLE_INPUT, "INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!", "ZAHODIç", "SPAç");
+			    return ShowPlayerDialog(playerid, did_InventoryZahodit, DIALOG_STYLE_INPUT, "INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!", "ZAHODIç", "BACK");
 
 			if(invEditItem[playerid] == 0 && ex_GetPlayerMoney(playerid) < strval(inputtext))
                 return ShowPlayerDialog(playerid, did_InventoryZahodit, DIALOG_STYLE_INPUT,
-				"INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!\n{ea5959}NemÙûeö toho vyhodiù viac, ako m·ö!", "ZAHODIç", "SPAç");
+				"INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!\n{ea5959}NemÙûeö toho vyhodiù viac, ako m·ö!", "ZAHODIç", "BACK");
 
     		if(invEditItem[playerid] > 0 && GetPlayerInventoryItem(playerid, invEditItem[playerid]) < strval(inputtext))
                 return ShowPlayerDialog(playerid, did_InventoryZahodit, DIALOG_STYLE_INPUT,
-				"INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!\n{ea5959}NemÙûeö toho vyhodiù viac, ako m·ö!", "ZAHODIç", "SPAç");
+				"INVENT¡R > ZAHODIç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö zahodiù!\n\nT·to akcia je nevratn·!\n{ea5959}NemÙûeö toho vyhodiù viac, ako m·ö!", "ZAHODIç", "BACK");
 
 			if(invEditItem[playerid] == 0)
 			{
@@ -40154,18 +40116,18 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				#undef invitem
 
-				ShowPlayerDialog(playerid, did_InventoryMenu, DIALOG_STYLE_LIST, "INVENT¡R > MENU", finalString, "VYBRAç", "SPAç");
+				ShowPlayerDialog(playerid, did_InventoryMenu, DIALOG_STYLE_LIST, "INVENT¡R > MENU", finalString, "CHOOSE", "BACK");
 				return 0;
 			}
 
 			if(isnull(inputtext) || !IsNumeric(inputtext) || (invEditItem[playerid] != 0 && strval(inputtext) < 1))
-			    return ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!", "œALEJ", "SPAç");
+			    return ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!", "œALEJ", "BACK");
 
 			if(invEditItem[playerid] == 0 && (ex_GetPlayerMoney(playerid) < floatstr(inputtext) || floatstr(inputtext) < 0.01))
-                return ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!\nNemÙûeö podaù menej ako 1 cent alebo viac ako m·ö!", "œALEJ", "SPAç");
+                return ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!\nNemÙûeö podaù menej ako 1 cent alebo viac ako m·ö!", "œALEJ", "BACK");
 
     		if(invEditItem[playerid] > 0 && GetPlayerInventoryItem(playerid, invEditItem[playerid]) < strval(inputtext))
-                return ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!", "œALEJ", "SPAç");
+                return ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!", "œALEJ", "BACK");
 
 			if(invEditItem[playerid] == 0)
 				invGive[playerid][0] = floatround(floatstr(inputtext) * 100, floatround_round);
@@ -40174,7 +40136,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			invGive[playerid][2] = invEditItem[playerid];
 
-			return ShowPlayerDialog(playerid, did_InventoryGive2, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm ID hr·Ëa, ktorÈmu chceö tento item daù!", "œALEJ", "SPAç");
+			return ShowPlayerDialog(playerid, did_InventoryGive2, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm ID hr·Ëa, ktorÈmu chceö tento item daù!", "œALEJ", "BACK");
 
 		}
 
@@ -40183,17 +40145,17 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(!response)
 			{
 			    invGive[playerid][1] = -1;
-				return ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!", "œALEJ", "SPAç");
+				return ShowPlayerDialog(playerid, did_InventoryGive1, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm poËet, koæko toho chceö podaù inÈmu hr·Ëovi!", "œALEJ", "BACK");
 			}
 
 			new id = strval(inputtext);
 			MaskToId(id);
 
 			if(isnull(inputtext) || !IsNumeric(inputtext) || !IsPlayerLogged(strval(inputtext)))
-			    return SendError(playerid, "Tento hr·Ë nie je v hre!"), ShowPlayerDialog(playerid, did_InventoryGive2, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm ID hr·Ëa, ktorÈmu chceö tento item daù!", "œALEJ", "SPAç");
+			    return SendError(playerid, "Tento hr·Ë nie je v hre!"), ShowPlayerDialog(playerid, did_InventoryGive2, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm ID hr·Ëa, ktorÈmu chceö tento item daù!", "œALEJ", "BACK");
 
 			if(!IsPlayerNearPlayer(playerid, strval(inputtext), 2.5))
-                return ShowPlayerDialog(playerid, did_InventoryGive2, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm ID alebo meno hr·Ëa, ktorÈmu chceö tento item daù!", "œALEJ", "SPAç");
+                return ShowPlayerDialog(playerid, did_InventoryGive2, DIALOG_STYLE_INPUT, "INVENT¡R > PODAç", "{ffffff}> Zadaj prosÌm ID alebo meno hr·Ëa, ktorÈmu chceö tento item daù!", "œALEJ", "BACK");
 
 			invGive[playerid][1] = id;
 
@@ -40944,15 +40906,15 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    return ShowPlayerFactionMember(playerid, lastFacMemb[playerid]);
    			else if(listitem == 2)
 			{
-			    return ShowPlayerDialog(playerid, did_Faction_Set_Hodnost, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˙ hodnosù hr·Ëa, musÌ maù od 4 do 30 znakov.", "OK", "SPAç");
+			    return ShowPlayerDialog(playerid, did_Faction_Set_Hodnost, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˙ hodnosù hr·Ëa, musÌ maù od 4 do 30 znakov.", "OK", "BACK");
 			}
 			else if(listitem == 3)
 			{
-			    return ShowPlayerDialog(playerid, did_Faction_Set_Rank, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˝ rank (1 - 10) tohoto hr·Ëa.", "OK", "SPAç");
+			    return ShowPlayerDialog(playerid, did_Faction_Set_Rank, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˝ rank (1 - 10) tohoto hr·Ëa.", "OK", "BACK");
 			}
 			else if(listitem == 4)
 			{
-       			return ShowPlayerDialog(playerid, did_Faction_Set_Badge, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm novÈ ËÌslo odznaku.", "OK", "SPAç");
+       			return ShowPlayerDialog(playerid, did_Faction_Set_Badge, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm novÈ ËÌslo odznaku.", "OK", "BACK");
 			}
 			else if(listitem == 6)
 			{
@@ -41005,7 +40967,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return ShowPlayerFactionMember(playerid, lastFacMemb[playerid]);
 
 			if(isnull(inputtext) || strlen(inputtext) < 4 || strlen(inputtext) > 30)
-       			return ShowPlayerDialog(playerid, did_Faction_Set_Hodnost, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˙ hodnosù hr·Ëa, musÌ maù od 4 do 30 znakov.", "OK", "SPAç");
+       			return ShowPlayerDialog(playerid, did_Faction_Set_Hodnost, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˙ hodnosù hr·Ëa, musÌ maù od 4 do 30 znakov.", "OK", "BACK");
 
 		    new
 			    S_query[256],
@@ -41051,10 +41013,10 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return ShowPlayerFactionMember(playerid, lastFacMemb[playerid]);
 
 			if(isnull(inputtext) || !IsNumeric(inputtext) || strval(inputtext) < 1 || strval(inputtext) > 55555)
-			    return ShowPlayerDialog(playerid, did_Faction_Set_Rank, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˝ rank (1 - 10) tohoto hr·Ëa.", "OK", "SPAç");
+			    return ShowPlayerDialog(playerid, did_Faction_Set_Rank, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˝ rank (1 - 10) tohoto hr·Ëa.", "OK", "BACK");
 
 			if(strval(inputtext) > GetPlayerFactionRank(playerid) && GetPlayerAdminLevel(playerid) < 4)
-			    return SendError(playerid, "NemÙûeö nastaviù v‰ËöÌ rank ako m·ö ty!"), ShowPlayerDialog(playerid, did_Faction_Set_Hodnost, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˙ hodnosù hr·Ëa, musÌ maù od 4 do 30 znakov.", "OK", "SPAç");
+			    return SendError(playerid, "NemÙûeö nastaviù v‰ËöÌ rank ako m·ö ty!"), ShowPlayerDialog(playerid, did_Faction_Set_Hodnost, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˙ hodnosù hr·Ëa, musÌ maù od 4 do 30 znakov.", "OK", "BACK");
 
 		    new
 			    S_query[256],
@@ -41100,7 +41062,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return ShowPlayerFactionMember(playerid, lastFacMemb[playerid]);
 
 			if(isnull(inputtext) || !IsNumeric(inputtext))
-			    return ShowPlayerDialog(playerid, did_Faction_Set_Badge, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm novÈ ËÌslo odznaku.", "OK", "SPAç");
+			    return ShowPlayerDialog(playerid, did_Faction_Set_Badge, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm novÈ ËÌslo odznaku.", "OK", "BACK");
 
 		    new
 			    S_query[256],
@@ -41158,7 +41120,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    return ShowPlayerIFactionMember(playerid, lastFacMemb[playerid]);
    			else if(listitem == 2)
 			{
-			    return ShowPlayerDialog(playerid, did_I_Faction_Set_Rank, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˝ rank (1 - 10) tohoto hr·Ëa.", "OK", "SPAç");
+			    return ShowPlayerDialog(playerid, did_I_Faction_Set_Rank, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˝ rank (1 - 10) tohoto hr·Ëa.", "OK", "BACK");
 			}
 			else if(listitem == 4)
 			{
@@ -41212,10 +41174,10 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            return ShowPlayerIFactionMember(playerid, lastFacMemb[playerid]);
 
 			if(isnull(inputtext) || !IsNumeric(inputtext) || strval(inputtext) < 1 || strval(inputtext) > 10)
-			    return ShowPlayerDialog(playerid, did_I_Faction_Set_Rank, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˝ rank (1 - 10) tohoto hr·Ëa.", "OK", "SPAç");
+			    return ShowPlayerDialog(playerid, did_I_Faction_Set_Rank, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˝ rank (1 - 10) tohoto hr·Ëa.", "OK", "BACK");
 
 			if(strval(inputtext) > GetPlayerIllegalFactionRank(playerid) && GetPlayerAdminLevel(playerid) < 4)
-			    return SendError(playerid, "NemÙûeö nastaviù v‰ËöÌ rank ako m·ö ty!"), ShowPlayerDialog(playerid, did_I_Faction_Set_Rank, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˝ rank hr·Ëa.", "OK", "SPAç");
+			    return SendError(playerid, "NemÙûeö nastaviù v‰ËöÌ rank ako m·ö ty!"), ShowPlayerDialog(playerid, did_I_Faction_Set_Rank, DIALOG_STYLE_INPUT, "UPRAVIç HR¡»A", "{ffffff}> Zadaj prosÌm nov˝ rank hr·Ëa.", "OK", "BACK");
 
 		    new
 			    S_query[256],
@@ -41504,7 +41466,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			else if(listitem == 3)
 			{
 			    return ShowPlayerDialog(playerid, did_CityHall_veh_1, DIALOG_STYLE_INPUT, "PREPIS VOZIDLA",
-					"{ffffff}> Zadaj prosÌm SPZ vozidla, ktorÈ chceö prepÌsaù!", "œALEJ", "ZRUäIç");
+					"{ffffff}> Zadaj prosÌm SPZ vozidla, ktorÈ chceö prepÌsaù!", "œALEJ", "CLOSE");
 			}
 	    }
 
@@ -41515,7 +41477,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 			if(isnull(inputtext))
 			    return ShowPlayerDialog(playerid, did_CityHall_veh_1, DIALOG_STYLE_INPUT, "PREPIS VOZIDLA",
-					"{ffffff}> Zadaj prosÌm SPZ vozidla, ktorÈ chceö prepÌsaù!", "œALEJ", "ZRUäIç");
+					"{ffffff}> Zadaj prosÌm SPZ vozidla, ktorÈ chceö prepÌsaù!", "œALEJ", "CLOSE");
 
 			new
 			    vid = -1;
@@ -41536,12 +41498,12 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    return
 					SendError(playerid, "Vozidlo s touto SPZ neexistuje alebo ho nevlastnÌö! (Nesmie byù zaparkovanÈ!)"),
 					ShowPlayerDialog(playerid, did_CityHall_veh_1, DIALOG_STYLE_INPUT, "PREPIS VOZIDLA",
-					"{ffffff}> Zadaj prosÌm SPZ vozidla, ktorÈ chceö prepÌsaù!", "œALEJ", "ZRUäIç");
+					"{ffffff}> Zadaj prosÌm SPZ vozidla, ktorÈ chceö prepÌsaù!", "œALEJ", "CLOSE");
 
 			format(prepis_SPZ[playerid], 30, "%s", inputtext);
 
 			ShowPlayerDialog(playerid, did_CityHall_veh_2, DIALOG_STYLE_INPUT, "PREPIS VOZIDLA",
-				"{ffffff}> Zadaj prosÌm ID hr·Ëa, na ktorÈho chceö toto vozidlo prepÌsaù!", "œALEJ", "ZRUäIç");
+				"{ffffff}> Zadaj prosÌm ID hr·Ëa, na ktorÈho chceö toto vozidlo prepÌsaù!", "œALEJ", "CLOSE");
 	    }
 
 	    case did_CityHall_veh_2:
@@ -41549,13 +41511,13 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 	        if(!response)
 	            return ShowPlayerDialog(playerid, did_CityHall_veh_1, DIALOG_STYLE_INPUT, "PREPIS VOZIDLA",
-					"{ffffff}> Zadaj prosÌm SPZ vozidla, ktorÈ chceö prepÌsaù!", "œALEJ", "ZRUäIç");
+					"{ffffff}> Zadaj prosÌm SPZ vozidla, ktorÈ chceö prepÌsaù!", "œALEJ", "CLOSE");
 
 			if(isnull(inputtext) || !IsNumeric(inputtext) || playerid == strval(inputtext) || !IsPlayerLogged(strval(inputtext)) )
 				return
 					SendError(playerid, "ProsÌm, zadaj ID online hr·Ëa!"),
 				    ShowPlayerDialog(playerid, did_CityHall_veh_2, DIALOG_STYLE_INPUT, "PREPIS VOZIDLA",
-						"{ffffff}> Zadaj prosÌm ID hr·Ëa, na ktorÈho chceö toto vozidlo prepÌsaù!", "œALEJ", "ZRUäIç");
+						"{ffffff}> Zadaj prosÌm ID hr·Ëa, na ktorÈho chceö toto vozidlo prepÌsaù!", "œALEJ", "CLOSE");
 
 	        prepis_ID[playerid] = strval(inputtext);
 	        prepis_ID[prepis_ID[playerid]] = playerid;
@@ -41634,7 +41596,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    new
 				    S_string[144];
 				format(S_string, 144, "{FFFFFF}> MenÌö hodnotu kasy frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm nov˙ hodnotu kasy tejto frakcie!\n\n", factEnum[g_I_editFaction[playerid]][fact_Name]);
-				return ShowPlayerDialog(playerid, did_Frakcie_EditCash, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_Frakcie_EditCash, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 
 			factEnum[g_I_editFaction[playerid]][fact_Cash] = strval(inputtext);
@@ -41662,7 +41624,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    new
 				    S_string[144];
 				format(S_string, 144, "{FFFFFF}> MenÌö hodnotu kasy frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm nov˙ hodnotu kasy tejto frakcie!\n\n", i_factEnum[g_I_editFaction[playerid]][ifact_Name]);
-				return ShowPlayerDialog(playerid, did_I_Frakcie_EditCash, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_I_Frakcie_EditCash, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 
 			i_factEnum[g_I_editFaction[playerid]][ifact_Cash] = strval(inputtext);
@@ -41696,7 +41658,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    format(S_tempString, 64, "[ID: %d] %s\n", i, factionTypes[i]);
 				    strcat(S_string,S_tempString);
 				}
-				return ShowPlayerDialog(playerid, did_Frakcie_EditType, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_Frakcie_EditType, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 
 			factEnum[g_I_editFaction[playerid]][fact_Type] = strval(inputtext);
@@ -41724,7 +41686,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    new
 				    S_string[256];
 				format(S_string, 256, "{FFFFFF}> MenÌö ID frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm novÈ ID tejto frakcie!", factEnum[g_I_editFaction[playerid]][fact_Name]);
-				return ShowPlayerDialog(playerid, did_Frakcie_EditID, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_Frakcie_EditID, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 
 			format(factEnum[strval(inputtext)][fact_Name], 64, factEnum[g_I_editFaction[playerid]][fact_Name]);
@@ -41761,7 +41723,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    new
 				    S_string[256];
 				format(S_string, 256, "{FFFFFF}> MenÌö meno frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm novÈ meno tejto frakcie!\nMÙûe maù maxim·lne 60 znakov.", factEnum[g_I_editFaction[playerid]][fact_Name]);
-				return ShowPlayerDialog(playerid, did_Frakcie_EditName, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_Frakcie_EditName, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 
 			format(factEnum[g_I_editFaction[playerid]][fact_Name], 64, inputtext);
@@ -41809,7 +41771,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    new
 				    S_string[256];
 				format(S_string, 256, "{FFFFFF}> MenÌö ID frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm novÈ ID tejto frakcie!", factEnum[g_I_editFaction[playerid]][fact_Name]);
-				return ShowPlayerDialog(playerid, did_Frakcie_EditID, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_Frakcie_EditID, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 			else if(listitem == 1)
 			{
@@ -41818,7 +41780,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				format(S_string, 256, "{FFFFFF}> MenÌö meno frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm novÈ meno tejto frakcie!\nMÙûe maù maxim·lne 60 znakov.", factEnum[g_I_editFaction[playerid]][fact_Name]);
 
-				return ShowPlayerDialog(playerid, did_Frakcie_EditName, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_Frakcie_EditName, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 			else if(listitem == 2)
 			{
@@ -41831,14 +41793,14 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				    format(S_tempString, 64, "[ID: %d] %s\n", i, factionTypes[i]);
 				    strcat(S_string,S_tempString);
 				}
-				return ShowPlayerDialog(playerid, did_Frakcie_EditType, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_Frakcie_EditType, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 			else if(listitem == 3)
 			{
 			    new
 				    S_string[144];
 				format(S_string, 144, "{FFFFFF}> MenÌö hodnotu kasy frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm nov˙ hodnotu kasy tejto frakcie!", factEnum[g_I_editFaction[playerid]][fact_Name]);
-				return ShowPlayerDialog(playerid, did_Frakcie_EditCash, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_Frakcie_EditCash, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 			else if(listitem == 4)
 			{
@@ -41883,7 +41845,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    new
 				    S_string[256];
 				format(S_string, 256, "{FFFFFF}> MenÌö ID frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm novÈ ID tejto frakcie!", i_factEnum[g_I_editFaction[playerid]][ifact_Name]);
-				return ShowPlayerDialog(playerid, did_I_Frakcie_EditID, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_I_Frakcie_EditID, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 			else if(listitem == 1)
 			{
@@ -41892,7 +41854,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 				format(S_string, 256, "{FFFFFF}> MenÌö meno frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm novÈ meno tejto frakcie!\nMÙûe maù maxim·lne 60 znakov.", i_factEnum[g_I_editFaction[playerid]][ifact_Name]);
 
-				return ShowPlayerDialog(playerid, did_I_Frakcie_EditName, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_I_Frakcie_EditName, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 			else if(listitem == 2)
 			{
@@ -41904,14 +41866,14 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					retBoolStringFromInt(i_factEnum[g_I_editFaction[playerid]][ifact_Perm_Guns]),
 					retBoolStringFromInt(i_factEnum[g_I_editFaction[playerid]][ifact_Perm_Graffitis]));
 
-				return ShowPlayerDialog(playerid, did_I_Frakcie_EditPerms, DIALOG_STYLE_LIST, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_I_Frakcie_EditPerms, DIALOG_STYLE_LIST, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 			else if(listitem == 3)
 			{
 			    new
 				    S_string[144];
 				format(S_string, 144, "{FFFFFF}> MenÌö hodnotu kasy frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm nov˙ hodnotu kasy tejto frakcie!\n\n", i_factEnum[g_I_editFaction[playerid]][ifact_Name]);
-				return ShowPlayerDialog(playerid, did_I_Frakcie_EditCash, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_I_Frakcie_EditCash, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 			else if(listitem == 4)
 			{
@@ -41951,7 +41913,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					retBoolStringFromInt(i_factEnum[g_I_editFaction[playerid]][ifact_Perm_Guns]),
 					retBoolStringFromInt(i_factEnum[g_I_editFaction[playerid]][ifact_Perm_Graffitis]));
 
-			return ShowPlayerDialog(playerid, did_I_Frakcie_EditPerms, DIALOG_STYLE_LIST, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+			return ShowPlayerDialog(playerid, did_I_Frakcie_EditPerms, DIALOG_STYLE_LIST, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 	    }
 
 	    case did_I_Frakcie_EditID:
@@ -41965,7 +41927,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    new
 				    S_string[256];
 				format(S_string, 256, "{FFFFFF}> MenÌö ID frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm novÈ ID tejto frakcie!", i_factEnum[g_I_editFaction[playerid]][ifact_Name]);
-				return ShowPlayerDialog(playerid, did_I_Frakcie_EditID, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_I_Frakcie_EditID, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 
 			format(i_factEnum[strval(inputtext)][ifact_Name], 64, i_factEnum[g_I_editFaction[playerid]][ifact_Name]);
@@ -42008,7 +41970,7 @@ func_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			    new
 				    S_string[256];
 				format(S_string, 256, "{FFFFFF}> MenÌö meno frakcie {e34f4f}%s{FFFFFF}.\n\nZadaj prosÌm novÈ meno tejto frakcie!\nMÙûe maù maxim·lne 60 znakov.", i_factEnum[g_I_editFaction[playerid]][ifact_Name]);
-				return ShowPlayerDialog(playerid, did_I_Frakcie_EditName, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "SPAç");
+				return ShowPlayerDialog(playerid, did_I_Frakcie_EditName, DIALOG_STYLE_INPUT, "UPRAVIç FRAKCIU", S_string, "OK", "BACK");
 			}
 
 			format(i_factEnum[g_I_editFaction[playerid]][ifact_Name], 64, inputtext);
@@ -42202,7 +42164,7 @@ public OnPlayerMenuStoreBuy(playerid, item, quantity, type, count, price, object
 	{
 	    ShowPlayerDialog(playerid, did_kupit_sim_kartu, DIALOG_STYLE_LIST, "VYBER SI",
      		"Chcem pouûÌvaù kredit\nChcem strh·vanie z v˝platy",
-       		"VYBRAç", "SPAç"
+       		"CHOOSE", "BACK"
 		);
 	}
 
@@ -42531,7 +42493,7 @@ ATMTextDrawCheck(playerid, PlayerText:i)
 
 		format(query, sizeof query, "{ffffff}> Zostatok na ˙Ëte je {e34f4f}%.2f${ffffff}.\n\nKoæko dol·rov chceö vybraù?", Cash);
 
-		ShowPlayerDialog(playerid, did_atm_vyber, DIALOG_STYLE_INPUT, "ATM", query, "VYBRAç", "SPAç");
+		ShowPlayerDialog(playerid, did_atm_vyber, DIALOG_STYLE_INPUT, "ATM", query, "CHOOSE", "BACK");
 
 		cache_delete(c);
 	}
@@ -42540,7 +42502,7 @@ ATMTextDrawCheck(playerid, PlayerText:i)
 	{
 		isUsingDialog[playerid] = true;
 
-		ShowPlayerDialog(playerid, did_atm_pin, DIALOG_STYLE_INPUT, "ATM", "{ffffff}> Ak˝ chceö nov˝ PIN kÛd?", "VYBRAç", "SPAç");
+		ShowPlayerDialog(playerid, did_atm_pin, DIALOG_STYLE_INPUT, "ATM", "{ffffff}> Ak˝ chceö nov˝ PIN kÛd?", "CHOOSE", "BACK");
 	}
 
 	if(login == 1)
@@ -55275,7 +55237,7 @@ YCMD:myguns(playerid, params[], help)
 	if(!lProceed)
 	    return SendError(playerid, "Nem·ö ûiadne pr·zdne zbrane!");
 
-	ShowPlayerDialog(playerid, did_emptygun, DIALOG_STYLE_TABLIST_HEADERS, "PR¡ZDNE ZBRANE", lFin, "NABIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_emptygun, DIALOG_STYLE_TABLIST_HEADERS, "PR¡ZDNE ZBRANE", lFin, "NABIç", "CLOSE");
 
 	return 1;
 }
@@ -57382,7 +57344,7 @@ YCMD:advert(playerid,params[],help)
     if(IsPlayerInDynamicMenu(playerid, menut_advert))
 	{
 	    return ShowPlayerDialog(playerid, did_advert, DIALOG_STYLE_INPUT, "ADVERT", "{ffffff}> Zadaj text tvojej reklamy! Za kaûd˝ znak zaplatÌö 1$ ak nie si Donator Level 2+.",
-	        "PUBLIKUJ", "SPAç");
+	        "PUBLIKUJ", "BACK");
 	}
 	SendError(playerid, "Tento prÌkaz teraz nemÙûeö pouûiù!");
 	return 1;
@@ -57455,7 +57417,7 @@ YCMD:menu(playerid, params[], help)
 	else if(IsPlayerInDynamicMenu(playerid, menut_advert))
 	{
 	    return ShowPlayerDialog(playerid, did_advert, DIALOG_STYLE_INPUT, "ADVERT", "{ffffff}> Zadaj text tvojej reklamy! Za kaûd˝ znak zaplatÌö 1$ ak nie si Donator Level 2+.",
-	        "PUBLIKUJ", "SPAç");
+	        "PUBLIKUJ", "BACK");
 	}
 	else if(IsPlayerInDynamicMenu(playerid, menut_welcome_pump))
 	{
@@ -57750,7 +57712,7 @@ YCMD:buycredit(playerid, params[], help)
 
 		return ShowPlayerDialog(playerid, did_kupit_kredit_electro, DIALOG_STYLE_TABLIST, "DOBIç KREDIT",
   			"{FFFFFF}5 USD\t{2fb838}$5\n{FFFFFF}10 USD\t{2fb838}$10\n{FFFFFF}20 USD\t{2fb838}$20",
-  			"VYBRAç", "SPAç"
+  			"CHOOSE", "BACK"
   		);
 	}
 
@@ -57791,9 +57753,9 @@ Anawalt_ShowDetail(playerid, listitem=-1)
 	
 	ShowPlayerDialog(
 		playerid, did_anawalt_storage_manip, DIALOG_STYLE_INPUT,
-		"VLOéIç/VYBRAç ITEM",
+		"VLOéIç/CHOOSE ITEM",
 		"{ffffff}> Zadaj prosÌm poËet, koæko toho chceö vybraù alebo vloûiù!\n\nAk nechceö niË robiù, nechaj pr·zdne pole a stlaË akÈkoævek tlaËidlo.",
-		"VLOéIç", "VYBRAç"
+		"VLOéIç", "CHOOSE"
 	);
 	
 	return 1;
@@ -57825,7 +57787,7 @@ Anawalt_ShowStorage(playerid)
 	
 	cache_delete(cache);
 	
-	ShowPlayerDialog(playerid, did_anawalt_storage, DIALOG_STYLE_TABLIST_HEADERS, "SKLAD", fstr, "MENU", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_anawalt_storage, DIALOG_STYLE_TABLIST_HEADERS, "SKLAD", fstr, "MENU", "CLOSE");
 	
 	return 1;
 }
@@ -57953,7 +57915,7 @@ Anawalt_ShowContracts(playerid)
 	
 	cache_delete(cache);
 	
-	ShowPlayerDialog(playerid, did_anawalt_kontrakty, DIALOG_STYLE_TABLIST_HEADERS, "KONTRAKTY", fstr, "DETAIL", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_anawalt_kontrakty, DIALOG_STYLE_TABLIST_HEADERS, "KONTRAKTY", fstr, "DETAIL", "CLOSE");
 	return 1;
 }
 
@@ -58642,7 +58604,7 @@ ShowHelp_Character(playerid)
 	"PrÌkazy k charakteru");
 
 	SendClientMessage(playerid, COLOR_WHITE,
-	"/zmazatskin /prepustit /inventar(/inv) /obcianskypreukaz /uo /preukazy /up /ut /mask /minca(/coin)");
+	"/zmazatskin /bailout /inventar(/inv) /obcianskypreukaz /uo /preukazy /up /ut /mask /minca(/coin)");
 
 	SendClientMessage(playerid, COLOR_WHITE,
 	"/kocka(/kostka) /vrece /lano /cuff(/puta) /popis /frisk /boombox /naladit /hulit /fajcit");
@@ -61124,7 +61086,7 @@ YCMD:enter(playerid, params[], help)
 		        return SendError(playerid, "Tento vchod nemÙûeö pouûiù!");
 
 		    ShowPlayerDialog(playerid, did_pdhq_garaz, DIALOG_STYLE_LIST, "V›çAH",
-		        "Strecha\nStanica\nZadn˝ vchod\nGar·û", "VYBRAç", "SPAç");
+		        "Strecha\nStanica\nZadn˝ vchod\nGar·û", "CHOOSE", "BACK");
 		    return 1;
 		}
 
@@ -73826,7 +73788,7 @@ YCMD:zrusittest(playerid, params[], help)
 
 	DestroyDMV(playerid);
 
-	SCFM(playerid, COLOR_COMMANDUSE, "[ AUTOäKOLA ] {ffffff}Gratulujem. Tvoj test bol ne˙speön˝. Ty neschop·k!");
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Gratulujem. Tvoj test bol ne˙speön˝. Ty neschop·k!");
 
 	return 1;
 }
@@ -74134,7 +74096,7 @@ YCMD:unjail(playerid, params[], help)
 	return 1;
 }
 
-YCMD:prepustit(playerid, params[], help)
+YCMD:bailout(playerid, params[], help)
 {
 	if(ic_isInJail[playerid] == true)
 	{
@@ -74159,25 +74121,14 @@ YCMD:prepustit(playerid, params[], help)
 	        SetPlayerVirtualWorld(playerid, 0);
 	        SetCameraBehindPlayer(playerid);
 
-	        SCFM(playerid, COLOR_LIGHTGREEN, "> Bol si prepusten˝ z v‰zenia, uûi si slobodu!");
-
-	        foreach( new x : Player )
-			{
-			    if(GetPlayerFactionType(x) != FACTION_TYPE_LAW)
-			        continue;
-
-				if(!IsPlayerWorking(x) && GetPlayerAdminLevel(playerid) < 4)
-				    continue;
-
-				SCFM(x, COLOR_LIGHTBLUE2, "[ WARN ] %s bol prepusten˝ z v‰zenia!", GetPlayerNameEx(playerid, NO_MASK));
-			}
+	        SCFM(playerid, COLOR_LIGHTGREEN, "> You are freed!");
 	    }
 	    else
-	        return SendError(playerid, "NemÙûeö byù prepusten˝!");
+	        return SendError(playerid, "You cannot bailout!");
 
  	}
 	else
-	    return SendError(playerid, "NemÙûeö byù prepusten˝!");
+	    return SendError(playerid, "You cannot bialout!");
 
 	return 1;
 }
@@ -77325,7 +77276,7 @@ YCMD:forcelottery(playerid, params[], help)
 	    {
 	        SetPlayerInventoryItem(i, inv_lotteryTicket, 0);
 
-	        SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] V jackpote bolo $%d USD, no ËÌslo %d netipol nikto!", lottery, lotteryNumber);
+	        SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] There were %d$ in jackpot, but number %d was not guessed!!", lottery, lotteryNumber);
 	    }
 	}
 	else if(lotteryCount == 1)
@@ -77334,10 +77285,10 @@ YCMD:forcelottery(playerid, params[], help)
 	    {
 	        SetPlayerInventoryItem(i, inv_lotteryTicket, 0);
 
-	        SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] V jackpote bolo $%d USD a spr·vne ËÌslo %d tipol iba %s!", lottery, lotteryNumber, GetPlayerNameEx(lotteryWinner, NO_MASK));
+	        SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] There were %d$ in jackpot and number %d was guessed by %s!!", lottery, lotteryNumber, GetPlayerNameEx(lotteryWinner, NO_MASK));
 			if(i == lotteryWinner)
 			{
-			    SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] Gratulujem, vyhral si $%d USD! Uûi ich dobre!", lottery);
+			    SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] Congratulations, you won %d$!", lottery);
 			    ex_GivePlayerMoney(i, lottery);
 			    money_admin[i]+=floatround(lottery,floatround_round);
 			}
@@ -77350,13 +77301,13 @@ YCMD:forcelottery(playerid, params[], help)
 
 	        if(GetPlayerInventoryItem(i, inv_lotteryTicket) == lotteryNumber)
 	        {
-	            SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] V jackpote bolo $%d USD a spr·vne ËÌslo %d tipli %d æudia!", lottery, lotteryNumber, lotteryCount);
-                SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] Gratulujem, vyhral si $%d USD! Uûi ich dobre!", floatround(float(lottery) / float(lotteryCount), floatround_round));
+	            SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] There were %d$ in jackpot and number %d was guessed by %d people!!", lottery, lotteryNumber, lotteryCount);
+                SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] Congratulations, you won %d$!", floatround(float(lottery) / float(lotteryCount), floatround_round));
                 ex_GivePlayerMoney(i, floatround(float(lottery) / float(lotteryCount), floatround_round));
                 money_admin[i]+=floatround(float(lottery) / float(lotteryCount), floatround_round);
 			}
 			else
-			    SCFM(i, COLOR_LOTTERY, "[ LOT…RIA ] V jackpote bolo $%d USD a spr·vne ËÌslo %d tipli %d æudia!", lottery, lotteryNumber, lotteryCount);
+			    SCFM(i, COLOR_LOTTERY, "[ LOTTERY ] There were %d$ in jackpot and number %d was guessed by %d people!!", lottery, lotteryNumber, lotteryCount);
 
 			SetPlayerInventoryItem(i, inv_lotteryTicket, 0);
 		}
@@ -77876,7 +77827,7 @@ YCMD:reklama(playerid, params[], help)
 		adtabula_bizid[playerid] = businessEnum[bizid][bz_Address];
 		adtabula_editingid[playerid] = id;
 
-		ShowPlayerDialog(playerid, did_adtable_text, DIALOG_STYLE_INPUT, "TEXT REKLAMNEJ TABULE", "{ffffff}> äpecifikuj prosÌm text tejto reklamnej tabule, mÙûeö pouûiù aj farebnÈ HEX kÛdy {FARBA}\nPre nov˝ riadok pouûi =.", "OK", "ZRUäIç");
+		ShowPlayerDialog(playerid, did_adtable_text, DIALOG_STYLE_INPUT, "TEXT REKLAMNEJ TABULE", "{ffffff}> äpecifikuj prosÌm text tejto reklamnej tabule, mÙûeö pouûiù aj farebnÈ HEX kÛdy {FARBA}\nPre nov˝ riadok pouûi =.", "OK", "CLOSE");
 
 		SendError(playerid, "Upravujeö text tabule!");
 
@@ -79630,7 +79581,7 @@ YCMD:sklad(playerid, params[], help)
 	        strcat(string,tstr);
 	    }
 
-	    ShowPlayerDialog(playerid, did_trucker_buy, DIALOG_STYLE_TABLIST_HEADERS, "K⁄PA KRABÕC", string, "K⁄PIç", "ZRUäIç");
+	    ShowPlayerDialog(playerid, did_trucker_buy, DIALOG_STYLE_TABLIST_HEADERS, "K⁄PA KRABÕC", string, "K⁄PIç", "CLOSE");
 
 	    return 1;
 
@@ -79685,7 +79636,7 @@ YCMD:sklad(playerid, params[], help)
 		ShowPlayerDialog(
 			playerid, did_trucker_buyfuel, DIALOG_STYLE_INPUT, "SKLAD ï K⁄PIç",
 			"{FFFFFF}> Zadaj poËet litrov od 100-4000, koæko chceö naloûiù!",
-			"OK","SPAç"
+			"OK","BACK"
 		);
 
 	    return 1;
@@ -79751,7 +79702,7 @@ YCMD:tuning(playerid, params[], help)
 		pvehicleid[playerid] = vid;
 		pmodelid[playerid] = GetVehicleModel(vid);
 
-		ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "VYBRAç", "ZAVRIEç");
+		ShowPlayerDialog(playerid, did_tuning_main, DIALOG_STYLE_LIST, "TUNING", "Paint Jobs\nKoles·\nHydraulika\nNitro\nZmazaù tuning", "CHOOSE", "ZAVRIEç");
 	}
 	else
 	{
@@ -82401,7 +82352,7 @@ YCMD:newmap(playerid, params[], help)
 	if(GetPlayerAdminLevel(playerid) < 6)
 	    return SendError(playerid, "Tento prÌkaz nemÙûeö pouûiù!");
 
-	ShowPlayerDialog(playerid, did_map_newmap, DIALOG_STYLE_INPUT, "BMAP ï NOV¡ MAPA", "{FFFFFF}> Zadaj prosÌm meno mapy, ktor˙ chceö vytvoriù!", "VYTVORIç", "ZRUäIç");
+	ShowPlayerDialog(playerid, did_map_newmap, DIALOG_STYLE_INPUT, "BMAP ï NOV¡ MAPA", "{FFFFFF}> Zadaj prosÌm meno mapy, ktor˙ chceö vytvoriù!", "VYTVORIç", "CLOSE");
 
 	return 1;
 }
@@ -82411,12 +82362,12 @@ YCMD:maps(playerid, params[], help)
 	if(GetPlayerAdminLevel(playerid) < 5)
 	    return SendError(playerid, "Tento prÌkaz nemÙûeö pouûiù!");
 
-    BMap::ShowAllMaps(playerid, did_bmap_maps, "EXISTUJ⁄CE MAPY", "VYBRAç");
+    BMap::ShowAllMaps(playerid, did_bmap_maps, "EXISTUJ⁄CE MAPY", "CHOOSE");
 
 	return 1;
 }
 
-BMap::ShowAllMaps(playerid, dialogid, caption[], butt1[], butt2[] = "ZRUäIç")
+BMap::ShowAllMaps(playerid, dialogid, caption[], butt1[], butt2[] = "CLOSE")
 {
 
 	new
@@ -82472,7 +82423,7 @@ YCMD:vattachpridat(playerid,params[],help)
     if(GetPlayerAdminLevel(playerid) < 6)
 	    return SendError(playerid, "Tento prÌkaz nemÙûeö pouûiù!");
 
-	ShowPlayerDialog(playerid, did_vattach_adm_add, DIALOG_STYLE_INPUT, "TUNING ï PRIDAç NOV› OBJEKT", "{FFFFFF}> Zadaj prosÌm ID objektu, ktorÈ chceö pridaù!", "œALEJ", "SPAç");
+	ShowPlayerDialog(playerid, did_vattach_adm_add, DIALOG_STYLE_INPUT, "TUNING ï PRIDAç NOV› OBJEKT", "{FFFFFF}> Zadaj prosÌm ID objektu, ktorÈ chceö pridaù!", "œALEJ", "BACK");
 	return 1;
 }
 
@@ -82507,7 +82458,7 @@ showallvattach(playerid, caption[], butt1[])
 	    DIALOG_STYLE_LIST,
 	    caption,
 		fstring,
-		butt1, "ZRUäIç"
+		butt1, "CLOSE"
 	);
 
 	return 1;
@@ -82541,9 +82492,9 @@ showallvattachmenuedit(playerid)
 	    playerid,
 	    did_vattach_menu,
 	    DIALOG_STYLE_LIST,
-	    "TUNING ï VYBRAç »ASç",
+	    "TUNING ï CHOOSE »ASç",
 		fstring,
-		"VYBRAç", "ZRUäIç"
+		"CHOOSE", "CLOSE"
 	);
 
 	return 1;
