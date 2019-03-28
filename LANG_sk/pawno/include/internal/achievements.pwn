@@ -130,61 +130,61 @@ new const achievementNames[][] = {
 new const achievementDesc[][] = {
 	"NULL",
 	
-	"Create your first character.",
+	"Vytvor si prvy charakter.",
 	
-	"Write your first message.",
-	"Write thousand of messages.",
-	"Write million of messages.",
-	"Write 10 millions of messages.",
+	"Napis prvu spravu do chatu.",
+	"Napis tisic sprav do chatu.",
+	"Napis milion sprav do chatu.",
+	"Napis 10 milionov sprav do chatu.",
 	
-	"Reach roleplay level 5.",
-	"Reach roleplay level 10.",
-	"Reach roleplay level 20.",
-	"Reachroleplay level 50.",
+	"Dosiahni roleplay level 5.",
+	"Dosiahni roleplay level 10.",
+	"Dosiahni roleplay level 20.",
+	"Dosiahni roleplay level 50.",
 	
-	"Get Character Killed.",
-	"Get into Admin Jail.",
-	"Get kicked.",
-	"Go get a ban.",
+	"Dostan Character Kill.",
+	"Dostan sa do Admin-Jailu.",
+	"Dostan kick zo serveru.",
+	"Dostan ban.",
 	
-	"Get a Donator Level.",
+	"Ziskaj Donator Level podporenim serveru.",
 	
-	"Have at least 10000$ in cash.",
-	"Have at least 50000$ in cash.",
-	"Have at least 100000$ in cash.",
-	"Have at least 500000$ in cash",
-	"Have at least 1000000$ in cash",
+	"Maj pri sebe aspon 10.000$ v hotovosti.",
+	"Maj pri sebe aspon 50.000$ v hotovosti.",
+	"Maj pri sebe aspon 100.000$ v hotovosti.",
+	"Maj pri sebe aspon 500.000$ v hotovosti.",
+	"Maj pri sebe aspon 1.000.000$ v hotovosti.",
 	
-	"Buy your first vehicle.",
-	"Buy a vehicle worth at least 50.000$.",
-	"Buy a vehicle worth at least 150.000$.",
-	"Buy a vehicle with coins.",
+	"Kup si prve vozidlo.",
+	"Kup si vozidlo najmenej za 50.000$.",
+	"Kup si vozidlo najmenej za 150.000$.",
+	"Kup si vozidlo za kredity.",
 	
-	"Buy your first house.",
-	"Buy a house worth at least 100.000$.",
+	"Kup si prvy dom.",
+	"Kup si dom najmenej za 100.000$.",
 	
-	"Rent a motel room.",
-	"Rent a motel room for at least 50 days.",
+	"Prenajmi si hotelovu izbu.",
+	"Prenajmi si hotelovu izbu aspon na 50 dni.",
 	
-	"Buy your first business.",
-	"Buy a business worth at least 100.000$.",
+	"Kup si prvy biznis.",
+	"Kup si biznis ktory stoji viac ako 100.000$.",
 	
-	"Get your hands on Desert Eagle.",
-	"Get your hands on Shotgun.",
-	"Get your hands on M4.",
-	"Get your hands on County Rifle.",
+	"Ziskaj zbran Desert Eagle.",
+	"Ziskaj zbran Shotgun.",
+	"Ziskaj zbran M4.",
+	"Ziskaj zbran Vesnicka Puska",
 	
-	"Drive any vehicle at least 120 MPH.",
+	"Chod nejakym vozidlom aspon 120 MPH.",
 	
-	"Have at least 2 milles of alcohol.",
-	"Breathalyze 2 milles of alcohol.",
-	"Die.",
+	"Maj aspon 2 promile alkoholu.",
+	"Nafukaj aspon 2 promile alkoholu.",
+	"Zomri.",
 	
-	"Let's bong dog!",
-	"Aren't you from Michalovce?",
-	"Be like Daniel Coles in 2045!",
-	"Survive mass-teleport!",
-	"Die when admin kicks everybody!"
+	"Pod bracho, dame finske!",
+	"Nie si z Michaloviec?",
+	"Bud ako Daniel Coles v 2014tom!",
+	"Prezi hromadnu teleportaciu adminom",
+	"Zhyn, ked admin vsetkych vyhodi"
 
 };
 
@@ -320,7 +320,7 @@ Function:: Achievement::Reward(playerid, achievementid = INVALID_ACHIEVEMENT)
 		        
             case ACHIEVEMENT_REWARD_GOLDS:
             {
-		        strcat(attachstr, " coins");
+		        strcat(attachstr, " kreditov");
 		        g_I_mince[playerid] += reward_quantity;
 			}
 		        
@@ -330,12 +330,12 @@ Function:: Achievement::Reward(playerid, achievementid = INVALID_ACHIEVEMENT)
 		        g_I_XP[playerid] += reward_quantity;
 		        if(g_I_XP[playerid] > (6 + (2 * GetPlayerRoleplayLevel(playerid))))
 				{
-				    SCFM(playerid, 0xD0D0D0FF, "[ ! ] You have enough XP points to upgrade your roleplay level to %d! Use /levelup, it will cost you %d XP.", GetPlayerRoleplayLevel(playerid) + 1, (6 + 2*GetPlayerRoleplayLevel(playerid)));
+				    SCFM(playerid, 0xD0D0D0FF, "[ ! ] M·ö dosù XP bodov, aby si si mohol k˙più upgrade na roleplay level %d! Pouûi /levelup, bude ùa to st·ù %d XP.", GetPlayerRoleplayLevel(playerid) + 1, (6 + 2*GetPlayerRoleplayLevel(playerid)));
 				}
 			}
 		}
 	
-	    SCFM(playerid, 0x78d852ff, "[ ACHIEVEMENT ] {FFFFFF}For finishing achievement %s you're getting %d%s!", achievementNames[achievementid], reward_quantity, attachstr);
+	    SCFM(playerid, 0x78d852ff, "[ ACHIEVEMENT ] {FFFFFF}Za dokonËenie achievementu %s si dostal odmenu %d%s!", achievementNames[achievementid], reward_quantity, attachstr);
 	}
 	
 	////////////////////////////////////////////////////////////////////////////
@@ -456,7 +456,7 @@ function OnAchievementListLoad(playerid, forplayerid)
 		
 		if(hidden == 1 && achievement_IsCompleted[x] != 1)
 	    {
-	        format(sTemporary, sizeof sTemporary, "{969696}Locked achievement\t{FFFFFF}You have to complete this achievement to show it!\n");
+	        format(sTemporary, sizeof sTemporary, "{969696}Zamknut˝ achievement\t{FFFFFF}Tento achievement musÌö splniù, aby sa zobrazil!\n");
 	    }
 		else if(achievement_IsCompleted[x] == 1)
 		{
@@ -470,7 +470,7 @@ function OnAchievementListLoad(playerid, forplayerid)
 		strcat(sContent, sTemporary);
 	}
 	
-	ShowPlayerDialog(playerid, did_achievements, DIALOG_STYLE_TABLIST_HEADERS, "YOUR ACHIEVEMENTS", sContent, "OK", "");
+	ShowPlayerDialog(playerid, did_achievements, DIALOG_STYLE_TABLIST_HEADERS, "TV… ACHIEVEMENTY", sContent, "OK", "");
 	
 	return 1;
 }

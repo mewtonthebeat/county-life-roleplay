@@ -138,7 +138,7 @@ Alcohol::ShowInventory(playerid, forplayerid)
 	    tempstr[128]
 	;
 
-	format(finstr, sizeof finstr, "{7bb875}> Alcohol bottles of player %s:\n\n{eaeaea}", GetPlayerNameEx(playerid, USE_MASK));
+	format(finstr, sizeof finstr, "{7bb875}> F¾aše alkoholu, ktoré pri sebe má hráè %s:\n\n{eaeaea}", GetPlayerNameEx(playerid, USE_MASK));
 
 	for(new y; y < MAX_ALCOHOL_INVENTORY; y++)
 	{
@@ -158,10 +158,10 @@ Alcohol::ShowInventory(playerid, forplayerid)
 		    forplayerid,
 		    did_inv_alcohol,
 		    DIALOG_STYLE_MSGBOX,
-		    "ALCOHOL BOTTLES",
+		    "FLAŠE ALKOHOLU",
 		    finstr,
 		    "MENU",
-		    "CLOSE"
+		    "ZRUŠI"
 		);
 	}
 	else
@@ -170,9 +170,9 @@ Alcohol::ShowInventory(playerid, forplayerid)
 		    forplayerid,
 		    did_inv_alcohol,
 		    DIALOG_STYLE_MSGBOX,
-		    "ALCOHOL BOTTLES",
+		    "FLAŠE ALKOHOLU",
 		    finstr,
-		    "CLOSE",
+		    "ZRUŠI",
 		    ""
 		);
 	}
@@ -208,10 +208,10 @@ Alcohol::ShowInventoryMenu(playerid)
 	    playerid,
 	    did_inv_alcohol_menu,
 	    DIALOG_STYLE_LIST,
-	    "CHOOSE BOTTLE YOU WANT TO OPERATE WITH",
+	    "VYBER F¼AŠU S KTOROU CHCEŠ MANIPULOVA",
 		finstr,
-		"CHOOSE",
-		"BACK"
+		"VYBRA",
+		"SPA"
 	);
 
 
@@ -245,7 +245,7 @@ Alcohol::OnDrink(playerid)
 	    Alcohol::inventory[playerid][Alcohol::invidholding[playerid]][alcinv_Alcohol]       = 0;
 	    Alcohol::inventory[playerid][Alcohol::invidholding[playerid]][alcinv_Object]        = 0;
 	    
-	    SendError(playerid, "Bottle was deleted because it was empty!");
+	    SendError(playerid, "F¾aša bola zmazaná, pretože už v nej niè nebolo!");
 	}
 	else
 	{
@@ -283,10 +283,10 @@ Alcohol::DoEffectsForPlayer(playerid)
 
 				switch(random(4))
 				{
-					case 0: format(finalstring, sizeof(finalstring), "** %s has worse concentration.", GetPlayerNameEx(playerid, USE_MASK));
-					case 1: format(finalstring, sizeof(finalstring), "** %s is in light euphory, his mood is getting better.", GetPlayerNameEx(playerid, USE_MASK));
-					case 2: format(finalstring, sizeof(finalstring), "** %s is feeling relaxed.", GetPlayerNameEx(playerid, USE_MASK));
-					default: format(finalstring, sizeof(finalstring), "** %s is talky.", GetPlayerNameEx(playerid, USE_MASK));
+					case 0: format(finalstring, sizeof(finalstring), "** %s má zhoršenú koncentráciu.", GetPlayerNameEx(playerid, USE_MASK));
+					case 1: format(finalstring, sizeof(finalstring), "** %s je v jemnej eufórii, má pocit dobrej nálady.", GetPlayerNameEx(playerid, USE_MASK));
+					case 2: format(finalstring, sizeof(finalstring), "** %s sa cíti uvolnene.", GetPlayerNameEx(playerid, USE_MASK));
+					default: format(finalstring, sizeof(finalstring), "** %s sa cíti zhovorèivo.", GetPlayerNameEx(playerid, USE_MASK));
 				}
 				SendLocalMessage(playerid, ME_CHAT_RANGE, COLOR_VIOLET, finalstring);
 			}
@@ -303,9 +303,9 @@ Alcohol::DoEffectsForPlayer(playerid)
 
 				switch(random(3))
 				{
-					case 0: format(finalstring, sizeof(finalstring), "** %s is very talky.", GetPlayerNameEx(playerid, USE_MASK));
-					case 1: format(finalstring, sizeof(finalstring), "** %s's reactions are slow.", GetPlayerNameEx(playerid, USE_MASK));
-					default: format(finalstring, sizeof(finalstring), "** %s's thinking is slow.", GetPlayerNameEx(playerid, USE_MASK));
+					case 0: format(finalstring, sizeof(finalstring), "** %s sa chová ve¾mi otvorene.", GetPlayerNameEx(playerid, USE_MASK));
+					case 1: format(finalstring, sizeof(finalstring), "** %s reaguje nezvyèajne pomalšie.", GetPlayerNameEx(playerid, USE_MASK));
+					default: format(finalstring, sizeof(finalstring), "** %s má zhoršené uvažovanie.", GetPlayerNameEx(playerid, USE_MASK));
 				}
 				SendLocalMessage(playerid, ME_CHAT_RANGE, COLOR_VIOLET, finalstring);
 			}
@@ -324,11 +324,11 @@ Alcohol::DoEffectsForPlayer(playerid)
 
 				switch(random(5))
 				{
-					case 0: format(finalstring, sizeof(finalstring), "** %s's mood is changing frequently.", GetPlayerNameEx(playerid, USE_MASK));
-					case 1: format(finalstring, sizeof(finalstring), "** %s's reflexes are worsened.", GetPlayerNameEx(playerid, USE_MASK));
-					case 2: format(finalstring, sizeof(finalstring), "** %s's reaction time is really long.", GetPlayerNameEx(playerid, USE_MASK));
-					case 3: format(finalstring, sizeof(finalstring), "** %s's motorics is really bad.", GetPlayerNameEx(playerid, USE_MASK));
-					default: format(finalstring, sizeof(finalstring), "** %s's tongue is struggling to speak.", GetPlayerNameEx(playerid, USE_MASK));
+					case 0: format(finalstring, sizeof(finalstring), "** %s má èasté zmeny nálad, od hnevu po smútok cez agresivitu, ...", GetPlayerNameEx(playerid, USE_MASK));
+					case 1: format(finalstring, sizeof(finalstring), "** %s má zhoršené reflexy.", GetPlayerNameEx(playerid, USE_MASK));
+					case 2: format(finalstring, sizeof(finalstring), "** %s má výrazne dlhší reakèný èas.", GetPlayerNameEx(playerid, USE_MASK));
+					case 3: format(finalstring, sizeof(finalstring), "** %s má výrazne zhoršenú motoriku.", GetPlayerNameEx(playerid, USE_MASK));
+					default: format(finalstring, sizeof(finalstring), "** %s rozpráva skomolene, takmer nezrozumite¾ne.", GetPlayerNameEx(playerid, USE_MASK));
 				}
 				SendLocalMessage(playerid, ME_CHAT_RANGE, COLOR_VIOLET, finalstring);
 			}
@@ -350,11 +350,11 @@ Alcohol::DoEffectsForPlayer(playerid)
 
 				switch(random(5))
 				{
-					case 0: format(finalstring, sizeof(finalstring), "** %s's thinking is very bad.", GetPlayerNameEx(playerid, USE_MASK));
-					case 1: format(finalstring, sizeof(finalstring), "** %s's is moving really badly and hardly.", GetPlayerNameEx(playerid, USE_MASK));
-					case 2: format(finalstring, sizeof(finalstring), "** %s's has extremely long reaction time", GetPlayerNameEx(playerid, USE_MASK));
-					case 3: format(finalstring, sizeof(finalstring), "** %s's loses consciousness for a couple of seconds.", GetPlayerNameEx(playerid, USE_MASK));
-					default: format(finalstring, sizeof(finalstring), "** %s's has feeling like throwing up.", GetPlayerNameEx(playerid, USE_MASK));
+					case 0: format(finalstring, sizeof(finalstring), "** %s má extrémne zažené rozmýšlanie.", GetPlayerNameEx(playerid, USE_MASK));
+					case 1: format(finalstring, sizeof(finalstring), "** %s má extrémne zhoršený pohyb, ledva sa pohybuje.", GetPlayerNameEx(playerid, USE_MASK));
+					case 2: format(finalstring, sizeof(finalstring), "** %s má extrémne dlhý reakèný èas.", GetPlayerNameEx(playerid, USE_MASK));
+					case 3: format(finalstring, sizeof(finalstring), "** %s sem tam stratí na pár sekund vedomie.", GetPlayerNameEx(playerid, USE_MASK));
+					default: format(finalstring, sizeof(finalstring), "** %s má pocit na zvracanie.", GetPlayerNameEx(playerid, USE_MASK));
 				}
 				SendLocalMessage(playerid, ME_CHAT_RANGE, COLOR_VIOLET, finalstring);
 			}
