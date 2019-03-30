@@ -19,11 +19,6 @@
 #undef  MAX_PLAYERS
 	#define MAX_PLAYERS 100
 
-#define SQL_HOST 	"hostname"
-#define SQL_USER    "root"
-#define SQL_PASS    "plain"
-#define SQL_DB      "database_name"
-
 #include <YSF>
 #include <YSI\y_timers>
 #include <YSI\y_iterate>
@@ -60,9 +55,9 @@
 #include <attachment-fix>
 
 // PARTS OF SERVER SCRIPT
-#include <internal\truckers>
-#include <internal\menustore>
-#include <internal\cctv>
+#include <internal\truckers.pwn>
+#include <internal\menustore.pwn>
+#include <internal\cctv.pwn>
 #include <internal\drugsystem.pwn>
 #include <internal\bmap.pwn>
 #include <internal\deers.pwn>
@@ -16570,14 +16565,14 @@ FinishDMV(playerid)
 	if(vhp < 970.0)
 	{
 		DestroyDMV(playerid);
-		FormatLog(log_type_buythings, "%s(%s) failed his driving test!", ReturnName(playerid), ReturnIP(playerid));
-		return SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Je n·m æ˙to, ale poökodil si vozidlo a tvoj test bol ne˙speön˝.");
+		FormatLog(log_type_buythings, "%s(%s) failed his driving test (damage)!", ReturnName(playerid), ReturnIP(playerid));
+		return SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}I am sorry, but your vehicle is damaged.");
 	}
 	else if((DMV_license[playerid] == LICENSE_A || DMV_license[playerid] == LICENSE_B || DMV_license[playerid] == LICENSE_C) && DMV_time[playerid][0] >= 10)
 	{
 		DestroyDMV(playerid);
-		FormatLog(log_type_buythings, "%s(%s) zlyhal v teste na opravnenie (cas)!", ReturnName(playerid), ReturnIP(playerid));
-		return SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Je n·m æ˙to, ale jazda ti trvala moc dlho a tvoj test bol ne˙speön˝.");
+		FormatLog(log_type_buythings, "%s(%s) failed his driving test (time)!", ReturnName(playerid), ReturnIP(playerid));
+		return SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}You failed your test, you were driving too long.");
 	}
 	/*else if(DMV_warn[playerid] >= 7)
 	{
@@ -16588,24 +16583,19 @@ FinishDMV(playerid)
 
 	DestroyDMV(playerid);
 
-	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Gratulujem. Tvoj test bol ˙speön˝. Uûi si svoje novÈ opr·vnenie!");
-
-	web_LatestFormat("%s dokoncil test z autoskoly", GetPlayerNameEx(playerid, NO_MASK));
+	SCFM(playerid, COLOR_COMMANDUSE, "[ DRIVING SCHOOL ] {ffffff}Congratolations, your test was successful!");
 
 	if(DMV_license[playerid] == LICENSE_A)
 	{
 		SetPlayerInventoryItem(playerid, inv_vodicakA, 1);
-		FormatLog(log_type_buythings, "%s(%s) uspel v teste na opravnenie A!", ReturnName(playerid), ReturnIP(playerid));
 	}
 	else if(DMV_license[playerid] == LICENSE_B)
 	{
 		SetPlayerInventoryItem(playerid, inv_vodicakB, 1);
-		FormatLog(log_type_buythings, "%s(%s) uspel v teste na opravnenie B!", ReturnName(playerid), ReturnIP(playerid));
 	}
 	else if(DMV_license[playerid] == LICENSE_C)
 	{
 		SetPlayerInventoryItem(playerid, inv_vodicakC, 1);
-		FormatLog(log_type_buythings, "%s(%s) uspel v teste na opravnenie C!", ReturnName(playerid), ReturnIP(playerid));
 	}
 
 	return 1;
@@ -16634,14 +16624,13 @@ StartDMV(playerid)
 	    {
 
 	        if(GetPlayerInventoryItem(playerid, inv_vodicakA) == 1)
-	    		return SendError(playerid, "Uû m·ö vodiËsk˝ preukaz skupiny A!"), ShowDMVInfo(playerid, DMV_license[playerid]);
+	    		return SendError(playerid, "You already have dirvers permit group A!"), ShowDMVInfo(playerid, DMV_license[playerid]);
 
             if(ex_GetPlayerMoney(playerid) < Economy::GetPrice(ECONOMY_LIST_VODICAK_A))
-			    return SendError(playerid, "Nem·ö dosù peÚazÌ!"), ShowDMVInfo(playerid, DMV_license[playerid]);
+			    return SendError(playerid, "You do not have enough money!"), ShowDMVInfo(playerid, DMV_license[playerid]);
 
 	        ex_GivePlayerMoney(playerid, -Economy::GetPrice(ECONOMY_LIST_VODICAK_A));
 	        money_spent[playerid] += floatround(Economy::GetPrice(ECONOMY_LIST_VODICAK_A),floatround_round);
-	        FormatLog(log_type_buythings, "%s(%s) si kupil vodicsky preukaz A za %d$!", ReturnName(playerid), ReturnIP(playerid), Economy::GetPrice(ECONOMY_LIST_VODICAK_A));
 	        CreateDMVVehicle(playerid);
 	        StartLearning(playerid);
 	    }
@@ -16650,7 +16639,7 @@ StartDMV(playerid)
 	    {
 
 	        if(GetPlayerInventoryItem(playerid, inv_vodicakB) == 1)
-	    		return SendError(playerid, "Uû m·ö vodiËsk˝ preukaz skupiny B, BE!"), ShowDMVInfo(playerid, DMV_license[playerid]);
+	    		return SendError(playerid, "You already have drivers permit group B, BE!"), ShowDMVInfo(playerid, DMV_license[playerid]);
 
 	        new
                 CENA_B = Economy::GetPrice(ECONOMY_LIST_VODICAK_B);
@@ -16659,11 +16648,10 @@ StartDMV(playerid)
 			    CENA_B = Economy::GetPrice(ECONOMY_LIST_VODICAK_BL);
 
             if(ex_GetPlayerMoney(playerid) < CENA_B)
-			    return SendError(playerid, "Nem·ö dosù peÚazÌ!"), ShowDMVInfo(playerid, DMV_license[playerid]);
+			    return SendError(playerid, "You do not have enough money!"), ShowDMVInfo(playerid, DMV_license[playerid]);
 
 	        ex_GivePlayerMoney(playerid, -CENA_B);
 	        money_spent[playerid] += floatround(CENA_B,floatround_round);
-	        FormatLog(log_type_buythings, "%s(%s) si kupil vodicsky preukaz B, BE za %d$!", ReturnName(playerid), ReturnIP(playerid), CENA_B);
 	        CreateDMVVehicle(playerid);
 	        StartLearning(playerid);
 
@@ -16673,14 +16661,13 @@ StartDMV(playerid)
 	    {
 
 	        if(GetPlayerInventoryItem(playerid, inv_vodicakC) == 1)
-	    		return SendError(playerid, "Uû m·ö vodiËsk˝ preukaz skupiny C, CE!"), ShowDMVInfo(playerid, DMV_license[playerid]);
+	    		return SendError(playerid, "You already have drivers license group C, CE!"), ShowDMVInfo(playerid, DMV_license[playerid]);
 
             if(ex_GetPlayerMoney(playerid) < Economy::GetPrice(ECONOMY_LIST_VODICAK_C))
-			    return SendError(playerid, "Nem·ö dosù peÚazÌ!"), ShowDMVInfo(playerid, DMV_license[playerid]);
+			    return SendError(playerid, "You do not have enough money!"), ShowDMVInfo(playerid, DMV_license[playerid]);
 
             ex_GivePlayerMoney(playerid, -Economy::GetPrice(ECONOMY_LIST_VODICAK_C));
             money_spent[playerid] += floatround(Economy::GetPrice(ECONOMY_LIST_VODICAK_C),floatround_round);
-	        FormatLog(log_type_buythings, "%s(%s) si kupil vodicsky preukaz C, CE za %d$!", ReturnName(playerid), ReturnIP(playerid), Economy::GetPrice(ECONOMY_LIST_VODICAK_C));
 
 	        CreateDMVVehicle(playerid);
 	        StartLearning(playerid);
@@ -16690,21 +16677,20 @@ StartDMV(playerid)
 	    {
 
 	        if(GetPlayerInventoryItem(playerid, inv_vodicakT) == 1)
-	    		return SendError(playerid, "Uû m·ö vodiËsk˝ preukaz skupiny T!"), ShowDMVInfo(playerid, DMV_license[playerid]);
+	    		return SendError(playerid, "You already have drivers license group T!"), ShowDMVInfo(playerid, DMV_license[playerid]);
 
 	        if(GetPlayerInventoryItem(playerid, inv_vodicakC) < 1)
-	    		return SendError(playerid, "Nem·ö vodiËsk˝ preukaz skupiny C, CE!"), ShowDMVInfo(playerid, DMV_license[playerid]);
+	    		return SendError(playerid, "You do not have drivers license group C, CE!"), ShowDMVInfo(playerid, DMV_license[playerid]);
 
 			if(ex_GetPlayerMoney(playerid) < Economy::GetPrice(ECONOMY_LIST_VODICAK_T))
-			    return SendError(playerid, "Nem·ö dosù peÚazÌ!"), ShowDMVInfo(playerid, DMV_license[playerid]);
+			    return SendError(playerid, "You do not have enough money"), ShowDMVInfo(playerid, DMV_license[playerid]);
 
 			ex_GivePlayerMoney(playerid, -Economy::GetPrice(ECONOMY_LIST_VODICAK_T));
 			money_spent[playerid] += floatround(Economy::GetPrice(ECONOMY_LIST_VODICAK_T),floatround_round);
-			FormatLog(log_type_buythings, "%s(%s) si kupil vodicsky preukaz T za %d$!", ReturnName(playerid), ReturnIP(playerid), Economy::GetPrice(ECONOMY_LIST_VODICAK_T));
 
 			SetPlayerInventoryItem(playerid, inv_vodicakT, 1);
 
-			SendSuccess(playerid, "VodiËskÈ opr·vnenie skupiny T zak˙penÈ!");
+			SendSuccess(playerid, "Drivers permit group T bought!");
 			ShowDMV(playerid);
 		}
 	}
@@ -16716,57 +16702,11 @@ ShowDMVInfo(playerid, license)
 {
 
 	new
-	    finalString[512];
-
-	switch(license)
-	{
-		case LICENSE_A:
-		{
-		    format(finalString, 512,
-			"\tTyp opr·vnenia: VodiËskÈ opr·vnenie skupiny A\n\tCena opr·vnenia: %d$\n\tVozidlo: PCJ-600\n\tTyp sk˙öky: Jazda po Red County\n\tPodmienky:\n\t\t- Poökodenie menöie ako 3%%\n\t\t- Dodrûovanie r˝chlosti\n\t\t- »as lepöÌ ako 10 min˙t", Economy::GetPrice(ECONOMY_LIST_VODICAK_A));
-
-			format(finalString, 512,
-			"%s\n\n\rAkon·hle sk˙öku spustÌö, nie je moûnÈ ju zruöiù. Ak v sk˙öke zlyh·ö, peniaze ti nebud˙ vr·tenÈ.\nAk naopak uspejeö, peniaze ti nebud˙ vr·tenÈ a dostaneö\nûiadanÈ opr·vnenie. Chceö spustiù sk˙öku?", finalString);
-		}
-
-		case LICENSE_B:
-		{
-
-		    new
-                CENA_B = Economy::GetPrice(ECONOMY_LIST_VODICAK_B);
-
-			if(GetPlayerRoleplayLevel(playerid) <= 1)
-			    CENA_B = Economy::GetPrice(ECONOMY_LIST_VODICAK_BL);
-
-		    format(finalString, 512,
-			"\tTyp opr·vnenia: VodiËskÈ opr·vnenie skupiny B, BE\n\tCena opr·vnenia: %d$\n\tVozidlo: Primo\n\tTyp sk˙öky: Jazda po Red County\n\tPodmienky:\n\t\t- Poökodenie menöie ako 3%%\n\t\t- Dodrûovanie r˝chlosti\n\t\t- »as lepöÌ ako 10 min˙t", CENA_B);
-
-			format(finalString, 512,
-			"%s\n\n\rAkon·hle sk˙öku spustÌö, nie je moûnÈ ju zruöiù. Ak v sk˙öke zlyh·ö, peniaze ti nebud˙ vr·tenÈ.\nAk naopak uspejeö, peniaze ti nebud˙ vr·tenÈ a dostaneö\nûiadanÈ opr·vnenie. Chceö spustiù sk˙öku?", finalString);
-		}
-
-		case LICENSE_C:
-		{
-		    format(finalString, 512,
-			"\tTyp opr·vnenia: VodiËskÈ opr·vnenie skupiny C, CE\n\tCena opr·vnenia: %d$\n\tVozidlo: Mule\n\tTyp sk˙öky: Jazda po Red County\n\tPodmienky:\n\t\t- Poökodenie menöie ako 3%%\n\t\t- Dodrûovanie r˝chlosti\n\t\t- »as lepöÌ ako 10 min˙t", Economy::GetPrice(ECONOMY_LIST_VODICAK_C));
-
-			format(finalString, 512,
-			"%s\n\n\rAkon·hle sk˙öku spustÌö, nie je moûnÈ ju zruöiù. Ak v sk˙öke zlyh·ö, peniaze ti nebud˙ vr·tenÈ.\nAk naopak uspejeö, peniaze ti nebud˙ vr·tenÈ a dostaneö\nûiadanÈ opr·vnenie. Chceö spustiù sk˙öku?", finalString);
-		}
-
-		case LICENSE_T:
-		{
-		    format(finalString, 512,
-			"\tTyp opr·vnenia: VodiËskÈ opr·vnenie skupinyT\n\tCena opr·vnenia: %d$\n\tVozidlo: /\n\tTyp sk˙öky: éiadna\n\tPodmienky:\n\t\t- VodiËskÈ opr·vnenie skupiny C, CE", Economy::GetPrice(ECONOMY_LIST_VODICAK_T));
-
-			format(finalString, 512,
-			"%s\n\n\rAkon·hle odklikneö ·no a splÚujeö podmienky,\nlicencia bude zak˙pen·.\nChceö licenciu skutoËne zak˙più?", finalString);
-		}
-	}
+	    finalString[512] = "Are you sure you want to start this test?";
 
 	DMV_license[playerid] = license;
 
-	ShowPlayerDialog(playerid, did_dmv_info, DIALOG_STYLE_MSGBOX, "DRIVING SCHOOL", finalString, "¡NO", "NIE");
+	ShowPlayerDialog(playerid, did_dmv_info, DIALOG_STYLE_MSGBOX, "DRIVING SCHOOL", finalString, "YES", "NO");
 
 	return 1;
 }
@@ -16785,25 +16725,25 @@ ShowDMV(playerid)
 	/*
 		LICENSE - GROUP A
 	*/
-	format(tempString, sizeof(tempString), "{ffffff}VodiËskÈ opr·vnenie skupiny A\t{2fb838}%d$\n", Economy::GetPrice(ECONOMY_LIST_VODICAK_A));
+	format(tempString, sizeof(tempString), "{ffffff}Drivers License Group A\t{2fb838}%d$\n", Economy::GetPrice(ECONOMY_LIST_VODICAK_A));
 	strcat(finalString, tempString);
 
 	/*
 		LICENSE - GROUP B
 	*/
-	format(tempString, sizeof(tempString), "{ffffff}VodiËskÈ opr·vnenie skupiny B, BE\t{2fb838}%d$\n", CENA_B);
+	format(tempString, sizeof(tempString), "{ffffff}Drivers License Group B, BE\t{2fb838}%d$\n", CENA_B);
 	strcat(finalString, tempString);
 
 	/*
 		LICENSE - GROUP C
 	*/
-	format(tempString, sizeof(tempString), "{ffffff}VodiËskÈ opr·vnenie skupiny C, CE\t{2fb838}%d$\n", Economy::GetPrice(ECONOMY_LIST_VODICAK_C));
+	format(tempString, sizeof(tempString), "{ffffff}Drivers License Group C, CE\t{2fb838}%d$\n", Economy::GetPrice(ECONOMY_LIST_VODICAK_C));
 	strcat(finalString, tempString);
 
 	/*
 		LICENSE - GROUP T
 	*/
-	format(tempString, sizeof(tempString), "{ffffff}VodiËskÈ opr·vnenie skupiny T\t{2fb838}%d$\n", Economy::GetPrice(ECONOMY_LIST_VODICAK_T));
+	format(tempString, sizeof(tempString), "{ffffff}Drivers License Group T\t{2fb838}%d$\n", Economy::GetPrice(ECONOMY_LIST_VODICAK_T));
 	strcat(finalString, tempString);
 
 
@@ -16811,7 +16751,7 @@ ShowDMV(playerid)
 	/*
 	    SHOW DIALOG TO PLAYER
 	*/
-	ShowPlayerDialog(playerid, did_dmv, DIALOG_STYLE_TABLIST, "DRIVING SCHOOL", finalString, "INFO", "CLOSE");
+	ShowPlayerDialog(playerid, did_dmv, DIALOG_STYLE_TABLIST, "DRIVING SCHOOL", finalString, "TAKE", "CLOSE");
 	return 1;
 }
 
@@ -17085,7 +17025,7 @@ SpawnPlayerVehicle(playerid, bool:impounded=false)
 
 	VehAttachObj(vehicleid);
 
-	SendSuccess(playerid, "Vozidlo ˙speöne odparkovanÈ!");
+	SendSuccess(playerid, "Vehicle successfully parked!");
 
 	if(GetPlayerVirtualWorld(playerid) == pVW && !impounded)
 	{
@@ -17101,7 +17041,7 @@ Impound_ShowNearVehicles(playerid)
 		vid = 0,
 		Float:pos[3],
 
-		finalstr[2048] = "Model\tSPZ",
+		finalstr[2048] = "Model\tPlate",
 		tstr[128]
 	;
 
@@ -17124,12 +17064,12 @@ Impound_ShowNearVehicles(playerid)
 	if(vid == 0)
 	{
 	    InteractiveNPC::Response_Pulaski(playerid, InteractiveNPC::playernpcid[playerid], INPC_PULASKI_R_ADD_NO_RESPONSE);
-		return SendError(playerid, "Nie je tu ûiadne vozidlo!");
+		return SendError(playerid, "There is not any vehicle!");
 	}
 
 	impound_veharr[playerid][0] = vid+1;
 
-	ShowPlayerDialog(playerid, did_impound_add_select, DIALOG_STYLE_TABLIST_HEADERS, "VYBER VOZIDLO", finalstr, "CHOOSE", "CLOSE");
+	ShowPlayerDialog(playerid, did_impound_add_select, DIALOG_STYLE_TABLIST_HEADERS, "CHOOSE VEHICLE", finalstr, "CHOOSE", "CLOSE");
 
 	return 1;
 }
@@ -17155,20 +17095,20 @@ ShowPlayerVehicleGetConfirm(playerid, listitem)
    	cache_get_value_name_int(listitem, "Impounded", Impounded);
 
    	if(Parked == 1)
-   	    return SendError(playerid, "Toto vozidlo nie je zaparkovanÈ!"), ShowPlayerVehicleGet(playerid);
+   	    return SendError(playerid, "This vehicle is not parked!"), ShowPlayerVehicleGet(playerid);
 
     if(Impounded == 1)
-   	    return SendError(playerid, "Toto vozidlo je na odtahovom parkovisku!"), ShowPlayerVehicleGet(playerid);
+   	    return SendError(playerid, "This vehicle is impounded!"), ShowPlayerVehicleGet(playerid);
 
 	new
 	    finalString[144];
 
-	format(finalString, 144, "{ffffff}> SkutoËne chceö spawn˙ù vozidlo {e34f4f}%s {ffffff}so znaËkou {e34f4f}%s{ffffff}?", VehicleNames[Model-400], SPZ);
+	format(finalString, 144, "{ffffff}> Are you sure you want to spawn vehicle {e34f4f}%s {ffffff} with plate {e34f4f}%s{ffffff}?", VehicleNames[Model-400], SPZ);
 	format(vehicleOperation[playerid], 32, SPZ);
 
 	cache_delete(query);
 
-	return ShowPlayerDialog(playerid, did_vehicle_spawn_confirm, DIALOG_STYLE_MSGBOX, "SPAWN⁄ç VOZIDLO", finalString, "¡NO", "NIE");
+	return ShowPlayerDialog(playerid, did_vehicle_spawn_confirm, DIALOG_STYLE_MSGBOX, "SPAWN VEHICLE", finalString, "YES", "NO");
 }
 
 ShowPlayerVehicleGet(playerid)
@@ -17188,7 +17128,7 @@ ShowPlayerVehicleGet(playerid)
 
 	    vehCount = 0,
 
-		finalString[512] = "Model\tSPZ\tZaparkovanÈ\n",
+		finalString[512] = "Model\tPlate\tParked\n",
 		tempString[128];
 
 	for(new i; i < cache_num_rows(); i++) {
@@ -17199,9 +17139,9 @@ ShowPlayerVehicleGet(playerid)
      	cache_get_value_name_int(i, "isUnParked", Parked);
      	cache_get_value_name_int(i, "Impounded", Impounded);
 
-        if(Impounded == 1) format(tempString, 128, "{db3e1e}%s\t%s\tODTIAHNUT…\n", VehicleNames[Model-400], SPZ);
-		else if(Parked == 1) format(tempString, 128, "{bfbfbf}%s\t%s\tNIE\n", VehicleNames[Model-400], SPZ);
-     	else format(tempString, 128, "{ffffff}%s\t%s\t¡NO\n", VehicleNames[Model-400], SPZ);
+        if(Impounded == 1) format(tempString, 128, "{db3e1e}%s\t%s\tIMPOUNDED\n", VehicleNames[Model-400], SPZ);
+		else if(Parked == 1) format(tempString, 128, "{bfbfbf}%s\t%s\tNO\n", VehicleNames[Model-400], SPZ);
+     	else format(tempString, 128, "{ffffff}%s\t%s\tYES\n", VehicleNames[Model-400], SPZ);
 
      	strcat(finalString, tempString);
 
@@ -17211,9 +17151,9 @@ ShowPlayerVehicleGet(playerid)
 	cache_delete(query);
 
 	if(vehCount == 0)
-	    return SendError(playerid, "NemÙûeö spawn˙ù ûiadne vozidlo!");
+	    return SendError(playerid, "You cannot spawn any vehicle!");
 
-	ShowPlayerDialog(playerid, did_vehicle_spawn, DIALOG_STYLE_TABLIST_HEADERS, "SPAWN⁄ç VOZIDLO", finalString, "SPAWN", "ZAVRIEç");
+	ShowPlayerDialog(playerid, did_vehicle_spawn, DIALOG_STYLE_TABLIST_HEADERS, "SPAWN VEHICLE", finalString, "SPAWN", "CLOSE");
 
 	return 1;
 }
@@ -17627,24 +17567,24 @@ ShowPlayerSkinStorage(playerid)
 		finalString[256],
 		tempString[128];
 
-	if(skinStorage[playerid][0] < 1) format(tempString, 128, "[#1] éiadny skin\n{ffffff}");
+	if(skinStorage[playerid][0] < 1) format(tempString, 128, "[#1] No skin\n{ffffff}");
 	else format(tempString, 128, "{d64d4d}[#1] Skin ID: %d\n{ffffff}", skinStorage[playerid][0]);
 
 	strcat(finalString, tempString);
 
-	if(skinStorage[playerid][1] < 1) format(tempString, 128, "[#2] éiadny skin\n{ffffff}");
+	if(skinStorage[playerid][1] < 1) format(tempString, 128, "[#2] No skin\n{ffffff}");
 	else format(tempString, 128, "{d64d4d}[#2] Skin ID: %d\n{ffffff}", skinStorage[playerid][1]);
 
 	strcat(finalString, tempString);
 
 	if(GetPlayerDonatorLevel(playerid) < 1)
 	{
-		if(skinStorage[playerid][2] < 1) format(tempString, 128, "{e7b310}[#3] Iba pre Donator Level 1 a vyööie\n{ffffff}");
+		if(skinStorage[playerid][2] < 1) format(tempString, 128, "{e7b310}[#3] Only for Donators\n{ffffff}");
 		else format(tempString, 128, "{d64d4d}[#3] Skin ID: %d\n{ffffff}", skinStorage[playerid][2]);
 	}
 	else
 	{
-		if(skinStorage[playerid][2] < 1) format(tempString, 128, "[#3] éiadny skin\n{ffffff}");
+		if(skinStorage[playerid][2] < 1) format(tempString, 128, "[#3] No skin\n{ffffff}");
 		else format(tempString, 128, "{d64d4d}[#3] Skin ID: %d\n{ffffff}", skinStorage[playerid][2]);
 	}
 
@@ -17652,12 +17592,12 @@ ShowPlayerSkinStorage(playerid)
 
 	if(GetPlayerDonatorLevel(playerid) < 2)
 	{
-		if(skinStorage[playerid][3] < 1) format(tempString, 128, "{e7b310}[#4] Iba pre Donator Level 2 a vyööie\n{ffffff}");
+		if(skinStorage[playerid][3] < 1) format(tempString, 128, "{e7b310}[#4] Only for Donators\n{ffffff}");
 		else format(tempString, 128, "{d64d4d}[#4] Skin ID: %d\n{ffffff}", skinStorage[playerid][3]);
 	}
 	else
 	{
-		if(skinStorage[playerid][3] < 1) format(tempString, 128, "[#4] éiadny skin\n{ffffff}");
+		if(skinStorage[playerid][3] < 1) format(tempString, 128, "[#4] No skin\n{ffffff}");
 		else format(tempString, 128, "{d64d4d}[#4] Skin ID: %d\n{ffffff}", skinStorage[playerid][3]);
 	}
 
@@ -17665,18 +17605,18 @@ ShowPlayerSkinStorage(playerid)
 
 	if(GetPlayerDonatorLevel(playerid) < 3)
 	{
-		if(skinStorage[playerid][4] < 1) format(tempString, 128, "{e7b310}[#5] Iba pre Donator Level 3{ffffff}");
+		if(skinStorage[playerid][4] < 1) format(tempString, 128, "{e7b310}[#5] Only for Donators{ffffff}");
 		else format(tempString, 128, "{d64d4d}[#5] Skin ID: %d{ffffff}", skinStorage[playerid][4]);
 	}
 	else
 	{
-		if(skinStorage[playerid][4] < 1) format(tempString, 128, "[#5] éiadny skin{ffffff}");
+		if(skinStorage[playerid][4] < 1) format(tempString, 128, "[#5] No skin{ffffff}");
 		else format(tempString, 128, "{d64d4d}[#5] Skin ID: %d{ffffff}", skinStorage[playerid][4]);
 	}
 
 	strcat(finalString, tempString);
 
-	ShowPlayerDialog(playerid, did_skinstorage_choose, DIALOG_STYLE_LIST, "CHOOSE SKIN", finalString, "CHOOSE", "ZAVRIEç");
+	ShowPlayerDialog(playerid, did_skinstorage_choose, DIALOG_STYLE_LIST, "CHOOSE SKIN", finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 }
@@ -17705,10 +17645,10 @@ SendRandomMessage(playerid)
 
 	new string[255];
 
-	format(string, 255, str_replace("{ZVYRAZNI}", "{9bb4dd}", RandomMessage[i]));
+	format(string, 255, str_replace("{MARK}", "{9bb4dd}", RandomMessage[i]));
 	format(string, 255, str_replace("{DEFAULT}", "{ffffff}", string));
 
-	strins(string, "[TIP] {ffffff}", 0);
+	strins(string, "[HINT] {ffffff}", 0);
 
 	SendClientMessage(playerid, 0x9bb4ddff, string);
 
@@ -17729,92 +17669,92 @@ ShowPlayerOptions(playerid)
 	strcat(string, "Zmeniù heslo\n");
 
 	if(opt_TimeTd[playerid] == 1)
-	    format(finalString, 82, "{FFFFFF}Textdraw Ëasu ( {D4434A}VYPNUT› {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Time textdraw ( {D4434A}DISABLED {FFFFFF})\n");
 	else
-		format(finalString, 82, "{FFFFFF}Textdraw Ëasu ( {5ed443}ZAPNUT› {FFFFFF})\n");
+		format(finalString, 82, "{FFFFFF}Time textdraw ( {5ed443}ENABLED {FFFFFF})\n");
 	strcat(string, finalString);
 
 	if(opt_WebTd[playerid] == 1)
-	    format(finalString, 82, "{FFFFFF}Textdraw lok·cie ( {D4434A}VYPNUT› {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Location textdraw ( {D4434A}DISABLED {FFFFFF})\n");
 	else
-		format(finalString, 82, "{FFFFFF}Textdraw lok·cie ( {5ed443}ZAPNUT› {FFFFFF})\n");
+		format(finalString, 82, "{FFFFFF}Location textdraw ( {5ed443}ENABLED {FFFFFF})\n");
 	strcat(string, finalString);
 
 	if(opt_CentTd[playerid] == 1)
-	    format(finalString, 82, "{FFFFFF}Textdraw centov ( {D4434A}VYPNUT› {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Cents textdraw ( {D4434A}DISABLED {FFFFFF})\n");
 	else
-		format(finalString, 82, "{FFFFFF}Textdraw centov ( {5ed443}ZAPNUT› {FFFFFF})\n");
+		format(finalString, 82, "{FFFFFF}Cents textdraw ( {5ed443}ENABLED {FFFFFF})\n");
 	strcat(string, finalString);
 
 	if(opt_PM[playerid] == 1)
-	    format(finalString, 82, "{FFFFFF}S˙kromnÈ spr·vy ( {D4434A}VYPNUT… {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Private Messages ( {D4434A}DISABLED {FFFFFF})\n");
 	else
-		format(finalString, 82, "{FFFFFF}S˙kromnÈ spr·vy ( {5ed443}ZAPNUT… {FFFFFF})\n");
+		format(finalString, 82, "{FFFFFF}Private Messages ( {5ed443}ENABLED {FFFFFF})\n");
 	strcat(string, finalString);
 
 	if(opt_Sounds[playerid] == 1)
-	    format(finalString, 82, "{FFFFFF}DodatoËnÈ ozvuËenie ( {D4434A}VYPNUT… {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Add. Sounds ( {D4434A}DISABLED {FFFFFF})\n");
 	else
-		format(finalString, 82, "{FFFFFF}DodatoËnÈ ozvuËenie ( {5ed443}ZAPNUT… {FFFFFF})\n");
+		format(finalString, 82, "{FFFFFF}Add. Sounds ( {5ed443}ENABLED {FFFFFF})\n");
 	strcat(string, finalString);
 
 	if(opt_VitalTd[playerid] == 2)
-	    format(finalString, 82, "{FFFFFF}Zobrazenie ûivotu, vesty ( {D4434A}VYPNUT… {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Health and armour bars ( {D4434A}DISABLED {FFFFFF})\n");
  	else if(opt_VitalTd[playerid] == 1)
-	    format(finalString, 82, "{FFFFFF}Zobrazenie ûivotu, vesty ( {5ed443}äT›L 2 {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Health and armour bars ( {5ed443}STYLE 2 {FFFFFF})\n");
  	else
-	    format(finalString, 82, "{FFFFFF}Zobrazenie ûivotu, vesty ( {5ed443}äT›L 1 {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Health and armour bars ( {5ed443}STYLE 1 {FFFFFF})\n");
 	strcat(string, finalString);
 
 	if(strlen(prizvuk[playerid]) > 0)
-	    format(finalString, 82, "{FFFFFF}PrÌzvuk postavy ( {5ed443}%s {FFFFFF})\n", tprizvuk);
+	    format(finalString, 82, "{FFFFFF}Accent ( {5ed443}%s {FFFFFF})\n", tprizvuk);
 	else
-	    format(finalString, 82, "{FFFFFF}PrÌzvuk postavy ( {D4434A}NIE {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Accent ( {D4434A}DISABLED {FFFFFF})\n");
     strcat(string, finalString);
 
     if(strlen(popis[playerid]) > 0)
-	    format(finalString, 82, "{FFFFFF}Popis postavy ( {5ed443}¡NO {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Appearance ( {5ed443}YES {FFFFFF})\n");
 	else
-	    format(finalString, 82, "{FFFFFF}Popis postavy ( {D4434A}NIE {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Appearance ( {D4434A}NO {FFFFFF})\n");
     strcat(string, finalString);
 
     if(opt_ChatAnim[playerid] == 0)
-	    format(finalString, 82, "{FFFFFF}Chat anim·cia ( {5ed443}ZAPNUT¡ {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Chat anim ( {5ed443}ENABLED {FFFFFF})\n");
 	else
-	    format(finalString, 82, "{FFFFFF}Chat anim·cia ( {D4434A}VYPNUT¡ {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Chat anim ( {D4434A}DISABLED {FFFFFF})\n");
     strcat(string, finalString);
 
     if(Vyplata_TYP[playerid] == 0)
-        format(finalString, 82, "{FFFFFF}V˝plata ( {5ed443}äEK {FFFFFF})\n");
+        format(finalString, 82, "{FFFFFF}Payday ( {5ed443}CHECK {FFFFFF})\n");
 	else
-	    format(finalString, 82, "{FFFFFF}V˝plata ( {5ed443}⁄»ET > %d {FFFFFF})\n", Vyplata_TYP[playerid]);
+	    format(finalString, 82, "{FFFFFF}Payday ( {5ed443}BANK ACC. > %d {FFFFFF})\n", Vyplata_TYP[playerid]);
     strcat(string, finalString);
 
     if(opt_tachometer[playerid] == 0)
-	    format(finalString, 82, "{FFFFFF}Tachometer ( {5ed443}DIGIT¡LNY {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Speedometer ( {5ed443}DIGITAL {FFFFFF})\n");
 	else
-	    format(finalString, 82, "{FFFFFF}Tachometer ( {D4434A}VYPNUT› {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Speedometer ( {D4434A}DISABLED {FFFFFF})\n");
     strcat(string, finalString);
 
     if(opt_ShowColor[playerid] == 0)
-	    format(finalString, 82, "{FFFFFF}Farba mena podæa frakcie ( {5ed443}ZAPNUT¡ {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Faction color ( {5ed443}ENABLED {FFFFFF})\n");
 	else
-	    format(finalString, 82, "{FFFFFF}Farba mena podæa frakcie ( {D4434A}VYPNUT¡ {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Faction color ( {D4434A}DISABLED {FFFFFF})\n");
     strcat(string, finalString);
 
     if(opt_HideMaster[playerid] == 1)
-	    format(finalString, 82, "{FFFFFF}Skryù meno hlavnÈho ˙Ëtu ( {5ed443}ZAPNUT… {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Hide master account ( {5ed443}ENABLED {FFFFFF})\n");
 	else
-	    format(finalString, 82, "{FFFFFF}Skryù meno hlavnÈho ˙Ëtu ( {D4434A}VYPNUT… {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Hide master account ( {D4434A}DISABLED {FFFFFF})\n");
     strcat(string, finalString);
     
     if(opt_vyppasy[playerid] == 1)
-	    format(finalString, 82, "{FFFFFF}AutomatickÈ odopÌnanie p·sov ( {5ed443}ZAPNUT… {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Auto seatbelt unbuckle ( {5ed443}ENABLED {FFFFFF})\n");
 	else
-	    format(finalString, 82, "{FFFFFF}AutomatickÈ odopÌnanie p·sov ( {D4434A}VYPNUT… {FFFFFF})\n");
+	    format(finalString, 82, "{FFFFFF}Auto seatbelt unbuckle ( {D4434A}DISABLED {FFFFFF})\n");
     strcat(string, finalString);
 
-	ShowPlayerDialog(playerid, did_options, DIALOG_STYLE_LIST, "NASTAVENIA", string, "UPRAVIç", "KONIEC");
+	ShowPlayerDialog(playerid, did_options, DIALOG_STYLE_LIST, "OPTIONS", string, "TOGGLE", "CLOSE");
 
 	return 1;
 }
@@ -17823,10 +17763,9 @@ stock AdminNews(playerid)
 {
 
 	new
-	    finalString[512] = "{e34f4f}Novinky pre Administr·torov:\n\n{ffffff}";
+	    finalString[512] = "{e34f4f}Admin news:\n\n{ffffff}";
 
 	strcat(finalString, "- /reloadmaps\n");
-	strcat(finalString, "- /prepisauto bolo upravene\n");
 
 	ShowPlayerDialog(playerid, did_changelog, DIALOG_STYLE_MSGBOX, "CHANGELOG", finalString, "OK", "");
 	return;
@@ -17859,7 +17798,7 @@ ShowPlayerSDLocker_Guns(playerid)
 	    strcat(finalString, "\n");
 	}
 
-	ShowPlayerDialog(playerid, did_locker_sd_guns, DIALOG_STYLE_LIST, "ZBROJNICA", finalString, "CHOOSE", "ZAVRIEç");
+	ShowPlayerDialog(playerid, did_locker_sd_guns, DIALOG_STYLE_LIST, "LOCKER", finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 
@@ -17876,23 +17815,23 @@ ShowPlayerSDLocker(playerid)
 
 	// Prv˝ riadok
 	if(IsPlayerWorking(playerid))
-	    strcat(finalString, "{d64d4d}OdÌsù zo sluûby\n");
+	    strcat(finalString, "{d64d4d}Go off duty\n");
 	else
-	    strcat(finalString, "{42c157}PrÌsù do sluûby\n");
+	    strcat(finalString, "{42c157}Go on duty\n");
 
 	// Druh˝ riadok
-	strcat(finalString, "{eaeaea}Zmena obleËenia\n");
+	strcat(finalString, "{eaeaea}Change clothing\n");
 
 	// TretÌ riadok
-	strcat(finalString, "{eaeaea}Zbrojnica\n{eaeaea}\n");
+	strcat(finalString, "{eaeaea}Armoury\n{eaeaea}\n");
 
 	// ätvrt˝ riadok je pr·zdny
 
 	// Piaty riadok
-	strcat(finalString, "{d64d4d}Podaù v˝poveÔ\n");
+	strcat(finalString, "{d64d4d}Leave faction\n");
 
 	ShowPlayerDialog(
-		playerid, did_locker_sd, DIALOG_STYLE_LIST, caption, finalString, "CHOOSE", "ZAVRIEç"
+		playerid, did_locker_sd, DIALOG_STYLE_LIST, caption, finalString, "CHOOSE", "CLOSE"
 	);
 	return 1;
 
@@ -17909,23 +17848,23 @@ ShowPlayerFDLocker(playerid)
 
 	// Prv˝ riadok
 	if(IsPlayerWorking(playerid))
-	    strcat(finalString, "{d64d4d}OdÌsù zo sluûby\n");
+	    strcat(finalString, "{d64d4d}Go off duty\n");
 	else
-	    strcat(finalString, "{42c157}PrÌsù do sluûby\n");
+	    strcat(finalString, "{42c157}Go on duty\n");
 
 	// Druh˝ riadok
-	strcat(finalString, "{eaeaea}Zmena obleËenia\n");
+	strcat(finalString, "{eaeaea}Change clothing\n");
 
 	// TretÌ riadok
-	strcat(finalString, "{eaeaea}Zbrojnica\n{eaeaea}\n");
+	strcat(finalString, "{eaeaea}Armoury\n{eaeaea}\n");
 
 	// ätvrt˝ riadok je pr·zdny
 
 	// Piaty riadok
-	strcat(finalString, "{d64d4d}Podaù v˝poveÔ\n");
+	strcat(finalString, "{d64d4d}Leave faction\n");
 
 	ShowPlayerDialog(
-		playerid, did_locker_fd, DIALOG_STYLE_LIST, caption, finalString, "CHOOSE", "ZAVRIEç"
+		playerid, did_locker_fd, DIALOG_STYLE_LIST, caption, finalString, "CHOOSE", "CLOSE"
 	);
 	return 1;
 
@@ -17943,7 +17882,7 @@ ShowPlayerFDLocker_Guns(playerid)
 	    strcat(finalString, "\n");
 	}
 
-	ShowPlayerDialog(playerid, did_locker_fd_guns, DIALOG_STYLE_LIST, "ZBROJNICA", finalString, "CHOOSE", "ZAVRIEç");
+	ShowPlayerDialog(playerid, did_locker_fd_guns, DIALOG_STYLE_LIST, "ARMOURY", finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 
@@ -18008,16 +17947,16 @@ BanPlayer(playerid, reason[], admin[] = "System", type = 1, adminid = -1, unbanu
 	if(type == 1) {
 	    new str[512], title[32];
 	    switch(GetPlayerAdminLevel(adminid)) {
-		    case 0: strcat(title, "Hr·Ë");
+		    case 0: strcat(title, "Player");
 	 		case 1: strcat(title, "Helper");
 	   		case 2: strcat(title, "Moderator");
 		    default: strcat(title, "Administrator");
 		}
 
 		if(unbanunix == 0)
-	    	format(str,512,"> %s %s zabanoval hr·Ëa %s. DÙvod: %s", title, ReturnMaster(adminid), GetPlayerNameEx(playerid, NO_MASK), reason);
+	    	format(str,512,"> %s %s has banned player %s. Reason: %s", title, ReturnMaster(adminid), GetPlayerNameEx(playerid, NO_MASK), reason);
 		else
-		    format(str,512,"> %s %s zabanoval hr·Ëa %s do %s. DÙvod: %s", title, ReturnMaster(adminid), GetPlayerNameEx(playerid, NO_MASK), getdateunix(unbanunix), reason);
+		    format(str,512,"> %s %s has banned %s to %s. Reason: %s", title, ReturnMaster(adminid), GetPlayerNameEx(playerid, NO_MASK), getdateunix(unbanunix), reason);
 		SendClientMessageToAll(COLOR_ADMINCMD, str);
 
 		if(unbanunix == 0)
@@ -18037,9 +17976,9 @@ BanPlayer(playerid, reason[], admin[] = "System", type = 1, adminid = -1, unbanu
 	    new str[512];
 
 	    if(unbanunix == 0)
-	    	format(str,512,"> %s bol zabanovan˝ systÈmom. DÙvod: %s", GetPlayerNameEx(playerid, NO_MASK), reason);
+	    	format(str,512,"> %s was banned by system. Reason: %s", GetPlayerNameEx(playerid, NO_MASK), reason);
 		else
-		    format(str,512,"> %s bol zabanovan˝ systÈmom do %s. DÙvod: %s", GetPlayerNameEx(playerid, NO_MASK), getdateunix(unbanunix), reason);
+		    format(str,512,"> %s was banned by system until %s. Reason: %s", GetPlayerNameEx(playerid, NO_MASK), getdateunix(unbanunix), reason);
 
 	    SendClientMessageToAll(COLOR_ADMINCMD, str);
 
@@ -18071,12 +18010,12 @@ BanPlayer(playerid, reason[], admin[] = "System", type = 1, adminid = -1, unbanu
 CKPlayer(playerid, reason[], adminid, ren = 0) {
 	new str[512], title[32];
  	switch(GetPlayerAdminLevel(adminid)) {
-	    case 0: strcat(title, "Hr·Ë");
+	    case 0: strcat(title, "Player");
 		case 1: strcat(title, "Helper");
   		case 2: strcat(title, "Moderator");
 	    default: strcat(title, "Administrator");
 	}
-    format(str,1024,"> %s %s udelil CK hr·Ëovi %s. DÙvod: %s", title, ReturnMaster(adminid), GetPlayerNameEx(playerid, NO_MASK), reason);
+    format(str,1024,"> %s %s has CKed player %s. Reason: %s", title, ReturnMaster(adminid), GetPlayerNameEx(playerid, NO_MASK), reason);
     SendClientMessageToAll(COLOR_ADMINCMD, str);
 
 	new IP[16]; GetPlayerIp(playerid, IP, 16);
@@ -18086,7 +18025,7 @@ CKPlayer(playerid, reason[], adminid, ren = 0) {
 
 	mysql_query(MYSQL, str, false);
 
-	web_LatestFormat("%s dostal Character Kill", GetPlayerNameEx(playerid, NO_MASK));
+	web_LatestFormat("%s has got CKed", GetPlayerNameEx(playerid, NO_MASK));
 
 	Achievement::Reward(playerid, ACHIEVEMENT_CHARACTER_KILL);
 
@@ -18199,16 +18138,16 @@ GetMonthName(month)
 
 	switch(month)
 	{
-		case 1: strcat(S_string, "Janu·r");
-		case 2: strcat(S_string, "Febru·r");
-		case 3: strcat(S_string, "Marec");
-		case 4: strcat(S_string, "AprÌl");
-		case 5: strcat(S_string, "M·j");
-		case 6: strcat(S_string, "J˙n");
-		case 7: strcat(S_string, "J˙l");
+		case 1: strcat(S_string, "January");
+		case 2: strcat(S_string, "February");
+		case 3: strcat(S_string, "March");
+		case 4: strcat(S_string, "April");
+		case 5: strcat(S_string, "May");
+		case 6: strcat(S_string, "June");
+		case 7: strcat(S_string, "July");
 		case 8: strcat(S_string, "August");
 		case 9: strcat(S_string, "September");
-		case 10: strcat(S_string, "OktÛber");
+		case 10: strcat(S_string, "October");
 		case 11: strcat(S_string, "November");
 		case 12: strcat(S_string, "December");
 		default: strcat(S_string, "N/A");
@@ -18218,7 +18157,7 @@ GetMonthName(month)
 }
 
 new armyshop_items[][][] = {
-	{"Baseballov· p·lka", {15}, {5}},
+	{"Baseball bat", {15}, {5}},
 	{"Golfov· palica", {100}, {2}},
 	{"Katana", {2500}, {8}},
 	{"Lopata", {90}, {6}},
@@ -18249,9 +18188,9 @@ new buyfood_marcobistro_items[][][] = {
 };
 
 new buyfood_fastfood_mat_items[][][] = {
-	{"Plechovka Pepsi Coly", {4}, {inv_pepsiCan}},
-	{"Plechovka Coca Coly", {5}, {inv_colaCan}},
-	{"»okol·dov˝ Kit Kat", {6}, {inv_kitKatChocolate}},
+	{"Pepsi Cola can", {4}, {inv_pepsiCan}},
+	{"Coca Cola can", {5}, {inv_colaCan}},
+	{"Kit Kat", {6}, {inv_kitKatChocolate}},
 	{"Pringles", {2}, {inv_pringlesChips}}
 };
 
@@ -18260,10 +18199,10 @@ new buyfood_buckscoffee_items[][][] = {
 	{"LattÈ", {2}, {15}},
 	{"Espresso", {2}, {15}},
 	{"Cappucino", {2}, {15}},
-	{"Hor˙ca Ëokol·da", {4}, {25}},
-	{"Jahodov˝ donut", {3}, {30}},
-	{"»okolo·dov˝ donut", {3}, {30}},
-	{"Vanilkov˝ donut", {3}, {30}},
+	{"Hot chocolate", {4}, {25}},
+	{"Strawberry doughnut", {3}, {30}},
+	{"Chocolate doughnut", {3}, {30}},
+	{"Vanilla doughnut", {3}, {30}},
 	{"Burger", {6}, {100}},
 	{"Tortilla", {5}, {80}}
 };
@@ -18272,7 +18211,7 @@ new buyfood_hotdog_items[][][] = {
 	{"Hot Dog", {5}, {70}},
 	{"Hot Dog Extra", {7}, {100}},
 	{"Hot Dog Americano", {6}, {100}},
-	{"»ÌnskÈ slÌûe", {10}, {100}},
+	{"Chinese Ramen", {10}, {100}},
 	{"Coca Cola 0,5L", {2}, {80}}
 };
 
@@ -18311,7 +18250,7 @@ ShowPlayerBuyFoodMenu(playerid, menuid)
 	    case menut_marcosbistro:
 	    {
 
-	        strcat(S_finalString, "N·zov produktu\tCena\n");
+	        strcat(S_finalString, "Product\tPrice\n");
 
 	        for(new i; i < sizeof(buyfood_marcobistro_items); i++)
 	        {
@@ -18326,14 +18265,14 @@ ShowPlayerBuyFoodMenu(playerid, menuid)
 	    case menut_welcome_pump:
 	    {
 
-	        strcat(S_finalString, "N·zov produktu\tCena\n");
+	        strcat(S_finalString, "Product\tPrice\n");
 
 	        for(new i; i < sizeof(buyfood_welcomepump_items); i++)
 	        {
 				format(S_tempString, sizeof(S_tempString), "{FFFFFF}%s\t{2fb838}%d$\n", buyfood_welcomepump_items[i][0], buyfood_welcomepump_items[i][1][0]);
 				strcat(S_finalString, S_tempString);
 
-				format(S_caption, 64, "   ");
+				format(S_caption, 64, "     ");
 	        }
 	    }
 
@@ -18341,14 +18280,14 @@ ShowPlayerBuyFoodMenu(playerid, menuid)
 	    case menut_foodshop_hotdog:
 	    {
 
-	        strcat(S_finalString, "N·zov produktu\tCena\n");
+	        strcat(S_finalString, "Product\tPrice\n");
 
 	        for(new i; i < sizeof(buyfood_hotdog_items); i++)
 	        {
 				format(S_tempString, sizeof(S_tempString), "{FFFFFF}%s\t{2fb838}%d$\n", buyfood_hotdog_items[i][0], buyfood_hotdog_items[i][1][0]);
 				strcat(S_finalString, S_tempString);
 
-				format(S_caption, 64, "R›CHLE OB»ERSTVENIE");
+				format(S_caption, 64, "HOT DOG STAND");
 	        }
 
 	    }
@@ -18357,14 +18296,14 @@ ShowPlayerBuyFoodMenu(playerid, menuid)
 	    case menut_foodshop_buckscoffee:
 	    {
 
-	        strcat(S_finalString, "N·zov produktu\tCena\n");
+	        strcat(S_finalString, "Product\tPrice\n");
 
 	        for(new i; i < sizeof(buyfood_buckscoffee_items); i++)
 	        {
 				format(S_tempString, sizeof(S_tempString), "{FFFFFF}%s\t{2fb838}%d$\n", buyfood_buckscoffee_items[i][0], buyfood_buckscoffee_items[i][1][0]);
 				strcat(S_finalString, S_tempString);
 
-				format(S_caption, 64, "KAVIARE“");
+				format(S_caption, 64, "CAFETERIA");
 	        }
 
 	    }
@@ -18373,7 +18312,7 @@ ShowPlayerBuyFoodMenu(playerid, menuid)
 	    case menut_automat_chocolate:
 	    {
 
-	        strcat(S_finalString, "N·zov produktu\tCena\n");
+	        strcat(S_finalString, "Product\tPrice\n");
 
 	        for(new i; i < sizeof(buyfood_fastfood_mat_items); i++)
 	        {
@@ -18389,7 +18328,7 @@ ShowPlayerBuyFoodMenu(playerid, menuid)
 	    case menut_burgershot, menut_burgershot_drive:
 	    {
 
-	        strcat(S_finalString, "N·zov produktu\tCena\n");
+	        strcat(S_finalString, "Product\tPrice\n");
 
 	        for(new i; i < sizeof(buyfood_burgershot_items); i++)
 	        {
@@ -18405,7 +18344,7 @@ ShowPlayerBuyFoodMenu(playerid, menuid)
 	    case menut_pizza_stack:
 	    {
 
-	        strcat(S_finalString, "N·zov produktu\tCena\n");
+	        strcat(S_finalString, "Product\tPrice\n");
 
 	        for(new i; i < sizeof(buyfood_pizzastack_items); i++)
 	        {
@@ -18418,7 +18357,7 @@ ShowPlayerBuyFoodMenu(playerid, menuid)
 	    }
 	}
 
-	ShowPlayerDialog(playerid, menuid, DIALOG_STYLE_TABLIST_HEADERS, S_caption, S_finalString, "K⁄PIç", "CLOSE");
+	ShowPlayerDialog(playerid, menuid, DIALOG_STYLE_TABLIST_HEADERS, S_caption, S_finalString, "BUY", "CLOSE");
 
 	return 1;
 }
@@ -18445,7 +18384,7 @@ new menuitem_general[][][] = {
 };
 
 new menuitem_growshop[][][] = {
-	{"Semienko marihuany", {30}, {inv_weed_seed}}
+	{"Marijuana seed", {30}, {inv_weed_seed}}
 };
 
 new menuitem_electro[][][] = {
@@ -18458,7 +18397,7 @@ new menuitem_electro[][][] = {
 };
 
 new menuitem_fightstyle[][][] = {
-	{"Beûn˝", {0}, {4}, {float:2.45}},
+	{"Default", {0}, {4}, {float:2.45}},
 	{"Boxing", {5}, {5}, {float:3.12}},
 	{"Kung Fu", {10}, {6}, {float:4.86}},
 	{"Kneehead", {25}, {7}, {float:5.52}},
@@ -18502,11 +18441,11 @@ ShowPlayerMenu(playerid, menuid)
 	    //Car Tools Shop
 	    case menut_car_tools:
 	    {
-	        ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_carBattery, "Autobateria", 390, 2975, 1, -10.0, -10.0, 45, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_carOil, "Motorovy olej", 190, 19621, 1, 0.0, 0.0, -80.0, 1);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_rezerva, "Rezerva", 190, 1098, 1, 0.0, 0.0, -80.0, 1);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_kanister, "5L Kanister s benzinom", 9, 1650, 1, 0.0, 0.0, -80.0, 1);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_kanister, "5L Kanister s naftou", 9, 1650, 2, 0.0, 0.0, -80.0, 1);
+	        ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_carBattery, "Car battery", 390, 2975, 1, -10.0, -10.0, 45, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_carOil, "Engine oil", 190, 19621, 1, 0.0, 0.0, -80.0, 1);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_rezerva, "Spare tire", 190, 1098, 1, 0.0, 0.0, -80.0, 1);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_kanister, "5L Gas Can (gasoline)", 9, 1650, 1, 0.0, 0.0, -80.0, 1);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_kanister, "5L Gas Can (diesel)", 9, 1650, 2, 0.0, 0.0, -80.0, 1);
 
 			ms_showStore(playerid, bizname, storeid_normal);
 
@@ -18514,9 +18453,9 @@ ShowPlayerMenu(playerid, menuid)
 	    
 	    case menut_anawalt_obchod:
 	    {
-	        ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_tree_sadenica, "Sadenice stromu 1ks", 50, 779, 1, -10.0, -10.0, 45, 1.2);
-	        ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 6, "Lopata", 120, 337, 1, 0.0, -45.0, 90.0, 2.2);
-			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 9, "Motorova Pila", 1050, 341, 1, 0.0, 0.0, 45.0, 1.5);
+	        ms_addItem(playerid, ITEM_TYPE_INVENTORY, inv_tree_sadenica, "Tree seed", 50, 779, 1, -10.0, -10.0, 45, 1.2);
+	        ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 6, "Shovel", 120, 337, 1, 0.0, -45.0, 90.0, 2.2);
+			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 9, "Chainsaw", 1050, 341, 1, 0.0, 0.0, 45.0, 1.5);
 
 			ms_showStore(playerid, bizname, storeid_anawalt);
 
@@ -18526,9 +18465,9 @@ ShowPlayerMenu(playerid, menuid)
 		{
 	        ms_addItem(playerid, ITEM_TYPE_WEAPON, 22, "Colt 45", Economy::GetPrice(ECONOMY_LIST_AMMO_COLT), 346, 0, 0.0, 0.0, 0.0, 1.2);
 		    ms_addItem(playerid, ITEM_TYPE_WEAPON, 24, "Desert Eagle", Economy::GetPrice(ECONOMY_LIST_AMMO_DESERT), 348, 0, 0.0, 0.0, 0.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_WEAPON, 25, "Brokovnica", Economy::GetPrice(ECONOMY_LIST_AMMO_SHOTG), 349, 0, 0.0, 0.0, 0.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_WEAPON, 33, "Puska", Economy::GetPrice(ECONOMY_LIST_AMMO_PUSKA), 357, 0, 0.0, 0.0, 0.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_ARMOUR, 50, "Vesta", Economy::GetPrice(ECONOMY_LIST_AMMO_VESTA), 1242, 1, 0.0, 0.0, 0.0, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_WEAPON, 25, "Shotgun", Economy::GetPrice(ECONOMY_LIST_AMMO_SHOTG), 349, 0, 0.0, 0.0, 0.0, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_WEAPON, 33, "Rifle", Economy::GetPrice(ECONOMY_LIST_AMMO_PUSKA), 357, 0, 0.0, 0.0, 0.0, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_ARMOUR, 50, "Armour", Economy::GetPrice(ECONOMY_LIST_AMMO_VESTA), 1242, 1, 0.0, 0.0, 0.0, 1.2);
 			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_naboje, "10 ammo", 25, 3013, 10, 0.0, 0.0, 0.0, 1.2);
 			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_naboje, "25 ammo", 57, 3013, 25, 0.0, 0.0, 0.0, 1.2);
 			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_naboje, "50 ammo", 105, 3013, 50, 0.0, 0.0, 0.0, 1.2);
@@ -18553,7 +18492,7 @@ ShowPlayerMenu(playerid, menuid)
 	    case menut_gym:
 	    {
 
-	        strcat(S_finalString, "N·zov öt˝lu\tCena v poËte XP\n");
+	        strcat(S_finalString, "Fight name\tPrice in XP\n");
 
 	        for(new i; i < sizeof(menuitem_fightstyle); i++)
 	        {
@@ -18561,30 +18500,30 @@ ShowPlayerMenu(playerid, menuid)
 				strcat(S_finalString, S_tempString);
 	        }
 
-            format(S_caption, 64, "BOJOV… UMENIE");
+            format(S_caption, 64, "FIGHT STYLE");
 	    }
 	    //Grow Shop
 	    case menut_grow_shop:
 	    {
 
-            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_weeds1, "Semeno marihuany Phatt Fruity", 99, 702, 1, 0.0, 0.0, 0.0, 1.2); //cena za predaj script 20$
-            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_weeds2, "Semeno marihuany Amnesia Haze", 250, 702, 1, 0.0, 0.0, 0.0, 1.2); //60$
-            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_weeds3, "Semeno marihuany Sour Diesel", 795, 702, 1, 0.0, 0.0, 0.0, 1.2); //220$
-            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:5000, "LSD (5 davok)", 499, 19128, 5, 0.0, 0.0, 0.0, 0.8); //220$
-            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_hnojivo, "Hnojivo", 39, 1575, 1, 0.0, 0.0, 0.0, 1.2);
-            ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 4, "Kuchynsky noz", 300, 335, 1, 0.0, 0.0, 0.0, 1.5);
+            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_weeds1, "Marijuana seed Phatt Fruity", 99, 702, 1, 0.0, 0.0, 0.0, 1.2); //cena za predaj script 20$
+            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_weeds2, "Marijuana seed Amnesia Haze", 250, 702, 1, 0.0, 0.0, 0.0, 1.2); //60$
+            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_weeds3, "Marijuana seed Sour Diesel", 795, 702, 1, 0.0, 0.0, 0.0, 1.2); //220$
+            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:5000, "LSD (5 uses)", 499, 19128, 5, 0.0, 0.0, 0.0, 0.8); //220$
+            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_hnojivo, "Fertilizer", 39, 1575, 1, 0.0, 0.0, 0.0, 1.2);
+            ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 4, "Kitchen knife", 300, 335, 1, 0.0, 0.0, 0.0, 1.5);
 			ms_showStore(playerid, bizname, 1);
 	    }
 	    //éeleziarstvo
 	    case menut_shop_hardware:
 	    {
-	        ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_pacidlo, "Pacidlo", 99, 18634, 1, 90.0, 90.0, 0.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_lano, "Lano", 20, 19088, 1, 0.0, 0.0, 0.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_vrece, "Vrece (pytel)", 15, 2060, 1, 90.0, 0.0, 0.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_kocka, "Kocka (kostka)", 10, 19789, 1, 0.0, 10.0, 45.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_puta, "Puta", 990, 19418, 1, 90.0, 90.0, 0.0, 0.3);
-			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 41, "Sprej", 150, 365, 300, 0.0, 0.0, 0.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 9, "Motorova Pila", 990, 341, 1, 0.0, 0.0, 45.0, 1.5);
+	        ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_pacidlo, "Crowbar", 99, 18634, 1, 90.0, 90.0, 0.0, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_lano, "Rope", 20, 19088, 1, 0.0, 0.0, 0.0, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_vrece, "Sack", 15, 2060, 1, 90.0, 0.0, 0.0, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_kocka, "Dice", 10, 19789, 1, 0.0, 10.0, 45.0, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_puta, "Cuffs", 990, 19418, 1, 90.0, 90.0, 0.0, 0.3);
+			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 41, "Spray", 150, 365, 300, 0.0, 0.0, 0.0, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 9, "Chainsaw", 990, 341, 1, 0.0, 0.0, 45.0, 1.5);
 
 			ms_showStore(playerid, bizname, 1);
 
@@ -18593,16 +18532,16 @@ ShowPlayerMenu(playerid, menuid)
 	    //General
 	    case menut_general_store:
 	    {
-            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_mask, "Maska", 300, 19036, 1, 90.0, 90.0, 0.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_katalog, "Katalog", 300, 2855, 1, -10.0, 0.0, 0.0, 1.0);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_colaCan, "Cola", 5, 2601, 1, -10.0, 0.0, 0.0, 1.0);
+            ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_mask, "Mask", 300, 19036, 1, 90.0, 90.0, 0.0, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_katalog, "Catalogue", 300, 2855, 1, -10.0, 0.0, 0.0, 1.0);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_colaCan, "Cola Can", 5, 2601, 1, -10.0, 0.0, 0.0, 1.0);
 			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_kitKatChocolate, "KitKat", 4, 19565, 1, 0.0, 0.0, 0.0, 1.0);
 			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_pringlesChips, "Pringles", 7, 19573, 1, 0.0, 0.0, 0.0, 1.0);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_cigarety, "Cigarety", 4, 19897, 20, 90.0, 0.0, 180.0, 1.0);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_zapalovac, "Zapalovac", 3, 19998, 20, 0.0, 0.0, 0.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_bandaz, "Bandaz", 20, 11747, 1, -20.0, 0.0, 0.0, 1.0);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_cigarety, "Cigarettes", 4, 19897, 20, 90.0, 0.0, 180.0, 1.0);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_zapalovac, "Lighter", 3, 19998, 20, 0.0, 0.0, 0.0, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_bandaz, "Bandage", 20, 11747, 1, -20.0, 0.0, 0.0, 1.0);
 			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_sprite, "Sprite", 9, -1033, 1, 0.0, 0.0, 0.0, 0.1);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_petcup, "Plastove pohariky (3ks)", 49, -1052, 3, 0.0, 0.0, 0.0, 0.1);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_petcup, "Plastic Cups (3 pcs.)", 49, -1052, 3, 0.0, 0.0, 0.0, 0.1);
 
 			ms_showStore(playerid, bizname, storeid_generalstore);
 	    }
@@ -18617,32 +18556,32 @@ ShowPlayerMenu(playerid, menuid)
 
 	    case menut_selldrugs:
 	    {
-			strcat(S_finalString, "Droga\tCena za d·vku\tMinim·lny poËet d·vok\n");
+			strcat(S_finalString, "Drug\tPrice per piece\tMinimal piece count\n");
 
 	        strcat(S_finalString, "Marihuana Phatt Fruity\t$20\t50g\n");
 	        strcat(S_finalString, "Marihuana Amnesia Haze\t$60\t70g\n");
 	        strcat(S_finalString, "Marihuana Sour Diesel\t$220\t100g\n");
 
-            format(S_caption, 64, "PREDAJ DROG");
+            format(S_caption, 64, "DRUG SELL");
 	    }
 
 	    //Electro
 	    case menut_electro_shop:
 	    {
 	        ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_boomBox, "Boombox", 490, 2102, 1, 0.0, 0.0, 0.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_telefon, "Mobil", 50, 18872, 1, 90.0, 0.0, 0.0, 1.0);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_simcard, "SIM karta", 10, 2953, 1, 90.0, 0.0, 0.0, 0.7);
-			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 43, "Kamera", 150, 367, 30, -10.0, 0.0, 40.0, 1.0);
-			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_vysielacka, "Vysielacka", 30, 19942, 1, 0.0, 0.0, 0.0, 1.0);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_telefon, "Cellphone", 50, 18872, 1, 90.0, 0.0, 0.0, 1.0);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_simcard, "SIM card", 10, 2953, 1, 90.0, 0.0, 0.0, 0.7);
+			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 43, "Camera", 150, 367, 30, -10.0, 0.0, 40.0, 1.0);
+			ms_addItem(playerid, ITEM_TYPE_INVENTORY, _:inv_vysielacka, "Radio", 30, 19942, 1, 0.0, 0.0, 0.0, 1.0);
 
 			ms_showStore(playerid, bizname, 1);
 	    }
 
 	    case menut_sex_shop:
 		{
-		    ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 3, "Analna tycinka", 990, 334, 1, 0.0, 0.0, 0.0, 1.2);
+		    ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 3, "Anal stick", 990, 334, 1, 0.0, 0.0, 0.0, 1.2);
 		    ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 10, "Dildo", 15, 321, 1, 0.0, 0.0, 0.0, 1.2);
-			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 11, "Vibracna vagina", 10, 322, 1, 0.0, 0.0, 0.0, 1.2);
+			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 11, "Vibrating vagina", 10, 322, 1, 0.0, 0.0, 0.0, 1.2);
 			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 12, "Vibrator", 50, 323, 1, 0.0, 0.0, 0.0, 1.2);
 			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 13, "Vibrator", 30, 324, 1, 0.0, 0.0, 0.0, 1.2);
 
@@ -18664,17 +18603,17 @@ ShowPlayerMenu(playerid, menuid)
 	    case menut_armyshop:
 	    {
 
-	        ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 5, "Baseballova Palka", 45, 336, 1, 0.0, -45.0, 0.0, 2.2);
-			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 2, "Golfova Palica", 300, 333, 1, 0.0, -45.0, 0.0, 2.2);
-			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 6, "Lopata", 90, 337, 1, 0.0, -45.0, 90.0, 2.2);
-			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 3, "Obusok", 1000, 334, 1, 0.0, 0.0, 0.0, 1.4);
+	        ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 5, "Baseball Bat", 45, 336, 1, 0.0, -45.0, 0.0, 2.2);
+			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 2, "Golf Club", 300, 333, 1, 0.0, -45.0, 0.0, 2.2);
+			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 6, "Shovel", 90, 337, 1, 0.0, -45.0, 90.0, 2.2);
+			ms_addItem(playerid, ITEM_TYPE_WEAPON_F, 3, "Baton", 1000, 334, 1, 0.0, 0.0, 0.0, 1.4);
 
 			ms_showStore(playerid, bizname, 1);
 
 	    }
 	}
 
-	ShowPlayerDialog(playerid, menuid, DIALOG_STYLE_TABLIST_HEADERS, S_caption, S_finalString, "K⁄PIç", "CLOSE");
+	ShowPlayerDialog(playerid, menuid, DIALOG_STYLE_TABLIST_HEADERS, S_caption, S_finalString, "BUY", "CLOSE");
 
 	return 1;
 }
@@ -18683,8 +18622,8 @@ ShowPlayerBank(playerid)
 {
 
 	ShowPlayerDialog(playerid, did_banka, DIALOG_STYLE_TABLIST,
-	    "NOV… KONTO",
-		"{ffffff}Vytvoriù bankovÈ konto\t{47b059}50$\n{ffffff}Vloûiù peniaze na konto\nZÌskaù kreditn˙ kartu\nMoje bankovÈ kont·",
+	    "NEW ACCOUNT",
+		"{ffffff}Create new account\t{47b059}50$\n{ffffff}Deposit money\nGet credit card\nMy bank accounts",
 		"CHOOSE", "ZAVRIEç");
 
 	return 1;
@@ -18692,7 +18631,7 @@ ShowPlayerBank(playerid)
 
 ShowPlayerIDYear(playerid)
 {
-	ShowPlayerDialog(playerid, did_CityHall_idy, DIALOG_STYLE_INPUT, "OBCIANSKY PREUKAZ", "{FFFFFF}> Zadaj prosÌm rok narodenia tvojho charakteru...\n\nCharakter musÌ byù naroden˝ v rokoch 1917 - 2001.", "OK", "SPAT");
+	ShowPlayerDialog(playerid, did_CityHall_idy, DIALOG_STYLE_INPUT, "ID", "{FFFFFF}> Please enter year of birth of your character...\n\nCharacter must be born between years 1917 - 2001.", "OK", "BACK");
 	return 0;
 }
 
@@ -18707,7 +18646,7 @@ ShowPlayerIDMonth(playerid)
 		strcat(string, GetMonthName(i));
 		strcat(string, "\n");
 	}
-	ShowPlayerDialog(playerid, did_CityHall_idm, DIALOG_STYLE_LIST, "OBCIANSKY PREUKAZ", string, "VYBRAT", "SPAT");
+	ShowPlayerDialog(playerid, did_CityHall_idm, DIALOG_STYLE_LIST, "ID", string, "CHOOSE", "BACK");
 	return 0;
 }
 
@@ -18722,22 +18661,22 @@ ShowPlayerIDCreateMenu(playerid)
 	if(t_ID_Date[playerid][2] < 1900)
 	{
 	    if(GetPlayerInventoryItem(playerid, inv_idCard)) {
-	        strcat(S_string, "Rok narodenia ( {b6b6b6}VybranÈ ... {ffffff})\n");
+	        strcat(S_string, "Year of birth ( {b6b6b6}Chosen ... {ffffff})\n");
 			canDoIt = 1;
 	    } else {
-			strcat(S_string, "Rok narodenia ( {b6b6b6}Klikni pre zmenu ... {ffffff})\n");
+			strcat(S_string, "Year of birth ( {b6b6b6}click to choose ... {ffffff})\n");
 			canDoIt = 0;
 		}
 	}
 	else
 	{
 	    if(GetPlayerInventoryItem(playerid, inv_idCard)) {
-	        strcat(S_string, "Rok narodenia ( {b6b6b6}VybranÈ ... {ffffff})\n");
+	        strcat(S_string, "Year of birth ( {b6b6b6}Chosen ... {ffffff})\n");
 			canDoIt = 1;
 	    }
 	    else
 	    {
-			format(S_tStr, 128, "Rok narodenia ( {b6b6b6}%d {ffffff})\n", t_ID_Date[playerid][2]);
+			format(S_tStr, 128, "Year of birth ( {b6b6b6}%d {ffffff})\n", t_ID_Date[playerid][2]);
 			strcat(S_string, S_tStr);
 		}
 	}
@@ -18745,19 +18684,19 @@ ShowPlayerIDCreateMenu(playerid)
 	if(t_ID_Date[playerid][1] < 1)
 	{
 	    if(GetPlayerInventoryItem(playerid, inv_idCard)) {
-            strcat(S_string, "Mesiac narodenia ( {b6b6b6}VybranÈ ... {ffffff})\n");
+            strcat(S_string, "Month of birth ( {b6b6b6}Chosen ... {ffffff})\n");
 			canDoIt = 1;
 	    } else {
-			strcat(S_string, "Mesiac narodenia ( {b6b6b6}Klikni pre zmenu ... {ffffff})\n");
+			strcat(S_string, "Month of birth ( {b6b6b6}click to choose ... {ffffff})\n");
 			canDoIt = 0;
 		}
 	}
 	else
 	{
 	    if(GetPlayerInventoryItem(playerid, inv_idCard)) {
-            strcat(S_string, "Mesiac narodenia ( {b6b6b6}VybranÈ ... {ffffff})\n");
+            strcat(S_string, "Month of birth ( {b6b6b6}Chosen ... {ffffff})\n");
 	    } else {
-			format(S_tStr, 128, "Mesiac narodenia ( {b6b6b6}%s {ffffff})\n", GetMonthName(t_ID_Date[playerid][1]));
+			format(S_tStr, 128, "Month of birth ( {b6b6b6}%s {ffffff})\n", GetMonthName(t_ID_Date[playerid][1]));
 			strcat(S_string, S_tStr);
 		}
 	}
@@ -18765,18 +18704,18 @@ ShowPlayerIDCreateMenu(playerid)
 	if(t_ID_Date[playerid][0] < 1)
 	{
 	    if(GetPlayerInventoryItem(playerid, inv_idCard)) {
-            strcat(S_string, "DeÚ narodenia ( {b6b6b6}VybranÈ ... {ffffff})\n");
+            strcat(S_string, "Day of birth ( {b6b6b6}Chosen ... {ffffff})\n");
 	    } else {
-			strcat(S_string, "DeÚ narodenia ( {b6b6b6}Klikni pre zmenu ... {ffffff})\n");
+			strcat(S_string, "Day of birth ( {b6b6b6}click to choose ... {ffffff})\n");
 			canDoIt = 0;
 		}
 	}
 	else
 	{
 	    if(GetPlayerInventoryItem(playerid, inv_idCard)) {
-            strcat(S_string, "DeÚ narodenia ( {b6b6b6}VybranÈ ... {ffffff})\n");
+            strcat(S_string, "Day of birth ( {b6b6b6}Chosen ... {ffffff})\n");
 	    } else {
-			format(S_tStr, 128, "DeÚ narodenia ( {b6b6b6}%d. {ffffff})\n", t_ID_Date[playerid][0]);
+			format(S_tStr, 128, "Day of birth ( {b6b6b6}%d. {ffffff})\n", t_ID_Date[playerid][0]);
 			strcat(S_string, S_tStr);
 		}
 	}
@@ -18784,37 +18723,37 @@ ShowPlayerIDCreateMenu(playerid)
 	if(strlen(t_ID_Place[playerid]) < 4)
 	{
 	    if(GetPlayerInventoryItem(playerid, inv_idCard)) {
-            strcat(S_string, "Miesto narodenia ( {b6b6b6}VybranÈ ... {ffffff})\n");
+            strcat(S_string, "Place of birth ( {b6b6b6}Chosen ... {ffffff})\n");
 	    } else {
-			strcat(S_string, "Miesto narodenia ( {b6b6b6}Klikni pre zmenu ... {ffffff})\n");
+			strcat(S_string, "Place of birth ( {b6b6b6}click to choose ... {ffffff})\n");
 			canDoIt = 0;
 		}
 	}
 	else
 	{
 	    if(GetPlayerInventoryItem(playerid, inv_idCard)) {
-            strcat(S_string, "Miesto narodenia ( {b6b6b6}VybranÈ ... {ffffff})\n");
+            strcat(S_string, "Place of birth ( {b6b6b6}Chosen ... {ffffff})\n");
 	    } else {
-			format(S_tStr, 128, "Miesto narodenia ( {b6b6b6}%s {ffffff})\n", t_ID_Place[playerid]);
+			format(S_tStr, 128, "Place of birth ( {b6b6b6}%s {ffffff})\n", t_ID_Place[playerid]);
 			strcat(S_string, S_tStr);
 		}
 	}
 
 	if(strlen(t_ID_Settlement[playerid]) < 4)
 	{
-		strcat(S_string, "TrvalÈ bydlisko ( {b6b6b6}Klikni pre zmenu ... {ffffff})\n");
+		strcat(S_string, "Residence ( {b6b6b6}click to change ... {ffffff})\n");
 		canDoIt = 0;
 	}
 	else
 	{
-		format(S_tStr, 128, "TrvalÈ bydlisko ( {b6b6b6}%s {ffffff})\n", t_ID_Settlement[playerid]);
+		format(S_tStr, 128, "Residence ( {b6b6b6}%s {ffffff})\n", t_ID_Settlement[playerid]);
 		strcat(S_string, S_tStr);
 	}
 
-	if(canDoIt == 1) strcat(S_string, "{ee3535}Vybaviù nov˝ obËiansky preukaz [15$]");
-	else strcat(S_string, "{aeaeae}Vybaviù nov˝ obËiansky preukaz [15$]");
+	if(canDoIt == 1) strcat(S_string, "{ee3535}Get new id [15$]");
+	else strcat(S_string, "{aeaeae}Get new id [15$]");
 
-	ShowPlayerDialog(playerid, did_CityHall_id, DIALOG_STYLE_LIST, "OBCIANSKY PREUKAZ", S_string, "VYBRAT", "SPAT");
+	ShowPlayerDialog(playerid, did_CityHall_id, DIALOG_STYLE_LIST, "ID", S_string, "EDIT", "BACK");
 
 	return 1;
 }
@@ -18850,13 +18789,13 @@ ShowPlayerIDDay(playerid)
 		strcat(string, str);
 		strcat(string, "\n");
 	}
-	ShowPlayerDialog(playerid, did_CityHall_idd, DIALOG_STYLE_LIST, "OBCIANSKY PREUKAZ", string, "VYBRAT", "SPAT");
+	ShowPlayerDialog(playerid, did_CityHall_idd, DIALOG_STYLE_LIST, "OBCIANSKY ID", string, "CHOOSE", "BACK");
 	return 0;
 }
 
 ShowPlayerIDPoB(playerid)
 {
-	ShowPlayerDialog(playerid, did_CityHall_idp, DIALOG_STYLE_INPUT, "OBCIANSKY PREUKAZ", "{FFFFFF}> Zadaj prosÌm miesto narodenia tvojho charakteru...\n\nMiesto charakteru musÌ byù dlhöie ako 5 a kratöie ako 30 znakov.", "OK", "SPAT");
+	ShowPlayerDialog(playerid, did_CityHall_idp, DIALOG_STYLE_INPUT, "ID", "{FFFFFF}> Please enter place of birth of your character...\n\nIt must be longer than 5 and shorter than 30 characters.", "OK", "BACK");
 	return 0;
 }
 
@@ -18882,7 +18821,7 @@ ShowPlayerIDSettlm(playerid)
 
 	}
 
-	ShowPlayerDialog(playerid, did_CityHall_ids, DIALOG_STYLE_LIST, "OBCIANSKY PREUKAZ", string, "VYBRAT", "SPAT");
+	ShowPlayerDialog(playerid, did_CityHall_ids, DIALOG_STYLE_LIST, "ID", string, "CHOOSE", "BACK");
 	return 0;
 }
 
@@ -18943,29 +18882,29 @@ ShowPlayerFactionMember(playerid, counts)
 
 	if(P_wasFound == 0)
 	{
-	    format(S_tempString, 256, "{ffffff}Status\t{ec4848}OFFLINE\n{ffffff}Pridal sa: %s\n", getdateunix(pridalsa));
+	    format(S_tempString, 256, "{ffffff}Status\t{ec4848}OFFLINE\n{ffffff}Joined: %s\n", getdateunix(pridalsa));
 	    strcat(S_finalString, S_tempString);
 	}
 	else
 	{
-	    format(S_tempString, 256, "{ffffff}Status\t{46ec40}ONLINE\n{ffffff}Pridal sa: %s\n", getdateunix(pridalsa));
+	    format(S_tempString, 256, "{ffffff}Status\t{46ec40}ONLINE\n{ffffff}Joined: %s\n", getdateunix(pridalsa));
 	    strcat(S_finalString, S_tempString);
 	}
 
-	format(S_tempString, 256, "{ffffff}Hodnosù\t%s\n", FactionTitle);
+	format(S_tempString, 256, "{ffffff}Title\t%s\n", FactionTitle);
 	strcat(S_finalString, S_tempString);
 	format(S_tempString, 256, "{ffffff}Rank\t%d / 10\n", FactionRank);
 	strcat(S_finalString, S_tempString);
-	format(S_tempString, 256, "{ffffff}»Ìslo odznaku\t%d\n \n", FactionBadge);
+	format(S_tempString, 256, "{ffffff}Badge\t%d\n \n", FactionBadge);
 	strcat(S_finalString, S_tempString);
 
-	format(S_tempString, 256, "{dd5858}Vyhodiù");
+	format(S_tempString, 256, "{dd5858}Fire");
 	strcat(S_finalString, S_tempString);
 
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_Faction_Member, DIALOG_STYLE_TABLIST, S_caption, S_finalString, "UPRAVIç", "CLOSE");
+	ShowPlayerDialog(playerid, did_Faction_Member, DIALOG_STYLE_TABLIST, S_caption, S_finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 }
@@ -19020,25 +18959,25 @@ ShowPlayerIFactionMember(playerid, counts)
 
 	if(P_wasFound == 0)
 	{
-	    format(S_tempString, 256, "{ffffff}Status\t{ec4848}OFFLINE\n{ffffff}Pridal sa: %s\n", getdateunix(pridalsa));
+	    format(S_tempString, 256, "{ffffff}Status\t{ec4848}OFFLINE\n{ffffff}Joined: %s\n", getdateunix(pridalsa));
 	    strcat(S_finalString, S_tempString);
 	}
 	else
 	{
-	    format(S_tempString, 256, "{ffffff}Status\t{46ec40}ONLINE\n{ffffff}Pridal sa: %s\n", getdateunix(pridalsa));
+	    format(S_tempString, 256, "{ffffff}Status\t{46ec40}ONLINE\n{ffffff}Joined: %s\n", getdateunix(pridalsa));
 	    strcat(S_finalString, S_tempString);
 	}
 
 	format(S_tempString, 256, "Rank\t%d / 10\n \n", FactionRank);
 	strcat(S_finalString, S_tempString);
 
-	format(S_tempString, 256, "{dd5858}Vyhodiù");
+	format(S_tempString, 256, "{dd5858}Fire");
 	strcat(S_finalString, S_tempString);
 
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_I_Faction_Member, DIALOG_STYLE_TABLIST, S_caption, S_finalString, "UPRAVIç", "CLOSE");
+	ShowPlayerDialog(playerid, did_I_Faction_Member, DIALOG_STYLE_TABLIST, S_caption, S_finalString, "CHOOSE", "CLOSE");
 
 	return 1;
 }
@@ -19052,7 +18991,7 @@ DeletePlayerBankAccounts(playerid, forplayerid = -11)
 	    S_query[256],
 		Cache:C_q,
 
-		S_finalString[2048] = "»Ìslo ˙Ëtu\tPIN\tStav ˙Ëtu\tPoplatok za zruöenie\n",
+		S_finalString[2048] = "Account number\tPIN code\tBalance\tRemoval fee\n",
 		S_tempString[256];
 
 	mysql_format(MYSQL, S_query, 256, "SELECT * FROM gm_bankaccs WHERE Owner = '%e'", ReturnName(playerid));
@@ -19076,7 +19015,7 @@ DeletePlayerBankAccounts(playerid, forplayerid = -11)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(forplayerid, did_banka_accs, DIALOG_STYLE_TABLIST_HEADERS, "BANKOV… KONT¡", S_finalString, "VYMAZAç", "BACK");
+	ShowPlayerDialog(forplayerid, did_banka_accs, DIALOG_STYLE_TABLIST_HEADERS, "BANK ACCOUNTS", S_finalString, "REMOVE", "BACK");
 
 	return 1;
 }
@@ -19087,7 +19026,7 @@ AddPlayerBankDollar(playerid)
 	    S_query[256],
 		Cache:C_q,
 
-		S_finalString[2048] = "»Ìslo ˙Ëtu\tPIN\tStav ˙Ëtu\n",
+		S_finalString[2048] = "Account number\tPIN code\tBalance\n",
 		S_tempString[256];
 
 	mysql_format(MYSQL, S_query, 256, "SELECT * FROM gm_bankaccs WHERE Owner = '%e'", ReturnName(playerid));
@@ -19111,7 +19050,7 @@ AddPlayerBankDollar(playerid)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_banka_add, DIALOG_STYLE_TABLIST_HEADERS, "ZVOL KONTO", S_finalString, "CHOOSE", "BACK");
+	ShowPlayerDialog(playerid, did_banka_add, DIALOG_STYLE_TABLIST_HEADERS, "CHOOSE ACCOUNT", S_finalString, "CHOOSE", "BACK");
 
 	return 1;
 }
@@ -19122,7 +19061,7 @@ PlayerBankCard(playerid)
 	    S_query[256],
 		Cache:C_q,
 
-		S_finalString[2048] = "»Ìslo ˙Ëtu\tPIN\tStav ˙Ëtu\n",
+		S_finalString[2048] = "Account number\tPIN code\tBalance\n",
 		S_tempString[256];
 
 	mysql_format(MYSQL, S_query, 256, "SELECT * FROM gm_bankaccs WHERE Owner = '%e'", ReturnName(playerid));
@@ -19146,7 +19085,7 @@ PlayerBankCard(playerid)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_banka_card, DIALOG_STYLE_TABLIST_HEADERS, "ZVOL KONTO", S_finalString, "CHOOSE", "BACK");
+	ShowPlayerDialog(playerid, did_banka_card, DIALOG_STYLE_TABLIST_HEADERS, "CHOOSE ACCOUNT", S_finalString, "CHOOSE", "BACK");
 
 	return 1;
 }
@@ -19158,7 +19097,7 @@ ShowPlayerFactionMemb(playerid)
 	    S_query[256],
 		Cache:C_q,
 
-		S_finalString[4096] = "Status a meno\tHodnosù a rank/level\tPriöiel do frakcie\n",
+		S_finalString[4096] = "Name, status\tTitle, rank/level\tJoined\n",
 		S_tempString[256];
 
 	mysql_format(MYSQL, S_query, 256, "SELECT * FROM char_main WHERE Faction = '%d'", GetPlayerFaction(playerid));
@@ -19180,7 +19119,7 @@ ShowPlayerFactionMemb(playerid)
 	    cache_get_value_name_int(i, "FactionJoined", pridalsa);
 
 	    if(strlen(FactionTitle) < 1)
-	        format(FactionTitle, 64, "Nov·Ëik");
+	        format(FactionTitle, 64, "Newbie");
 
 	    foreach( new id : Player )
 	    {
@@ -19213,7 +19152,7 @@ ShowPlayerFactionMemb(playerid)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_Faction_Members, DIALOG_STYLE_TABLIST_HEADERS, "»LENOVIA FRAKCIE", S_finalString, "UPRAVIç", "CLOSE");
+	ShowPlayerDialog(playerid, did_Faction_Members, DIALOG_STYLE_TABLIST_HEADERS, "FACTION MEMBERS", S_finalString, "DETAIL", "CLOSE");
 
 	return 1;
 }
@@ -19225,7 +19164,7 @@ ShowPlayerIFactionMemb(playerid)
 	    S_query[256],
 		Cache:C_q,
 
-		S_finalString[2048] = "Status a meno\tRank\tPridal sa do frakcie\n",
+		S_finalString[2048] = "Name, status\tRank\tJoined\n",
 		S_tempString[256];
 
 	mysql_format(MYSQL, S_query, 256, "SELECT * FROM char_main WHERE Illegal_Faction = '%d' ORDER BY Username", GetPlayerIllegalFaction(playerid));
@@ -19272,7 +19211,7 @@ ShowPlayerIFactionMemb(playerid)
 
 	cache_delete(C_q);
 
-	ShowPlayerDialog(playerid, did_I_Faction_Members, DIALOG_STYLE_TABLIST_HEADERS, "»LENOVIA FRAKCIE", S_finalString, "UPRAVIç", "CLOSE");
+	ShowPlayerDialog(playerid, did_I_Faction_Members, DIALOG_STYLE_TABLIST_HEADERS, "FACTION MEMBERS", S_finalString, "DETAIL", "CLOSE");
 
 	return 1;
 }
@@ -19284,12 +19223,12 @@ ShowPlayerIFactionCasa(playerid)
 		S_string[512];
 
 	format(S_string,512,
-	    "{FFFFFF}> MÙûeö vybraù alebo vloûiù peniaze do kasy (Zostatok kasy je {e34f4f}%d${ffffff}).\nVybraù ich mÙûe iba rank 10, no vloûiù kaûd˝.\nZadaj sumu a klikni na tlaËidlo VLOZIT/VYBRAT.\nAk chceö toto okno opustiù, nechaj pole pr·zdnÈ a klikni na ktorÈkoævek tlaËidlo.",
+	    "{FFFFFF}> You can withdraw or deposit money into faction storage (balance is {e34f4f}%d${ffffff}).\nOnly rank 10 can withdraw money.\nEnter value and click WITHD or DEPOS.",
 	    i_factEnum[GetPlayerIllegalFaction(playerid)][ifact_Cash]);
 
-    ShowPlayerDialog(playerid, did_I_Frakcia_Own_Kasa, DIALOG_STYLE_INPUT, "FRAKCNA KASA",
+    ShowPlayerDialog(playerid, did_I_Frakcia_Own_Kasa, DIALOG_STYLE_INPUT, "FACTION STORAGE",
 		S_string,
-  		"VLOZIT", "VYBRAT");
+  		"DEPOS", "WITHD");
 
 	return 1;
 }
@@ -19301,12 +19240,12 @@ ShowPlayerFactionCasa(playerid)
 		S_string[512];
 
 	format(S_string,512,
-	    "{FFFFFF}> MÙûeö vybraù alebo vloûiù peniaze do kasy (Zostatok kasy je {e34f4f}%d${ffffff}).\nVybraù ich mÙûe iba rank 10, no vloûiù kaûd˝.\nZadaj sumu a klikni na tlaËidlo VLOZIT/VYBRAT.\nAk chceö toto okno opustiù, nechaj pole pr·zdnÈ a klikni na ktorÈkoævek tlaËidlo.",
-	    factEnum[GetPlayerFaction(playerid)][fact_Cash]);
+	    "{FFFFFF}> You can withdraw or deposit money into faction storage (balance is {e34f4f}%d${ffffff}).\nOnly rank 10 can withdraw money.\nEnter value and click WITHD or DEPOS.",
+		factEnum[GetPlayerFaction(playerid)][fact_Cash]);
 
-    ShowPlayerDialog(playerid, did_Frakcia_Own_Kasa, DIALOG_STYLE_INPUT, "FRAKCNA KASA",
+    ShowPlayerDialog(playerid, did_Frakcia_Own_Kasa, DIALOG_STYLE_INPUT, "FACTION STORAGE",
 		S_string,
-  		"VLOZIT", "VYBRAT");
+  		"DEPOS", "WITHD");
 
 	return 1;
 }
@@ -19327,11 +19266,11 @@ ShowPlayerOwnFaction(playerid)
 	pocetClenov = cache_num_rows();
 	cache_delete(q);
 
-	format(S_tempString, sizeof(S_tempString), "{ffffff}ID frakcie: {e34f4f}%d{ffffff}\nMeno frakcie: {e34f4f}%s{ffffff}\nTyp frakcie: {e34f4f}%s{ffffff}\nKasa frakcie: {e34f4f}%d${ffffff}\n{ffffff}»lenovia frakcie (%d Ëlenov)\n{f03939}Podaù v˝poveÔ",
+	format(S_tempString, sizeof(S_tempString), "{ffffff}Faction ID: {e34f4f}%d{ffffff}\nFaction name: {e34f4f}%s{ffffff}\nFaction type: {e34f4f}%s{ffffff}\nFaction storage: {e34f4f}%d${ffffff}\n{ffffff}Faction members (%d)\n{f03939}Leave faction",
 		i, factEnum[i][fact_Name], GetFactionTypeName(factEnum[i][fact_Type]), factEnum[i][fact_Cash], pocetClenov);
 
 	strcat(S_string, S_tempString);
-	ShowPlayerDialog(playerid, did_Frakcia_Own, DIALOG_STYLE_LIST, "FRAKCIA", S_string, "ZVOLIç", "BACK");
+	ShowPlayerDialog(playerid, did_Frakcia_Own, DIALOG_STYLE_LIST, "FACTION", S_string, "CHOOSE", "BACK");
 	return 1;
 }
 
@@ -47222,8 +47161,7 @@ public OnGameModeInit()
 
 	*/
 
-	mysql_global_options(DUPLICATE_CONNECTIONS, true);
-	MYSQL = mysql_connect(SQL_HOST, SQL_USER, SQL_PASS, SQL_DB);
+	MYSQL = mysql_connect_file("mysql.ini");
 	
 	if(MYSQL == MYSQL_INVALID_HANDLE)
 	{

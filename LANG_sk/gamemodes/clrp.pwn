@@ -19,11 +19,6 @@
 #undef  MAX_PLAYERS
 	#define MAX_PLAYERS 100
 
-#define SQL_HOST 	"hostname"
-#define SQL_USER    "root"
-#define SQL_PASS    "plain"
-#define SQL_DB      "database_name"
-
 #include <YSF>
 #include <YSI\y_timers>
 #include <YSI\y_iterate>
@@ -60,9 +55,9 @@
 #include <attachment-fix>
 
 // PARTS OF SERVER SCRIPT
-#include <internal\truckers>
-#include <internal\menustore>
-#include <internal\cctv>
+#include <internal\truckers.pwn>
+#include <internal\menustore.pwn>
+#include <internal\cctv.pwn>
 #include <internal\drugsystem.pwn>
 #include <internal\bmap.pwn>
 #include <internal\deers.pwn>
@@ -47263,8 +47258,10 @@ public OnGameModeInit()
 
 	*/
 
-	mysql_global_options(DUPLICATE_CONNECTIONS, true);
-	MYSQL = mysql_connect(SQL_HOST, SQL_USER, SQL_PASS, SQL_DB);
+	//mysql_global_options(DUPLICATE_CONNECTIONS, true);
+	//MYSQL = mysql_connect(SQL_HOST, SQL_USER, SQL_PASS, SQL_DB);
+	
+	MYSQL = mysql_connect_file("mysql.ini");
 	
 	if(MYSQL == MYSQL_INVALID_HANDLE)
 	{
