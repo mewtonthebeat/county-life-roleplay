@@ -161,6 +161,7 @@ new bool:donotsave[MAX_PLAYERS];
 #define MAX_MAP_ICONS          	100
 #define MAX_FIRE_EXTINGUISHERS  300
 #define MAX_STATIC_DO           5
+#define MAX_OPENABLE_GATES      50
 
 #define     BREAKIN_DEFAULT_PROGRESS	5.0
 #define     BREAKIN_CLICK_POWER         1.0
@@ -3244,7 +3245,7 @@ new tollBooths[][] = {
 	}
 };
 
-new openableGates[][] = {
+new openableGates[MAX_OPENABLE_GATES][] = {
 	/*
 		Object, cX, cY, cZ, cRX, cRY, cRZ, oX, oY, oZ, oRX, oRY, oRZ, VW, Interior, FactionType
 	*/
@@ -15694,7 +15695,7 @@ HasFreeBusinessSlot(playerid)
 	return 1;
 }
 
-new openableGate[30][5];
+new openableGate[MAX_OPENABLE_GATES][5];
 // 0 - object
 // 1 - area
 // 2 - faction
@@ -15706,7 +15707,7 @@ LoadGates()
 		Object, cX, cY, cZ, cRX, cRY, cRZ, oX, oY, oZ, oRX, oRY, oRZ, VW, Interior, FactionType
 	*/
 
-	for( new i; i < sizeof(openableGates); i++)
+	for( new i; i < MAX_OPENABLE_GATES; i++)
 	{
 	    openableGate[i][0] = CreateDynamicObject(
 			openableGates[i][0],
@@ -56853,7 +56854,7 @@ YCMD:brana(playerid, params[], help)
 
 	GetPlayerPos(playerid, p[0], p[1], p[2]);
 
-	for( new i; i < sizeof(openableGate); i++)
+	for( new i; i < MAX_OPENABLE_GATES; i++)
 	{
 
 	    if(!IsPlayerInDynamicArea(playerid, openableGate[i][1]))
@@ -56915,7 +56916,7 @@ YCMD:brana(playerid, params[], help)
 public OnDynamicObjectMoved(objectid)
 {
 
-	for( new i; i < sizeof(openableGate); i++)
+	for( new i; i < MAX_OPENABLE_GATES; i++)
 	{
 	    if(objectid != openableGate[i][0])
 	        continue;
